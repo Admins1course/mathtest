@@ -1,0 +1,38 @@
+#stat_div{
+	position: relative;
+	width: 96%;
+	height: auto;
+	border:1px solid red;
+	margin-left: 2%;
+	margin-top: 2%;
+}
+
+#stat_head{
+	width: 60%;
+	margin-left: 20%;
+	margin-top: 2%;
+	height: auto;
+	border:1px solid red;
+	font-size: 40px;
+	font-weight: bold;
+}
+
+.stat_head_text{
+	margin-left: 25%;
+}
+
+#stat_main{
+	width: 60%;
+	margin-left: 2%;
+	margin-top: 5%;
+	height: auto;
+	border:1px solid red;
+	margin-bottom: 2%;
+	
+}
+
+.stat_text{
+	margin-left: 2%;
+	margin-top: 2%;
+	font-size: 25px;
+}
