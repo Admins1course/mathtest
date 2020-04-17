@@ -40,7 +40,7 @@
 				tasks++;
 				$('.radiobutton_template:hidden').clone('deepWithDataAndEvents').insertBefore('#form_handler').attr('id','task'+tasks).slideDown(1000,function(){
 					$('.radiobutton_template:last .main_text').attr('name','task'+tasks+'[total_task]');
-					$('.radiobutton_template:last .radio .button_radio').attr('name','task'+tasks+'[radio]');
+					$('.radiobutton_template:last .radio .button_radio').attr('name','task'+tasks+'[radio]').attr('value',1);
 					$('.radiobutton_template:last .radio .input_text').attr('name','task'+tasks+'[text_answer1]');
 					lenghts['task'+tasks]={}
 					lenghts['task'+tasks]['radio_answer']=1;
@@ -90,11 +90,11 @@
 						}
 					}
 					else{
-						if($(this).attr('id')=='checkboxbutton'){
+						if($(this).children('input').attr('id')=='checkboxbutton'){
 							len=++lenghts[idName]['checkbox_answer'];
 							$(this).attr('name','task'+tasks+'[checkbox_answer'+len+'][checkbox]');
 						}
-						else{
+						else if($(this).attr('class')=='input_text'){
 							len=lenghts[idName]['checkbox_answer'];
 							$(this).attr('name','task'+tasks+'[checkbox_answer'+len+'][text_answer]');
 						}
