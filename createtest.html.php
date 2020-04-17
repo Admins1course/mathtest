@@ -80,11 +80,11 @@
 				$('.'+className[1]+' .add_button_answer:hidden').prev().clone('deepWithDataAndEvents').css('display','none').insertBefore(
 				this).slideDown(1000).children().each(function(index,el){
 					if (className[1]=='radiobutton_template'){
-						if($(this).attr('id')=='radiobutton'){
+						if($(this).children('input').attr('id')=='radiobutton'){
 							len=++lenghts[idName]['radio_answer'];
-							$(this).attr('name','task'+tasks+'[radio]').attr('value',len);
+							$(this).children('input').attr('name','task'+tasks+'[radio]').attr('value',len);
 						}
-						else{
+						else if($(this).attr('class')=='input_text'){
 							len=lenghts[idName]['radio_answer'];
 							$(this).attr('name','task'+tasks+'[text_answer'+len+']');
 						}
@@ -372,7 +372,7 @@
 						<input type="button" class="formul_preview" value="Превью" class="prev_btn" onclick="convert()">
 					</div>
 					<textarea  oninput="auto_grow(this)"
-						class="input_text" id="text" name="task[text_answer]" style="resize:none" onfocus="getData()">
+						class="input_text" name="task[text_answer]" style="resize:none" onfocus="getData()">
 					</textarea><!--  задание1 -->
 					<div class="preview">
 					</div>
