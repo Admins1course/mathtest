@@ -370,7 +370,7 @@ textarea{
 	width: 70px;
 	height: 40px;
 }*/
-#form_handler_css{
+#form_handler{
 	position: relative;
 	margin-top: 40px;
 
@@ -506,6 +506,12 @@ textarea{
 	background-color: orange;
 	border: 1px solid red;
 
+}
+#nameTest{
+	margin-top: 50px;
+	width: 40%;
+	border: 1px solid red;
+	position: absolute;
 }
 #footer{display: none;
 
