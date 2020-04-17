@@ -146,7 +146,7 @@
 				<?php if(isset($_COOKIE['root'])&&($_COOKIE['root']=="студент")){?>
 					<li><a href="#m3_4">Статистика</a></li>
 					<li><a href="#m3_5">Пройти тест по приглашению</a></li>
-			    <?php }else if(isset($_COOKIE['root'])&&($_COOKIE['root']=="учитель")){?>
+			    <?php }else if(isset($_COOKIE['root'])&&($_COOKIE['root']=="преподаватель")){?>
 					<li><a href="#m3_3">Мой каталог</a></li>
 					<li><a href="createtest.html.php">Создать тест</a></li>
 					<li><a href="#m3_5">Создать приглашение</a></li>
