@@ -31,7 +31,7 @@
 					//формируем аттрибут name для элементов, значение которых отправится на сервер
 					$('.textarea_template:last .main_text').attr('name','task'+tasks+'[total_task]');
 					$('.textarea_template:last .areatext #answer').attr('name','task'+tasks+'[textarea_answer]');
-					$('.textarea_template:last label').attr('for','points'+tasks);
+					$('.textarea_template:last .textForPoints').attr('for','points'+tasks);
 					$('.textarea_template:last .points').attr('id','points'+tasks);
 				});
 			});
@@ -40,11 +40,11 @@
 				tasks++;
 				$('.radiobutton_template:hidden').clone('deepWithDataAndEvents').insertBefore('#form_handler').attr('id','task'+tasks).slideDown(1000,function(){
 					$('.radiobutton_template:last .main_text').attr('name','task'+tasks+'[total_task]');
-					$('.radiobutton_template:last .radio .button_radio').attr('name','task'+tasks+'[radio]').attr('value',1);
+					$('.radiobutton_template:last .radio .button_radio').attr('name','task'+tasks+'[radio]');
 					$('.radiobutton_template:last .radio .input_text').attr('name','task'+tasks+'[text_answer1]');
 					lenghts['task'+tasks]={}
 					lenghts['task'+tasks]['radio_answer']=1;
-					$('.radiobutton_template:last label').attr('for','points'+tasks);
+					$('.radiobutton_template:last .textForPoints').attr('for','points'+tasks);
 					$('.radiobutton_template:last .points').attr('id','points'+tasks);
 				});
 			});
@@ -57,7 +57,7 @@
 					$('.checkboxbutton_template:last .check .input_text').attr('name','task'+tasks+'[checkbox_answer1][text_answer]');
 					lenghts['task'+tasks]={}
 					lenghts['task'+tasks]['checkbox_answer']=1;
-					$('.checkboxbutton_template:last label').attr('for','points'+tasks);
+					$('.checkboxbutton_template:last .textForPoints').attr('for','points'+tasks);
 					$('.checkboxbutton_template:last .points').attr('id','points'+tasks);
 				});
 			});
@@ -67,7 +67,7 @@
 				$('.input_template:hidden').clone('deepWithDataAndEvents').insertBefore('#form_handler').attr('id','task'+tasks).slideDown(1000,function(){
 					$('.input_template:last .main_text').attr('name','task'+tasks+'[total_task]');
 					$('.input_template:last .inp input').attr('name','task'+tasks+'[input_answer]');
-					$('.input_template:last label').attr('for','points'+tasks);
+					$('.input_template:last .textForPoints').attr('for','points'+tasks);
 					$('.input_template:last .points').attr('id','points'+tasks);
 				});
 			});
@@ -345,8 +345,8 @@
 					<textarea oninput="auto_grow(this)" name="task[textarea_answer]" id="answer" style="resize:none" class="text_answer">
 					</textarea><!--  Развернутый ответ -->
 				</div>
-				<label for="points">Введите количество баллов за данное задание</label>
-				<input type="text" class="points" id="points">
+				<label class="textForPoints" for="points">Введите количество баллов за данное задание</label>
+				<input type="text" class="points">
 							
 			</div>
 			<div class="task radiobutton_template">
@@ -379,8 +379,8 @@
 				</div>
 				
 				<input type="button" class="add_button_answer" value="+"><!--  Кнопка добавить -->
-				<label for="points">Введите количество баллов за данное задание</label>
-				<input type="text" class="points" id="points">
+				<label class="textForPoints" for="points">Введите количество баллов за данное задание</label>
+				<input type="text" class="points">
 							
 			</div>
 		
@@ -414,8 +414,8 @@
 					</div>
 				</div>
 				<input type="button" class="add_button_answer" value="+"><!--  Кнопка добавить -->
-				<label for="points">Введите количество баллов за данное задание</label>
-				<input type="text" class="points" id="points">
+				<label class="textForPoints" for="points">Введите количество баллов за данное задание</label>
+				<input type="text" class="points">
 			</div>
 		
 			<div class="task input_template">
@@ -434,8 +434,8 @@
 				<div class="inp">
 					<input  type="text" name="task[input_answer]" value="" placeholder="ответ" style="margin-left: 2%; height: 20px; margin-top: 2%;"> <!--  Поле для ввода ответа -->
 				</div>
-				<label for="points">Введите количество баллов за данное задание</label>
-				<input type="text" class="points" id="points">
+				<label class="textForPoints" for="points">Введите количество баллов за данное задание</label>
+				<input type="text" class="points">
 							
 			</div>
 			
