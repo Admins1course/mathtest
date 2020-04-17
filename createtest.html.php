@@ -4,7 +4,7 @@
 <head>
 	<meta http-equiv="Cache-Control" content="no-cache" charset="UTF-8">
 	<link rel="stylesheet" href="style/main.css?123" type="text/css">
-	<link rel="stylesheet" href="style/Ccssfortest.css?323" type="text/css">
+	<link rel="stylesheet" href="style/Ccssfort.css?323" type="text/css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 	<script type="text/javascript" id="MathJax-script" async
 			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
@@ -425,28 +425,30 @@
 			
 			<?php if (isset($_COOKIE['name'])&&isset($_COOKIE['surname'])):?>
 				<form action="createtest_handler.php" method="post">
-					<div id="form_handler">
-						<input type="button" value="1 форма" id="form_1" class="form_btn form_btn_1">
-						<input type="button" value="2 форма" id="form_2" class="form_btn form_btn_2">
-						<input type="button" value="3 форма" id="form_3" class="form_btn form_btn_3">
-						<input type="button" value="4 форма" id="form_4" class="form_btn _4">
-					</div>
-					<input type="button" value="Продолжить">
-					<div id="nameTest">
-						<p>Введите название теста</p>
-						<input type="text">
-						<p>Выберите дисциплину (и если нужно раздел дисциплины)<p>
-						<select name="" id="subjects">
-							<option selected value="Выберите дисциплину" class="option_subject">Выберите дисциплину</option>
-							<option class="option_subject" style="display:none"></option>
-						</select>
-						<select name="" id="sections" style="display:none">
-							<option selected value="Выберите дисциплину" class="option_section">Выберите раздел</option>
-							<option class="option_section" style="display:none"></option>
-						</select>
-						<input type="button" value="Отменить">
-						<input type="submit" value="Отправить" class="form_btn form_btn_send">
 					<div>
+						<div id="form_handler">
+							<input type="button" value="1 форма" id="form_1" class="form_btn form_btn_1">
+							<input type="button" value="2 форма" id="form_2" class="form_btn form_btn_2">
+							<input type="button" value="3 форма" id="form_3" class="form_btn form_btn_3">
+							<input type="button" value="4 форма" id="form_4" class="form_btn _4">
+						</div>
+						<input type="button" value="Продолжить">
+						<div id="nameTest">
+							<p>Введите название теста</p>
+							<input type="text">
+							<p>Выберите дисциплину (и если нужно раздел дисциплины)<p>
+							<select name="" id="subjects">
+								<option selected value="Выберите дисциплину" class="option_subject">Выберите дисциплину</option>
+								<option class="option_subject" style="display:none"></option>
+							</select>
+							<select name="" id="sections" style="display:none">
+								<option selected value="Выберите дисциплину" class="option_section">Выберите раздел</option>
+								<option class="option_section" style="display:none"></option>
+							</select>
+							<input type="button" value="Отменить">
+							<input type="submit" value="Отправить" class="form_btn form_btn_send">
+						</div>
+					</div>
 				</form>
 			<?php endif ?>
 		</div>
