@@ -436,11 +436,13 @@
 						<p>Введите название теста</p>
 						<input type="text">
 						<p>Выберите дисциплину (и если нужно раздел дисциплины)<p>
-						<select name="root" id="subjects">
-							<option selected value="Выберите дисциплину" disabled="" class="gg">Кто вы такой ааа?</option>
-							<option class="option" 	value="математический_анализ">Математический анализ</option>
-							<option class="option" value="интегральные_и_дифференциальные_уравнения">Интегральные и дифференциальные уравнения</option>
-							<option class="option" value="прикладная математика">Прикладная математика</option>
+						<select name="" id="subjects">
+							<option selected value="Выберите дисциплину" class="option_subject">Выберите дисциплину</option>
+							<option class="option_subject" style="display:none"></option>
+						</select>
+						<select name="" id="sections" style="display:none">
+							<option selected value="Выберите дисциплину" class="option_section">Выберите раздел</option>
+							<option class="option_section" style="display:none"></option>
 						</select>
 						<input type="button" value="Отменить">
 						<input type="submit" value="Отправить" class="form_btn form_btn_send">
