@@ -318,7 +318,6 @@
 	<script type="text/javascript">
 	$(document).ready(function(){
 		$('.formul').click(function(){
-			console.log($(this).children('.formul_body'));
 			$(this).next().stop().slideToggle(500);
 		});
 	});
