@@ -1,6 +1,6 @@
 <?php require_once 'includes/db.inc.php';
-	  require_once 'result_of_test_handler.php';
-	  require_once 'book_control.php'?>
+	  require_once 'book_control.php';
+	  require_once 'result_of_test_handler.php';?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,7 +43,9 @@
 		</div>
 		<div id="main_content">
 			<p>Результат прохождения теста:</p>
-			<p>Решено заданий <?=$count?> из <?=$_POST["answers"]["count"]?></p>
+			<p>Решено заданий: <?=$count?> из <?=$_POST["answers"]["count"]?></p>
+			<p>Получено баллов: <?=$countOfPoints?> из <?=$allPoints?></p>
+			<p>Ваша оценка: <?=$mark?></p>
 			<input type="button" id="result" value="Посмотреть результаты">
 			<div id="tasks" style="display:none">
 				<?php for ($i=1;$i<=count($dataTest);$i++){
@@ -51,20 +53,22 @@
 						<div class="task textarea <?=$i?>">
 							<p class="question"><?=$dataTest[$i]["total_task"]?></p>
 							<textarea class="answer" name="answers[task<?=$i?>]" onchange="registeringResponses()"></textarea>
+							<p>Получено баллов за задание: <?=$right_answers[$i-1][1]?></p>
 						</div>
 					<?php } 
 					if ($dataTest[$i]["answer"]["input"]!=0){?>
 						<div class="task input <?=$i?>">
 							<p class="question"><?=$dataTest[$i]["total_task"]?></p>
 							<p
-								<?php if ($right_answers[$i-1]):
+								<?php if ($right_answers[$i-1][0]):
 										echo 'style="background-color:green"';
 									else:
 										echo 'style="background-color:red"';
 									endif;?>>
 								<?=$_POST['answers']['task'.$i]?>
 							</p>
-							</div>
+							<p>Получено баллов за задание: <?=$right_answers[$i-1][1]?></p>
+						</div>
 					<?php } 
 					if ($dataTest[$i]["answer"]["radio"]!=0){?>
 						<div class="task radio <?=$i?>">
@@ -73,7 +77,7 @@
 								<div class="radio">
 									<p class="possibleAnswer" 
 									<?php if($_POST['answers']['task'.$i]===$dataTest[$i]['answer']['radio'][$j]['text_answer']):
-											if ($right_answers[$i-1]):
+											if ($right_answers[$i-1][0]):
 												echo 'style="background-color:green"';
 											else:
 												echo 'style="background-color:red"';
@@ -84,6 +88,7 @@
 									</p>
 								</div>
 							<?php } ?>
+							<p>Получено баллов за задание: <?=$right_answers[$i-1][1]?></p>
 						</div>
 					<?php } 
 						if ($dataTest[$i]["answer"]["checkbox"]!=0){?>
@@ -96,6 +101,7 @@
 										<p class="possibleAnswer"><?=$dataTest[$i]["answer"]["checkbox"][$j]["text_answer"]?></p>
 									</div>
 								<?php } ?>
+								<p>Получено баллов за задание: <?=$right_answers[$i-1][1]?></p>
 							</div>
 					<?php } ?>
 				<?php } ?>
