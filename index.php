@@ -66,6 +66,13 @@
 				</div>
 			</div>
 			<div id="left_block" class="left_block">
+			<p>Друзья</p>
+			<label for="friends">Группа</label>
+			<select id="friends">
+				<option label="Все друзья"></option>
+			</select>
+			<ul>
+			</ul>
 			</div>
 		</div>
 
