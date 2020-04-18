@@ -528,7 +528,7 @@ textarea{
 }
 .popup {
 	position: fixed;
-	top: 0%;
+	
 	left: 50%;
 	padding: 20px;
 	width: 360px;

@@ -583,7 +583,7 @@ $(document).ready(function($) {
 							
 							<datalist id="points_label">
 							</datalist>
->>>>>>> origin/master
+
 
 								<input type="button" value="Отменить" class="form_btn form_btn_send">
 								<input type="submit" value="Отправить" class="form_btn form_btn_send">
