@@ -52,8 +52,21 @@
 		</div>
 
 		<div class="all_left_block">
-			<div id="left_block_title"></div>
-			<div id="left_block" class="left_block"></div>
+			<div id="left_block_title">
+				<div class="search_area">
+					<div class="search">
+						<input type="text" class="search_bar">
+					
+					</div>
+					<div class="search_send">
+						<input type="button" class="search_send_title" value="Поиск">
+						<input type="button" value="Друзья">
+						<input type="button" value="Мир">
+					</div>
+				</div>
+			</div>
+			<div id="left_block" class="left_block">
+			</div>
 		</div>
 
 		
