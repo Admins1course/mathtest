@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Апр 16 2020 г., 11:14
+-- Время создания: Апр 18 2020 г., 15:49
 -- Версия сервера: 5.5.39
 -- Версия PHP: 5.4.31
 
@@ -31,22 +31,23 @@ CREATE TABLE IF NOT EXISTS `answers_1_1` (
   `textarea` int(11) DEFAULT '0',
   `input` tinytext,
   `radio` tinyint(4) DEFAULT '0',
-  `checkbox` tinyint(4) DEFAULT '0'
+  `checkbox` tinyint(4) DEFAULT '0',
+  `points` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `answers_1_1`
 --
 
-INSERT INTO `answers_1_1` (`id_Task`, `textarea`, `input`, `radio`, `checkbox`) VALUES
-(1, 0, NULL, 1, 0),
-(2, 0, NULL, 1, 0),
-(3, 0, NULL, 1, 0),
-(4, 0, NULL, 1, 0),
-(5, 0, NULL, 1, 0),
-(6, 0, NULL, 1, 0),
-(7, 0, NULL, 1, 0),
-(8, 0, NULL, 1, 0);
+INSERT INTO `answers_1_1` (`id_Task`, `textarea`, `input`, `radio`, `checkbox`, `points`) VALUES
+(1, 0, NULL, 1, 0, 1),
+(2, 0, NULL, 1, 0, 1),
+(3, 0, NULL, 1, 0, 1),
+(4, 0, NULL, 1, 0, 1),
+(5, 0, NULL, 1, 0, 1),
+(6, 0, NULL, 1, 0, 1),
+(7, 0, NULL, 1, 0, 1),
+(8, 0, NULL, 1, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -136,15 +137,20 @@ INSERT INTO `subjects` (`id_subject`, `subject`) VALUES
 
 CREATE TABLE IF NOT EXISTS `tasktest_1` (
   `id_Test` int(11) NOT NULL,
-  `countTask` int(11) NOT NULL
+  `countTask` int(11) NOT NULL,
+  `mark_1` double NOT NULL,
+  `mark_2` double NOT NULL,
+  `mark_3` double NOT NULL,
+  `mark_4` double NOT NULL,
+  `mark_5` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `tasktest_1`
 --
 
-INSERT INTO `tasktest_1` (`id_Test`, `countTask`) VALUES
-(1, 8);
+INSERT INTO `tasktest_1` (`id_Test`, `countTask`, `mark_1`, `mark_2`, `mark_3`, `mark_4`, `mark_5`) VALUES
+(1, 8, 0, 2, 4, 6, 8);
 
 -- --------------------------------------------------------
 
