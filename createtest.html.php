@@ -318,7 +318,6 @@
 	<script type="text/javascript">
 	$(document).ready(function(){
 		$('.formul').click(function(){
-			console.log($(this).children('.formul_body'));
 			$(this).next().stop().slideToggle(500);
 		});
 	});
@@ -367,7 +366,6 @@
 					label_data+='<option value="'+((sum/10.0)*i).toFixed(2)+'" label="'+i*10+'%">'
 				}
 				$('#points_label').html(label_data);
-				console.log($('#points_label'));
 			});
 		})
 		
