@@ -324,6 +324,9 @@
 	});
 	</script>
 	<script>
+		//суммирование баллов
+		let points_array=new Map();
+	
 		function enterPoints(element){
 			result=$(element).val();
 			rep=/\D/us;
@@ -349,6 +352,7 @@
 				result=result.slice(0,-1)+'.';
 			}
 			$(element).val(result.slice(0,-1)+result.slice(-1).replace(rep,''));
+			points_array.set($(element).attr('id'), Number($(element).val()));			
 		}
 	</script>
 </head>
