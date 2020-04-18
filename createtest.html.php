@@ -12,7 +12,6 @@
 	<script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script>
 	<script>
 		function auto_grow(element) {
-			console.log(this[navigator]);
     		element.style.height = "5px";
     		element.style.height = (element.scrollHeight)+"px";}
 	</script>
@@ -31,6 +30,8 @@
 					//формируем аттрибут name для элементов, значение которых отправится на сервер
 					$('.textarea_template:last .main_text').attr('name','task'+tasks+'[total_task]');
 					$('.textarea_template:last .areatext #answer').attr('name','task'+tasks+'[textarea_answer]');
+					$('.textarea_template:last .textForPoints').attr('for','points'+tasks);
+					$('.textarea_template:last .points').attr('id','points'+tasks).attr('name','task'+tasks+'[points]');
 				});
 			});
 			//аналогично предыдущему, но форма с radiobutton
@@ -42,6 +43,8 @@
 					$('.radiobutton_template:last .radio .input_text').attr('name','task'+tasks+'[text_answer1]');
 					lenghts['task'+tasks]={}
 					lenghts['task'+tasks]['radio_answer']=1;
+					$('.radiobutton_template:last .textForPoints').attr('for','points'+tasks);
+					$('.radiobutton_template:last .points').attr('id','points'+tasks).attr('name','task'+tasks+'[points]');
 				});
 			});
 			//аналогично предыдущему, но форма с checkboxbutton
@@ -53,6 +56,8 @@
 					$('.checkboxbutton_template:last .check .input_text').attr('name','task'+tasks+'[checkbox_answer1][text_answer]');
 					lenghts['task'+tasks]={}
 					lenghts['task'+tasks]['checkbox_answer']=1;
+					$('.checkboxbutton_template:last .textForPoints').attr('for','points'+tasks);
+					$('.checkboxbutton_template:last .points').attr('id','points'+tasks).attr('name','task'+tasks+'[points]');
 				});
 			});
 			//аналогично предыдущему, но форма с input
@@ -61,6 +66,8 @@
 				$('.input_template:hidden').clone('deepWithDataAndEvents').insertBefore('#form_handler').attr('id','task'+tasks).slideDown(1000,function(){
 					$('.input_template:last .main_text').attr('name','task'+tasks+'[total_task]');
 					$('.input_template:last .inp input').attr('name','task'+tasks+'[input_answer]');
+					$('.input_template:last .textForPoints').attr('for','points'+tasks);
+					$('.input_template:last .points').attr('id','points'+tasks).attr('name','task'+tasks+'[points]');
 				});
 			});
 			
@@ -72,21 +79,21 @@
 				$('.'+className[1]+' .add_button_answer:hidden').prev().clone('deepWithDataAndEvents').css('display','none').insertBefore(
 				this).slideDown(1000).children().each(function(index,el){
 					if (className[1]=='radiobutton_template'){
-						if($(this).attr('id')=='radiobutton'){
+						if($(this).children('input').attr('id')=='radiobutton'){
 							len=++lenghts[idName]['radio_answer'];
-							$(this).attr('name','task'+tasks+'[radio]').attr('value',len);
+							$(this).children('input').attr('name','task'+tasks+'[radio]').attr('value',len);
 						}
-						else{
+						else if($(this).attr('class')=='input_text'){
 							len=lenghts[idName]['radio_answer'];
 							$(this).attr('name','task'+tasks+'[text_answer'+len+']');
 						}
 					}
 					else{
-						if($(this).attr('id')=='checkboxbutton'){
+						if($(this).children('input').attr('id')=='checkboxbutton'){
 							len=++lenghts[idName]['checkbox_answer'];
 							$(this).attr('name','task'+tasks+'[checkbox_answer'+len+'][checkbox]');
 						}
-						else{
+						else if($(this).attr('class')=='input_text'){
 							len=lenghts[idName]['checkbox_answer'];
 							$(this).attr('name','task'+tasks+'[checkbox_answer'+len+'][text_answer]');
 						}
@@ -311,10 +318,61 @@
 	<script type="text/javascript">
 	$(document).ready(function(){
 		$('.formul').click(function(){
-			console.log($(this).children('.formul_body'));
 			$(this).next().stop().slideToggle(500);
 		});
 	});
+	</script>
+	<script>
+		//суммирование баллов
+		let points_array=new Map();
+	
+		function enterPoints(element){
+			result=$(element).val();
+			rep=/\D/us;
+			if (result.length==1){
+				rep=/\D/us;
+			}
+			if (result.length>1){
+				if (/[.]/us.test(result.slice(0,-1))){
+					if(/[.](\d+)/us.test(result)){
+						if(result.match(/[.](\d+)/us)[1].length>1){
+							rep=/./us;
+						}
+					}
+					else{
+						rep=/\D/us;
+					}
+				}
+				else{
+					rep=/[^\d.,]/us;
+				}
+			}
+			if(result.slice(-1)==','){
+				result=result.slice(0,-1)+'.';
+			}
+			$(element).val(result.slice(0,-1)+result.slice(-1).replace(rep,''));
+			points_array.set($(element).attr('id'), Number($(element).val()));
+		}
+		
+		$(document).ready(function(){
+			$('#resume').click(function(){
+				sum=0;
+				points_array.forEach(function(value,key){
+					sum+=value;
+				});
+				$('[type="range"]').attr('max',sum);
+				let label_data='';
+				for (i=0;i<=10;i++){
+					label_data+='<option value="'+((sum/10.0)*i).toFixed(2)+'" label="'+i*10+'%">'
+				}
+				$('#points_label').html(label_data);
+				console.log($('#points_label'));
+			});
+		})
+		
+		function outputPoints(element){
+			$('output[for="'+$(element).attr('id')+'"]').text($(element).val());
+		}
 	</script>
 </head>
 <body>
@@ -337,6 +395,8 @@
 					<textarea oninput="auto_grow(this)" name="task[textarea_answer]" id="answer" style="resize:none" class="text_answer">
 					</textarea><!--  Развернутый ответ -->
 				</div>
+				<label class="textForPoints" for="points">Введите количество баллов за данное задание</label>
+				<input type="text" class="points" onkeyup="enterPoints(this)">
 							
 			</div>
 			<div class="task radiobutton_template">
@@ -362,13 +422,15 @@
 						<input type="button" class="formul_preview" value="Превью" class="prev_btn" onclick="convert()">
 					</div>
 					<textarea  oninput="auto_grow(this)"
-						class="input_text" id="text" name="task[text_answer]" style="resize:none" onfocus="getData()">
+						class="input_text" name="task[text_answer]" style="resize:none" onfocus="getData()">
 					</textarea><!--  задание1 -->
 					<div class="preview">
 					</div>
 				</div>
 				
 				<input type="button" class="add_button_answer" value="+"><!--  Кнопка добавить -->
+				<label class="textForPoints" for="points">Введите количество баллов за данное задание</label>
+				<input type="text" class="points" onkeyup="enterPoints(this)">
 							
 			</div>
 		
@@ -402,6 +464,8 @@
 					</div>
 				</div>
 				<input type="button" class="add_button_answer" value="+"><!--  Кнопка добавить -->
+				<label class="textForPoints" for="points">Введите количество баллов за данное задание</label>
+				<input type="text" class="points" onkeyup="enterPoints(this)">
 			</div>
 		
 			<div class="task input_template">
@@ -420,6 +484,8 @@
 				<div class="inp">
 					<input  type="text" name="task[input_answer]" value="" placeholder="ответ" style="margin-left: 2%; height: 20px; margin-top: 2%;"> <!--  Поле для ввода ответа -->
 				</div>
+				<label class="textForPoints" for="points">Введите количество баллов за данное задание</label>
+				<input type="text" class="points" onkeyup="enterPoints(this)">
 							
 			</div>
 			
@@ -432,7 +498,7 @@
 							<input type="button" value="3 форма" id="form_3" class="form_btn form_btn_3">
 							<input type="button" value="4 форма" id="form_4" class="form_btn _4">
 						</div>
-						<input type="button" value="Продолжить">
+						<input type="button" id="resume" value="Продолжить">
 						<div id="nameTest">
 							<p>Введите название теста</p>
 							<input type="text">
@@ -445,6 +511,20 @@
 								<option selected value="Выберите дисциплину" class="option_section">Выберите раздел</option>
 								<option class="option_section" style="display:none"></option>
 							</select>
+							<p>Выберите минимальное значение баллов для получения каждой из оценки</p>
+							<input type="range" id="range_1" min="0" step="0.1" oninput="outputPoints(this)" list="points_label" name="marks[0]">
+							<p>Для получения оценки 1 достаточно баллов:<output for="range_1"></output></p>
+							<input type="range" id="range_2" min="0" step="0.1" oninput="outputPoints(this)" list="points_label" name="marks[1]">
+							<p>Для получения оценки 2 достаточно баллов:<output for="range_2"></output></p>
+							<input type="range" id="range_3" min="0" step="0.1" oninput="outputPoints(this)" list="points_label" name="marks[2]">
+							<p>Для получения оценки 3 достаточно баллов:<output for="range_3"></output></p>
+							<input type="range" id="range_4" min="0" step="0.1" oninput="outputPoints(this)" list="points_label" name="marks[3]">
+							<p>Для получения оценки 4 достаточно баллов:<output for="range_4"></output></p>
+							<input type="range" id="range_5" min="0" step="0.1" oninput="outputPoints(this)" list="points_label" name="marks[4]">
+							<p>Для получения оценки 5 достаточно баллов:<output for="range_5"></output></p>
+							
+							<datalist id="points_label">
+							</datalist>
 
 							<input type="button" value="Отменить">
 							<input type="submit" value="Отправить" class="form_btn form_btn_send">
