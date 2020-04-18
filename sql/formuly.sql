@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Апр 18 2020 г., 15:14
+-- Время создания: Апр 18 2020 г., 15:49
 -- Версия сервера: 5.5.39
 -- Версия PHP: 5.4.31
 
@@ -137,15 +137,20 @@ INSERT INTO `subjects` (`id_subject`, `subject`) VALUES
 
 CREATE TABLE IF NOT EXISTS `tasktest_1` (
   `id_Test` int(11) NOT NULL,
-  `countTask` int(11) NOT NULL
+  `countTask` int(11) NOT NULL,
+  `mark_1` double NOT NULL,
+  `mark_2` double NOT NULL,
+  `mark_3` double NOT NULL,
+  `mark_4` double NOT NULL,
+  `mark_5` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `tasktest_1`
 --
 
-INSERT INTO `tasktest_1` (`id_Test`, `countTask`) VALUES
-(1, 8);
+INSERT INTO `tasktest_1` (`id_Test`, `countTask`, `mark_1`, `mark_2`, `mark_3`, `mark_4`, `mark_5`) VALUES
+(1, 8, 0, 2, 4, 6, 8);
 
 -- --------------------------------------------------------
 

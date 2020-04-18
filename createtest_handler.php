@@ -75,6 +75,7 @@
 			*taskN:
 			*     total_task
 			*     textarea_answer
+			*     points
 			* 
 			*radiobutton
 			*
@@ -82,23 +83,29 @@
 			*     total_task
 			*     radio
 			*	  text_answerN
+			*     points
 			*			  
 			*checkbutton
 			*
 			*taskN:
-			*    total_task
-			*    checkbox_answerN:
+			*     total_task
+			*     checkbox_answerN:
 			*                    checkbox
 			*				     text_answer
+			*     points
 			*
 			*input
 			*
 			*taskN:
 			*     total_task
 			*     input_answer
+			*     points
+			*
+			*marks - массив оценок
 			*
 			*Переменные для проверки
 			*$task_exist:равно единице, если в задании есть хотя бы какой-то текст или картинка
+			*$points_exist:равно единице, если задание оценено баллом
 			*$answer_exist:равно единице, если существует возможный ответ
 			*$post:массив данных, которые будут добавлены в базу данных (это значит, что будут отсеиваться незаполненные данные)
 			*$newTestExist: перемнная для проверки добавлена ли запись о новом тесте
@@ -110,6 +117,7 @@
 			foreach ($_POST as $k1=>$v1){
 				$task_exist=0;
 				$answer_exist=0;
+				$points_exist=0;
 				//1-й проход для определения существования задания
 				foreach($_POST[$k1] as $k2=>$v2){
 					//1 блок: проверяем есть ли минимальные требования для существования задания к тесту
@@ -118,7 +126,13 @@
 							$task_exist=1;
 						}	
 					}
-					//2 блок: проверяем есть ли минимальные требования по ответам к заданию
+					//2 блок: проверяем есть ли баллы за задание
+					else if ($k2=="points"){
+						if (exist_data($v2)){
+							$points_exist=1;
+						}
+					}
+					//3 блок: проверяем есть ли минимальные требования по ответам к заданию
 					else if ($k2=="input_answer"){
 						if (exist_data($v2)){
 							$answer_exist=1;
@@ -139,7 +153,7 @@
 					}
 				}
 				//2-й проход для внесения задания в список, который будет отправлен в базу данных
-				if ($task_exist&&$answer_exist){
+				if ($task_exist&&$answer_exist&&$points_exist){
 					
 					$radioCount=1;
 					$checkboxCount=1;
@@ -185,7 +199,8 @@
 								textarea int DEFAULT 0,
 								input tinytext DEFAULT null,
 								radio tinyint DEFAULT 0,
-								checkbox tinyint DEFAULT 0
+								checkbox tinyint DEFAULT 0,
+								points real NOT NULL
 							  )DEFAULT CHARACTER SET utf8 ENGINE=InnoDB";
 						$pdo->exec($sql);
 					}
