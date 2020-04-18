@@ -366,7 +366,6 @@
 					label_data+='<option value="'+((sum/10.0)*i).toFixed(2)+'" label="'+i*10+'%">'
 				}
 				$('#points_label').html(label_data);
-				console.log($('#points_label'));
 			});
 		})
 		
