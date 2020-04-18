@@ -538,7 +538,8 @@ textarea{
 	border-radius: 4px; 
 	z-index: 99999;
 	opacity: 1;	
-	font-size: 18px;
+	font-size: 16px;
+	text-align: center;
 
 }
 .popup-close {
@@ -557,11 +558,11 @@ textarea{
 }
 .popup_text{
 	margin-top: 15px;
-	margin-bottom: 10px;
+	margin-bottom: 15px;
 }
 .popup_select{
-	margin-top: 20px;
-	margin-bottom: 20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 	border: 1px solid red;
 }
 #footer{display: none;
