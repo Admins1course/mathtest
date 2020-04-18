@@ -352,7 +352,27 @@
 				result=result.slice(0,-1)+'.';
 			}
 			$(element).val(result.slice(0,-1)+result.slice(-1).replace(rep,''));
-			points_array.set($(element).attr('id'), Number($(element).val()));			
+			points_array.set($(element).attr('id'), Number($(element).val()));
+		}
+		
+		$(document).ready(function(){
+			$('#resume').click(function(){
+				sum=0;
+				points_array.forEach(function(value,key){
+					sum+=value;
+				});
+				$('[type="range"]').attr('max',sum);
+				let label_data='';
+				for (i=0;i<=10;i++){
+					label_data+='<option value="'+((sum/10.0)*i).toFixed(2)+'" label="'+i*10+'%">'
+				}
+				$('#points_label').html(label_data);
+				console.log($('#points_label'));
+			});
+		})
+		
+		function outputPoints(element){
+			$('output[for="'+$(element).attr('id')+'"]').text($(element).val());
 		}
 	</script>
 </head>
@@ -479,7 +499,7 @@
 							<input type="button" value="3 форма" id="form_3" class="form_btn form_btn_3">
 							<input type="button" value="4 форма" id="form_4" class="form_btn _4">
 						</div>
-						<input type="button" value="Продолжить">
+						<input type="button" id="resume" value="Продолжить">
 						<div id="nameTest">
 							<p>Введите название теста</p>
 							<input type="text">
@@ -492,6 +512,20 @@
 								<option selected value="Выберите дисциплину" class="option_section">Выберите раздел</option>
 								<option class="option_section" style="display:none"></option>
 							</select>
+							<p>Выберите минимальное значение баллов для получения каждой из оценки</p>
+							<input type="range" id="range_1" min="0" step="0.1" oninput="outputPoints(this)" list="points_label" name="marks[0]">
+							<p>Для получения оценки 1 достаточно баллов:<output for="range_1"></output></p>
+							<input type="range" id="range_2" min="0" step="0.1" oninput="outputPoints(this)" list="points_label" name="marks[1]">
+							<p>Для получения оценки 2 достаточно баллов:<output for="range_2"></output></p>
+							<input type="range" id="range_3" min="0" step="0.1" oninput="outputPoints(this)" list="points_label" name="marks[2]">
+							<p>Для получения оценки 3 достаточно баллов:<output for="range_3"></output></p>
+							<input type="range" id="range_4" min="0" step="0.1" oninput="outputPoints(this)" list="points_label" name="marks[3]">
+							<p>Для получения оценки 4 достаточно баллов:<output for="range_4"></output></p>
+							<input type="range" id="range_5" min="0" step="0.1" oninput="outputPoints(this)" list="points_label" name="marks[4]">
+							<p>Для получения оценки 5 достаточно баллов:<output for="range_5"></output></p>
+							
+							<datalist id="points_label">
+							</datalist>
 
 							<input type="button" value="Отменить">
 							<input type="submit" value="Отправить" class="form_btn form_btn_send">
