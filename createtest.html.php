@@ -12,7 +12,6 @@
 	<script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script>
 	<script>
 		function auto_grow(element) {
-			console.log(this[navigator]);
     		element.style.height = "5px";
     		element.style.height = (element.scrollHeight)+"px";}
 	</script>
@@ -32,7 +31,7 @@
 					$('.textarea_template:last .main_text').attr('name','task'+tasks+'[total_task]');
 					$('.textarea_template:last .areatext #answer').attr('name','task'+tasks+'[textarea_answer]');
 					$('.textarea_template:last .textForPoints').attr('for','points'+tasks);
-					$('.textarea_template:last .points').attr('id','points'+tasks);
+					$('.textarea_template:last .points').attr('id','points'+tasks).attr('name','task'+tasks+'[points]');
 				});
 			});
 			//аналогично предыдущему, но форма с radiobutton
@@ -45,7 +44,7 @@
 					lenghts['task'+tasks]={}
 					lenghts['task'+tasks]['radio_answer']=1;
 					$('.radiobutton_template:last .textForPoints').attr('for','points'+tasks);
-					$('.radiobutton_template:last .points').attr('id','points'+tasks);
+					$('.radiobutton_template:last .points').attr('id','points'+tasks).attr('name','task'+tasks+'[points]');
 				});
 			});
 			//аналогично предыдущему, но форма с checkboxbutton
@@ -58,7 +57,7 @@
 					lenghts['task'+tasks]={}
 					lenghts['task'+tasks]['checkbox_answer']=1;
 					$('.checkboxbutton_template:last .textForPoints').attr('for','points'+tasks);
-					$('.checkboxbutton_template:last .points').attr('id','points'+tasks);
+					$('.checkboxbutton_template:last .points').attr('id','points'+tasks).attr('name','task'+tasks+'[points]');
 				});
 			});
 			//аналогично предыдущему, но форма с input
@@ -68,7 +67,7 @@
 					$('.input_template:last .main_text').attr('name','task'+tasks+'[total_task]');
 					$('.input_template:last .inp input').attr('name','task'+tasks+'[input_answer]');
 					$('.input_template:last .textForPoints').attr('for','points'+tasks);
-					$('.input_template:last .points').attr('id','points'+tasks);
+					$('.input_template:last .points').attr('id','points'+tasks).attr('name','task'+tasks+'[points]');
 				});
 			});
 			
@@ -324,6 +323,35 @@
 		});
 	});
 	</script>
+	<script>
+		function enterPoints(element){
+			result=$(element).val();
+			console.log(result);
+			rep=/\D/us;
+			if (result.length==1){
+				rep=/\D/us;
+			}
+			if (result.length>1){
+				if (/[.,]/us.test(result.slice(0,-1))){
+					if(/[.,](\d+)/us.test(result)){
+						if(result.match(/[.,](\d+)/us)[1].length>1){
+							console.log('hi');
+							console.log(result.match(/[.,](\d+)/us)[1].length);
+							rep=/./us;
+						}
+					}
+					else{
+						rep=/\D/us;
+					}
+				}
+				else{
+					rep=/[^\d.,]/us;
+				}
+			}
+			console.log(rep);
+			$(element).val(result.slice(0,-1)+result.slice(-1).replace(rep,''));
+		}
+	</script>
 </head>
 <body>
 	
@@ -346,7 +374,7 @@
 					</textarea><!--  Развернутый ответ -->
 				</div>
 				<label class="textForPoints" for="points">Введите количество баллов за данное задание</label>
-				<input type="text" class="points">
+				<input type="text" class="points" onkeyup="enterPoints(this)">
 							
 			</div>
 			<div class="task radiobutton_template">
@@ -380,7 +408,7 @@
 				
 				<input type="button" class="add_button_answer" value="+"><!--  Кнопка добавить -->
 				<label class="textForPoints" for="points">Введите количество баллов за данное задание</label>
-				<input type="text" class="points">
+				<input type="text" class="points" onkeyup="enterPoints(this)">
 							
 			</div>
 		
@@ -415,7 +443,7 @@
 				</div>
 				<input type="button" class="add_button_answer" value="+"><!--  Кнопка добавить -->
 				<label class="textForPoints" for="points">Введите количество баллов за данное задание</label>
-				<input type="text" class="points">
+				<input type="text" class="points" onkeyup="enterPoints(this)">
 			</div>
 		
 			<div class="task input_template">
@@ -435,7 +463,7 @@
 					<input  type="text" name="task[input_answer]" value="" placeholder="ответ" style="margin-left: 2%; height: 20px; margin-top: 2%;"> <!--  Поле для ввода ответа -->
 				</div>
 				<label class="textForPoints" for="points">Введите количество баллов за данное задание</label>
-				<input type="text" class="points">
+				<input type="text" class="points" onkeyup="enterPoints(this)">
 							
 			</div>
 			
