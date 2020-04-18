@@ -345,6 +345,9 @@ textarea{
 	background-color: orange;
 	border: 1px solid red;
 }
+.form_btn_send{
+	width: 100px;
+}
 /*.form_btn_1{
 	background-image: url("img/1FORMPNG.png");
 	background-size: contain;
@@ -507,11 +510,59 @@ textarea{
 	border: 1px solid red;
 
 }
-#nameTest{
-	margin-top: 50px;
-	width: 40%;
-	border: 1px solid red;
+
+
+.popup-fade {
+	display: none;
+}
+.popup-fade:before {
+	content: '';
+	background: #000;
+	position: fixed; 
+	left: 0;
+	top: 0;
+	width: 100%; 
+	height: 100%;
+	opacity: 0.7;
+	z-index: 9999;
+}
+.popup {
+	position: fixed;
+	top: 0%;
+	left: 50%;
+	padding: 20px;
+	width: 360px;
+	margin-left: -200px;	
+	background: #fff;
+	border: 1px solid orange;
+	border-radius: 4px; 
+	z-index: 99999;
+	opacity: 1;	
+	font-size: 18px;
+
+}
+.popup-close {
 	position: absolute;
+	top: 10px;
+	right: 10px;
+	background-color: orange;
+	text-decoration: none;
+	color: black;
+	padding: 3px;
+	border: 1px solid red;
+	margin-bottom: 20px;
+}
+.input_text_popup{
+	border: 1px solid red;
+}
+.popup_text{
+	margin-top: 15px;
+	margin-bottom: 10px;
+}
+.popup_select{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border: 1px solid red;
 }
 #footer{display: none;
 
