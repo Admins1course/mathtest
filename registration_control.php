@@ -60,7 +60,12 @@
 			$id=$result->fetchAll();
 			$sql="CREATE TABLE tasktest_".$id[0]['id']."(
 						id_Test	int(11) not null,
-						countTask int(11) not null
+						countTask int(11) not null,
+						mark_1 real not null,
+						mark_2 real not null,
+						mark_3 real not null,
+						mark_4 real not null,
+						mark_5 real not null
 					)DEFAULT CHARACTER SET utf8 ENGINE=InnoDB";
 			$pdo->exec($sql);
 			setcookie("id", $id[0]["id"], time()+60*60*24*10);
