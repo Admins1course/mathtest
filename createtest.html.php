@@ -355,7 +355,7 @@
 		}
 		
 		$(document).ready(function(){
-			$('#resume').click(function(){
+			$('.popup-open').click(function(){
 				sum=0;
 				points_array.forEach(function(value,key){
 					sum+=value;
