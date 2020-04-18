@@ -326,17 +326,14 @@
 	<script>
 		function enterPoints(element){
 			result=$(element).val();
-			console.log(result);
 			rep=/\D/us;
 			if (result.length==1){
 				rep=/\D/us;
 			}
 			if (result.length>1){
-				if (/[.,]/us.test(result.slice(0,-1))){
-					if(/[.,](\d+)/us.test(result)){
-						if(result.match(/[.,](\d+)/us)[1].length>1){
-							console.log('hi');
-							console.log(result.match(/[.,](\d+)/us)[1].length);
+				if (/[.]/us.test(result.slice(0,-1))){
+					if(/[.](\d+)/us.test(result)){
+						if(result.match(/[.](\d+)/us)[1].length>1){
 							rep=/./us;
 						}
 					}
@@ -348,7 +345,9 @@
 					rep=/[^\d.,]/us;
 				}
 			}
-			console.log(rep);
+			if(result.slice(-1)==','){
+				result=result.slice(0,-1)+'.';
+			}
 			$(element).val(result.slice(0,-1)+result.slice(-1).replace(rep,''));
 		}
 	</script>
