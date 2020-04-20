@@ -1,4 +1,6 @@
 <?php
+	require_once 'includes/db.inc.php';
+	
 	if($_POST){  //Проверка на принятие данных с форм
 		session_start();
 		$_SESSION['is_wrong_password']=false;
@@ -68,10 +70,20 @@
 						mark_5 real not null
 					)DEFAULT CHARACTER SET utf8 ENGINE=InnoDB";
 			$pdo->exec($sql);
+			$sql="CREATE TABLE `friends_".$id[0]['id']."` (
+						`id_Friend` int(8) NOT NULL,
+						`login` varchar(255),
+						`name` tinytext not null,
+						`surname` tinytext not null,
+						`студенты` int(1) DEFAULT 0,
+						`преподаватели` int(1) DEFAULT 0
+					) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+			$pdo->exec($sql);
 			setcookie("id", $id[0]["id"], time()+60*60*24*10);
 			setcookie("name", trim($_POST["name"]), time()+60*60*24*10);
 			setcookie("surname", trim($_POST['surname']), time()+60*60*24*10);
 			setcookie("root", $_POST['root'], time()+60*60*24*10);
+			header("Location: index.php");
 		}
 		catch(PDOException $e){
 			$error="Невозможно отправить данные базе данных: ".$e->getMessage();

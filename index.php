@@ -1,5 +1,4 @@
-<?php require_once 'includes/db.inc.php';
-	  require_once 'registration_control.php'?>
+<?php require_once 'includes/db.inc.php';?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,6 +69,8 @@
 			<label for="friends">Группа</label>
 			<select id="friends">
 				<option label="Все друзья"></option>
+				<option label="Студенты"></option>
+				<option label="Преподаватели"></option>
 			</select>
 			<ul>
 			</ul>
@@ -97,6 +98,7 @@
 			  </li>
 			  <li><a href="#m4">Новости</a></li>
 			  <li><a href="#m5">Контакты</a></li>
+			  <li><a href="#m5">Оповещения</a></li>
 			 </ul>
 			</nav><!--menu1-->
 			<div class="profile">
