@@ -114,6 +114,28 @@
 			});
 		});
 	</script>
+		<script>
+	$(document).ready(function($) {
+	$('.load_avatar_open').click(function() {
+		$('.load_avatar_fade').fadeIn();
+		return false;
+	});	
+	
+	$('.load_avatar_close').click(function() {
+		$(this).parents('.load_avatar_fade').fadeOut();
+		return false;
+	});		
+ 
+	$(document).keydown(function(e) {
+		if (e.keyCode === 27) {
+			e.stopPropagation();
+			$('.load_avatar_fade').fadeOut();
+		}
+	});
+	
+	
+});
+</script>
 </head>
 <body>
 	<div id="page">
@@ -252,11 +274,37 @@
 			<div class="profile">
 				<?php
 					if (isset($_COOKIE['name'])&&isset($_COOKIE["surname"])):?>
-						<p class="exit_menu"><?=htmlspecialchars($_COOKIE['name'])." <br /> ".htmlspecialchars($_COOKIE['surname'])?></p>
+						<div class="profile_avatar load_avatar_open">
+							<p class="plus_photo">+</p>
+						</div>
+						<div class="load_avatar_fade">
+							<div class="load_avatar">
+								<div class="preview_image_div">
+									<div class="preview_image" id="img-preview" >
+										
+									</div>
+									
+								</div>
+								<div class="load_image">
+								  <label for="custom-file-upload" class="filupp">
+								    <span class="filupp-file-name js-value" >Загрузить файл</span>
+								    <input type="file" name="attachment-file " value="1"  id="custom-file-upload"  >
+								  </label>
+								</div>
+	
+								
+								<a class="load_avatar_close" href="">Закрыть</a>
+							</div>
+							
+						</div>
+						<div class="user_profile_title">
+							
+							<p class="exit_menu"><?=htmlspecialchars($_COOKIE['name'])." <br /> ".htmlspecialchars($_COOKIE['surname'])?></p>
+						</div>
 						<div class="exit_menu_body" style="display:none">
 
 							<div class="exit_menu_elements">
-							<p class="exit_menu_stat">Роль: <?php if($_COOKIE['root']=="студент")echo 'студент';else echo 'преподаватель';?></p>
+								<p class="exit_menu_stat">Роль: <?php if($_COOKIE['root']=="студент")echo 'студент';else echo 'преподаватель';?></p>
 							</div>
 							
 							<div class="exit_title exit_menu_elements">
