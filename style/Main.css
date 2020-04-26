@@ -486,6 +486,21 @@ input[name='r']{
 	padding: 5px;
 	margin-left: 370px;
 }
+.notifications{
+	width: 20px;
+	height: 20px;
+	border-radius: 50px;
+	border: 1px solid red;
+	position: absolute;
+	top: 3px;
+	margin-left: 87px;
+	background-color: #ff4d00;
+}
+.notific_num{
+	text-align: center;
+	font-size: 15px;
+	margin-top: 2px;
+}
 
 .enter_site_btn:hover{
 	background-color: darkorange;

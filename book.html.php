@@ -269,6 +269,15 @@
 			  </li>
 			  <li><a href="#m4">Новости</a></li>
 			  <li><a href="#m5">Контакты</a></li>
+			  <li>
+			  	<a href="#m5">Оповещения
+				  	<div class="notifications">
+						<div class="notific_num">
+							<p>99+</p>
+						</div>
+				  	</div>
+				</a>
+			  </li>
 			 </ul>
 			</nav><!--menu1-->
 			<div class="profile">
