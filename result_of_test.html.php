@@ -1,6 +1,15 @@
 <?php require_once 'includes/db.inc.php';
 	  require_once 'book_control.php';
-	  require_once 'result_of_test_handler.php';?>
+	  require_once 'result_of_test_handler.php';
+	  session_start();
+	  if (!$_SESSION['data-user']){
+		  if ($_COOKIE['name']){//достаточно name, чтобы были и остальные
+			  $_SESSION['data-user']['id']=$_COOKIE['id'];
+			  $_SESSION['data-user']['name']=$_COOKIE['name'];
+			  $_SESSION['data-user']['surname']=$_COOKIE['surname'];
+			  $_SESSION['data-user']['root']=$_COOKIE['root'];
+		  }
+	  }?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -197,7 +206,7 @@
 			</nav><!--menu1-->
 			<div class="profile">
 				<?php
-					if (isset($_COOKIE['name'])&&isset($_COOKIE["surname"])):?>
+					if (isset($_SESSION['data-user']['name'])&&isset($_SESSION['data-user']["surname"])):?>
 						<div class="profile_avatar load_avatar_open">
 							<p class="plus_photo">+</p>
 						</div>
@@ -222,13 +231,13 @@
 							
 						</div>
 						<div class="user_profile_title">
-							
-							<p class="exit_menu"><?=htmlspecialchars($_COOKIE['name'])." <br /> ".htmlspecialchars($_COOKIE['surname'])?></p>
+					
+							<p class="exit_menu"><?=htmlspecialchars($_SESSION['data-user']['name'])." <br /> ".htmlspecialchars($_SESSION['data-user']['surname'])?></p>
 						</div>
 						<div class="exit_menu_body" style="display:none">
 
 							<div class="exit_menu_elements">
-								<p class="exit_menu_stat">Роль: <?php if($_COOKIE['root']=="студент")echo 'студент';else echo 'преподаватель';?></p>
+								<p class="exit_menu_stat">Роль: <?php $_SESSION['data-user']['root'];?></p>
 							</div>
 							
 							<div class="exit_title exit_menu_elements">
