@@ -88,7 +88,7 @@
 			<div id="left_block_title">
 				<div class="search_area">
 					<div class="search">
-						<input type="text" class="search_bar">
+						<input type="search" class="search_bar">
 					
 					</div>
 					<div class="search_send">
