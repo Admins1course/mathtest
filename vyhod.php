@@ -4,5 +4,8 @@
 		setcookie("name","", time()-60*60*24*10);
 		setcookie("surname","", time()-60*60*24*10);
 		setcookie("root","", time()-60*60*24*10);
+		session_start();
+		unset($_SESSION['data-user']);
+		session_destroy();
 	}
 	header("Location: index.php");
