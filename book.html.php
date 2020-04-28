@@ -2,7 +2,7 @@
 	  include "book_control.php";
 	  //include "showtest.php";
 	  session_start();
-	  if (!$_SESSION['data-user']){
+	   if (isset($_SESSION['data-user'])){
 		  if ($_COOKIE['name']){//достаточно name, чтобы были и остальные
 			  $_SESSION['data-user']['id']=$_COOKIE['id'];
 			  $_SESSION['data-user']['name']=$_COOKIE['name'];

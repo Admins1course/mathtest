@@ -2,7 +2,7 @@
 	  require_once 'book_control.php';
 	  require_once 'result_of_test_handler.php';
 	  session_start();
-	  if (!$_SESSION['data-user']){
+	   if (isset($_SESSION['data-user'])){
 		  if ($_COOKIE['name']){//достаточно name, чтобы были и остальные
 			  $_SESSION['data-user']['id']=$_COOKIE['id'];
 			  $_SESSION['data-user']['name']=$_COOKIE['name'];

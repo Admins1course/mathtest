@@ -274,14 +274,15 @@ input[name='r']{
 	margin-left: -10px;
 }
 .profile{
+	position: relative;
 	margin-top: -5px;
 	width: auto;
 	height: 43px;
 	padding-right: 5px;
 	padding-left: 5px;
+	margin-right: 5%;
+	float: right;
 	
-
-	margin-left: 80%;
 
 }
 
@@ -362,14 +363,19 @@ input[name='r']{
 	margin-bottom: 20px;
 }
 .exit_menu_body{
-	position: absolute;
+
+	position:absolute;
 	border: 1px solid red;
 	width: 200px;
 	height: auto;
-	margin-top: 60px;
+	top: 50px;
 	background-color: white;
 	text-align: center;
 	font-size: 18px;
+	right: 0px;
+	
+	
+
 }
 .exit_title{
 	border-top: 2px solid orange;
@@ -465,6 +471,7 @@ input[name='r']{
 	white-space:nowrap;
 	word-wrap:normal
 }
+
 .preview_image_div{
 	position: relative;
 	width: 250px;
@@ -497,7 +504,7 @@ input[name='r']{
 	margin-top: 2px;
 }
 .enter_site_btn{
-	margin-top: 15px;
+	margin-top: 5px;
 	padding: 5px;
 	
 }

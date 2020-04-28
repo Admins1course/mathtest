@@ -1,7 +1,7 @@
 <?php require_once 'includes/db.inc.php';
 	  require_once 'registration_control.php';
 	  session_start();
-	  if (!$_SESSION['data-user']){
+	  if (isset($_SESSION['data-user'])){
 		  if ($_COOKIE['name']){//достаточно name, чтобы были и остальные
 			  $_SESSION['data-user']['id']=$_COOKIE['id'];
 			  $_SESSION['data-user']['name']=$_COOKIE['name'];
@@ -143,7 +143,7 @@
 								</div>
 	
 								
-								<a class="load_avatar_close" href="">Закрыть</a>
+								<a class="load_avatar_close" href="">X</a>
 							</div>
 							
 						</div>
