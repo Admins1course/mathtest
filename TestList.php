@@ -3,7 +3,8 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Cache-Control" content="no-cache" charset="UTF-8">
-	<link rel="stylesheet" href="style/main.css" type="text/css">
+	<link rel="stylesheet" href="style/Main.css" type="text/css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="style/CsslistTest.css" type="text/css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 	<script type="text/javascript">

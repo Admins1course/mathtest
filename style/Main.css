@@ -53,7 +53,7 @@ body{
 
 #nav_menu{
 	position: fixed;
-	width: 1280px;
+	width: 100%;
 	height: 60px;
 	border:1px solid red;
 	background-color: orange
@@ -135,10 +135,7 @@ body{
 	color:  black;
 	
 }
-#nav_menu .profile a:hover{
-	background-color: darkorange;
-	background-size: 
-}
+
 
 #footer{
 	display: none;
@@ -283,7 +280,7 @@ input[name='r']{
 	padding-right: 5px;
 	padding-left: 5px;
 	
-	margin-left: 1000px;
+	margin-left: 80%;
 }
 
 .profile_avatar{
@@ -481,11 +478,7 @@ input[name='r']{
 	margin-left: 290px;
 	margin-top: 70px;
 }
-.enter_site_btn{
-	margin-top: 15px;
-	padding: 5px;
-	margin-left: 370px;
-}
+
 .notifications{
 	width: 20px;
 	height: 20px;
@@ -501,7 +494,14 @@ input[name='r']{
 	font-size: 15px;
 	margin-top: 2px;
 }
-
-.enter_site_btn:hover{
+.enter_site_btn{
+	margin-top: 15px;
+	padding: 5px;
+	
+}
+.enter_site_btn a{
+	padding: 17px;
+}
+.enter_site_btn a:hover{
 	background-color: darkorange;
 }

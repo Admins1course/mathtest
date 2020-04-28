@@ -6,6 +6,7 @@
 <head>
 	<meta http-equiv="Cache-Control" content="no-cache" charset="UTF-8">
 	<link rel="stylesheet" href="style/Main.css" type="text/css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 	<script type="text/javascript" id="MathJax-script" async
 			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
