@@ -1,5 +1,14 @@
 <?php require_once 'includes/db.inc.php';
-	  require_once 'registration_control.php'?>
+	  require_once 'registration_control.php';
+	  session_start();
+	  if (!$_SESSION['data-user']){
+		  if ($_COOKIE['name']){//достаточно name, чтобы были и остальные
+			  $_SESSION['data-user']['id']=$_COOKIE['id'];
+			  $_SESSION['data-user']['name']=$_COOKIE['name'];
+			  $_SESSION['data-user']['surname']=$_COOKIE['surname'];
+			  $_SESSION['data-user']['root']=$_COOKIE['root'];
+		  }
+	  }?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,9 +16,6 @@
 
 	<link rel="stylesheet" href="style/Main.css" type="text/css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
-
-
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function(){
@@ -92,10 +98,10 @@
 			  <li><a href="#m3">Тесты</a>
 			   <ul>
 			    <li><a href="TestList.php">Каталог тестов</a></li>
-				<?php if(isset($_COOKIE['root'])&&($_COOKIE['root']=="студент")){?>
+				<?php if(isset($_SESSION['data-user']['root'])&&($_SESSION['data-user']['root']=="студент")){?>
 					<li><a href="#m3_4">Статистика</a></li>
 					<li><a href="#m3_5">Пройти тест по приглашению</a></li>
-			    <?php }else if(isset($_COOKIE['root'])&&($_COOKIE['root']=="преподаватель")){?>
+			    <?php }else if(isset($_SESSION['data-user']['root'])&&($_SESSION['data-user']['root']=="преподаватель")){?>
 					<li><a href="#m3_3">Мой каталог</a></li>
 					<li><a href="createtest.html.php">Создать тест</a></li>
 					<li><a href="#m3_5">Создать приглашение</a></li>
@@ -117,7 +123,7 @@
 			</nav><!--menu1-->
 			<div class="profile">
 				<?php
-					if (isset($_COOKIE['name'])&&isset($_COOKIE["surname"])):?>
+					if (isset($_SESSION['data-user']['name'])&&isset($_SESSION['data-user']["surname"])):?>
 						<div class="profile_avatar load_avatar_open">
 							<p class="plus_photo">+</p>
 						</div>
@@ -142,13 +148,13 @@
 							
 						</div>
 						<div class="user_profile_title">
-							
-							<p class="exit_menu"><?=htmlspecialchars($_COOKIE['name'])." <br /> ".htmlspecialchars($_COOKIE['surname'])?></p>
+					
+							<p class="exit_menu"><?=htmlspecialchars($_SESSION['data-user']['name'])." <br /> ".htmlspecialchars($_SESSION['data-user']['surname'])?></p>
 						</div>
 						<div class="exit_menu_body" style="display:none">
 
 							<div class="exit_menu_elements">
-								<p class="exit_menu_stat">Роль: <?php if($_COOKIE['root']=="студент")echo 'студент';else echo 'преподаватель';?></p>
+								<p class="exit_menu_stat">Роль: <?php $_SESSION['data-user']['root'];?></p>
 							</div>
 							
 							<div class="exit_title exit_menu_elements">

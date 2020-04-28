@@ -22,6 +22,11 @@ if (@isset($_POST)){
 			setcookie("name", $dataUser[0]["name"], time()+60*60*24*10);
 			setcookie("surname", $dataUser[0]['surname'], time()+60*60*24*10);
 			setcookie("root", $dataUser[0]['root'], time()+60*60*24*10);
+			session_start();
+			$_SESSION['data-user']['id']=$dataUser[0]['id'];
+			$_SESSION['data-user']['name']=$dataUser[0]['name'];
+			$_SESSION['data-user']['surname']=$dataUser[0]['surname'];
+			$_SESSION['data-user']['root']=$dataUser[0]['root'];
 			header('Location: index.php');
 		}
 		else {
