@@ -79,10 +79,22 @@
 						`преподаватели` int(1) DEFAULT 0
 					) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 			$pdo->exec($sql);
+			$sql="create table notifications_".$id[0]['id']." (
+						id int not null auto_increment primary key,
+						_unread tinytext default null,
+						_read tinytext default null
+					)engine=InnoDB default charset=utf8";
+			$pdo->exec($sql);
+			
 			setcookie("id", $id[0]["id"], time()+60*60*24*10);
 			setcookie("name", trim($_POST["name"]), time()+60*60*24*10);
 			setcookie("surname", trim($_POST['surname']), time()+60*60*24*10);
 			setcookie("root", $_POST['root'], time()+60*60*24*10);
+
+			$_SESSION['data-user']['id']=$id[0]['id'];
+			$_SESSION['data-user']['name']=trim($_POST[0]['name']);
+			$_SESSION['data-user']['surname']=trim($_POST[0]['surname']);
+			$_SESSION['data-user']['root']=trim($_POST[0]['root']);
 			header("Location: index.php");
 		}
 		catch(PDOException $e){
