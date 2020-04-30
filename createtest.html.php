@@ -82,8 +82,8 @@
 			});
 
 			$('.button').click(function(){
-				let className=$(this).closest('div').attr('class');//получаем значение класса родительского diva для данной кнопки
-				let idName=$(this).closest('div').attr('id');//извлекаем все классы
+				let className=$(this).closest('[class^="task"]').attr('class');//получаем значение класса родительского diva для данной кнопки
+				let idName=$(this).closest('[class^="task"]').attr('id');//извлекаем все классы
 				className=className.split(' ');//получаем также id, генерируемое при создании diva
 				//добавляем div icontest
 				$('.'+className[1]+' .icontest:hidden').clone('deepWithDataAndEvents').css('display','none').insertBefore(
