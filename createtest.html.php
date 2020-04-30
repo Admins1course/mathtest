@@ -14,7 +14,7 @@
 	<meta http-equiv="Cache-Control" content="no-cache" charset="UTF-8">
 	<link rel="stylesheet" href="style/Main.css?123" type="text/css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="style/Ccssforte.css?323" type="text/css">
+	<link rel="stylesheet" href="style/Ccssfort.css?323" type="text/css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 	<script type="text/javascript" id="MathJax-script" async
 			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
@@ -80,6 +80,30 @@
 					$('.input_template:last .points').attr('id','points'+tasks).attr('name','task'+tasks+'[points]');
 				});
 			});
+
+			$('.button').click(function(){
+				let className=$(this).closest('div').attr('class');//получаем значение класса родительского diva для данной кнопки
+				let idName=$(this).closest('div').attr('id');//извлекаем все классы
+				className=className.split(' ');//получаем также id, генерируемое при создании diva
+				//добавляем div icontest
+				$('.'+className[1]+' .icontest:hidden').clone('deepWithDataAndEvents').css('display','none').insertBefore(
+				this).slideDown(1000).children().not('#uploadPreview').each(function(index, el){
+					//подготавливаем для элементов diva аттрибут name
+					if($(this).attr('id')=='inputfile'){
+						len=++lenghts[idName]['icontest'];
+						$(this).attr('name','task'+tasks+'[icontest'+len+'][myPhoto]');
+					}
+					else if ($(this).attr('id')=='text1'){
+						len=lenghts[idName]['icontest'];
+						$(this).attr('name','task'+tasks+'[icontest'+len+'][task2photo1]');
+					}
+					else{
+						len=lenghts[idName]['icontest'];
+						$(this).attr('name','task'+tasks+'[icontest'+len+'][task2photo1]');
+					}
+				});
+				
+			});
 			
 
 			$('.add_button_answer').click(function(){
@@ -113,6 +137,7 @@
 		});
 		
 	</script>
+	
 	<script>
 	var $activeContainer='';
 	var activeContainer1='';
@@ -294,6 +319,7 @@
 })
 	</script>
 	<script>
+		
 	
 	$(document).ready(function() {
 		$('.formul_preview').click(function(){
@@ -448,8 +474,24 @@
 				<textarea  oninput="auto_grow(this)"
 					name="task[total_task]"  class="main_text" style="resize:none" onfocus="getData()"> 
 				</textarea><!-- Общее задание -->
-				<div class="preview">
-				</div>			
+				
+					<div class="all_icon_load">
+						<div class="icontest">
+
+							<div class="preview">
+							</div>
+							<img id="uploadPreview" style="width:240px; height: 240px;" />
+							<input id="inputfile" type="file" name="task[icontest][myPhoto]" onchange="PreviewImage(this);" accept="image/*" /><!-- Вставить изображение -->
+
+						</div>
+						<input type="button" class="button" value="+"><!--  Кнопка добавить -->	
+					</div>
+					
+
+				
+						
+							
+				
 					<p class="text_title">Варианты ответов</p>						
 				<div class="areatext">
 					<textarea oninput="auto_grow(this)" name="task[textarea_answer]" id="answer" style="resize:none" class="text_answer">
