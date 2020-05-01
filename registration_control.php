@@ -79,11 +79,12 @@
 						`преподаватели` int(1) DEFAULT 0
 					) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 			$pdo->exec($sql);
-			$sql="create table notifications_".$id[0]['id']." (
+			$sql="CREATE TABLE notifications_".$id[0]['id']." (
 						id int not null auto_increment primary key,
 						_unread tinytext default null,
-						_read tinytext default null
-					)engine=InnoDB default charset=utf8";
+						_read tinytext default null,
+						dateOfSend datetime not null
+					)ENGINE=InnoDB DEFAULT CHARSET=utf8";
 			$pdo->exec($sql);
 			
 			setcookie("id", $id[0]["id"], time()+60*60*24*10);

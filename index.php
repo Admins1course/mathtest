@@ -46,6 +46,50 @@
 	
 });
 </script>
+<script>
+	//setInterval(,10000)
+	var searchFunction=searchForFriends;
+	
+	function callbackFunction(value){
+		if (value==="Друзья") searchFunction=searchForFriends;
+		if (value==="Мир") searchFunction=searchForPiece;
+	}
+	
+	function searchPeople(){
+		if ((valueOfSearch=$('[type="search"]').val())!=='')
+			return searchFunction(valueOfSearch);
+	}
+	
+	function searchForPiece(searchValue){
+		$.ajax({
+			url:document.location.origin+"/mathtest/searchForPiece.php",
+			dataType:'json',
+			cache:false,
+			data:{searchValue:searchValue},
+			type:'POST',
+			error:function(){console.log('error')},
+			success:function(data){
+				var listOfPeople='';
+				for (i=0;i<data.length;i++){
+					listOfPeople+='<li id="user'+
+						data[i]['id']+'">'+
+						data[i]['name']+" "+
+						data[i]['surname']+'</li>';
+				}
+				$('#friendsList').html(listOfPeople);
+			}
+		})
+	}
+	
+	function searchForFriends(){}
+</script>
+<script>
+	function searchControl(element){
+		var re=/[^a-zA-Zа-яА-Я0-9_]+/gus;
+		if (re.test(element.value)) 
+			element.value=element.value.replace(re, '');
+	}
+</script>
 </head>
 <body>
 	<div id="page">
@@ -88,26 +132,26 @@
 			<div id="left_block_title">
 				<div class="search_area">
 					<div class="search">
-						<input type="search" class="search_bar">
+						<input type="search" class="search_bar" onkeyup="searchControl(this)" onchange="searchControl(this)">
 					
 					</div>
 					<div class="search_send">
-						<input type="button" class="search_send_title" value="Поиск">
-						<input type="button" value="Друзья">
-						<input type="button" value="Мир">
+						<input type="button" class="search_send_title" value="Поиск" onclick="searchPeople()">
+						<input type="button" value="Друзья" onclick="callbackFunction(this.value)">
+						<input type="button" value="Мир" onclick="callbackFunction(this.value)">
 					</div>
 				</div>
 			</div>
 			<div id="left_block" class="left_block">
-			<p>Друзья</p>
-			<label for="friends">Группа</label>
-			<select id="friends">
-				<option label="Все друзья"></option>
-				<option label="Студенты"></option>
-				<option label="Преподаватели"></option>
-			</select>
-			<ul>
-			</ul>
+				<p>Друзья</p>
+				<label for="friends">Группа</label>
+				<select id="friends">
+					<option label="Все друзья"></option>
+					<option label="Студенты"></option>
+					<option label="Преподаватели"></option>
+				</select>
+				<ul id="friendsList">
+				</ul>
 			</div>
 		</div>
 
