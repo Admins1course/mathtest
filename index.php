@@ -71,10 +71,11 @@
 			success:function(data){
 				var listOfPeople='';
 				for (i=0;i<data.length;i++){
-					listOfPeople+='<li id="user'+
-						data[i]['id']+'">'+
+					listOfPeople+='<li>'+
 						data[i]['name']+" "+
-						data[i]['surname']+'</li>';
+						data[i]['surname']+
+						'<input type="button" value=" + В друзья" onclick="addFriend(this)" id="user'+
+						data[i]['id']+'">'+'</li>';
 				}
 				$('#friendsList').html(listOfPeople);
 			}
@@ -88,6 +89,24 @@
 		var re=/[^a-zA-Zа-яА-Я0-9_]+/gus;
 		if (re.test(element.value)) 
 			element.value=element.value.replace(re, '');
+	}
+</script>
+<script>
+	function addFriend(element){
+		$idFriend=$(element).attr('id').replace('user','');
+		friendMessage={message:<?="'".$_SESSION['data-user']['name']."'"?>+' '+<?="'".$_SESSION['data-user']['surname']."'"?>+' хочет добавить вас в друзья',
+					   myid:<?="'".$_SESSION['data-user']['id']."'"?>,
+					   idFriend:$idFriend};
+		$.ajax({
+			url:document.location.origin+"/mathtest/addFriend.php",
+			cache:false,
+			data:friendMessage,
+			type:'POST',
+			error:function(){console.log('error')},
+			success:function(){
+				$(element).val('Заявка отправлена').prop('disabled', true);
+			}
+		});
 	}
 </script>
 </head>

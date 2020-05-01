@@ -81,8 +81,12 @@
 			$pdo->exec($sql);
 			$sql="CREATE TABLE notifications_".$id[0]['id']." (
 						id int not null auto_increment primary key,
-						_unread tinytext default null,
-						_read tinytext default null,
+						message tinytext not null,
+						_unread tinyint default null,
+						_read tinyint default null,
+						add_friends tinytext default null,
+						cancel_add tinyint default null,
+						invitations tinytext default null,
 						dateOfSend datetime not null
 					)ENGINE=InnoDB DEFAULT CHARSET=utf8";
 			$pdo->exec($sql);
