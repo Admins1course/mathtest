@@ -72,6 +72,7 @@
 			$pdo->exec($sql);
 			$sql="CREATE TABLE `friends_".$id[0]['id']."` (
 						`id_Friend` int(8) NOT NULL,
+						`waiting` tinyint default null,
 						`login` varchar(255),
 						`name` tinytext not null,
 						`surname` tinytext not null,
