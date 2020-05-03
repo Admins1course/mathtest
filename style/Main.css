@@ -503,6 +503,23 @@ input[name='r']{
 	font-size: 15px;
 	margin-top: 2px;
 }
+.notifications_body{
+	width: 600px;
+	height: 500px;
+	background-color: white;
+	position: absolute;
+	margin-top: 30px;
+	border-radius: 5px;
+
+}
+.notifications_bar{
+	width: 98%;
+	
+	height: auto;
+	margin-top: 20px;
+	margin-left: 1%;
+	border: 1px solid red;
+}
 .enter_site_btn{
 	margin-top: 5px;
 	padding: 5px;

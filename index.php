@@ -14,13 +14,21 @@
 <head>
 	<meta http-equiv="Cache-Control" content="no-cache" charset="UTF-8">
 
-	<link rel="stylesheet" href="style/Main.css" type="text/css">
+	<link rel="stylesheet" href="style/Main.css?<?time()?>" type="text/css">
+	<link rel="stylesheet" href="style/Cssforindex.css?<?time()?>" type="text/css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function(){
 		$('.exit_menu').click(function(){
 			$('.exit_menu_body').slideToggle(500);
+		});
+	});
+	</script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('.open_notifications_body').click(function(){
+			$('.notifications_body').slideToggle(500);
 		});
 	});
 	</script>
@@ -157,16 +165,18 @@
 				<div class="search_area">
 					<div class="search">
 						<input type="search" class="search_bar" onkeyup="searchControl(this)" onchange="searchControl(this)">
+						<input type="button" class="search_send_title" value="Поиск" onclick="searchPeople()">
 					
 					</div>
-					<div class="search_send">
-						<input type="button" class="search_send_title" value="Поиск" onclick="searchPeople()">
-						<input type="button" value="Друзья" onclick="callbackFunction(this.value)">
-						<input type="button" value="Мир" onclick="callbackFunction(this.value)">
-					</div>
+					
 				</div>
 			</div>
 			<div id="left_block" class="left_block">
+					<div class="search_send">
+						
+						<input type="button" value="Друзья" onclick="callbackFunction(this.value)">
+						<input type="button" value="Мир" onclick="callbackFunction(this.value)">
+					</div>
 				<p>Друзья</p>
 				<label for="friends">Группа</label>
 				<select id="friends">
@@ -201,22 +211,31 @@
 			  <li><a href="#m4">Новости</a></li>
 			  <li><a href="#m5">Контакты</a></li>
 			  <li>
-			  	<a href="#m5">Оповещения
-				  	<div class="notifications">
-						<div class="notific_num">
-							<p>99+</p>
+			  	<div class="open_notifications_body">
+				  	<a href="#m5">Оповещения
+					  	<div class="notifications">
+
+							<div class="notific_num">
+								<p>99+</p>
+							</div>
+					  	</div>	
+					</a>
+
+					<div class="notifications_body" style="display: none;">
+						<div class="notifications_bar">
+							<p class="text_notifications_bar">Привет</p>
 						</div>
-				  	</div>
-				</a>
+					</div>
+				</div>
+
 			  </li>
 			 </ul>
+			 
 			</nav><!--menu1-->
 			<div class="profile">
 				<?php
 					if (isset($_SESSION['data-user']['name'])&&isset($_SESSION['data-user']["surname"])):?>
-						<div class="profile_avatar load_avatar_open">
-							<p class="plus_photo">+</p>
-						</div>
+						
 						<div class="load_avatar_fade">
 							<div class="load_avatar">
 								<div class="preview_image_div">
@@ -235,7 +254,11 @@
 								
 								<a class="load_avatar_close" href="">X</a>
 							</div>
+
 							
+						</div>
+						<div class="profile_avatar load_avatar_open">
+							<p class="plus_photo">+</p>
 						</div>
 						<div class="user_profile_title">
 					
