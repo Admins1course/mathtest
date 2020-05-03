@@ -1,0 +1,35 @@
+
+body{
+	height: 1000px;
+}
+.search_bar{
+	border: 1px solid red;
+	width: 75%;
+	margin-top: 4px;
+	overflow: hidden;
+}
+.search_send{
+	width: 100%;
+	height: auto;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	text-align: center;
+}
+.search_type{
+	border:1px solid red; 
+	padding: 5px;
+	background-color: orange;
+	margin-right: : 10px;
+	cursor: pointer;
+}
+.search_type:hover{
+	background-color: darkorange;
+}
+.search_send_title{
+	padding: 3px;
+	background-color: orange;
+	cursor: pointer;
+}
+.search_send_title:hover{
+	background-color: darkorange;
+}
