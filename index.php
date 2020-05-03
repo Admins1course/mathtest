@@ -33,7 +33,7 @@
 	});
 	</script>
 		<script>
-	$(document).ready(function($) {
+	$(document).ready(function() {
 	$('.load_avatar_open').click(function() {
 		$('.load_avatar_fade').fadeIn();
 		return false;
@@ -145,7 +145,7 @@
 </script>
 <script>
 	setInterval(notifications,10000);
-	
+	dataNotifications=0;
 	function notifications(){
 		$.ajax({
 			url:document.location.origin+"/mathtest/getNotifications.php",
@@ -154,7 +154,7 @@
 			type:'POST',
 			error:function(data){console.log(data)},
 			success:function(data){
-				console.log(data);
+				dataNotifications=data;
 				if (data.length==0) return;
 				if (data.length>9) count="9+";
 				else count=data.length;
@@ -167,11 +167,37 @@
 					htmlMessage+=data[i]['message'];
 					htmlMessage+='</p></div>';
 					htmlMessage+='<input type="button" id="user'+data[i]['add_friends']+'" value="Принять">';
+					htmlMessage+='<input type="button" id="user'+data[i]['add_friends']+'" value="Отменить">';
 				}
 				$('.notifications_body').html(htmlMessage);
 			}
-		})
+		});
 	}
+	
+	$(document).ready(function(){$('#notif').click(function(){
+			if ($('.notifications_body').is(':visible')){
+				if (dataNotifications){
+					$('.open_notifications_body a').html('Оповещения');
+					$('.notifications_body').html('');
+					console.log(dataNotifications);
+					dataNot={};
+					for (i=0;i<dataNotifications.length;i++){
+						dataNot[String(i)]=dataNotifications[i];
+					}
+					console.log(dataNot);
+					$.ajax({
+						url:document.location.origin+"/mathtest/unreadNotifications.php",
+						cache:false,
+						type:'POST',
+						dataType:'json',
+						data:dataNot,
+						error:function(data){console.log(data);},
+						success:function(data){console.log(data);}
+					});
+				}
+			}
+		});
+	});
 </script>
 </head>
 <body>
@@ -263,7 +289,7 @@
 			  <li><a href="#m5">Контакты</a></li>
 			  <li>
 			  	<div class="open_notifications_body">
-				  	<a href="#m5">Оповещения
+				  	<a id="notif" href="#m5">Оповещения
 					</a>
 
 					<div class="notifications_body" style="display: none;">
