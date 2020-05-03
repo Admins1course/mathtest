@@ -27,6 +27,7 @@
 			$('.exit_menu_body').slideToggle(500);
 		});
 	});
+
 	</script>
 	<script>
 		let count;
@@ -144,9 +145,19 @@
 	
 	
 });
+	$(function(){
+		$(window).scroll(function() {
+			if($(this).scrollTop() >= 501) {
+				$('#left_block').addClass('stickytop');
+			}
+			else{
+				$('#left_block').removeClass('stickytop');
+			}
+		});
+	});
 </script>
 </head>
-<body>
+<body style="height: 2000px;">
 	<div id="page">
 		<div class="forNewFormulas" style="display:none">
 			$$
@@ -162,6 +173,7 @@
 				\renewcommand{\Im}{\mathop{\rm Im}\nolimits}
 			$$
 		</div>
+		
 		<div id="main_content">
 			<div id="area_book">
 					<div id="book">
@@ -224,6 +236,8 @@
 			</div>
 
 		</div>
+	</div>
+
 		<div class="slider midle">
 			<div class="slides">
 				<input type="radio" name="r" id="r1" checked>
@@ -247,6 +261,7 @@
 
 
 
+		
 		<div id="plus_inform">
 			
 		</div>
@@ -258,87 +273,102 @@
 		<div id="left_block" class="left_block">
 
 		</div>
+		
+
+	
 		<div id="nav_menu">
-			<nav id="menu1">
-			 <ul>
-			  <li><a href="index.php">Главная</a></li>
-			  <li><a href="#m2">О нас</a></li>
-			  <li><a href="#m3">Тесты</a>
-			   <ul>
-			    <li><a href="TestList.php">Каталог тестов</a></li>
-				<?php if(isset($_COOKIE['root'])&&($_COOKIE['root']=="студент")){?>
-					<li><a href="#m3_4">Статистика</a></li>
-					<li><a href="#m3_5">Пройти тест по приглашению</a></li>
-			    <?php }else if(isset($_COOKIE['root'])&&($_COOKIE['root']=="преподаватель")){?>
-					<li><a href="#m3_3">Мой каталог</a></li>
-					<li><a href="createtest.html.php">Создать тест</a></li>
-					<li><a href="#m3_5">Создать приглашение</a></li>
-				<?php } ?>
-			   </ul>
-			  </li>
-			  <li><a href="#m4">Новости</a></li>
-			  <li><a href="#m5">Контакты</a></li>
-			  <li>
-			  	<a href="#m5">Оповещения
-				  	<div class="notifications">
-						<div class="notific_num">
-							<p>99+</p>
+				<nav id="menu1">
+				 <ul>
+				  <li><a href="index.php">Главная</a></li>
+				  <li><a href="#m2">О нас</a></li>
+				  <li><a href="#m3">Тесты</a>
+				   <ul>
+				    <li><a href="TestList.php">Каталог тестов</a></li>
+					<?php if(isset($_SESSION['data-user']['root'])&&($_SESSION['data-user']['root']=="студент")){?>
+						<li><a href="#m3_4">Статистика</a></li>
+						<li><a href="#m3_5">Пройти тест по приглашению</a></li>
+				    <?php }else if(isset($_SESSION['data-user']['root'])&&($_SESSION['data-user']['root']=="преподаватель")){?>
+						<li><a href="#m3_3">Мой каталог</a></li>
+						<li><a href="createtest.html.php">Создать тест</a></li>
+						<li><a href="#m3_5">Создать приглашение</a></li>
+					<?php } ?>
+				   </ul>
+				  </li>
+				  <li><a href="#m4">Новости</a></li>
+				  <li><a href="#m5">Контакты</a></li>
+				  <li>
+				  	<div class="open_notifications_body">
+					  	<a href="#m5">Оповещения
+						  	<div class="notifications">
+
+								<div class="notific_num">
+									<p>99+</p>
+								</div>
+						  	</div>	
+						</a>
+
+						<div class="notifications_body" style="display: none;">
+							<div class="notifications_bar">
+								<p class="text_notifications_bar">Привет</p>
+							</div>
 						</div>
-				  	</div>
-				</a>
-			  </li>
-			 </ul>
-			</nav><!--menu1-->
-			<div class="profile">
-				<?php
-					if (isset($_SESSION['data-user']['name'])&&isset($_SESSION['data-user']["surname"])):?>
-						<div class="profile_avatar load_avatar_open">
-							<p class="plus_photo">+</p>
-						</div>
-						<div class="load_avatar_fade">
-							<div class="load_avatar">
-								<div class="preview_image_div">
-									<div class="preview_image" id="img-preview" >
+					</div>
+
+				  </li>
+				 </ul>
+				 
+				</nav><!--menu1-->
+				<div class="profile">
+					<?php
+						if (isset($_SESSION['data-user']['name'])&&isset($_SESSION['data-user']["surname"])):?>
+							
+							<div class="load_avatar_fade">
+								<div class="load_avatar">
+									<div class="preview_image_div">
+										<div class="preview_image" id="img-preview" >
+											
+										</div>
 										
 									</div>
+									<div class="load_image">
+									  <label for="custom-file-upload" class="filupp">
+									    <span class="filupp-file-name js-value" >Загрузить файл</span>
+									    <input type="file" name="attachment-file " value="1"  id="custom-file-upload"  >
+									  </label>
+									</div>
+		
 									
+									<a class="load_avatar_close" href="">X</a>
 								</div>
-								<div class="load_image">
-								  <label for="custom-file-upload" class="filupp">
-								    <span class="filupp-file-name js-value" >Загрузить файл</span>
-								    <input type="file" name="attachment-file " value="1"  id="custom-file-upload"  >
-								  </label>
-								</div>
-	
+
 								
-								<a class="load_avatar_close" href="">Закрыть</a>
 							</div>
-							
-						</div>
-						<div class="user_profile_title">
-					
-							<p class="exit_menu"><?=htmlspecialchars($_SESSION['data-user']['name'])." <br /> ".htmlspecialchars($_SESSION['data-user']['surname'])?></p>
-						</div>
-						<div class="exit_menu_body" style="display:none">
+							<div class="profile_avatar load_avatar_open">
+								<p class="plus_photo">+</p>
+							</div>
+							<div class="user_profile_title">
+						
+								<p class="exit_menu"><?=htmlspecialchars($_SESSION['data-user']['name'])." <br /> ".htmlspecialchars($_SESSION['data-user']['surname'])?></p>
+							</div>
+							<div class="exit_menu_body" style="display:none">
 
-							<div class="exit_menu_elements">
-								<p class="exit_menu_stat">Роль: <?php $_SESSION['data-user']['root'];?></p>
-							</div>
-							
-							<div class="exit_title exit_menu_elements">
+								<div class="exit_menu_elements">
+									<p class="exit_menu_stat">Роль: <?php $_SESSION['data-user']['root'];?></p>
+								</div>
+								
+								<div class="exit_title exit_menu_elements">
 
-								<p><a href="vyhod.php">Выход</a></p>
+									<p><a href="vyhod.php">Выход</a></p>
+								</div>
 							</div>
-						</div>
-					<?php 
-					else:?>
-						<div class="enter_site_btn">
-							<a  href="nevEnter.html.php">Войти</a>
-						</div>
-				<?php endif?>
+						<?php 
+						else:?>
+							<div class="enter_site_btn">
+								<a  href="nevEnter.html.php">Войти</a>
+							</div>
+					<?php endif?>
+				</div>
 			</div>
-		</div>
-	</div>
 	
 	
 	<div id="footer">
