@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Апр 18 2020 г., 15:49
+-- Время создания: Май 03 2020 г., 13:56
 -- Версия сервера: 5.5.39
 -- Версия PHP: 5.4.31
 
@@ -48,6 +48,112 @@ INSERT INTO `answers_1_1` (`id_Task`, `textarea`, `input`, `radio`, `checkbox`, 
 (6, 0, NULL, 1, 0, 1),
 (7, 0, NULL, 1, 0, 1),
 (8, 0, NULL, 1, 0, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `friends_1`
+--
+
+CREATE TABLE IF NOT EXISTS `friends_1` (
+  `id_Friend` int(8) NOT NULL,
+  `login` varchar(255) DEFAULT NULL,
+  `name` tinytext NOT NULL,
+  `surname` tinytext NOT NULL,
+  `студенты` int(1) DEFAULT '0',
+  `преподаватели` int(1) DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `friends_4`
+--
+
+CREATE TABLE IF NOT EXISTS `friends_4` (
+  `id_Friend` int(8) NOT NULL,
+  `login` varchar(255) DEFAULT NULL,
+  `name` tinytext NOT NULL,
+  `surname` tinytext NOT NULL,
+  `студенты` int(1) DEFAULT '0',
+  `преподаватели` int(1) DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `friends_5`
+--
+
+CREATE TABLE IF NOT EXISTS `friends_5` (
+  `id_Friend` int(8) NOT NULL,
+  `login` varchar(255) DEFAULT NULL,
+  `name` tinytext NOT NULL,
+  `surname` tinytext NOT NULL,
+  `студенты` int(1) DEFAULT '0',
+  `преподаватели` int(1) DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `notifications_1`
+--
+
+CREATE TABLE IF NOT EXISTS `notifications_1` (
+`id` int(11) NOT NULL,
+  `message` tinytext NOT NULL,
+  `_unread` tinyint(4) DEFAULT NULL,
+  `_read` tinyint(4) DEFAULT NULL,
+  `add_friends` tinytext,
+  `cancel_add` tinyint(4) DEFAULT NULL,
+  `invitations` tinytext,
+  `dateOfSend` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `notifications_4`
+--
+
+CREATE TABLE IF NOT EXISTS `notifications_4` (
+`id` int(11) NOT NULL,
+  `message` tinytext NOT NULL,
+  `_unread` tinyint(4) DEFAULT NULL,
+  `_read` tinyint(4) DEFAULT NULL,
+  `add_friends` tinytext,
+  `cancel_add` tinyint(4) DEFAULT NULL,
+  `invitations` tinytext,
+  `dateOfSend` datetime NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Дамп данных таблицы `notifications_4`
+--
+
+INSERT INTO `notifications_4` (`id`, `message`, `_unread`, `_read`, `add_friends`, `cancel_add`, `invitations`, `dateOfSend`) VALUES
+(1, 'Администраторы сайта хочет добавить вас в друзья', 1, NULL, '1', NULL, NULL, '2020-05-03 13:32:07'),
+(2, 'Администраторы сайта хочет добавить вас в друзья', 1, NULL, '1', NULL, NULL, '2020-05-03 13:37:05'),
+(3, 'Администраторы сайта хочет добавить вас в друзья', 1, NULL, '1', NULL, NULL, '2020-05-03 13:39:50'),
+(4, 'Администраторы сайта хочет добавить вас в друзья', 1, NULL, '1', NULL, NULL, '2020-05-03 13:41:15');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `notifications_5`
+--
+
+CREATE TABLE IF NOT EXISTS `notifications_5` (
+`id` int(11) NOT NULL,
+  `message` tinytext NOT NULL,
+  `_unread` tinyint(4) DEFAULT NULL,
+  `_read` tinyint(4) DEFAULT NULL,
+  `add_friends` tinytext,
+  `cancel_add` tinyint(4) DEFAULT NULL,
+  `invitations` tinytext,
+  `dateOfSend` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -155,6 +261,38 @@ INSERT INTO `tasktest_1` (`id_Test`, `countTask`, `mark_1`, `mark_2`, `mark_3`, 
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `tasktest_4`
+--
+
+CREATE TABLE IF NOT EXISTS `tasktest_4` (
+  `id_Test` int(11) NOT NULL,
+  `countTask` int(11) NOT NULL,
+  `mark_1` double NOT NULL,
+  `mark_2` double NOT NULL,
+  `mark_3` double NOT NULL,
+  `mark_4` double NOT NULL,
+  `mark_5` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tasktest_5`
+--
+
+CREATE TABLE IF NOT EXISTS `tasktest_5` (
+  `id_Test` int(11) NOT NULL,
+  `countTask` int(11) NOT NULL,
+  `mark_1` double NOT NULL,
+  `mark_2` double NOT NULL,
+  `mark_3` double NOT NULL,
+  `mark_4` double NOT NULL,
+  `mark_5` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `tests`
 --
 
@@ -211,18 +349,38 @@ CREATE TABLE IF NOT EXISTS `users` (
   `surname` tinytext NOT NULL,
   `root` enum('студент','преподаватель') DEFAULT 'студент',
   `dateRegistration` datetime NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Дамп данных таблицы `users`
 --
 
 INSERT INTO `users` (`id`, `login`, `userPassword`, `name`, `surname`, `root`, `dateRegistration`) VALUES
-(1, 'admins_exist', 'cfde9b2b1d3d8b741cfc58fcae182027', 'Администраторы', 'сайта', 'преподаватель', '2020-03-29 14:10:36');
+(1, 'admins_exist', 'cfde9b2b1d3d8b741cfc58fcae182027', 'Администраторы', 'сайта', 'преподаватель', '2020-03-29 14:10:36'),
+(4, 'adminsstudents_exist', 'cfde9b2b1d3d8b741cfc58fcae182027', 'Администраторы', 'студенты', 'студент', '2020-04-19 00:25:56'),
+(5, 'adminsteachers_exist', 'cfde9b2b1d3d8b741cfc58fcae182027', 'Администраторы', 'преподаватели', 'преподаватель', '2020-04-19 00:30:51');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `notifications_1`
+--
+ALTER TABLE `notifications_1`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `notifications_4`
+--
+ALTER TABLE `notifications_4`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `notifications_5`
+--
+ALTER TABLE `notifications_5`
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `sections`
@@ -253,6 +411,21 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `notifications_1`
+--
+ALTER TABLE `notifications_1`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `notifications_4`
+--
+ALTER TABLE `notifications_4`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `notifications_5`
+--
+ALTER TABLE `notifications_5`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `sections`
 --
 ALTER TABLE `sections`
@@ -266,7 +439,7 @@ MODIFY `id_subject` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-MODIFY `id` int(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `id` int(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
