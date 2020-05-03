@@ -75,18 +75,25 @@
 			cache:false,
 			data:{searchValue:searchValue},
 			type:'POST',
-			error:function(){console.log('error')},
+			error:function(data){console.log(data)},
 			success:function(data){
-				console.log(data);
 				var listOfPeople='';
-				for (i=0;i<data.length;i++){
+				for (i=0;i<data['people'].length;i++){
+					buttonValue="+ В друзья";
+					buttonFunction="addFriend(this)";
+					if (data['friends'])
+						if (~data['friends']['id'].indexOf(data['people'][i]['id'])){
+							if(data['friends']['waiting'][data['friends']['id'].indexOf(data['people'][i]['id'])]==1)
+								buttonValue="Отменить заявку";
+								buttonFunction="cancelAddFriend(this)"
+						}
 					listOfPeople+='<li>'+
-						data[i]['name']+" "+
-						data[i]['surname']+
+						data['people'][i]['name']+" "+
+						data['people'][i]['surname']+
 						'<input type="button" name="'+
-						data[i]['root']+
-						'" value=" + В друзья" onclick="addFriend(this)" id="user'+
-						data[i]['id']+'">'+'</li>';
+						data['people'][i]['root']+
+						'" value="'+buttonValue+'" onclick="'+buttonFunction+'" id="user'+
+						data['people'][i]['id']+'">'+'</li>';
 				}
 				$('#friendsList').html(listOfPeople);
 			}
@@ -94,8 +101,7 @@
 	}
 	
 	function searchForFriends(){}
-</script>
-<script>
+	
 	function searchControl(element){
 		var re=/[^a-zA-Zа-яА-Я0-9_]+/gus;
 		if (re.test(element.value)) 
@@ -116,18 +122,54 @@
 			data:friendMessage,
 			type:'POST',
 			error:function(data){console.log(data)},
-			success:function(data){console.log(data);
-				$(element).val('Заявка отправлена').prop('disabled', true);
+			success:function(data){
+				$(element).val('Отменить заявку').attr("onclick","cancelAddFriend(this)");
+			}
+		});
+	}
+	function cancelAddFriend(element){
+		$idFriend=$(element).attr('id').replace('user','');
+		dataPost={id:$idFriend};
+		$.ajax({
+			url:document.location.origin+"/mathtest/cancelAddFriend.php",
+			cache:false,
+			type:'POST',
+			dataType:'json',
+			data:dataPost,
+			error:function(data){console.log(data)},
+			success:function(data){
+				$(element).val('+ В друзья').attr("onclick","addFriend(this)");
 			}
 		});
 	}
 </script>
 <script>
-	setInterval("notifications",10000);
+	setInterval(notifications,10000);
 	
 	function notifications(){
 		$.ajax({
-			
+			url:document.location.origin+"/mathtest/getNotifications.php",
+			cache:false,
+			dataType:'json',
+			type:'POST',
+			error:function(data){console.log(data)},
+			success:function(data){
+				console.log(data);
+				if (data.length==0) return;
+				if (data.length>9) count="9+";
+				else count=data.length;
+				countNotifications='Оповещения<div class="notifications">';
+				countNotifications+='<div class="notific_num"><p>'+count+'</p></div></div>';
+				$('.open_notifications_body a').html(countNotifications);
+				htmlMessage='';
+				for (i=0;i<data.length;i++){
+					htmlMessage+='<div class="notifications_bar"><p class="text_notifications_bar">';
+					htmlMessage+=data[i]['message'];
+					htmlMessage+='</p></div>';
+					htmlMessage+='<input type="button" id="user'+data[i]['add_friends']+'" value="Принять">';
+				}
+				$('.notifications_body').html(htmlMessage);
+			}
 		})
 	}
 </script>
@@ -222,18 +264,9 @@
 			  <li>
 			  	<div class="open_notifications_body">
 				  	<a href="#m5">Оповещения
-					  	<div class="notifications">
-
-							<div class="notific_num">
-								<p>99+</p>
-							</div>
-					  	</div>	
 					</a>
 
 					<div class="notifications_body" style="display: none;">
-						<div class="notifications_bar">
-							<p class="text_notifications_bar">Привет</p>
-						</div>
 					</div>
 				</div>
 
