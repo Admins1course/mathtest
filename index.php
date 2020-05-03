@@ -107,11 +107,20 @@
 			dataType:'json',
 			data:friendMessage,
 			type:'POST',
-			error:function(){console.log('error')},
-			success:function(){console.log(data);
+			error:function(data){console.log(data)},
+			success:function(data){console.log(data);
 				$(element).val('Заявка отправлена').prop('disabled', true);
 			}
 		});
+	}
+</script>
+<script>
+	setInterval("notifications",10000);
+	
+	function notifications(){
+		$.ajax({
+			
+		})
 	}
 </script>
 </head>
