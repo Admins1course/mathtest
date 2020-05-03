@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Cache-Control" content="no-cache" charset="UTF-8">
-	<link rel="stylesheet" href="style/NevRegistratoin.css?1234" type="text/css">
+	<link rel="stylesheet" href="style/NevRegistratoin.css?<?time()?>" type="text/css">
 
 	<title>Регистрация</title>
 	

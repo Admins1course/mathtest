@@ -12,9 +12,9 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Cache-Control" content="no-cache" charset="UTF-8">
-	<link rel="stylesheet" href="style/Main.css?123" type="text/css">
+	<link rel="stylesheet" href="style/Main.css?<?time()?>" type="text/css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="style/Ccssforte.css?323" type="text/css">
+	<link rel="stylesheet" href="style/Ccssfort.css?<?time()?>" type="text/css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 	<script type="text/javascript" id="MathJax-script" async
 			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
@@ -1281,9 +1281,7 @@
 				<div class="profile">
 				<?php
 					if (isset($_SESSION['data-user']['name'])&&isset($_SESSION['data-user']["surname"])):?>
-						<div class="profile_avatar load_avatar_open">
-							<p class="plus_photo">+</p>
-						</div>
+						
 						<div class="load_avatar_fade">
 							<div class="load_avatar">
 								<div class="preview_image_div">
@@ -1303,6 +1301,9 @@
 								<a class="load_avatar_close" href="">Закрыть</a>
 							</div>
 							
+						</div>
+						<div class="profile_avatar load_avatar_open">
+							<p class="plus_photo">+</p>
 						</div>
 						<div class="user_profile_title">
 					
