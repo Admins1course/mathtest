@@ -294,12 +294,14 @@ input[name='r']{
 	border-radius: 50%;
 	background-color: white;
 	cursor: pointer;
+	
 }
+
 .profile_avatar:hover{
 	background-color: darkorange;
 	color: black;
 	transition:all .5s;
-	transform: scale(1.4);
+	
 }
 .plus_photo{
 	text-align: center;
@@ -309,6 +311,7 @@ input[name='r']{
 
 }
 .user_profile_title{
+	
 	padding-right: 10px;
 	padding-left: 10px;
 	margin-left: 10px;

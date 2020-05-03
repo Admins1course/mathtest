@@ -124,9 +124,7 @@
 			<div class="profile">
 				<?php
 					if (isset($_SESSION['data-user']['name'])&&isset($_SESSION['data-user']["surname"])):?>
-						<div class="profile_avatar load_avatar_open">
-							<p class="plus_photo">+</p>
-						</div>
+						
 						<div class="load_avatar_fade">
 							<div class="load_avatar">
 								<div class="preview_image_div">
@@ -146,6 +144,9 @@
 								<a class="load_avatar_close" href="">X</a>
 							</div>
 							
+						</div>
+						<div class="profile_avatar load_avatar_open">
+							<p class="plus_photo">+</p>
 						</div>
 						<div class="user_profile_title">
 					

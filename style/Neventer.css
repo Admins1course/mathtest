@@ -1,5 +1,6 @@
 body{
 	background-image: url('img/regbg1.png');
+	background-size: 100% auto
 }
 a{
 	color: white;

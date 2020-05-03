@@ -12,7 +12,7 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Cache-Control" content="no-cache" charset="UTF-8">
-	<link rel="stylesheet" href="style/Main.css?123" type="text/css">
+	<link rel="stylesheet" href="style/Main.css?<?=time()?>" type="text/css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="style/Ccssfort.css?323" type="text/css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
@@ -86,7 +86,17 @@
 				let idName=$(this).closest('[class^="task"]').attr('id');//извлекаем все классы
 				className=className.split(' ');//получаем также id, генерируемое при создании diva
 				//добавляем div icontest
-				$('.'+className[1]+' .icontest:hidden').clone('deepWithDataAndEvents').css('display','none').insertBefore(
+				idTask=$(this).closest('[class^="task"]').attr('id');
+				first_el=$('#'+idTask+' .icontest:visible:first');
+				last_el=$('#'+idTask+' .icontest:visible:last');
+				count_icon=$('#'+idTask+' .all_icon_load').children().length
+				console.log(count_icon);
+				if (count_icon>2) {
+					first_el.css('display','none');
+
+				}
+				
+				$('.'+className[1]+' div[class="icontest"]:hidden').clone('deepWithDataAndEvents').css('display','none').insertBefore(
 				this).slideDown(1000).children().not('#uploadPreview').each(function(index, el){
 					//подготавливаем для элементов diva аттрибут name
 					if($(this).attr('id')=='inputfile'){
@@ -102,6 +112,11 @@
 						$(this).attr('name','task'+tasks+'[icontest'+len+'][task2photo1]');
 					}
 				});
+
+				if (count_icon>2) {
+					  $('#'+idTask+' .swipe_left').prop('disabled','false');
+					
+				}
 				
 			});
 			
@@ -417,7 +432,7 @@
 		return false;
 	});	
 	
-	$('.popup-close').click(function() {
+	$('.form_btn_close').click(function() {
 		$(this).parents('.popup-fade').fadeOut();
 		return false;
 	});		
@@ -440,6 +455,7 @@
 	$(document).ready(function($) {
 	$('.load_avatar_open').click(function() {
 		$('.load_avatar_fade').fadeIn();
+
 		return false;
 	});	
 	
@@ -458,7 +474,11 @@
 	
 });
 </script>
+<script>
 
+
+
+</script>
 
 </head>
 <body>
@@ -474,7 +494,14 @@
 				<textarea  oninput="auto_grow(this)"
 					name="task[total_task]"  class="main_text" style="resize:none" onfocus="getData()"> 
 				</textarea><!-- Общее задание -->
-				
+				<div class="all_icon_load_slider">
+					<div class="swipe_btn swipe_left">
+						<p><</p>
+					</div>
+					<div class="swipe_btn swipe_right">
+						<p>></p>
+					</div>
+					
 					<div class="all_icon_load">
 						<div class="icontest">
 
@@ -484,9 +511,9 @@
 							<input id="inputfile" type="file" name="task[icontest][myPhoto]" onchange="PreviewImage(this);" accept="image/*" /><!-- Вставить изображение -->
 
 						</div>
-						<input type="button" class="button" value="+"><!--  Кнопка добавить -->	
+						<input type="button" class="button icontest" value="+"><!--  Кнопка добавить -->	
 					</div>
-					
+				</div>
 
 				
 						
@@ -631,9 +658,9 @@
 
 						
 
-								<input type="button" value="Отменить" class="form_btn form_btn_send">
+								<input type="button" value="Отменить" class="form_btn form_btn_close  form_btn_send">
 								<input type="submit" value="Отправить" class="form_btn form_btn_send">
-								<a class="popup-close" href="">Закрыть</a>
+								
 							</div>
 						</div>
 					</div>
@@ -1323,9 +1350,6 @@
 				<div class="profile">
 				<?php
 					if (isset($_SESSION['data-user']['name'])&&isset($_SESSION['data-user']["surname"])):?>
-						<div class="profile_avatar load_avatar_open">
-							<p class="plus_photo">+</p>
-						</div>
 						<div class="load_avatar_fade">
 							<div class="load_avatar">
 								<div class="preview_image_div">
@@ -1346,6 +1370,10 @@
 							</div>
 							
 						</div>
+						<div class="profile_avatar load_avatar_open">
+							<p class="plus_photo">+</p>
+						</div>
+						
 						<div class="user_profile_title">
 					
 							<p class="exit_menu"><?=htmlspecialchars($_SESSION['data-user']['name'])." <br /> ".htmlspecialchars($_SESSION['data-user']['surname'])?></p>

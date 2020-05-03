@@ -49,16 +49,53 @@ textarea{
 	margin-bottom: -0.5%;
 }
 
-.icontest{
+div[class="icontest"]{
 	float: left;
 	width: 240px;
 	height:auto;
 	
-	margin-top: 6%;
-	margin-left: 2%;
+	margin-top: 20px;
+	margin-left: 15px;
 
 	
 }/*Поле для всавляемого изображения*/
+
+.all_icon_load{
+	height: auto;
+	
+	width: 3000px;
+
+	
+}
+.all_icon_load_slider{
+	height: auto;
+	
+	width: 100%;
+	overflow: auto;
+}
+.swipe_btn:hover{
+	opacity: 0.9;
+}
+
+.swipe_btn{
+	position: absolute;
+	width: auto;
+	height: auto;
+	padding-top: 90px;
+	padding-bottom: 90px;
+	padding-right: 6px;
+	padding-left: 6px;
+	background-color: orange;
+	font-size: 30px;
+	opacity: 0.3;
+	margin-top: 70px;
+	cursor: pointer;
+}
+
+.swipe_right{
+	margin-left: 96.3%;
+}
+
  #inputfile{
 	
 	margin-top: 2%;
@@ -81,17 +118,17 @@ textarea{
 
 .button{
 	
-	margin-top: 2%;
-	margin-left: 2%;
-	padding-top: 155px;
-	padding-bottom: 158px;
+	margin-top: 30px;
+	margin-left: 32px;
+	padding-top: 130px;
+	padding-bottom: 130px;
 	padding-left: 105px;
 	padding-right: 105px;
 	background-color: #ffd694;
 	font-size: 50px;
 	color:#ff4d00;
 	border: 2px dashed orange;
-	margin-top: 6%;
+	
 	
 }/* Настройка Кнопки ДОБАВИТЬ*/
 /*.button:hover{
@@ -565,6 +602,8 @@ textarea{
 	margin-bottom: 10px;
 	border: 1px solid red;
 }
+
+
 #footer{display: none;
 
 	margin-top: 10000px;
