@@ -81,6 +81,44 @@
 				});
 			});
 			
+			$('.button').click(function(){
+				let className=$(this).closest('[class^="task"]').attr('class');//получаем значение класса родительского diva для данной кнопки
+				let idName=$(this).closest('[class^="task"]').attr('id');//извлекаем все классы
+				className=className.split(' ');//получаем также id, генерируемое при создании diva
+				//добавляем div icontest
+				idTask=$(this).closest('[class^="task"]').attr('id');
+				first_el=$('#'+idTask+' .icontest:visible:first');
+				last_el=$('#'+idTask+' .icontest:visible:last');
+				count_icon=$('#'+idTask+' .all_icon_load').children().length
+				console.log(count_icon);
+				if (count_icon>2) {
+					first_el.css('display','none');
+
+				}
+				
+				$('.'+className[1]+' div[class="icontest"]:hidden').clone('deepWithDataAndEvents').css('display','none').insertBefore(
+				this).slideDown(1000).children().not('#uploadPreview').each(function(index, el){
+					//подготавливаем для элементов diva аттрибут name
+					if($(this).attr('id')=='inputfile'){
+						len=++lenghts[idName]['icontest'];
+						$(this).attr('name','task'+tasks+'[icontest'+len+'][myPhoto]');
+					}
+					else if ($(this).attr('id')=='text1'){
+						len=lenghts[idName]['icontest'];
+						$(this).attr('name','task'+tasks+'[icontest'+len+'][task2photo1]');
+					}
+					else{
+						len=lenghts[idName]['icontest'];
+						$(this).attr('name','task'+tasks+'[icontest'+len+'][task2photo1]');
+					}
+				});
+
+				if (count_icon>2) {
+					  $('#'+idTask+' .swipe_left').prop('disabled','false');
+					
+				}
+				
+			});
 
 			$('.add_button_answer').click(function(){
 				let className=$(this).closest('div').attr('class');
@@ -448,6 +486,26 @@
 				<textarea  oninput="auto_grow(this)"
 					name="task[total_task]"  class="main_text" style="resize:none" onfocus="getData()"> 
 				</textarea><!-- Общее задание -->
+				<div class="all_icon_load_slider">
+					<div class="swipe_btn swipe_left">
+						<p><</p>
+					</div>
+					<div class="swipe_btn swipe_right">
+						<p>></p>
+					</div>
+					
+					<div class="all_icon_load">
+						<div class="icontest">
+
+							<div class="preview">
+							</div>
+							<img id="uploadPreview" style="width:240px; height: 240px;" />
+							<input id="inputfile" type="file" name="task[icontest][myPhoto]" onchange="PreviewImage(this);" accept="image/*" /><!-- Вставить изображение -->
+
+						</div>
+						<input type="button" class="button icontest" value="+"><!--  Кнопка добавить -->	
+					</div>
+				</div>
 				<div class="preview">
 				</div>			
 					<p class="text_title">Варианты ответов</p>						
