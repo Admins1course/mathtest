@@ -14,7 +14,8 @@
 <head>
 	<meta http-equiv="Cache-Control" content="no-cache" charset="UTF-8">
 
-	<link rel="stylesheet" href="style/Main.css" type="text/css">
+	<link rel="stylesheet" href="style/Main.css?<?time()?>" type="text/css">
+	<link rel="stylesheet" href="style/Cssforindex.css?<?time()?>" type="text/css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 	<script type="text/javascript">
@@ -24,8 +25,15 @@
 		});
 	});
 	</script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('.open_notifications_body').click(function(){
+			$('.notifications_body').slideToggle(500);
+		});
+	});
+	</script>
 		<script>
-	$(document).ready(function($) {
+	$(document).ready(function() {
 	$('.load_avatar_open').click(function() {
 		$('.load_avatar_fade').fadeIn();
 		return false;
@@ -67,18 +75,25 @@
 			cache:false,
 			data:{searchValue:searchValue},
 			type:'POST',
-			error:function(){console.log('error')},
+			error:function(data){console.log(data)},
 			success:function(data){
-				console.log(data);
 				var listOfPeople='';
-				for (i=0;i<data.length;i++){
+				for (i=0;i<data['people'].length;i++){
+					buttonValue="+ В друзья";
+					buttonFunction="addFriend(this)";
+					if (data['friends'])
+						if (~data['friends']['id'].indexOf(data['people'][i]['id'])){
+							if(data['friends']['waiting'][data['friends']['id'].indexOf(data['people'][i]['id'])]==1)
+								buttonValue="Отменить заявку";
+								buttonFunction="cancelAddFriend(this)"
+						}
 					listOfPeople+='<li>'+
-						data[i]['name']+" "+
-						data[i]['surname']+
+						data['people'][i]['name']+" "+
+						data['people'][i]['surname']+
 						'<input type="button" name="'+
-						data[i]['root']+
-						'" value=" + В друзья" onclick="addFriend(this)" id="user'+
-						data[i]['id']+'">'+'</li>';
+						data['people'][i]['root']+
+						'" value="'+buttonValue+'" onclick="'+buttonFunction+'" id="user'+
+						data['people'][i]['id']+'">'+'</li>';
 				}
 				$('#friendsList').html(listOfPeople);
 			}
@@ -86,8 +101,7 @@
 	}
 	
 	function searchForFriends(){}
-</script>
-<script>
+	
 	function searchControl(element){
 		var re=/[^a-zA-Zа-яА-Я0-9_]+/gus;
 		if (re.test(element.value)) 
@@ -107,10 +121,95 @@
 			dataType:'json',
 			data:friendMessage,
 			type:'POST',
-			error:function(){console.log('error')},
-			success:function(){console.log(data);
-				$(element).val('Заявка отправлена').prop('disabled', true);
+			error:function(data){console.log(data)},
+			success:function(data){
+				$(element).val('Отменить заявку').attr("onclick","cancelAddFriend(this)");
 			}
+		});
+	}
+	function cancelAddFriend(element){
+		$idFriend=$(element).attr('id').replace('user','');
+		dataPost={id:$idFriend};
+		$.ajax({
+			url:document.location.origin+"/mathtest/cancelAddFriend.php",
+			cache:false,
+			type:'POST',
+			dataType:'json',
+			data:dataPost,
+			error:function(data){console.log(data)},
+			success:function(data){
+				$(element).val('+ В друзья').attr("onclick","addFriend(this)");
+			}
+		});
+	}
+</script>
+<script>
+	$(document).ready(function(){setInterval(notifications,10000);});
+	dataNotifications=0;
+	function notifications(){
+		$.ajax({
+			url:document.location.origin+"/mathtest/getNotifications.php",
+			cache:false,
+			dataType:'json',
+			type:'POST',
+			error:function(data){console.log(data)},
+			success:function(data){
+				console.log(data);
+				dataNotifications=data;
+				if (data.length==0) return;
+				if (data.length>9) count="9+";
+				else count=data.length;
+				countNotifications='Оповещения<div class="notifications">';
+				countNotifications+='<div class="notific_num"><p>'+count+'</p></div></div>';
+				$('.open_notifications_body a').html(countNotifications);
+				htmlMessage='';
+				for (i=0;i<data.length;i++){
+					htmlMessage+='<div class="notifications_bar"><p class="text_notifications_bar">';
+					htmlMessage+=data[i]['message'];
+					htmlMessage+='</p></div>';
+					htmlMessage+='<input type="button" id="userId'+data[i]['add_friends']+'" value="Принять"> onclick="acceptApp(this)"';
+					htmlMessage+='<input type="button" id="userId'+data[i]['add_friends']+'" value="Отменить">';
+				}
+				$('.notifications_body').html(htmlMessage);
+			}
+		});
+	}
+	
+	$(document).ready(function(){$('#notif').click(function(){
+			if ($('.notifications_body').is(':visible')){
+				if (dataNotifications.length){
+					$('.open_notifications_body a').html('Оповещения');
+					$('.notifications_body').html('');
+					console.log(dataNotifications);
+					dataNot={};
+					for (i=0;i<dataNotifications.length;i++){
+						dataNot[String(i)]=dataNotifications[i];
+					}
+					console.log(dataNot);
+					$.ajax({
+						url:document.location.origin+"/mathtest/unreadNotifications.php",
+						cache:false,
+						type:'POST',
+						dataType:'json',
+						data:dataNot,
+						error:function(data){console.log(data);},
+						success:function(data){}
+					});
+				}
+			}
+		});
+	});
+	
+	function acceptApp(element){
+		$idFriend=$(element).attr('id').replace('userId','');
+		$.ajax({
+			url:document.location.origin+"/mathtest/acceptApp.php",
+			cache:false,
+			type:'POST',
+			dataType:'json',
+			data:{id:$idFriend},
+			error:function(data){console.log(data);},
+			success:function(data){}
 		});
 	}
 </script>
@@ -157,16 +256,18 @@
 				<div class="search_area">
 					<div class="search">
 						<input type="search" class="search_bar" onkeyup="searchControl(this)" onchange="searchControl(this)">
+						<input type="button" class="search_send_title" value="Поиск" onclick="searchPeople()">
 					
 					</div>
-					<div class="search_send">
-						<input type="button" class="search_send_title" value="Поиск" onclick="searchPeople()">
-						<input type="button" value="Друзья" onclick="callbackFunction(this.value)">
-						<input type="button" value="Мир" onclick="callbackFunction(this.value)">
-					</div>
+					
 				</div>
 			</div>
 			<div id="left_block" class="left_block">
+					<div class="search_send">
+						
+						<input type="button" value="Друзья" onclick="callbackFunction(this.value)">
+						<input type="button" value="Мир" onclick="callbackFunction(this.value)">
+					</div>
 				<p>Друзья</p>
 				<label for="friends">Группа</label>
 				<select id="friends">
@@ -201,22 +302,22 @@
 			  <li><a href="#m4">Новости</a></li>
 			  <li><a href="#m5">Контакты</a></li>
 			  <li>
-			  	<a href="#m5">Оповещения
-				  	<div class="notifications">
-						<div class="notific_num">
-							<p>99+</p>
-						</div>
-				  	</div>
-				</a>
+			  	<div class="open_notifications_body">
+				  	<a id="notif" href="#m5">Оповещения
+					</a>
+
+					<div class="notifications_body" style="display: none;">
+					</div>
+				</div>
+
 			  </li>
 			 </ul>
+			 
 			</nav><!--menu1-->
 			<div class="profile">
 				<?php
 					if (isset($_SESSION['data-user']['name'])&&isset($_SESSION['data-user']["surname"])):?>
-						<div class="profile_avatar load_avatar_open">
-							<p class="plus_photo">+</p>
-						</div>
+						
 						<div class="load_avatar_fade">
 							<div class="load_avatar">
 								<div class="preview_image_div">
@@ -235,7 +336,11 @@
 								
 								<a class="load_avatar_close" href="">X</a>
 							</div>
+
 							
+						</div>
+						<div class="profile_avatar load_avatar_open">
+							<p class="plus_photo">+</p>
 						</div>
 						<div class="user_profile_title">
 					

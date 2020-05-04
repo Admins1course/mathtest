@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Cache-Control" content="no-cache" charset="UTF-8">
-	<link rel="stylesheet" href="style/neventer.css" type="text/css">
+	<link rel="stylesheet" href="style/Neventer.css?<?time()?>" type="text/css">
 
 	<title>Войти</title>
 </head>
