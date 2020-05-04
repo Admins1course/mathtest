@@ -144,7 +144,7 @@
 	}
 </script>
 <script>
-	setInterval(notifications,10000);
+	$(document).ready(function(){setInterval(notifications,10000);});
 	dataNotifications=0;
 	function notifications(){
 		$.ajax({
@@ -154,6 +154,7 @@
 			type:'POST',
 			error:function(data){console.log(data)},
 			success:function(data){
+				console.log(data);
 				dataNotifications=data;
 				if (data.length==0) return;
 				if (data.length>9) count="9+";
@@ -166,8 +167,8 @@
 					htmlMessage+='<div class="notifications_bar"><p class="text_notifications_bar">';
 					htmlMessage+=data[i]['message'];
 					htmlMessage+='</p></div>';
-					htmlMessage+='<input type="button" id="user'+data[i]['add_friends']+'" value="Принять">';
-					htmlMessage+='<input type="button" id="user'+data[i]['add_friends']+'" value="Отменить">';
+					htmlMessage+='<input type="button" id="userId'+data[i]['add_friends']+'" value="Принять"> onclick="acceptApp(this)"';
+					htmlMessage+='<input type="button" id="userId'+data[i]['add_friends']+'" value="Отменить">';
 				}
 				$('.notifications_body').html(htmlMessage);
 			}
@@ -176,7 +177,7 @@
 	
 	$(document).ready(function(){$('#notif').click(function(){
 			if ($('.notifications_body').is(':visible')){
-				if (dataNotifications){
+				if (dataNotifications.length){
 					$('.open_notifications_body a').html('Оповещения');
 					$('.notifications_body').html('');
 					console.log(dataNotifications);
@@ -192,12 +193,25 @@
 						dataType:'json',
 						data:dataNot,
 						error:function(data){console.log(data);},
-						success:function(data){console.log(data);}
+						success:function(data){}
 					});
 				}
 			}
 		});
 	});
+	
+	function acceptApp(element){
+		$idFriend=$(element).attr('id').replace('userId','');
+		$.ajax({
+			url:document.location.origin+"/mathtest/acceptApp.php",
+			cache:false,
+			type:'POST',
+			dataType:'json',
+			data:{id:$idFriend},
+			error:function(data){console.log(data);},
+			success:function(data){}
+		});
+	}
 </script>
 </head>
 <body>
