@@ -1,6 +1,6 @@
-
 body{
-	height: 1000px;
+
+
 }
 .search_bar{
 	border: 1px solid red;
@@ -14,6 +14,8 @@ body{
 	margin-top: 10px;
 	margin-bottom: 20px;
 	text-align: center;
+	padding-top: 10px;
+	border-top: 2px solid darkorange;
 }
 .search_type{
 	border:1px solid red; 
@@ -29,7 +31,67 @@ body{
 	padding: 3px;
 	background-color: orange;
 	cursor: pointer;
+	border: 1px solid red;
 }
 .search_send_title:hover{
+	background-color: darkorange;
+}
+.search_area{
+	margin-left: 1%;
+}
+/* Панель с друзьями */
+.friends_bar{
+	width: 100%;
+	text-align:center;
+	height: auto;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	font-size: 18px;
+	background-color: orange;
+	border-top: 1px solid red;
+	border-bottom:  1px solid red;
+	margin-bottom: 20px;
+}
+.friends_list{
+
+	width: 100%;
+	height: auto;
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+	
+	border-bottom:  1px solid red;
+}
+.label_friends{
+	background-color: orange;
+	padding: 5px;
+}
+.friends_select_div{
+	text-align: center;
+	font-size: 18px;
+	padding-bottom: 10px;
+	border-bottom: 2px solid darkorange;
+}
+.friends_element{
+	margin-left: 1%;
+}
+.friends_select{
+	
+	cursor: pointer;
+	padding: 5px;
+	border-radius: 5px;
+}
+select option{
+	cursor: pointer;
+	color: orange;
+	background-color: white;
+}
+ select option label{
+ 	cursor: pointer;
+	color: orange;
+	background-color: white;
+}
+.friends_select:hover{
 	background-color: darkorange;
 }

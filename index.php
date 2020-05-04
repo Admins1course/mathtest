@@ -23,18 +23,38 @@
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function(){
+		
 		$('.exit_menu').click(function(){
-			$('.exit_menu_body').slideToggle(500);
+			$('.exit_menu_body').stop().slideToggle(500);
 		});
 	});
+
+	
+
+	
+
+
+  	
+  	
 	
 	</script>
+
 	<script type="text/javascript">
 	$(document).ready(function(){
-		$('.open_notifications_body').click(function(){
-			$('.notifications_body').slideToggle(500);
+		$('.open_notifications').click(function(){
+			$('.notifications_body').stop().slideToggle(500);
 		});
 	});
+	$('.open_notifications').click( function() {
+		$(this).siblings(".notifications_body").slideToggle(500);
+		return false;
+	});
+	//$(document).on("mousedown touchstart",function(e){
+  	//var $info = $('.notifications_body');
+  //	if (!$info.is(e.target) && $info.has(e.target).length === 0) {
+  //  $info.hide();
+ // }
+//});
 	</script>
 		<script>
 	$(document).ready(function($) {
@@ -139,10 +159,10 @@ $(function(){
 	}
 </script>
 </head>
-<body style="height: 2000px;">
+<body style="height: 1500px;">
 	<div id="page">
 		
-		<div id="main_content">
+		<div id="main_content" style="height: 700px;">
 
 		</div>
 	</div>
@@ -195,42 +215,47 @@ $(function(){
 						<input type="button" class="search_type" value="Друзья" onclick="callbackFunction(this.value)">
 						<input type="button" class="search_type" value="Мир" onclick="callbackFunction(this.value)">
 					</div>
-				<p>Друзья</p>
-				<label for="friends">Группа</label>
-				<select id="friends">
-					<option label="Все друзья"></option>
-					<option label="Студенты"></option>
-					<option label="Преподаватели"></option>
-				</select>
-				<ul id="friendsList">
-				</ul>
-			</div>
+					<div class="friends_bar">
+						<p>Друзья</p>
+					</div>
+						<div class="friends_select_div">
+							<label for="friends" class="friends_element">Группа</label>
+							<select id="friends" class="friends_element friends_select">
+								<option label="Все друзья"></option>
+								<option label="Студенты"></option>
+								<option label="Преподаватели"></option>
+							</select>
+							<ul id="friendsList">
+							</ul>
+						</div>
+					</div>
+				
 		
 
 	
 			<div id="nav_menu">
 				<nav id="menu1">
 				 <ul>
-				  <li><a href="index.php">Главная</a></li>
-				  <li><a href="#m2">О нас</a></li>
-				  <li><a href="#m3">Тесты</a>
+				  <li><a href="index.php" class="nav_menu_bar">Главная</a></li>
+				  <li><a href="#m2" class="nav_menu_bar">О нас</a></li>
+				  <li><a href="#m3" class="nav_menu_bar">Тесты</a>
 				   <ul>
-				    <li><a href="TestList.php">Каталог тестов</a></li>
+				    <li><a href="TestList.php" class="nav_menu_bar">Каталог тестов</a></li>
 					<?php if(isset($_SESSION['data-user']['root'])&&($_SESSION['data-user']['root']=="студент")){?>
-						<li><a href="#m3_4">Статистика</a></li>
-						<li><a href="#m3_5">Пройти тест по приглашению</a></li>
+						<li><a href="#m3_4" class="nav_menu_bar">Статистика</a></li>
+						<li><a href="#m3_5" class="nav_menu_bar">Пройти тест по приглашению</a></li>
 				    <?php }else if(isset($_SESSION['data-user']['root'])&&($_SESSION['data-user']['root']=="преподаватель")){?>
-						<li><a href="#m3_3">Мой каталог</a></li>
-						<li><a href="createtest.html.php">Создать тест</a></li>
-						<li><a href="#m3_5">Создать приглашение</a></li>
+						<li><a href="#m3_3" class="nav_menu_bar">Мой каталог</a></li>
+						<li><a href="createtest.html.php" class="nav_menu_bar">Создать тест</a></li>
+						<li><a href="#m3_5" class="nav_menu_bar">Создать приглашение</a></li>
 					<?php } ?>
 				   </ul>
 				  </li>
-				  <li><a href="#m4">Новости</a></li>
-				  <li><a href="#m5">Контакты</a></li>
+				  <li><a href="#m4" class="nav_menu_bar">Новости</a></li>
+				  <li><a href="#m5" class="nav_menu_bar">Контакты</a></li>
 				  <li>
 				  	<div class="open_notifications_body">
-					  	<a href="#m5">Оповещения
+					  	<a href="#m5" class="open_notifications nav_menu_bar">Оповещения
 						  	<div class="notifications">
 
 								<div class="notific_num">
@@ -238,13 +263,35 @@ $(function(){
 								</div>
 						  	</div>	
 						</a>
-
-						<div class="notifications_body" style="display: none;">
-							<div class="notifications_bar">
-								<p class="text_notifications_bar">Привет</p>
-							</div>
-						</div>
 					</div>
+						<div class="notifications_body" style="display: none;">
+							<div class="notifications_body_title">
+								<div class="notifications_body_title_elements_div">
+									<div class="notifications_body_text">
+										<p class="text_notification_body">Оповещения</p>
+									</div>
+									<div class="notifications_body_title_element_bar">
+										
+									</div>
+								</div>
+								
+							</div>
+
+							<div class="notifications_bar">
+								<div class="notifications_bar_elements">
+									<p class="text_notifications_bar">Привет</p>
+								</div>
+							</div>
+
+							<div class="notifications_bar">
+								<div class="notifications_bar_elements">
+									<p class="text_notifications_bar">Привет</p>
+								</div>
+							</div>
+
+
+						</div>
+					
 
 				  </li>
 				 </ul>
@@ -305,14 +352,15 @@ $(function(){
 	
 	
 	
-	<div id="footer">
-		<div class="text">
-			2020
-		</div>
-	</div>
+	
 
 
 	
 	
 </body>
+	<div id="footer">
+			<div class="text">
+				2020
+			</div>
+		</div>
 </html>

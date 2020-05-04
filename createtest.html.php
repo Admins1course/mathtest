@@ -425,25 +425,25 @@
 <script>
 	$(document).ready(function($) {
 	$('.popup-open').click(function() {
-		$('.popup-fade').fadeIn();
+		$('.popup-fade').fadeIn(0);
 		return false;
 	});	
 	
-	$('.popup-close').click(function() {
-		$(this).parents('.popup-fade').fadeOut();
+	$('.form_btn_close').click(function() {
+		$(this).parents('.popup-fade').fadeOut(0);
 		return false;
 	});		
  
 	$(document).keydown(function(e) {
 		if (e.keyCode === 27) {
 			e.stopPropagation();
-			$('.popup-fade').fadeOut();
+			$('.popup-fade').fadeOut(0);
 		}
 	});
 	
 	$('.popup-fade').click(function(e) {
 		if ($(e.target).closest('.popup').length == 0) {
-			$(this).fadeOut();					
+			$(this).fadeOut(0);					
 		}
 	});
 });
@@ -475,8 +475,57 @@
 </head>
 <body>
 	
+
 	<div id="page">
 		<div id="main_content"><!--  Основной див  сайта -->
+			<?php if (isset($_COOKIE['name'])&&isset($_COOKIE['surname'])):?>
+				<form action="createtest_handler.php" method="post">
+					<div>
+						<div id="form_handler">
+							<input type="button" value="1 форма" id="form_1" class="form_btn form_btn_1">
+							<input type="button" value="2 форма" id="form_2" class="form_btn form_btn_2">
+							<input type="button" value="3 форма" id="form_3" class="form_btn form_btn_3">
+							<input type="button" value="4 форма" id="form_4" class="form_btn _4">
+						</div>
+						<input type="button" value="Продолжить" class="popup-open">
+						<div id="nameTest" class="popup-fade">
+							<div class="popup">
+								<p class="popup_text">Введите название теста</p>
+								<input type="text" class="input_text_popup">
+								<p class="popup_text">Выберите дисциплину (и если нужно раздел дисциплины)<p>
+								<select name="" id="subjects" class="popup_select">
+									<option selected value="Выберите дисциплину" class="option_subject popup_text ">Выберите дисциплину</option>
+									<option class="option_subject" ></option>
+								</select>
+								<select name="" id="sections" class="popup_select">
+									<option selected value="Выберите дисциплину" class="option_section popup_text ">Выберите раздел</option>
+									<option class="option_section" ></option>
+								</select>
+								<p>Выберите минимальное значение баллов для получения каждой из оценки</p>
+								<input type="range" id="range_1" min="0" step="0.1" oninput="outputPoints(this)" list="points_label" name="marks[0]">
+								<p>Для получения оценки 1 достаточно баллов:<output for="range_1"></output></p>
+								<input type="range" id="range_2" min="0" step="0.1" oninput="outputPoints(this)" list="points_label" name="marks[1]">
+								<p>Для получения оценки 2 достаточно баллов:<output for="range_2"></output></p>
+								<input type="range" id="range_3" min="0" step="0.1" oninput="outputPoints(this)" list="points_label" name="marks[2]">
+								<p>Для получения оценки 3 достаточно баллов:<output for="range_3"></output></p>
+								<input type="range" id="range_4" min="0" step="0.1" oninput="outputPoints(this)" list="points_label" name="marks[3]">
+								<p>Для получения оценки 4 достаточно баллов:<output for="range_4"></output></p>
+								<input type="range" id="range_5" min="0" step="0.1" oninput="outputPoints(this)" list="points_label" name="marks[4]">
+								<p>Для получения оценки 5 достаточно баллов:<output for="range_5"></output></p>
+								
+								<datalist id="points_label">
+								</datalist>
+
+						
+
+								<input type="button" value="Отменить" class="form_btn form_btn_close form_btn_send">
+								<input type="submit" value="Отправить" class="form_btn form_btn_send">
+								
+							</div>
+						</div>
+					</div>
+				</form>
+			<?php endif ?>
 			<div class="task textarea_template">
 				<p class="text_title">Задание</p>
 				<div class="prev_menu">
@@ -600,61 +649,14 @@
 				<p class="text_title">Варианты ответов</p>	
 				
 				<div class="inp">
-					<input  type="text" name="task[input_answer]" value="" placeholder="ответ" style="margin-left: 2%; height: 20px; margin-top: 2%;"> <!--  Поле для ввода ответа -->
+					<input  type="text" name="task[input_answer]" value="" placeholder="ответ" style="margin-left: 30%; height: 20px; margin-top: 2%; width: 40%;"> <!--  Поле для ввода ответа -->
 				</div>
 				<label class="textForPoints" for="points">Введите количество баллов за данное задание</label>
 				<input type="text" class="points" onkeyup="enterPoints(this)">
 							
 			</div>
 			
-			<?php if (isset($_COOKIE['name'])&&isset($_COOKIE['surname'])):?>
-				<form action="createtest_handler.php" method="post">
-					<div>
-						<div id="form_handler">
-							<input type="button" value="1 форма" id="form_1" class="form_btn form_btn_1">
-							<input type="button" value="2 форма" id="form_2" class="form_btn form_btn_2">
-							<input type="button" value="3 форма" id="form_3" class="form_btn form_btn_3">
-							<input type="button" value="4 форма" id="form_4" class="form_btn _4">
-						</div>
-						<input type="button" value="Продолжить" class="popup-open">
-						<div id="nameTest" class="popup-fade">
-							<div class="popup">
-								<p class="popup_text">Введите название теста</p>
-								<input type="text" class="input_text_popup">
-								<p class="popup_text">Выберите дисциплину (и если нужно раздел дисциплины)<p>
-								<select name="" id="subjects" class="popup_select">
-									<option selected value="Выберите дисциплину" class="option_subject popup_text ">Выберите дисциплину</option>
-									<option class="option_subject" ></option>
-								</select>
-								<select name="" id="sections" class="popup_select">
-									<option selected value="Выберите дисциплину" class="option_section popup_text ">Выберите раздел</option>
-									<option class="option_section" ></option>
-								</select>
-								<p>Выберите минимальное значение баллов для получения каждой из оценки</p>
-								<input type="range" id="range_1" min="0" step="0.1" oninput="outputPoints(this)" list="points_label" name="marks[0]">
-								<p>Для получения оценки 1 достаточно баллов:<output for="range_1"></output></p>
-								<input type="range" id="range_2" min="0" step="0.1" oninput="outputPoints(this)" list="points_label" name="marks[1]">
-								<p>Для получения оценки 2 достаточно баллов:<output for="range_2"></output></p>
-								<input type="range" id="range_3" min="0" step="0.1" oninput="outputPoints(this)" list="points_label" name="marks[2]">
-								<p>Для получения оценки 3 достаточно баллов:<output for="range_3"></output></p>
-								<input type="range" id="range_4" min="0" step="0.1" oninput="outputPoints(this)" list="points_label" name="marks[3]">
-								<p>Для получения оценки 4 достаточно баллов:<output for="range_4"></output></p>
-								<input type="range" id="range_5" min="0" step="0.1" oninput="outputPoints(this)" list="points_label" name="marks[4]">
-								<p>Для получения оценки 5 достаточно баллов:<output for="range_5"></output></p>
-								
-								<datalist id="points_label">
-								</datalist>
-
-						
-
-								<input type="button" value="Отменить" class="form_btn form_btn_send">
-								<input type="submit" value="Отправить" class="form_btn form_btn_send">
-								<a class="popup-close" href="">Закрыть</a>
-							</div>
-						</div>
-					</div>
-				</form>
-			<?php endif ?>
+			
 		</div>
 	</div>
 		<div class="slider midle"><!--  Слайдер -->
@@ -1403,7 +1405,6 @@
 			</div>
 	
 		</div>
-
 
 	
 	

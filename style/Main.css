@@ -17,13 +17,14 @@ body{
 	max-width: 100%;
 	min-width: 1280px;
 	margin:0 auto;
+	background-color: #fcfcfc;
 
 	
 
 }
 
-#page{
-
+#main_content{
+	background-color: #fff;
 
 }
 #menu_bg {
@@ -174,6 +175,7 @@ body{
 	width: 14%;
 	height: 500px;
 	border:1px solid red;
+	background-color: #fff;
 }
 #right_block_title{
 	width: 14%;
@@ -182,6 +184,7 @@ body{
 	margin-left: 0.5%;
 	height: 30px;
 	top:510px;
+	background-color: #fff;
 
 }
 
@@ -196,9 +199,10 @@ body{
 	border:1px solid red;
 	overflow-y: scroll;
 	/*background: radial-gradient(circle, rgba(122,255,180,1) 0%, rgba(255,136,0,1) 80%);*/
+	background-color: #fff;
 }
 #left_block_title{
-	
+	background-color: #fff;
 	margin-left: 80.5%;
 	position: absolute;
 	margin-right: 0.5%;
@@ -524,21 +528,77 @@ input[name='r']{
 	margin-top: 2px;
 }
 .notifications_body{
-	width: 600px;
-	height: 500px;
+
+	width: 400px;
+	height: 400px;
 	background-color: white;
 	position: absolute;
-	margin-top: 30px;
+	top: 70px;
+	border: 1px solid orange;
 	border-radius: 5px;
+	overflow-y: auto;
 
 }
 .notifications_bar{
 	width: 98%;
-	
+	cursor: pointer;
 	height: auto;
 	margin-top: 20px;
 	margin-left: 1%;
-	border: 1px solid red;
+	border: 1px solid darkorange;
+	margin-bottom: 5px;
+}
+.notifications_bar:hover{
+	background-color: #fab62d;
+}
+.notifications_bar_elements{
+	text-align: center;
+	font-size: 17px;
+}
+.notifications_body_title{
+	width: 98%;
+	margin-left: 1%;
+	height: auto;
+	
+	
+	margin-top: 10px;
+	border-radius: 4px;
+}
+.notifications_body_title_elements_div{
+	height: auto;
+	width: auto;
+	padding: 5px;
+	
+
+}
+.notifications_body_text{
+	width: 98%;
+	height: auto;
+	text-align: center;
+	font-size: 19px;
+
+}
+.notifications_body_title_element_bar{
+	width: 98%;
+	margin-left: 1%;
+	background-color: orange;
+	height: 2px;
+	margin-top: 20px;
+}
+.text_notification_body{
+	padding: 5px;
+	border: 2px solid darkorange;
+	background-color: orange;
+	width: auto;
+	border-radius: 4px;
+}
+.nav_menu_bar{
+	width: 100%;
+	height: 100%;
+	padding-top: 15px;
+	padding-bottom: 15px;
+
+	
 }
 .enter_site_btn{
 	margin-top: 5px;
@@ -546,8 +606,9 @@ input[name='r']{
 	
 }
 .enter_site_btn a{
-	padding: 17px;
+	padding: 18px;
 }
 .enter_site_btn a:hover{
 	background-color: darkorange;
 }
+
