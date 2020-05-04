@@ -387,7 +387,6 @@ input[name='r']{
 	margin-bottom: 20px;
 }
 .exit_menu_body{
-
 	position:absolute;
 	border: 1px solid red;
 	width: 200px;
@@ -397,26 +396,33 @@ input[name='r']{
 	text-align: center;
 	font-size: 18px;
 	right: 0px;
+}
+.exit_menu_elements{
+	height: auto;
+	width: auto;
+	margin-top: 10px;
 	
+	display: block;
 	
+}
+.exit_menu_elements:hover{
+	background-color: darkorange;
+}
+.exit_menu_elements_bar{
+	margin-bottom: 10px;
+}
+.exit_menu_elements_text{
+	height: auto;
+	width: 100%;
+	display: block;
+	padding-top: 10px;
+	padding-bottom: 10px;
 
 }
 .exit_title{
 	border-top: 2px solid orange;
-	padding-top: 5px;
 }
-.exit_title:hover{
-	background-color: darkorange;
-	color: black;
 
-}
-.exit_menu_elements{
-	padding-top: 5px;
-	padding-bottom: 5px;
-	margin-top: 15px;
-
-
-}
 
 @import "https://fonts.googleapis.com/css?family=Varela+Round";
 .load_image{
