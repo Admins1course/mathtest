@@ -17,7 +17,7 @@ body{
 }
 
   
-.style_normal {
+#active_btn {
 	width: 90px;
 	height: 30px;
 	padding: 0 0 2px;
@@ -46,8 +46,8 @@ body{
 	background: linear-gradient(top, orange 0%,orange 100%); /* W3C */
 	background-color: orange;
 }
-.style_normal::-moz-focus-inner{border:0}
-.style_normal:hover {
+#active_btn::-moz-focus-inner{border:0}
+#active_btn:hover {
 	border-top: 1px solid #E6A93D;
 	box-shadow:
 		inset 0 1px #FEDB98,
@@ -67,7 +67,7 @@ body{
 	background: linear-gradient(top, darkorange 0%,darkorange 100%); /* W3C */
 	background-color: darkorange;
 }
-.style_normal:active {
+#active_btn:active {
 	top: 3px;
 	border: 1px solid #CF9D42;
 	border-top: 1px solid #A77F35;
@@ -76,7 +76,7 @@ body{
 	box-shadow: inset 0 1px 2px #C49846;
 }
 
-.style_active {
+#pasive_btn {
 	top: 3px;
 	border: 1px solid #CF9D42;
 	border-top: 1px solid #A77F35;

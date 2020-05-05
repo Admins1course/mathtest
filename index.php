@@ -28,9 +28,11 @@
 	//setInterval(,10000)
 	var searchFunction=searchForFriends;
 	
-	function callbackFunction(value){
-		if (value==="Друзья") searchFunction=searchForFriends;
-		if (value==="Мир") searchFunction=searchForPiece;
+	function callbackFunction(element1,element2){
+		switchbutton(element1,element2);
+		if (element1.value==="Друзья") searchFunction=searchForFriends;
+		if (element1.value==="Мир") searchFunction=searchForPiece;
+
 	}
 	
 	function searchPeople(){
@@ -102,6 +104,16 @@
 		});
 	}
 </script>
+<script>
+	function switchbutton(element1,element2){
+		console.log(element1)
+		console.log(element2)
+		element1.attr('id','active_btn');
+		element2.attr('id','pasive_btn');
+
+
+	}
+</script>
 </head>
 <body style="height: 1500px;">
 	<div id="page">
@@ -148,8 +160,8 @@
 						<input type="search" class="search_bar" onkeyup="searchControl(this)" onchange="searchControl(this)">
 						<input type="button" class="search_send_title " value="Поиск" onclick="searchPeople()">
 						<div class="search_send">
-							<input type="button" class="search_type  style_active"  value="Друзья" onclick="callbackFunction(this.value)">
-							<input type="button" class="search_type style_normal"   value="Мир" onclick="callbackFunction(this.value)">
+							<input type="button" class="search_type " id="pasive_btn" value="Друзья" onclick="callbackFunction($(this),$(this).next())">
+							<input type="button" class="search_type "  id="active_btn" value="Мир" onclick="callbackFunction($(this),$(this).prev())">
 						</div>
 					
 					</div>
