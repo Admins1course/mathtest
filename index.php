@@ -65,6 +65,16 @@
 	
 	function searchForFriends(){}
 </script>
+
+<script>
+      $(document).ready(function(){
+	$('.search_type').click(function () {
+		$(this).toggleClass('.search_type_1');
+		});
+	});
+
+    </script>
+
 <script>
 	function searchControl(element){
 		var re=/[^a-zA-Zа-яА-Я0-9_]+/gus;
@@ -137,6 +147,10 @@
 					<div class="search">
 						<input type="search" class="search_bar" onkeyup="searchControl(this)" onchange="searchControl(this)">
 						<input type="button" class="search_send_title " value="Поиск" onclick="searchPeople()">
+						<div class="search_send">
+							<input type="button" class="search_type  style_active"  value="Друзья" onclick="callbackFunction(this.value)">
+							<input type="button" class="search_type style_normal"   value="Мир" onclick="callbackFunction(this.value)">
+						</div>
 					
 					</div>
 					
@@ -144,11 +158,7 @@
 			</div>
 
 			<div id="left_block" class="left_block">
-					<div class="search_send">
-						
-						<input type="button" class="search_type" value="Друзья" onclick="callbackFunction(this.value)">
-						<input type="button" class="search_type" value="Мир" onclick="callbackFunction(this.value)">
-					</div>
+					
 					<div class="friends_bar">
 						<p>Друзья</p>
 					</div>
