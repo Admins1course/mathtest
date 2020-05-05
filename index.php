@@ -1,7 +1,7 @@
 <?php require_once 'includes/db.inc.php';
 	  require_once 'registration_control.php';
 	  session_start();
-	  if (isset($_SESSION['data-user'])){
+	  if (!isset($_SESSION['data-user'])){
 		  if ($_COOKIE['name']){//достаточно name, чтобы были и остальные
 			  $_SESSION['data-user']['id']=$_COOKIE['id'];
 			  $_SESSION['data-user']['name']=$_COOKIE['name'];
@@ -21,14 +21,14 @@
 	<script type="text/javascript">
 	$(document).ready(function(){
 		$('.exit_menu').click(function(){
-			$('.exit_menu_body').slideToggle(500);
+			$('.exit_menu_body').stop(true).slideToggle(500);
 		});
 	});
 	</script>
 	<script type="text/javascript">
 	$(document).ready(function(){
-		$('.open_notifications_body').click(function(){
-			$('.notifications_body').slideToggle(500);
+		$('.open_notifications_body').not('.notifications_body').click(function(){
+			$('.notifications_body').stop(true).slideToggle(500);
 		});
 	});
 	</script>
@@ -58,9 +58,11 @@
 	//setInterval(,10000)
 	var searchFunction=searchForFriends;
 	
-	function callbackFunction(value){
-		if (value==="Друзья") searchFunction=searchForFriends;
-		if (value==="Мир") searchFunction=searchForPiece;
+	function callbackFunction(element){
+		element.disabled=true;
+		if (element.value==="Друзья") searchFunction=searchForFriends;
+		if (element.value==="Мир") searchFunction=searchForPiece;
+		element.disabled=false;
 	}
 	
 	function searchPeople(){
@@ -77,25 +79,33 @@
 			type:'POST',
 			error:function(data){console.log(data)},
 			success:function(data){
+				console.log(data);
 				var listOfPeople='';
 				for (i=0;i<data['people'].length;i++){
-					buttonValue="+ В друзья";
-					buttonFunction="addFriend(this)";
-					if (data['friends'])
-						if (~data['friends']['id'].indexOf(data['people'][i]['id'])){
-							if(data['friends']['waiting'][data['friends']['id'].indexOf(data['people'][i]['id'])]==1)
-								buttonValue="Отменить заявку";
-								buttonFunction="cancelAddFriend(this)"
-						}
-					listOfPeople+='<li>'+
-						data['people'][i]['name']+" "+
-						data['people'][i]['surname']+
-						'<input type="button" name="'+
-						data['people'][i]['root']+
-						'" value="'+buttonValue+'" onclick="'+buttonFunction+'" id="user'+
-						data['people'][i]['id']+'">'+'</li>';
-				}
+					if (data['people'][i]['id']!=<?=$_SESSION['data-user']['id']?>){
+						buttonValue="+ В друзья";
+						buttonFunction="addFriend(this)";
+						if (data['friends'])
+							if (~data['friends']['id'].indexOf(data['people'][i]['id'])){
+								if(data['friends']['waiting'][data['friends']['id'].indexOf(data['people'][i]['id'])]==1){
+									buttonValue="Отменить заявку";
+									buttonFunction="cancelAddFriend(this)";
+								}
+								else{
+									buttonValue="В друзьях";
+									buttonFunction="cancelAddFriend(this)";
+								}
+							}
+						listOfPeople+='<li>'+
+							data['people'][i]['name']+" "+
+							data['people'][i]['surname']+
+							'<input type="button" name="'+
+							data['people'][i]['root']+
+							'" value="'+buttonValue+'" onclick="'+buttonFunction+'" id="user'+
+							data['people'][i]['id']+'">'+'</li>';
+					}
 				$('#friendsList').html(listOfPeople);
+				}
 			}
 		})
 	}
@@ -154,7 +164,6 @@
 			type:'POST',
 			error:function(data){console.log(data)},
 			success:function(data){
-				console.log(data);
 				dataNotifications=data;
 				if (data.length==0) return;
 				if (data.length>9) count="9+";
@@ -167,7 +176,7 @@
 					htmlMessage+='<div class="notifications_bar"><p class="text_notifications_bar">';
 					htmlMessage+=data[i]['message'];
 					htmlMessage+='</p></div>';
-					htmlMessage+='<input type="button" id="userId'+data[i]['add_friends']+'" value="Принять"> onclick="acceptApp(this)"';
+					htmlMessage+='<input type="button" id="userId'+data[i]['add_friends']+'" value="Принять" onclick="acceptApp(this)">';
 					htmlMessage+='<input type="button" id="userId'+data[i]['add_friends']+'" value="Отменить">';
 				}
 				$('.notifications_body').html(htmlMessage);
@@ -180,12 +189,10 @@
 				if (dataNotifications.length){
 					$('.open_notifications_body a').html('Оповещения');
 					$('.notifications_body').html('');
-					console.log(dataNotifications);
 					dataNot={};
 					for (i=0;i<dataNotifications.length;i++){
 						dataNot[String(i)]=dataNotifications[i];
 					}
-					console.log(dataNot);
 					$.ajax({
 						url:document.location.origin+"/mathtest/unreadNotifications.php",
 						cache:false,
@@ -265,8 +272,8 @@
 			<div id="left_block" class="left_block">
 					<div class="search_send">
 						
-						<input type="button" value="Друзья" onclick="callbackFunction(this.value)">
-						<input type="button" value="Мир" onclick="callbackFunction(this.value)">
+						<input type="button" value="Друзья" onclick="callbackFunction(this)">
+						<input type="button" value="Мир" onclick="callbackFunction(this)">
 					</div>
 				<p>Друзья</p>
 				<label for="friends">Группа</label>

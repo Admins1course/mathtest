@@ -7,8 +7,8 @@ if ($_POST){
 	$result->execute(['id'=>$_POST['myid']]);
 	if ($result->fetchAll(PDO::FETCH_ASSOC)==[]){
 		$sql="INSERT INTO notifications_".$_POST['idFriend']."(
-				message,_unread,add_friends,dateOfSend) VALUES(
-				'".$_POST['message']."',1,'".$_POST['myid']."',NOW())";
+				message,_unread,add_friends,cancel_add,dateOfSend) VALUES(
+				'".$_POST['message']."',1,'".$_POST['myid']."',0,NOW())";
 		$pdo->exec($sql);
 	}
 	else{
