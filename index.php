@@ -22,7 +22,6 @@
 
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 
-	<?php include 'includes/script_for_nav_menu.php';?>
 <script>
 	//setInterval(,10000)
 	var searchFunction=searchForFriends;
@@ -140,7 +139,12 @@
 				countNotifications='Оповещения<div class="notifications">';
 				countNotifications+='<div class="notific_num"><p>'+count+'</p></div></div>';
 				$('.open_notifications_body a').html(countNotifications);
-				htmlMessage='';
+				htmlMessage='<div class="notifications_body_title">';
+				htmlMessage+='<div class="notifications_body_title_elements_div">';
+				htmlMessage+='<div class="notifications_body_text">';
+				htmlMessage+='<p class="text_notification_body">Оповещения</p>';
+				htmlMessage+='</div><div class="notifications_body_title_element_bar">'
+				htmlMessage+='</div></div></div>';
 				for (i=0;i<data.length;i++){
 					htmlMessage+='<div class="notifications_bar"><p class="text_notifications_bar">';
 					htmlMessage+=data[i]['message'];
@@ -157,7 +161,13 @@
 			if ($('.notifications_body').is(':visible')){
 				if (dataNotifications.length){
 					$('.open_notifications_body a').html('Оповещения');
-					$('.notifications_body').html('');
+					htmlMessage='<div class="notifications_body_title">';
+					htmlMessage+='<div class="notifications_body_title_elements_div">';
+					htmlMessage+='<div class="notifications_body_text">';
+					htmlMessage+='<p class="text_notification_body">Оповещения</p>';
+					htmlMessage+='</div><div class="notifications_body_title_element_bar">'
+					htmlMessage+='</div></div></div>';
+					$('.notifications_body').html(htmlMessage);
 					dataNot={};
 					for (i=0;i<dataNotifications.length;i++){
 						dataNot[String(i)]=dataNotifications[i];
@@ -189,6 +199,7 @@
 		});
 	}
 </script>
+<?php include 'includes/script_for_nav_menu.php';?>
 </head>
 <body style="height: 1500px;">
 	<div id="page">
@@ -243,8 +254,8 @@
 			<div id="left_block" class="left_block">
 					<div class="search_send">
 
-						<input type="button" class="search_type" value="Друзья" onclick="callbackFunction(this.value)">
-						<input type="button" class="search_type" value="Мир" onclick="callbackFunction(this.value)">
+						<input type="button" class="search_type" value="Друзья" onclick="callbackFunction(this)">
+						<input type="button" class="search_type" value="Мир" onclick="callbackFunction(this)">
 					</div>
 					<div class="friends_bar">
 						<p>Друзья</p>
