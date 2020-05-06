@@ -1,10 +1,13 @@
 <?php 
 $right_answers=[];
 $count=0;
+$allPoints=0;
+$countOfPoints=0;
+$mark=0;
 //echo var_dump((double)"0.5")." ".var_dump((double)"0,5");
 if ($_POST){
 	//try{
-		$query="SELECT textarea, input, radio, checkbox FROM answers_".$_POST["idUser"]."_".$_POST["idTest"];
+		$query="SELECT textarea, input, radio, checkbox, points FROM answers_".$_POST["idUser"]."_".$_POST["idTest"];
 		$result=$pdo->query($query);
 		$data=$result->fetchAll();
 		for ($i=0; $i<count($data);$i++){
@@ -16,20 +19,19 @@ if ($_POST){
 			
 			if ($data[$i]["input"]!==null){
 				if ($data[$i]["input"]===$_POST["answer"]["task".($i+1)]){
-					$right_answers[$i]=true;
+					$right_answers[$i]=[true, $data[$i]["points"]];
 				}
-				else $right_answers[$i]=false;
+				else $right_answers[$i]=[false, 0];
 			}
-			else $dataTest[$i]["answer"]["input"]=0;
 			
 			if ($data[$i]["radio"]!=="0"){
 				$query="SELECT text_answer FROM radio_".$_POST['idUser']."_".$_POST['idTest']." WHERE id_Task=".($i+1)." AND radio_answer=1";
 				$result=$pdo->query($query);
 				$radio=$result->fetchAll();
 				if ($radio[0]["text_answer"]==$_POST['answers']['task'.($i+1)]){
-						$right_answers[$i]=true;
+						$right_answers[$i]=[true, $data[$i]["points"]];
 				}
-				else $right_answers[$i]=false;
+				else $right_answers[$i]=[false, 0];
 			}
 			
 			if ($data[$i]["checkbox"]!=0){
@@ -37,18 +39,30 @@ if ($_POST){
 						checkbox_answer=1";
 				$result=$pdo->query($query);
 				$checkbox=$result->fetchAll();
-				$right_answers[$i]=true;
+				$right_answers[$i]=[true, $data[$i]["points"]];
 				for ($j=1; $j<=count($checkbox); $j++){
 					if ($checkbox[$j]["text_answer"]!==$_POST['answers']['task'.($i+1)][$checkbox[$j]['idCheckbox']]){
-						$right_answers[$i]=false;
+						$right_answers[$i]=[false, 0];
 						break;
 					}
 				}
 			}
+			
+			$allPoints+=$data[$i]['points'];
 		}
-	for ($i=0;$i<count($right_answers);$i++){
-		if ($right_answers[$i]) $count++;
-	}
+		for ($i=0;$i<count($right_answers);$i++){
+			if ($right_answers[$i][0]) $count++;
+			$countOfPoints+=$right_answers[$i][1];
+		}
+		$query="SELECT mark_1, mark_2, mark_3, mark_4, mark_5 FROM tasktest_".$_POST['idUser']." WHERE id_Test=".$_POST['idTest'];
+		$result=$pdo->query($query);
+		$mark_data=$result->fetchAll();
+		for ($i=4;$i>=0;$i--){
+			if ($countOfPoints>=$mark_data[0][$i]){
+				$mark=$i+1;
+				break;
+			}
+		}
 	//}
 	/*catch(PDOException $e){
 		$error="Невозможно получить данные из базы данных: ".$e->getMessage();

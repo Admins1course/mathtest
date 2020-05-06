@@ -1,25 +1,31 @@
 <?php include "includes/db.inc.php";
 	  include "book_control.php";
 	  //include "showtest.php";
-	  ?>
+	  session_start();
+	   if (!isset($_SESSION['data-user'])){
+		  if ($_COOKIE['name']){//достаточно name, чтобы были и остальные
+			  $_SESSION['data-user']['id']=$_COOKIE['id'];
+			  $_SESSION['data-user']['name']=$_COOKIE['name'];
+			  $_SESSION['data-user']['surname']=$_COOKIE['surname'];
+			  $_SESSION['data-user']['root']=$_COOKIE['root'];
+		  }
+	  }?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta http-equiv="Cache-Control" content="no-cache" charset="UTF-8">
-	<link rel="stylesheet" href="style/main.css" type="text/css">
+	<link rel="stylesheet" href="style/Main.css" type="text/css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="style/cssforbook.css" type="text/css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 	<script type="text/javascript" id="MathJax-script" async
 			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
 	</script>
-	<script type="text/javascript">
-	$(document).ready(function(){
-		$('.exit_menu').click(function(){
-			$('.exit_menu_body').slideToggle(500);
-		});
-	});
-	</script>
+
+	<?php include 'includes/script_for_nav_menu.php';?>
+	
 	<script>
+
 		let count;
 		let tasks;
 		let error;
@@ -114,8 +120,10 @@
 			});
 		});
 	</script>
+
+
 </head>
-<body>
+<body style="height: 2000px;">
 	<div id="page">
 		<div class="forNewFormulas" style="display:none">
 			$$
@@ -131,6 +139,7 @@
 				\renewcommand{\Im}{\mathop{\rm Im}\nolimits}
 			$$
 		</div>
+		
 		<div id="main_content">
 			<div id="area_book">
 					<div id="book">
@@ -193,6 +202,8 @@
 			</div>
 
 		</div>
+	</div>
+
 		<div class="slider midle">
 			<div class="slides">
 				<input type="radio" name="r" id="r1" checked>
@@ -216,6 +227,7 @@
 
 
 
+		
 		<div id="plus_inform">
 			
 		</div>
@@ -227,52 +239,10 @@
 		<div id="left_block" class="left_block">
 
 		</div>
-		<div id="nav_menu">
-			<nav id="menu1">
-			 <ul>
-			  <li><a href="index.php">Главная</a></li>
-			  <li><a href="#m2">О нас</a></li>
-			  <li><a href="#m3">Тесты</a>
-			   <ul>
-			    <li><a href="TestList.php">Каталог тестов</a></li>
-				<?php if(isset($_COOKIE['root'])&&($_COOKIE['root']=="студент")){?>
-					<li><a href="#m3_4">Статистика</a></li>
-					<li><a href="#m3_5">Пройти тест по приглашению</a></li>
-			    <?php }else if(isset($_COOKIE['root'])&&($_COOKIE['root']=="преподаватель")){?>
-					<li><a href="#m3_3">Мой каталог</a></li>
-					<li><a href="createtest.html.php">Создать тест</a></li>
-					<li><a href="#m3_5">Создать приглашение</a></li>
-				<?php } ?>
-			   </ul>
-			  </li>
-			  <li><a href="#m4">Новости</a></li>
-			  <li><a href="#m5">Контакты</a></li>
-			 </ul>
-			</nav><!--menu1-->
-			<div class="profile">
-				<?php
-					if (isset($_COOKIE['name'])&&isset($_COOKIE["surname"])):?>
-						<p class="exit_menu"><?=htmlspecialchars($_COOKIE['name'])." <br /> ".htmlspecialchars($_COOKIE['surname'])?></p>
-						<div class="exit_menu_body" style="display:none">
+		
 
-							<div class="exit_menu_elements">
-							<p class="exit_menu_stat">Роль: <?php if($_COOKIE['root']=="студент")echo 'студент';else echo 'преподаватель';?></p>
-							</div>
-							
-							<div class="exit_title exit_menu_elements">
-
-								<p><a href="vyhod.php">Выход</a></p>
-							</div>
-						</div>
-					<?php 
-					else:?>
-						<div class="enter_site_btn">
-							<a  href="nevEnter.html.php">Войти</a>
-						</div>
-				<?php endif?>
-			</div>
-		</div>
-	</div>
+	
+		<?php include 'includes/nav_menu.php';?>
 	
 	
 	<div id="footer">

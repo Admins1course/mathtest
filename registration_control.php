@@ -1,4 +1,6 @@
 <?php
+	require_once 'includes/db.inc.php';
+	
 	if($_POST){  //Проверка на принятие данных с форм
 		session_start();
 		$_SESSION['is_wrong_password']=false;
@@ -60,13 +62,46 @@
 			$id=$result->fetchAll();
 			$sql="CREATE TABLE tasktest_".$id[0]['id']."(
 						id_Test	int(11) not null,
-						countTask int(11) not null
+						countTask int(11) not null,
+						mark_1 real not null,
+						mark_2 real not null,
+						mark_3 real not null,
+						mark_4 real not null,
+						mark_5 real not null
 					)DEFAULT CHARACTER SET utf8 ENGINE=InnoDB";
 			$pdo->exec($sql);
+			$sql="CREATE TABLE `friends_".$id[0]['id']."` (
+						`id_Friend` int(8) NOT NULL,
+						`waiting` tinyint default null,
+						`login` varchar(255),
+						`name` tinytext not null,
+						`surname` tinytext not null,
+						`студенты` int(1) DEFAULT 0,
+						`преподаватели` int(1) DEFAULT 0
+					) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+			$pdo->exec($sql);
+			$sql="CREATE TABLE notifications_".$id[0]['id']." (
+						id int not null auto_increment primary key,
+						message tinytext not null,
+						_unread tinyint default null,
+						_read tinyint default null,
+						add_friends tinytext default null,
+						cancel_add tinyint default null,
+						invitations tinytext default null,
+						dateOfSend datetime not null
+					)ENGINE=InnoDB DEFAULT CHARSET=utf8";
+			$pdo->exec($sql);
+			
 			setcookie("id", $id[0]["id"], time()+60*60*24*10);
 			setcookie("name", trim($_POST["name"]), time()+60*60*24*10);
 			setcookie("surname", trim($_POST['surname']), time()+60*60*24*10);
 			setcookie("root", $_POST['root'], time()+60*60*24*10);
+
+			$_SESSION['data-user']['id']=$id[0]['id'];
+			$_SESSION['data-user']['name']=trim($_POST[0]['name']);
+			$_SESSION['data-user']['surname']=trim($_POST[0]['surname']);
+			$_SESSION['data-user']['root']=trim($_POST[0]['root']);
+			header("Location: index.php");
 		}
 		catch(PDOException $e){
 			$error="Невозможно отправить данные базе данных: ".$e->getMessage();
