@@ -41,10 +41,12 @@
 				tasks++;
 				$('.textarea_template:hidden').clone('deepWithDataAndEvents').insertBefore('#form_handler').attr('id','task'+tasks).slideDown(1000,function(){
 					//формируем аттрибут name для элементов, значение которых отправится на сервер
-					$('.textarea_template:last .main_text').attr('name','task'+tasks+'[total_task]');
-					$('.textarea_template:last .areatext #answer').attr('name','task'+tasks+'[textarea_answer]');
-					$('.textarea_template:last .textForPoints').attr('for','points'+tasks);
-					$('.textarea_template:last .points').attr('id','points'+tasks).attr('name','task'+tasks+'[points]');
+					$('form .textarea_template:last .main_text').attr('name','task'+tasks+'[total_task]');
+					$('form .textarea_template:last #inputfile').attr('name','task'+tasks+'[icontest1][myPhoto]');
+					lenghts['task'+tasks]={'icontest':1};
+					$('form .textarea_template:last .areatext #answer').attr('name','task'+tasks+'[textarea_answer]');
+					$('form .textarea_template:last .textForPoints').attr('for','points'+tasks);
+					$('form .textarea_template:last .points').attr('id','points'+tasks).attr('name','task'+tasks+'[points]');
 				});
 			});
 			//аналогично предыдущему, но форма с radiobutton
@@ -93,13 +95,13 @@
 				first_el=$('#'+idTask+' .icontest:visible:first');
 				last_el=$('#'+idTask+' .icontest:visible:last');
 				count_icon=$('#'+idTask+' .all_icon_load').children().length
-				console.log(count_icon);
 				if (count_icon>2) {
-					first_el.css('display','none');
-
+					first_el[0].hidden=true;
+					$('#'+idTask+' .swipe_left').prop('disabled',false);
+					$('#'+idTask+' .swipe_right').prop('disabled',true);
 				}
 				
-				$('.'+className[1]+' div[class="icontest"]:hidden').clone('deepWithDataAndEvents').css('display','none').insertBefore(
+				$('.'+className[1]+':hidden div[class="icontest"]').clone('deepWithDataAndEvents').css('display','none').insertBefore(
 				this).slideDown(1000).children().not('#uploadPreview').each(function(index, el){
 					//подготавливаем для элементов diva аттрибут name
 					if($(this).attr('id')=='inputfile'){
@@ -435,8 +437,46 @@
 	});
 });
 </script>
-	
-
+<script type="text/javascript">
+    function PreviewImage(elem) {
+        var oFReader = new FileReader();
+        oFReader.readAsDataURL(elem.files[0]);
+        oFReader.onload = function (oFREvent) {
+            elem.previousElementSibling.src = oFREvent.target.result;
+        };
+    };
+</script><!--  Превью Изображения на сайте -->	
+<script>
+	function swipe(element){
+		first_el=$($(element)[0]['parentElement']).children('.all_icon_load').children('.icontest:visible:first');
+		last_el=$($(element)[0]['parentElement']).children('.all_icon_load').children('.icontest:visible:last');
+		if ($(element).hasClass('swipe_left')){
+			if (!$(element)[0]['attributes'][2]['value']||!Number($(element).prop('disabled'))){
+				last_el[0].hidden=true;
+				last_el=last_el.prev();
+				first_el[0].previousElementSibling.hidden=false;
+				first_el=first_el[0].previousElementSibling;
+				element.nextElementSibling.disabled=false;
+				if (first_el.previousElementSibling===null){
+					element.disabled=true;
+				}
+			}
+		}
+		else if ($(element).hasClass('swipe_right')){
+				console.log(element);
+			if (!$(element)[0]['attributes'][2]['value']||!Number($(element).prop('disabled'))){
+				first_el[0].hidden=true;
+				first_el=first_el.next();
+				last_el[0].nextElementSibling.hidden=false;
+				last_el=last_el[0].nextElementSibling;
+				element.previousElementSibling.disabled=false;
+				if (last_el.nextElementSibling===null){
+					element.disabled=true;
+				}
+			}
+		}
+	}
+</script>
 
 </head>
 <body>
@@ -502,11 +542,11 @@
 					name="task[total_task]"  class="main_text" style="resize:none" onfocus="getData()"> 
 				</textarea><!-- Общее задание -->
 				<div class="all_icon_load_slider">
-					<div class="swipe_btn swipe_left">
-						<p><</p>
+					<div class="swipe_btn swipe_left" onclick="swipe(this)" disabled>
+						<p>&lt;</p>
 					</div>
-					<div class="swipe_btn swipe_right">
-						<p>></p>
+					<div class="swipe_btn swipe_right" onclick="swipe(this)" disabled>
+						<p>&gt;</p>
 					</div>
 					
 					<div class="all_icon_load">
