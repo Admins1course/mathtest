@@ -108,14 +108,6 @@
 						len=++lenghts[idName]['icontest'];
 						$(this).attr('name','task'+tasks+'[icontest'+len+'][myPhoto]');
 					}
-					else if ($(this).attr('id')=='text1'){
-						len=lenghts[idName]['icontest'];
-						$(this).attr('name','task'+tasks+'[icontest'+len+'][task2photo1]');
-					}
-					else{
-						len=lenghts[idName]['icontest'];
-						$(this).attr('name','task'+tasks+'[icontest'+len+'][task2photo1]');
-					}
 				});
 
 				if (count_icon>2) {
@@ -484,7 +476,7 @@
 	<div id="page">
 		<div id="main_content"><!--  Основной див  сайта -->
 			<?php if (isset($_COOKIE['name'])&&isset($_COOKIE['surname'])):?>
-				<form action="createtest_handler.php" method="post">
+				<form action="createtest_handler.php" method="post" enctype="multipart/form-data">
 					<div>
 						<div id="form_handler">
 							<input type="button" value="1 форма" id="form_1" class="form_btn form_btn_1">

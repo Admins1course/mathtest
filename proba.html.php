@@ -16,7 +16,7 @@ if ( ! $_FILES )
 		function q(element){console.log($(element))}</script>
 		  <h2>Форма для загрузки файлов</h2>
 		  <form action="" method="post" enctype="multipart/form-data">
-		  <input type="file" name="filename" oninput="q(this)"><br>
+		  <input type="file" name="filename[task1]" oninput="q(this)"><br>
 		  <input type="submit" value="Загрузить"><br>
 		  </form>
 	';
@@ -24,14 +24,14 @@ if ( ! $_FILES )
 else
 {
     // Проверяем загружен ли файл
-    if(  is_uploaded_file($_FILES["filename"]["tmp_name"])  )
+    if(  is_uploaded_file($_FILES["filename"]["tmp_name"]['task1'])  )
     {
         // Если файл загружен успешно, перемещаем его
         // из временной директории в конечную
         move_uploaded_file
         (
-            $_FILES["filename"]["tmp_name"],
-            __DIR__  .  DIRECTORY_SEPARATOR  .'sql'.DIRECTORY_SEPARATOR . $_FILES["filename"]["name"]
+            $_FILES["filename"]["tmp_name"]['task1'],
+            __DIR__  .  DIRECTORY_SEPARATOR  .'sql'.DIRECTORY_SEPARATOR . $_FILES["filename"]["name"]['task1']
         );
 		echo __DIR__ .'<br>';
 		echo var_dump($_FILES);
