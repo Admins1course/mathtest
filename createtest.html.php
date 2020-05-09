@@ -580,6 +580,26 @@
 				<textarea oninput="auto_grow(this)"
 					name="task[total_task]"class="main_text" style="resize:none" onfocus="getData()"> 
 				</textarea><!-- Общее задание -->
+				<div class="all_icon_load_slider">
+					<div class="swipe_btn swipe_left" onclick="swipe(this)" disabled>
+						<p>&lt;</p>
+					</div>
+					<div class="swipe_btn swipe_right" onclick="swipe(this)" disabled>
+						<p>&gt;</p>
+					</div>
+					
+					<div class="all_icon_load">
+						<div class="icontest">
+
+							<div class="preview">
+							</div>
+							<img id="uploadPreview" style="width:240px; height: 240px;" />
+							<input id="inputfile" type="file" name="task[icontest][myPhoto]" onchange="PreviewImage(this);" accept="image/*" /><!-- Вставить изображение -->
+
+						</div>
+						<input type="button" class="button icontest" value="+"><!--  Кнопка добавить -->	
+					</div>
+				</div>
 				<div class="preview">
 				</div>		
 				<p class="text_title">Варианты ответов</p>						
@@ -615,6 +635,26 @@
 				<textarea oninput="auto_grow(this)"
 					name="task[total_task]" class="main_text" style="resize:none" onfocus="getData()"> 
 				</textarea><!-- Общее задание -->
+				<div class="all_icon_load_slider">
+					<div class="swipe_btn swipe_left" onclick="swipe(this)" disabled>
+						<p>&lt;</p>
+					</div>
+					<div class="swipe_btn swipe_right" onclick="swipe(this)" disabled>
+						<p>&gt;</p>
+					</div>
+					
+					<div class="all_icon_load">
+						<div class="icontest">
+
+							<div class="preview">
+							</div>
+							<img id="uploadPreview" style="width:240px; height: 240px;" />
+							<input id="inputfile" type="file" name="task[icontest][myPhoto]" onchange="PreviewImage(this);" accept="image/*" /><!-- Вставить изображение -->
+
+						</div>
+						<input type="button" class="button icontest" value="+"><!--  Кнопка добавить -->	
+					</div>
+				</div>
 				<div class="preview">
 				</div>
 				<p class="text_title">Варианты ответов</p>	
@@ -649,6 +689,26 @@
 				<textarea oninput="auto_grow(this)"
 					name="task[total_task]" class="main_text" style="resize:none" onfocus="getData()"> 
 				</textarea><!-- Общее задание -->
+				<div class="all_icon_load_slider">
+					<div class="swipe_btn swipe_left" onclick="swipe(this)" disabled>
+						<p>&lt;</p>
+					</div>
+					<div class="swipe_btn swipe_right" onclick="swipe(this)" disabled>
+						<p>&gt;</p>
+					</div>
+					
+					<div class="all_icon_load">
+						<div class="icontest">
+
+							<div class="preview">
+							</div>
+							<img id="uploadPreview" style="width:240px; height: 240px;" />
+							<input id="inputfile" type="file" name="task[icontest][myPhoto]" onchange="PreviewImage(this);" accept="image/*" /><!-- Вставить изображение -->
+
+						</div>
+						<input type="button" class="button icontest" value="+"><!--  Кнопка добавить -->	
+					</div>
+				</div>
 				<div class="preview">
 				</div>
 				<p class="text_title">Варианты ответов</p>	
