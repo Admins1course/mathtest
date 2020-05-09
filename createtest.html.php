@@ -451,7 +451,7 @@
 		first_el=$($(element)[0]['parentElement']).children('.all_icon_load').children('.icontest:visible:first');
 		last_el=$($(element)[0]['parentElement']).children('.all_icon_load').children('.icontest:visible:last');
 		if ($(element).hasClass('swipe_left')){
-			if (!$(element)[0]['attributes'][2]['value']||!Number($(element).prop('disabled'))){
+			if ((element.disabled!==undefined)&&(!Number($(element).prop('disabled')))){
 				last_el[0].hidden=true;
 				last_el=last_el.prev();
 				first_el[0].previousElementSibling.hidden=false;
@@ -463,8 +463,7 @@
 			}
 		}
 		else if ($(element).hasClass('swipe_right')){
-				console.log(element);
-			if (!$(element)[0]['attributes'][2]['value']||!Number($(element).prop('disabled'))){
+			if ((element.disabled!==undefined)&&(!Number($(element).prop('disabled')))){
 				first_el[0].hidden=true;
 				first_el=first_el.next();
 				last_el[0].nextElementSibling.hidden=false;
