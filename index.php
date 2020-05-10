@@ -28,9 +28,11 @@
 	//setInterval(,10000)
 	var searchFunction=searchForFriends;
 	
-	function callbackFunction(value){
-		if (value==="Друзья") searchFunction=searchForFriends;
-		if (value==="Мир") searchFunction=searchForPiece;
+	function callbackFunction(element1,element2){
+		switchbutton(element1,element2);
+		if (element1.value==="Друзья") searchFunction=searchForFriends;
+		if (element1.value==="Мир") searchFunction=searchForPiece;
+
 	}
 	
 	function searchPeople(){
@@ -65,6 +67,16 @@
 	
 	function searchForFriends(){}
 </script>
+
+<script>
+      $(document).ready(function(){
+	$('.search_type').click(function () {
+		$(this).toggleClass('.search_type_1');
+		});
+	});
+
+    </script>
+
 <script>
 	function searchControl(element){
 		var re=/[^a-zA-Zа-яА-Я0-9_]+/gus;
@@ -90,6 +102,16 @@
 				$(element).val('Заявка отправлена').prop('disabled', true);
 			}
 		});
+	}
+</script>
+<script>
+	function switchbutton(element1,element2){
+		console.log(element1)
+		console.log(element2)
+		element1.attr('id','active_btn');
+		element2.attr('id','pasive_btn');
+
+
 	}
 </script>
 </head>
@@ -137,6 +159,10 @@
 					<div class="search">
 						<input type="search" class="search_bar" onkeyup="searchControl(this)" onchange="searchControl(this)">
 						<input type="button" class="search_send_title " value="Поиск" onclick="searchPeople()">
+						<div class="search_send">
+							<input type="button" class="search_type " id="pasive_btn" value="Друзья" onclick="callbackFunction($(this),$(this).next())">
+							<input type="button" class="search_type "  id="active_btn" value="Мир" onclick="callbackFunction($(this),$(this).prev())">
+						</div>
 					
 					</div>
 					
@@ -144,11 +170,7 @@
 			</div>
 
 			<div id="left_block" class="left_block">
-					<div class="search_send">
-						
-						<input type="button" class="search_type" value="Друзья" onclick="callbackFunction(this.value)">
-						<input type="button" class="search_type" value="Мир" onclick="callbackFunction(this.value)">
-					</div>
+					
 					<div class="friends_bar">
 						<p>Друзья</p>
 					</div>

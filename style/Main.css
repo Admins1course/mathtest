@@ -90,7 +90,8 @@ body{
 }
 
 #menu1 ul li{
-	padding: 20px;
+	padding-top: 20px;
+	padding-bottom: 20px;
 	/*margin-right: 20px;*/
 
 }
@@ -117,17 +118,20 @@ body{
 #menu1 ul  a{
 	color: black;
 	text-decoration: none;
+	padding: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 #menu1 ul ul a{
 	color: black;
 	text-decoration: none;
-	text-align: left;
+	text-align: center;
 
 }
 #menu1 li:hover ul{
 	display: block;
 	top: 60px;
-	margin-left: -20px;
+	
     }
 #menu1 li:hover li{
 	display: block;
@@ -144,7 +148,12 @@ body{
 	margin-right: 10px;
 
 
+}
+#menu1 ul li {
+	
 
+}
+#menu1 ul li a{
 	
 }
 #nav_menu .profile a{
@@ -190,7 +199,7 @@ body{
 
 
 .left_block{
-	top:550px;
+	top:590px;
 	margin-left: 80.5%;
 	position: absolute;
 	margin-right: 0.5%;
@@ -209,7 +218,7 @@ body{
 	width: 19%;
 	border:1px solid red;
 	top:510px;
-	height: 30px;
+	height: 70px;
 }
 .stickytop{
 	position: -webkit-sticky;
@@ -287,15 +296,7 @@ input[name='r']{
 #r4:checked ~ .s1{
 	margin-left: -75%;
 }
-#menu1 ul li {
-	border-right: 2px solid red;
-	padding-left: 20px;
-	
 
-}
-#menu1 ul li a{
-	margin-left: -10px;
-}
 .profile{
 	position: relative;
 	margin-top: -5px;
@@ -387,7 +388,6 @@ input[name='r']{
 	margin-bottom: 20px;
 }
 .exit_menu_body{
-
 	position:absolute;
 	border: 1px solid red;
 	width: 200px;
@@ -397,26 +397,33 @@ input[name='r']{
 	text-align: center;
 	font-size: 18px;
 	right: 0px;
+}
+.exit_menu_elements{
+	height: auto;
+	width: auto;
+	margin-top: 10px;
 	
+	display: block;
 	
+}
+.exit_menu_elements:hover{
+	background-color: darkorange;
+}
+.exit_menu_elements_bar{
+	margin-bottom: 10px;
+}
+.exit_menu_elements_text{
+	height: auto;
+	width: 100%;
+	display: block;
+	padding-top: 10px;
+	padding-bottom: 10px;
 
 }
 .exit_title{
 	border-top: 2px solid orange;
-	padding-top: 5px;
 }
-.exit_title:hover{
-	background-color: darkorange;
-	color: black;
 
-}
-.exit_menu_elements{
-	padding-top: 5px;
-	padding-bottom: 5px;
-	margin-top: 15px;
-
-
-}
 
 @import "https://fonts.googleapis.com/css?family=Varela+Round";
 .load_image{
@@ -519,7 +526,7 @@ input[name='r']{
 	border: 1px solid red;
 	position: absolute;
 	top: 3px;
-	margin-left: 87px;
+	margin-left: 115px;
 	background-color: #ff4d00;
 }
 .notific_num{
