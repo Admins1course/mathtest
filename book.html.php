@@ -108,7 +108,7 @@
 				<div id="zaklad_menu">
 				<?php for($i=1;$i<=count($dataTest);$i++):?>
 					<p class="zaklad_title ">Задание <?=$i?></p>
-					<img class="zaklad <?=$i?>" src="img/zacl.png" alt="" style="display:block;" >
+					<img class="zaklad <?=$i?>" src="style/img/zacl.png" alt="" style="display:block;" >
 				<?php endfor?>
 				</div>
 			</div>
@@ -121,10 +121,10 @@
 				<input type="radio" name="r" id="r2" >
 				<input type="radio" name="r" id="r3" >
 				<input type="radio" name="r" id="r4" >
-				<div class="slide s1"> <img src="img/FonBooks.png" alt=""></div>
-				<div class="slide"> <img src="img/books.png" alt=""></div>
-				<div class="slide"> <img src="img/rtx.png" alt=""></div>
-				<div class="slide"> <img src="img/Artem.png" alt=""></div>
+				<div class="slide s1"> <img src="style/img/FonBooks.png" alt=""></div>
+				<div class="slide"> <img src="style/img/books.png" alt=""></div>
+				<div class="slide"> <img src="style/img/rtx.png" alt=""></div>
+				<div class="slide"> <img src="style/img/Artem.png" alt=""></div>
 			</div>
 			<div class="navigation">
 				<label for="r1" class="bar"></label>

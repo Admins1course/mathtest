@@ -31,10 +31,10 @@
 				<input type="radio" name="r" id="r3" >
 				<input type="radio" name="r" id="r4" >
 
-				<div class="slide s1"> <img src="img/FonBooks.png" alt=""></div>
-				<div class="slide"> <img src="img/books.png" alt=""></div>
-				<div class="slide"> <img src="img/rtx.png" alt=""></div>
-				<div class="slide"> <img src="img/Artem.png" alt=""></div>
+				<div class="slide s1"> <img src="style/img/FonBooks.png" alt=""></div>
+				<div class="slide"> <img src="style/img/books.png" alt=""></div>
+				<div class="slide"> <img src="style/img/rtx.png" alt=""></div>
+				<div class="slide"> <img src="style/img/Artem.png" alt=""></div>
 			</div>
 			<div class="navigation">
 				<label for="r1" class="bar"></label>

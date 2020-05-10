@@ -1,43 +1,35 @@
 * { margin: 0;
-  padding: 0;
-}
+  padding: 0;}
 body, html {
   width: 100%;
-  height: 100%;
-}
+  height: 100%;}
 body {
-  background-color: #000;
-}
+  background-color: #000;}
 .box { 
   display: flex;
-  margin-left: 35%;  
-}
+  margin-left: 35%;  }
 .box .glitch {
   color: #fff;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
   font-size: 90px;
   position: absolute;
-  padding: 30px;
-}
+  padding: 30px;}
 .box .glitch:before, .box .glitch:after {
   content: 'ERROR';
   color: #fff;
   position: absolute;
   top: 0;
   overflow: hidden;
-  padding: 30px;
-}
+  padding: 30px;}
 .box .glitch:before {
   left: 3px;
   text-shadow: -3px 0 red;
-  animation: glitch-before 2s linear 0s infinite alternate;
-}
+  animation: glitch-before 2s linear 0s infinite alternate;}
 .box .glitch:after {
   left: -3px;
   text-shadow: -3px 0 blue;
-  animation: glitch-after 2s linear 0s infinite alternate;
-}
+  animation: glitch-after 2s linear 0s infinite alternate;}
 @keyframes glitch-before {
   0% {clip: rect(42px, 350px, 46px, 30px);}
   5% {clip: rect(70px, 350px, 47px, 30px);}
@@ -59,8 +51,7 @@ body {
   85% {clip: rect(45px, 350px, 139px, 30px);}
   90% {clip: rect(140px, 350px, 70px, 30px);}
   95% {clip: rect(122px, 350px, 32px, 30px);}
-  100% {clip: rect(133px, 350px, 90px, 30px);}
-}
+  100% {clip: rect(133px, 350px, 90px, 30px);}}
 @keyframes glitch-after {
   0% {clip: rect(40px, 350px, 37px, 30px);}
   5% {clip: rect(26px, 350px, 126px, 30px);}
@@ -82,8 +73,7 @@ body {
   85% {clip: rect(114px, 350px, 149px, 30px);}
   90% {clip: rect(75px, 350px, 5px, 30px);}
   95% {clip: rect(17px, 350px, 36px, 30px);}
-  100% {clip: rect(86px, 350px, 49px, 30px);}
-}
+  100% {clip: rect(86px, 350px, 49px, 30px);}}
 #error{
 	position: absolute;
 	text-align: center;
