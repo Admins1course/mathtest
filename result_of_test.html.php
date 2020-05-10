@@ -1,15 +1,7 @@
 <?php require_once 'includes/db.inc.php';
 	  require_once 'book_control.php';
 	  require_once 'result_of_test_handler.php';
-	  session_start();
-	   if (!isset($_SESSION['data-user'])){
-		  if (isset($_COOKIE['name'])){//достаточно name, чтобы были и остальные
-			  $_SESSION['data-user']['id']=$_COOKIE['id'];
-			  $_SESSION['data-user']['name']=$_COOKIE['name'];
-			  $_SESSION['data-user']['surname']=$_COOKIE['surname'];
-			  $_SESSION['data-user']['root']=$_COOKIE['root'];
-		  }
-	  }?>
+	  require_once 'includes/incl_session.inc.php';?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,9 +12,7 @@
 	<script type="text/javascript" id="MathJax-script" async
 			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
 	</script>
-
 	<?php include 'includes/script_for_nav_menu.php';?>
-	
 	<script>
 		$(document).ready(function(){
 			$('#result').click(function(){
@@ -30,11 +20,10 @@
 			})
 		})
 	</script>
-
 </head>
 <body style="height: 2000px;">
 	<div id="page">
-				<div class="forNewFormulas" style="display:none">
+			<div class="forNewFormulas" style="display:none">
 			$$
 				\newcommand{\tg}{\mathop{\rm tg}\nolimits}
 				\newcommand{\arctg}{\mathop{\rm arctg}\nolimits}
@@ -48,7 +37,6 @@
 				\renewcommand{\Im}{\mathop{\rm Im}\nolimits}
 			$$
 		</div>
-		
 		<div id="main_content">
 			<p>Результат прохождения теста:</p>
 			<p>Решено заданий: <?=$count?> из <?=$_POST["answers"]["count"]?></p>
@@ -116,20 +104,17 @@
 			</div>
 		</div>
 	</div>
-
 		<div class="slider midle">
 			<div class="slides">
 				<input type="radio" name="r" id="r1" checked>
 				<input type="radio" name="r" id="r2" >
 				<input type="radio" name="r" id="r3" >
 				<input type="radio" name="r" id="r4" >
-
 				<div class="slide s1"> <img src="img/FonBooks.png" alt=""></div>
 				<div class="slide"> <img src="img/books.png" alt=""></div>
 				<div class="slide"> <img src="img/rtx.png" alt=""></div>
 				<div class="slide"> <img src="img/Artem.png" alt=""></div>
 			</div>
-
 			<div class="navigation">
 				<label for="r1" class="bar"></label>
 				<label for="r2" class="bar"></label>
@@ -137,24 +122,15 @@
 				<label for="r4" class="bar"></label>
 			</div>
 		</div>
-
-
-
 		<div id="plus_inform">
-			
 		</div>
 		<div id="right_block_title"></div>
 		<div id="right_block">
-
 		</div>
 		<div id="left_block_title"></div>
 		<div id="left_block" class="left_block">
-
 		</div>
 		<?php include 'includes/nav_menu.php';?>
-	
-	
-	
 	<div id="footer">
 		<div class="text">
 			2020

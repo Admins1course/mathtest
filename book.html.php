@@ -1,15 +1,6 @@
-<?php include "includes/db.inc.php";
-	  include "book_control.php";
-	  //include "showtest.php";
-	  session_start();
-	   if (!isset($_SESSION['data-user'])){
-		  if (isset($_COOKIE['name'])){//достаточно name, чтобы были и остальные
-			  $_SESSION['data-user']['id']=$_COOKIE['id'];
-			  $_SESSION['data-user']['name']=$_COOKIE['name'];
-			  $_SESSION['data-user']['surname']=$_COOKIE['surname'];
-			  $_SESSION['data-user']['root']=$_COOKIE['root'];
-		  }
-	  }?>
+<?php require_once "includes/db.inc.php";
+	  require_once "book_control.php";
+	  require_once 'includes/incl_session.inc.php';?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,82 +12,8 @@
 	<script type="text/javascript" id="MathJax-script" async
 			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
 	</script>
-
 	<?php include 'includes/script_for_nav_menu.php';?>
-	
-	<script>
-
-		let count;
-		let tasks;
-		let error;
-		let flagAnswers;
-		$(document).ready(function(index,el){
-			count=Number.parseInt(<?=count($dataTest)?>);
-			tasks=new Array(count);
-			for (i=0;i<count;i++){
-				tasks[i]=false;
-			}
-			registeringResponses();
-			$('#answer').click(function(){
-				if(!flagAnswers){
-					error=document.getElementById("error");
-					error.innerHTML="Вы не ответили на все задания";
-				}
-			});
-		});
-		function registeringResponses(){
-			$('.task').each(function(index,el){
-				let className=$(this).attr('class');
-				className=className.split(" ");
-				console.log(className);
-				if (className[1]=='textarea'){
-					if($(this).children('textarea').val().length>0){
-						tasks[Number.parseInt(className[2])-1]=true;
-					}
-					else{
-						tasks[Number.parseInt(className[2])-1]=false;
-					}
-				}
-				else if (className[1]=='input'){
-					if($(this).children('input').val().length>0){
-						tasks[Number.parseInt(className[2])-1]=true;
-					}
-					else{
-						tasks[Number.parseInt(className[2])-1]=false;
-					}				
-				}
-				else if (className[1]=='radio'){
-					$(this).children('.radio').each(function(index,el){
-						if($(this).children(':radio').prop("checked")){
-							tasks[Number.parseInt(className[2])-1]=true;
-						}
-					});
-				}
-				else if (className[1]=='checkbox'){
-					$(this).children('.checkbox').each(function(index,el){
-						if($(this).children(':checkbox').prop("checked")){
-							tasks[Number.parseInt(className[2])-1]=true;
-						}
-					});
-				}
-			});
-			flagAnswers=true;
-			for (i=0;i<count;i++){
-				if(tasks[i]===false){
-					flagAnswers=false;
-				}
-			}
-			console.log(tasks);
-			if (flagAnswers){
-				$('#answer').attr('type','submit').attr("id","send");
-			}
-			else{
-				$('#answer').attr('type','button').attr("id","answer");
-			}
-			error=document.getElementById("error");
-			error.innerHTML="";
-		}
-	</script>
+	<script src="js/answers_of_user.js"></script>
 	<script>
 		let $className;
 		$(document).ready(function(){
@@ -120,8 +37,6 @@
 			});
 		});
 	</script>
-
-
 </head>
 <body style="height: 2000px;">
 	<div id="page">
@@ -139,7 +54,6 @@
 				\renewcommand{\Im}{\mathop{\rm Im}\nolimits}
 			$$
 		</div>
-		
 		<div id="main_content">
 			<div id="area_book">
 					<div id="book">
@@ -195,28 +109,23 @@
 				<?php for($i=1;$i<=count($dataTest);$i++):?>
 					<p class="zaklad_title ">Задание <?=$i?></p>
 					<img class="zaklad <?=$i?>" src="img/zacl.png" alt="" style="display:block;" >
-
-
 				<?php endfor?>
 				</div>
 			</div>
 
 		</div>
 	</div>
-
 		<div class="slider midle">
 			<div class="slides">
 				<input type="radio" name="r" id="r1" checked>
 				<input type="radio" name="r" id="r2" >
 				<input type="radio" name="r" id="r3" >
 				<input type="radio" name="r" id="r4" >
-
 				<div class="slide s1"> <img src="img/FonBooks.png" alt=""></div>
 				<div class="slide"> <img src="img/books.png" alt=""></div>
 				<div class="slide"> <img src="img/rtx.png" alt=""></div>
 				<div class="slide"> <img src="img/Artem.png" alt=""></div>
 			</div>
-
 			<div class="navigation">
 				<label for="r1" class="bar"></label>
 				<label for="r2" class="bar"></label>
@@ -224,32 +133,19 @@
 				<label for="r4" class="bar"></label>
 			</div>
 		</div>
-
-
-
-		
 		<div id="plus_inform">
-			
 		</div>
 		<div id="right_block_title"></div>
 		<div id="right_block">
-
 		</div>
 		<div id="left_block_title"></div>
 		<div id="left_block" class="left_block">
-
 		</div>
-		
-
-	
 		<?php include 'includes/nav_menu.php';?>
-	
-	
 	<div id="footer">
 		<div class="text">
 			2020
 		</div>
 	</div>
-	
 </body>
 </html>
