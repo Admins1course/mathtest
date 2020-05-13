@@ -8,7 +8,10 @@ a:hover{
 	width: 450px;
 	height: 500px;
 	background-color: #182134;
-	margin:60px auto 0 auto;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
 	border:3px solid orange;
 	border-radius: 3px;
 	text-align: center;}

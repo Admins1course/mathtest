@@ -4,10 +4,14 @@ body, html {
   width: 100%;
   height: 100%;}
 body {
-  background-color: #000;}
+  background-color: #000;
+text-align: center;}
 .box { 
   display: flex;
-  margin-left: 35%;  }
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+  width: 400px;  }
 .box .glitch {
   color: #fff;
   font-family: 'Poppins', sans-serif;
