@@ -57,8 +57,8 @@
 						<input type="button" class="search_send_title " value="Поиск" onclick="searchPeople()">
 					<div class="search_send">
 
-						<input type="button" class="search_type" value="Друзья" onclick="callbackFunction(this)">
-						<input type="button" class="search_type" value="Мир" onclick="callbackFunction(this)">
+						<input type="button" class="search_type " id="pasive_btn" value="Друзья" onclick="callbackFunction($(this),$(this).next())">
+							<input type="button" class="search_type "  id="active_btn" value="Мир" onclick="callbackFunction($(this),$(this).prev())">
 					</div>
 					</div>
 					
