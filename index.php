@@ -14,9 +14,12 @@
 
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 
-<script src="js/searchPeople.js"></script>
-<script src="js/friendsControl.js"></script>
-<script src="js/notifs.js"></script>
+<?php 
+	if ($_SESSION['data-user']):
+      include 'includes/searchPeople.js.inc.php';
+      include 'includes/friendsControl.js.inc.php';?>
+	<script src="js/notifs.js"></script>
+	<?php endif;?>
 <?php include 'includes/script_for_nav_menu.php';?>
 </head>
 <body style="height: 1500px;">
@@ -54,17 +57,17 @@
 					<div class="search">
 						<input type="search" class="search_bar" onkeyup="searchControl(this)" onchange="searchControl(this)">
 						<input type="button" class="search_send_title " value="Поиск" onclick="searchPeople()">
+						<div class="search_send">
+							<input type="button" class="search_type " id="pasive_btn" value="Друзья" onclick="callbackFunction($(this),$(this).next())">
+							<input type="button" class="search_type "  id="active_btn" value="Мир" onclick="callbackFunction($(this),$(this).prev())">
+						</div>
 					
 					</div>
 					
 				</div>
 			</div>
 			<div id="left_block" class="left_block">
-					<div class="search_send">
 
-						<input type="button" class="search_type" value="Друзья" onclick="callbackFunction(this)">
-						<input type="button" class="search_type" value="Мир" onclick="callbackFunction(this)">
-					</div>
 					<div class="friends_bar">
 						<p>Друзья</p>
 					</div>
