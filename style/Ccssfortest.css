@@ -52,7 +52,7 @@ div[class="icontest"]{
 	margin: 0 auto;
 	}
 .uploadPreview{
-	float: left;
+	
 }
 .all_icon_load_slider{
 	
@@ -90,14 +90,14 @@ div[class="icontest"]{
 	width: 93%;
 	margin-left: 5%;	}
 .button{
-	margin-top: 30px;
-	margin-left: 0px;
-	padding-top: 130px;
-	padding-bottom: 130px;
+	margin-top: 50px;
+	margin-left: 10px;
+	padding-top: 115px;
+	padding-bottom: 115px;
 	padding-left: 105px;
 	padding-right: 105px;
 	background-color: #ffd694;
-	font-size: 50px;
+	font-size: 30px;
 	color:#ff4d00;
 	border: 2px dashed orange;}/* Настройка Кнопки ДОБАВИТЬ*/
 .add{
