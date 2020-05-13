@@ -14,9 +14,12 @@
 
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 
-<?php include 'includes/searchPeople.js.inc.php';?>
-<script src="js/friendsControl.js"></script>
-<script src="js/notifs.js"></script>
+<?php 
+	if ($_SESSION['data-user']):
+      include 'includes/searchPeople.js.inc.php';
+      include 'includes/friendsControl.js.inc.php';?>
+	<script src="js/notifs.js"></script>
+	<?php endif;?>
 <?php include 'includes/script_for_nav_menu.php';?>
 </head>
 <body style="height: 1500px;">

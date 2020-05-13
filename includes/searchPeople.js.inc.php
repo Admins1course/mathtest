@@ -1,3 +1,5 @@
+<?php session_start();?>
+<script>
 var searchFunction=searchForFriends;
 	
 function callbackFunction(element){
@@ -59,3 +61,4 @@ function searchForPiece(searchValue){
 		if (re.test(element.value)) 
 			element.value=element.value.replace(re, '');
 	}
+</script>
