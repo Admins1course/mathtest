@@ -10,7 +10,7 @@ padding: 0;
 margin: 0;}/*Отмена стилей браузера*/
 body{
 	height: 6000px;
-	width: 2000px;}/*длина сайта(страницы)*/
+	}/*длина сайта(страницы)*/
 
 textarea{
 	color:black;
@@ -48,7 +48,7 @@ div[class="icontest"]{
 .all_icon_load{
 	height: auto;	
 	width: 780px;
-	border:1px solid red;
+	
 	margin: 0 auto;
 	}
 .uploadPreview{
