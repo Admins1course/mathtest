@@ -1,5 +1,3 @@
-<?php session_start();?>
-<script>
 var searchFunction=searchForFriends;
 	
 function callbackFunction(element){
@@ -48,7 +46,7 @@ function searchForPiece(searchValue){
 						'" value="'+buttonValue+'" onclick="'+buttonFunction+'" id="user'+
 						data['people'][i]['id']+'">'+'</li>';
 				}
-				$('#friendsList').html(listOfPeople);
+			$('#friendsList').html(listOfPeople);
 			}
 		}
 	})
@@ -61,4 +59,3 @@ function searchForPiece(searchValue){
 		if (re.test(element.value)) 
 			element.value=element.value.replace(re, '');
 	}
-</script>

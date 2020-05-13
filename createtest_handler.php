@@ -50,7 +50,7 @@
 			 'radio'=>0,
 			 'checkbox'=>0);
 	if (isset($_SESSION['data-user']['id'])){
-		try{
+		//try{
 			$pdo->beginTransaction();	
 			//узнаем количество существующих у автора тестов
 			$query="SELECT COUNT(*) FROM formuly.tests WHERE idAuthor=".$_SESSION['data-user']['id'];

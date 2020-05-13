@@ -126,8 +126,17 @@ CREATE TABLE IF NOT EXISTS `notifications_4` (
   `cancel_add` tinyint(4) DEFAULT NULL,
   `invitations` tinytext,
   `dateOfSend` datetime NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
+--
+-- Дамп данных таблицы `notifications_4`
+--
+
+INSERT INTO `notifications_4` (`id`, `message`, `_unread`, `_read`, `add_friends`, `cancel_add`, `invitations`, `dateOfSend`) VALUES
+(1, 'Администраторы сайта хочет добавить вас в друзья', 1, NULL, '1', NULL, NULL, '2020-05-03 13:32:07'),
+(2, 'Администраторы сайта хочет добавить вас в друзья', 1, NULL, '1', NULL, NULL, '2020-05-03 13:37:05'),
+(3, 'Администраторы сайта хочет добавить вас в друзья', 1, NULL, '1', NULL, NULL, '2020-05-03 13:39:50'),
+(4, 'Администраторы сайта хочет добавить вас в друзья', 1, NULL, '1', NULL, NULL, '2020-05-03 13:41:15');
 
 -- --------------------------------------------------------
 
@@ -410,7 +419,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `notifications_4`
 --
 ALTER TABLE `notifications_4`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `notifications_5`
 --

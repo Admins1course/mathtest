@@ -76,38 +76,13 @@
 							</div>
 							<div class="exit_menu_body" style="display:none">
 
-										<div><p>Роль: <?php $_SESSION['data-user']['root'];?></p></div>
-										
-									
-
-								<div class=" exit_menu_elements exit_menu_elements_bar ">
-									<div class="image_elements">
-										
-									</div>
-									<div>
-										<p><a href="" class="exit_menu_elements_text">Настройки</a></p>
-									</div>
-									
+								<div class="exit_menu_elements">
+									<p class="exit_menu_stat">Роль: <?php $_SESSION['data-user']['root'];?></p>
 								</div>
+								
+								<div class="exit_title exit_menu_elements">
 
-								<div class=" exit_menu_elements exit_menu_elements_bar">
-									<div class="image_elements">
-										
-									</div>
-									<div>
-										<p><a href="" class="exit_menu_elements_text">Настройки</a></p>
-									</div>
-									
-								</div>
-
-								<div class="exit_title exit_menu_elements ">
-									<div class="image_elements">
-										
-									</div>
-
-									<div>
-										<p><a href="vyhod.php" class="exit_menu_elements_text">Выход</a></p>
-									</div>
+									<p><a href="vyhod.php">Выход</a></p>
 								</div>
 							</div>
 						<?php 

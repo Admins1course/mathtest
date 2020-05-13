@@ -59,8 +59,8 @@ $(document).ready(function(){$('#notif').click(function(){
 function unreadNot(){
 	dataNot={};
 		if (dataNotifications.length){
-			for (i=0;i<dataNotifications.length;i++){				
-				dataNot[String(i)]=dataNotifications[i];
+		for (i=0;i<dataNotifications.length;i++){				
+			dataNot[String(i)]=dataNotifications[i];
 		}
 		$.ajax({
 			url:document.location.origin+"/mathtest/unreadNotifications.php",
