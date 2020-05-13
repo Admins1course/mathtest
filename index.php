@@ -50,21 +50,24 @@
 			<div id="right_block"></div>
 		</div>
 			<div id="left_block_title">
+				<?php if($_SESSION['data-user']):?>
 				<div class="search_area">
 					<div class="search">
 						<input type="search" class="search_bar" onkeyup="searchControl(this)" onchange="searchControl(this)">
 						<input type="button" class="search_send_title " value="Поиск" onclick="searchPeople()">
-					
-					</div>
-					
-				</div>
-			</div>
-			<div id="left_block" class="left_block">
 					<div class="search_send">
 
 						<input type="button" class="search_type" value="Друзья" onclick="callbackFunction(this)">
 						<input type="button" class="search_type" value="Мир" onclick="callbackFunction(this)">
 					</div>
+					</div>
+					
+				</div>
+				<?php endif;?>
+			</div>
+			<div id="left_block" class="left_block">
+			<?php if($_SESSION['data-user']):?>
+
 					<div class="friends_bar">
 						<p>Друзья</p>
 					</div>
@@ -78,6 +81,7 @@
 							<ul id="friendsList">
 							</ul>
 						</div>
+					<?php endif;?>
 			</div>
 			<?php include 'includes/nav_menu.php';?>
 </body>
