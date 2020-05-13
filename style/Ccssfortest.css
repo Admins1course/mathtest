@@ -52,7 +52,7 @@ div[class="icontest"]{
 	margin: 0 auto;
 	}
 .uploadPreview{
-	
+	float: left;
 }
 .all_icon_load_slider{
 	
