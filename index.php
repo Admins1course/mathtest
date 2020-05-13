@@ -13,11 +13,12 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-
-<script src="js/searchPeople.js"></script>
-<script src="js/friendsControl.js"></script>
-<script src="js/notifs.js"></script>
-<?php include 'includes/script_for_nav_menu.php';?>
+	<?php if (isset($_SESSION['data-user'])):
+	    include 'includes/searchPeople.js.inc.php';
+	    include 'includes/friendsControl.js.inc.php';?>
+	<script src="js/notifs.js"></script>
+	<?php endif;?>
+    <?php include 'includes/script_for_nav_menu.php';?>
 </head>
 <body style="height: 1500px;">
 	<div id="page">
