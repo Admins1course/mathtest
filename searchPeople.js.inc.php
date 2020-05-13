@@ -1,4 +1,4 @@
-var searchFunction=searchForFriends;
+<script>var searchFunction=searchForFriends;
 	
 function callbackFunction(element){
 	element.disabled=true;
@@ -59,3 +59,4 @@ function searchForPiece(searchValue){
 		if (re.test(element.value)) 
 			element.value=element.value.replace(re, '');
 	}
+</script>

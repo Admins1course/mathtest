@@ -47,6 +47,7 @@ $(document).ready(function(){
 			$('.input_template:last .main_text').attr('name','task'+tasks+'[total_task]');
 			$('.input_template:last .inp input').attr('name','task'+tasks+'[input_answer]');
 			$('.input_template:last .textForPoints').attr('for','points'+tasks);
+			lenghts['task'+tasks]={}
 			$('.input_template:last .points').attr('id','points'+tasks).attr('name','task'+tasks+'[points]');
 		});
 	});
@@ -58,7 +59,7 @@ $(document).ready(function(){
 		idTask=$(this).closest('[class^="task"]').attr('id');
 		first_el=$('#'+idTask+' .icontest:visible:first');
 		last_el=$('#'+idTask+' .icontest:visible:last');
-		count_icon=$('#'+idTask+' .all_icon_load').children().length
+		count_icon=$('#'+idTask+' .all_icon_load').children().length;
 		if (count_icon>2) {
 			first_el[0].hidden=true;
 			$('#'+idTask+' .swipe_left').prop('disabled',false);

@@ -14,7 +14,7 @@
 
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 
-<script src="js/searchPeople.js"></script>
+<?php include 'includes/searchPeople.js.inc.php';?>
 <script src="js/friendsControl.js"></script>
 <script src="js/notifs.js"></script>
 <?php include 'includes/script_for_nav_menu.php';?>
