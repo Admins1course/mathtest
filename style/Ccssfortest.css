@@ -9,7 +9,9 @@ outline: 0;
 padding: 0;
 margin: 0;}/*Отмена стилей браузера*/
 body{
-	height: 10000px;}/*длина сайта(страницы)*/
+	height: 6000px;
+	width: 2000px;}/*длина сайта(страницы)*/
+
 textarea{
 	color:black;
 	border:1px solid red;
@@ -34,7 +36,7 @@ textarea{
 /*Настройка поля с Основным заданием*/
  .testtext1{
 	margin-top: 2%;
-	margin-left: 0;	}/* поле С Заданием 1*/
+	margin-left: 0;	}
 .first{
 	margin-bottom: -0.5%;}
 div[class="icontest"]{
@@ -45,11 +47,18 @@ div[class="icontest"]{
 	margin-left: 15px;	}/*Поле для всавляемого изображения*/
 .all_icon_load{
 	height: auto;	
-	width: 3000px;	}
+	width: 780px;
+	border:1px solid red;
+	margin: 0 auto;
+	}
+.uploadPreview{
+	float: left;
+}
 .all_icon_load_slider{
+	
 	height: auto;	
 	width: 100%;
-	overflow: auto;}
+	overflow-x: hidden;}
 .swipe_btn:hover{
 	opacity: 0.9;}
 .swipe_btn{
@@ -82,7 +91,7 @@ div[class="icontest"]{
 	margin-left: 5%;	}
 .button{
 	margin-top: 30px;
-	margin-left: 32px;
+	margin-left: 0px;
 	padding-top: 130px;
 	padding-bottom: 130px;
 	padding-left: 105px;
@@ -97,7 +106,7 @@ div[class="icontest"]{
 	margin-top: 5%;
 	margin-left: 2%;
 	height: auto;
-	margin-bottom: 5%;}/* Настройка радио кнопок*/
+	}
 .div_btn{
 	margin-top: 0;}
 .button_radio
@@ -231,7 +240,6 @@ div[class="icontest"]{
 	width: 240px;
 }
 .add_button_answer{
-
 	position: relative;
 	margin-top: 30px;
 	margin-left: 2%;
@@ -243,21 +251,16 @@ div[class="icontest"]{
 	font-size: 30px;
 	color:#ff4d00;
 	border: 2px dashed orange;
-	margin-bottom: 2%;
-}
+	margin-bottom: 2%;}
 .answer{
 	position: relative;
 	width: 96%;
-	height: auto;
-}
+	height: auto;}
 .text_answer{
-	width: 98%;
-}
+	width: 98%;}
 .form_btn{
 	margin-left: 1.3%;
 	width: 80px;
-	/*width: 300px;
-	height: 150px;*/
 	position: relative;
 	margin-bottom: 10px;
 	margin-right: 10px;
@@ -270,27 +273,22 @@ div[class="icontest"]{
 	border: 1px solid red;
 }
 .form_btn_send{
-	width: 100px;
-}
+	width: 100px;}
 #form_handler{
 	position: relative;
-	margin-top: 40px;
-}
+	margin-top: 40px;}
 .arrow{
 	margin-top: -8px;
 	width: 96%;
 	height: auto;
 	border: 1px solid red;
-	margin-left: 2%;
-}
+	margin-left: 2%;}
 .arrow_d{
-	margin-left: 49%;
-}
+	margin-left: 49%;}
 .arrow_div{
 	width: 96%;
 	height: 200px;
-	border:1px solid red;
-}
+	border:1px solid red;}
 .btnpastepre{
 	height: 40px;
 	padding-left: 1%;
@@ -298,17 +296,11 @@ div[class="icontest"]{
 	margin-bottom: 1%;
 	margin-top: 1%;
 	font-weight: bold;
-	/*background: radial-gradient(circle, rgba(122,255,180,1) 0%, rgba(255,136,0,1) 80%);*/
-	background-color: orange;
-
-}
+	background-color: orange;}
 .btnpastepre:hover{
-	background-color: darkorange;
-	/*background:radial-gradient(circle, rgba(255,136,0,1) 0%, rgba(122,255,180,1) 85%);*/
-}
+	background-color: darkorange;}
 .last_using_buttons .btnpastepre{
-	margin-left: 2%;
-}
+	margin-left: 2%;}
 .task_show{
 	position: relative;
 	float: left;
@@ -316,8 +308,7 @@ div[class="icontest"]{
 	height: 2%;
 	border: 1px solid red;
 	border-radius: 20% 0 0 0;
-	background-color: orange;
-}
+	background-color: orange;}
 .formul_preview{
 	position: relative;
 	width: 10%;
@@ -326,8 +317,7 @@ div[class="icontest"]{
 	margin-left: 0%;
 	border-radius: 0 20% 0 0;
 	border-left: none;
-	background-color: orange;
-}
+	background-color: orange;}
 .preview{
 	display: none;
 	position: relative;
@@ -338,56 +328,44 @@ div[class="icontest"]{
 	border:1px solid red;
 	bottom: 5%;
 	text-align: left;
-	margin-bottom: 5%;
-}
+	margin-bottom: 5%;}
 .prev_btn{
-	margin-left: 20%;
-}
+	margin-left: 20%;}
 .prev_menu{
 	margin-left: 2%;
 	position: relative;
-	top: 12px;
-}
+	top: 12px;}
 .prev_menu_box{
-	margin-left: 5%;
-}
+	margin-left: 5%;}
 .testtext1{
 	margin-top: 20px;
-	position: relative;
-}
+	position: relative;}
 #uploadPreview{
-	margin-top: 30px;
-}
+	margin-top: 30px;}
 .text_answer{
-	margin-top: 30px;
-}
+	margin-top: 30px;}
 /*Кнопки*/
 .formul_buttons{
 	cursor: pointer;
-	/*font-weight: bold;*/
 	font-family: "Impact";
 	font-size: 18px;
 	margin-top: 2%;
 	text-align: left;
 	margin-left: 2%;
 	margin-bottom: 2%;
-	color: black;
-}
+	color: black;}
 .formul_buttons:hover{
 	background-color: darkorange;
 	border: 1px solid orange;
-	margin-left: 20px;
-}
+	margin-left: 20px;}
 .formul_buttons_body{
-	display: none;
-}
+	display: none;}
 .formul_title{
 	margin-top: 2%;
 	margin-left: 7%;
 	margin-bottom: 4%;
 	text-align: left;
-	border: 1px solid orange;
-}
+	border: 1px solid orange;}
 .text_title{
 	width: auto;
 	margin-left: 35%;
@@ -398,11 +376,9 @@ div[class="icontest"]{
 	font-family: "Tahoma";
 	padding: 5px;
 	background-color: orange;
-	border: 1px solid red;
-}
+	border: 1px solid red;}
 .popup-fade {
-	display: none;
-}
+	display: none;}
 .popup-fade:before {
 	content: '';
 	background: #000;
@@ -412,8 +388,7 @@ div[class="icontest"]{
 	width: 100%; 
 	height: 100%;
 	opacity: 0.7;
-	z-index: 99999;
-}
+	z-index: 99999;}
 .popup {
 	position: fixed;
 	top: 0%;
@@ -427,8 +402,7 @@ div[class="icontest"]{
 	z-index: 99999;
 	opacity: 1;	
 	font-size: 16px;
-	text-align: center;
-}
+	text-align: center;}
 .popup-close {
 	position: absolute;
 	top: 10px;
@@ -438,39 +412,35 @@ div[class="icontest"]{
 	color: black;
 	padding: 3px;
 	border: 1px solid red;
-	margin-bottom: 20px;
-}
+	margin-bottom: 20px;}
 .input_text_popup{
-	border: 1px solid red;
-}
+	border: 1px solid red;}
 .popup_text{
 	margin-top: 15px;
-	margin-bottom: 15px;
-}
+	margin-bottom: 15px;}
 .popup_select{
 	margin-top: 10px;
 	margin-bottom: 10px;
-	border: 1px solid red;
-}
+	border: 1px solid red;}
 .textForPoints{
 	width: auto;
-    margin-left: 20%;
-   float: left;
+    margin:0 auto;
     font-size: 23px;
     text-align: center;
     margin-top: 4%;
     font-family: "Tahoma";
     padding: 5px;
     background-color: orange;
-    border: 1px solid red;
-}
+    border: 1px solid red;}
+.textForPoints_div{
+	width: 100%;
+	text-align: center;}
 .points{
 	margin-left: 30%;
 	width: 40%;
 	border: 1px solid red;
 	margin-top: 20px;
-	margin-bottom: 20px;
-}
+	margin-bottom: 20px;}
 .popup-open{
 	width: auto;
 	padding: 5px;
@@ -480,8 +450,7 @@ div[class="icontest"]{
 	border:1px solid red;
 	margin-bottom: 10px;
 	margin-left: 1.3%;
-	margin-top: 20px;
-}
+	margin-top: 20px;}
 #footer{display: none;
 
 	margin-top: 10000px;

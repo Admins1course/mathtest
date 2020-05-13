@@ -10,7 +10,6 @@
 	border: 5px solid orange;
 	height: 80%;
 	border-radius: 5px;
-	/*background-image: url("img/test.jpg");*/
 	background-size: cover;}
 .zaklad{
 	margin-bottom: 10px;
@@ -25,8 +24,7 @@
 	height: auto;}
 .zaklad_title:hover{
 color: orange;}
-.zaklad_title
-{
+.zaklad_title{
 	position: absolute;
 	left: 5%;
 	margin-top:0.9%;

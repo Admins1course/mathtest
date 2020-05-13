@@ -5,7 +5,6 @@ if ($_POST){
 	try{
 		
 		$pdo->beginTransaction();
-		
 		$sql="SELECT login,name,surname,root FROM `users` WHERE id=:id FOR UPDATE";
 		$result=$pdo->prepare($sql);
 		$result->execute(['id'=>$_POST['id']]);
@@ -15,7 +14,6 @@ if ($_POST){
 		$result=$pdo->prepare($sql);
 		$result->execute(['id'=>$_SESSION['data-user']['id']]);
 		$mylogin=$result->fetchAll(PDO::FETCH_ASSOC);
-		
 		$root=$friend[0]['root']="студент"?"студенты":"преподаватели";
 		
 		$sql="INSERT INTO friends_".$_SESSION['data-user']['id']."(
@@ -39,9 +37,7 @@ if ($_POST){
 				WHERE add_friends=:id";
 		$result=$pdo->prepare($sql);
 		$result->execute(['id'=>$_SESSION['data-user']['id']]);
-		
 		$pdo->commit();
-		
 		echo json_encode(['answer'=>'success']);
 	}
 	catch(Exciption $e){

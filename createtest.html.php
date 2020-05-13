@@ -37,6 +37,9 @@
 
 	});
 	</script>
+<script>
+	
+</script>
 	<script type="text/javascript">
 	$(document).ready(function(){
 		$('.formul').click(function(){
@@ -190,7 +193,7 @@
 					<textarea oninput="auto_grow(this)" name="task[textarea_answer]" id="answer" style="resize:none" class="text_answer">
 					</textarea><!--  Развернутый ответ -->
 				</div>
-				<label class="textForPoints" for="points">Введите количество баллов за данное задание</label>
+				<div class="textForPoints_div"><label class="textForPoints" for="points">Введите количество баллов за данное задание</label></div>
 				<input type="text" class="points" onkeyup="enterPoints(this)">
 			</div>
 			<div class="task radiobutton_template">
@@ -240,7 +243,7 @@
 					</div>
 				</div>
 				<input type="button" class="add_button_answer" value="+"><!--  Кнопка добавить -->
-				<label class="textForPoints" for="points">Введите количество баллов за данное задание</label>
+				<div class="textForPoints_div"><label class="textForPoints" for="points">Введите количество баллов за данное задание</label></div>
 				<input type="text" class="points" onkeyup="enterPoints(this)">
 			</div>
 			<div class="task checkboxbutton_template">
@@ -288,7 +291,7 @@
 					</div>
 				</div>
 				<input type="button" class="add_button_answer" value="+"><!--  Кнопка добавить -->
-				<label class="textForPoints" for="points">Введите количество баллов за данное задание</label>
+				<div class="textForPoints_div"><label class="textForPoints" for="points">Введите количество баллов за данное задание</label></div>
 				<input type="text" class="points" onkeyup="enterPoints(this)">
 			</div>
 			<div class="task input_template">
@@ -323,7 +326,7 @@
 				<div class="inp">
 					<input  type="text" name="task[input_answer]" value="" placeholder="ответ" style="margin-left: 30%; height: 20px; margin-top: 2%; width: 40%;"> <!--  Поле для ввода ответа -->
 				</div>
-				<label class="textForPoints" for="points">Введите количество баллов за данное задание</label>
+				<div class="textForPoints_div"><label class="textForPoints" for="points">Введите количество баллов за данное задание</label></div>
 				<input type="text" class="points" onkeyup="enterPoints(this)">
 			</div>
 		</div>

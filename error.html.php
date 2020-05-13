@@ -6,17 +6,13 @@
 	<title>Ошибка</title>
 </head>
 <body>
-	
 	<div id="error">
 		<?php
 			echo $error;
 		?>
 	</div>
-
 <div class="box">
    	<h1 class="glitch">ERROR</h1>
 </div>
-
-
 </body>
 </html>

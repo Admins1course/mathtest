@@ -4,7 +4,6 @@ if ($_POST){
 	try{
 		
 		$pdo->beginTransaction();
-		
 		$sql="SELECT add_friends FROM notifications_".$_POST['idFriend']."
 				WHERE add_friends=:id FOR UPDATE";
 		$result=$pdo->prepare($sql);
@@ -31,6 +30,7 @@ if ($_POST){
 		$pdo->exec($sql);
 		echo json_encode(['answer'=>'success']);
 		$pdo->commit();
+	}
 	catch(Exception $e){
 		$pdo->rollBack();
 	}
