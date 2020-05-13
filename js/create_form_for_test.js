@@ -18,36 +18,37 @@ $(document).ready(function(){
 	$('#form_2').click(function(){
 		tasks++;
 		$('.radiobutton_template:hidden').clone('deepWithDataAndEvents').insertBefore('#form_handler').attr('id','task'+tasks).slideDown(1000,function(){
-			$('.radiobutton_template:last .main_text').attr('name','task'+tasks+'[total_task]');
-			$('.radiobutton_template:last .radio .button_radio').attr('name','task'+tasks+'[radio]').attr('value',1);
-			$('.radiobutton_template:last .radio .input_text').attr('name','task'+tasks+'[text_answer1]');
+			$('form .radiobutton_template:last .main_text').attr('name','task'+tasks+'[total_task]');
+			$('form .radiobutton_template:last .radio .button_radio').attr('name','task'+tasks+'[radio]').attr('value',1);
+			$('form .radiobutton_template:last .radio .input_text').attr('name','task'+tasks+'[text_answer1]');
 			lenghts['task'+tasks]={}
 			lenghts['task'+tasks]['radio_answer']=1;
-			$('.radiobutton_template:last .textForPoints').attr('for','points'+tasks);
-			$('.radiobutton_template:last .points').attr('id','points'+tasks).attr('name','task'+tasks+'[points]');
+			$('form .radiobutton_template:last .textForPoints').attr('for','points'+tasks);
+			$('form .radiobutton_template:last .points').attr('id','points'+tasks).attr('name','task'+tasks+'[points]');
 		});
 	});
 	//аналогично предыдущему, но форма с checkboxbutton
 	$('#form_3').click(function(){
 		tasks++;
 		$('.checkboxbutton_template:hidden').clone('deepWithDataAndEvents').insertBefore('#form_handler').attr('id','task'+tasks).slideDown(1000,function(){
-			$('.checkboxbutton_template:last .main_text').attr('name','task'+tasks+'[total_task]');
-			$('.checkboxbutton_template:last .check .button_checkbox').attr('name','task'+tasks+'[checkbox_answer1][checkbox]');
-			$('.checkboxbutton_template:last .check .input_text').attr('name','task'+tasks+'[checkbox_answer1][text_answer]');
+			$('form .checkboxbutton_template:last .main_text').attr('name','task'+tasks+'[total_task]');
+			$('form .checkboxbutton_template:last .check .button_checkbox').attr('name','task'+tasks+'[checkbox_answer1][checkbox]');
+			$('form .checkboxbutton_template:last .check .input_text').attr('name','task'+tasks+'[checkbox_answer1][text_answer]');
 			lenghts['task'+tasks]={}
 			lenghts['task'+tasks]['checkbox_answer']=1;
-			$('.checkboxbutton_template:last .textForPoints').attr('for','points'+tasks);
-			$('.checkboxbutton_template:last .points').attr('id','points'+tasks).attr('name','task'+tasks+'[points]');
+			$('form .checkboxbutton_template:last .textForPoints').attr('for','points'+tasks);
+			$('form .checkboxbutton_template:last .points').attr('id','points'+tasks).attr('name','task'+tasks+'[points]');
 		});
 	});
 	//аналогично предыдущему, но форма с input
 	$('#form_4').click(function(){
 		tasks++;
 		$('.input_template:hidden').clone('deepWithDataAndEvents').insertBefore('#form_handler').attr('id','task'+tasks).slideDown(1000,function(){
-			$('.input_template:last .main_text').attr('name','task'+tasks+'[total_task]');
-			$('.input_template:last .inp input').attr('name','task'+tasks+'[input_answer]');
-			$('.input_template:last .textForPoints').attr('for','points'+tasks);
-			$('.input_template:last .points').attr('id','points'+tasks).attr('name','task'+tasks+'[points]');
+	$('form .input_template:last .main_text').attr('name','task'+tasks+'[total_task]');
+			$('form .input_template:last .inp input').attr('name','task'+tasks+'[input_answer]');
+			$('form .input_template:last .textForPoints').attr('for','points'+tasks);
+			lenghts['task'+tasks]={}
+			$('form .input_template:last .points').attr('id','points'+tasks).attr('name','task'+tasks+'[points]');
 		});
 	});
 	$('.button').click(function(){

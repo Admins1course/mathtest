@@ -22,7 +22,7 @@
 		$(document).ready(function(){$('textarea').val('');})
 	</script>
 	<script src="js/create_form_for_test.js"></script>
-	<script src="js/mathjax_handler"></script>
+	<script src="js/mathjax_handler.js"></script>
 	<script>
 	$(document).ready(function() {
 		$('.formul_preview').click(function(){
