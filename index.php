@@ -53,6 +53,7 @@
 			<div id="right_block"></div>
 		</div>
 			<div id="left_block_title">
+				<?php if($_SESSION['data-user']):?>
 				<div class="search_area">
 					<div class="search">
 						<input type="search" class="search_bar" onkeyup="searchControl(this)" onchange="searchControl(this)">
@@ -65,9 +66,10 @@
 					</div>
 					
 				</div>
+				<?php endif;?>
 			</div>
 			<div id="left_block" class="left_block">
-
+					<?php if($_SESSION['data-user']):?>
 					<div class="friends_bar">
 						<p>Друзья</p>
 					</div>
@@ -81,6 +83,7 @@
 							<ul id="friendsList">
 							</ul>
 						</div>
+					<?php endif;?>
 			</div>
 			<?php include 'includes/nav_menu.php';?>
 </body>
