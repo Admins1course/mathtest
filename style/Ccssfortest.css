@@ -425,19 +425,19 @@ div[class="icontest"]{
 .textForPoints{
 	width: auto;
     margin:0 auto;
-    font-size: 23px;
+    font-size: 19px;
     text-align: center;
     margin-top: 4%;
     font-family: "Tahoma";
     padding: 5px;
-    background-color: orange;
-    border: 1px solid red;}
+    
+    }
 .textForPoints_div{
 	width: 100%;
-	text-align: center;}
+	margin-left: 2%;}
 .points{
-	margin-left: 30%;
-	width: 40%;
+	
+	width: 100px;
 	border: 1px solid red;
 	margin-top: 20px;
 	margin-bottom: 20px;}
