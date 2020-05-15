@@ -13,7 +13,7 @@
 			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
 	</script>
 	<?php include 'includes/script_for_nav_menu.php';?>
-	<script src="js/answers_of_user.js"></script>
+	<?php include 'includes/answers_of_user.js.inc.php';?>
 	<script>
 		let $className;
 		$(document).ready(function(){

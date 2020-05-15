@@ -7,7 +7,7 @@ function addFriend(element){
 				   idFriend:$idFriend,
 				   root:$(element).attr('name')};
 	$.ajax({
-		url:document.location.origin+"/mathtest/addFriend.php",
+		url:document.location.origin+"/addFriend.php",
 		cache:false,
 		dataType:'json',
 		data:friendMessage,
@@ -22,7 +22,7 @@ function cancelAddFriend(element){
 	$idFriend=$(element).attr('id').replace('user','');
 	dataPost={id:$idFriend};
 	$.ajax({
-		url:document.location.origin+"/mathtest/cancelAddFriend.php",
+		url:document.location.origin+"/cancelAddFriend.php",
 		cache:false,
 		type:'POST',
 		dataType:'json',

@@ -1,3 +1,4 @@
+<script>
 let count;
 let tasks;
 let error;
@@ -66,3 +67,4 @@ function registeringResponses(){
 	error=document.getElementById("error");
 	error.innerHTML="";
 }
+</script>

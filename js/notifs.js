@@ -3,7 +3,7 @@ var dataNotifications=0;
 var clearNot=true;
 function notifications(){
 	$.ajax({
-		url:document.location.origin+"/mathtest/getNotifications.php",
+		url:document.location.origin+"/getNotifications.php",
 		cache:false,
 		dataType:'json',
 		type:'POST',
@@ -11,7 +11,6 @@ function notifications(){
 		success:function(data){
 			if ((clearNot)||(data!==[])){
 				dataNotifications=data;
-				console.log(dataNotifications);
 				if (data.length==0) return;
 				if (data.length>9) count="9+";
 				else count=data.length;

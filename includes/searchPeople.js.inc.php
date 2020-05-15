@@ -16,7 +16,7 @@ function searchPeople(){
 	
 function searchForPiece(searchValue){
 	$.ajax({
-		url:document.location.origin+"/mathtest/searchForPiece.php",
+		url:document.location.origin+"/searchForPiece.php",
 		dataType:'json',
 		cache:false,
 		data:{searchValue:searchValue},
