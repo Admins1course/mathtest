@@ -1,13 +1,5 @@
 <?php require_once 'includes/db.inc.php';
-	  session_start();
-	   if (isset($_SESSION['data-user'])){
-		  if ($_COOKIE['name']){//достаточно name, чтобы были и остальные
-			  $_SESSION['data-user']['id']=$_COOKIE['id'];
-			  $_SESSION['data-user']['name']=$_COOKIE['name'];
-			  $_SESSION['data-user']['surname']=$_COOKIE['surname'];
-			  $_SESSION['data-user']['root']=$_COOKIE['root'];
-		  }
-	  }?>
+	  require_once 'includes/incl_session.inc.php'?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,14 +8,10 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="style/CsslistTest.css?<?=time()?>" type="text/css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-	
 <?php include 'includes/script_for_nav_menu.php';?>	
-
 </head>
 <body style="height: 2000px;">
 	<div id="page">
-		
-		
 	</div>
 		<div class="slider midle">
 			<div class="slides">
@@ -32,10 +20,10 @@
 				<input type="radio" name="r" id="r3" >
 				<input type="radio" name="r" id="r4" >
 
-				<div class="slide s1"> <img src="img/FonBooks.png" alt=""></div>
-				<div class="slide"> <img src="img/books.png" alt=""></div>
-				<div class="slide"> <img src="img/rtx.png" alt=""></div>
-				<div class="slide"> <img src="img/Artem.png" alt=""></div>
+				<div class="slide s1"> <img src="style/img/FonBooks.png" alt=""></div>
+				<div class="slide"> <img src="style/img/books.png" alt=""></div>
+				<div class="slide"> <img src="style/img/rtx.png" alt=""></div>
+				<div class="slide"> <img src="style/img/Artem.png" alt=""></div>
 			</div>
 
 			<div class="navigation">
@@ -45,21 +33,15 @@
 				<label for="r4" class="bar"></label>
 			</div>
 		</div>
-
-
-
 		<div id="plus_inform">
 			<div class="search_area">
 				<div class="search">
-					<input type="text" class="search_bar">
-					
+					<input type="text" class="search_bar">	
 				</div>
 				<div class="search_send">
 					<p class="search_send_title">поиск</p>
 				</div>
-				
 			</div>
-			
 		</div>
 		<?php 
 		$sql='SELECT idAuthor,idTest,taskName FROM tests';
@@ -83,37 +65,17 @@
 				<li class="test_name"><a href="" class="test_title">Математический анализ</a></li>
 				<li class="test_name"><a href="" class="test_title">Интегральные и дифферинциальные уравнения</a></li>
 				<li class="test_name"><a href="" class="test_title">Прикладная математика</a></li>
-
-
-
 			</ul>
-
 		</div>
-
-		
 			<div id="left_block_title">
-				
 			</div>
-
 			<div id="left_block" class="left_block">
-					
-		</div>
-		
-
-	
+			</div>
 <?php include 'includes/nav_menu.php';?>
-		
-	
-	
-	
 	<div id="footer">
 		<div class="text">
 			2020
 		</div>
 	</div>
-
-
-	
-	
 </body>
 </html>

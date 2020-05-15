@@ -1,32 +1,26 @@
 body{
 	background-image: url('img/regbg1.png');
-	background-size: 100% auto;
-}
-a{
-	color: white;
-}
+	background-size: 100% auto;}
+a{	color: white;}
 a:hover{
-	text-decoration: none;
-}
+	text-decoration: none;}
 .container{
 	width: 450px;
 	height: 500px;
 	background-color: #182134;
-	margin:60px auto 0 auto;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
 	border:3px solid orange;
 	border-radius: 3px;
-	text-align: center;
-}
+	text-align: center;}
 .container .avatar {
 	width: 120px;
 	height: 120px;
 	margin: -60px 0 30px 0;
 	border: 3px solid orange;
-	border-radius: 50%;
-}
-
-
-
+	border-radius: 50%;}
 input[type="text"], input[type="password"]{
 	width: 300px;
 	height: 40px;
@@ -34,8 +28,7 @@ input[type="text"], input[type="password"]{
 	border-radius: 4px;
 	padding-left: 35px;
 	border-color: orange;
-	margin-top: 20px;
-}
+	margin-top: 20px;}
 .dws-submit{
 	padding: 13px 30px;
 	margin: 40px 0 20px 0;
@@ -44,41 +37,27 @@ input[type="text"], input[type="password"]{
 	background-color: orange;
 	border:none;
 	border-bottom: 3px solid #fab62d;
-	cursor: pointer;
-
-}
-
+	cursor: pointer;}
 .dws-submit:hover{
-	
 	background: #b86e00;
 	color: white;
 	transition: all .5s;
-	transform: scale(1.3);
-}
+	transform: scale(1.3);}
 .userpng{
 	position: absolute;
 	margin-top: 33px;
-	margin-left: 7px;
-
-}
-
+	margin-left: 7px;}
 .lockpng{
 	position: absolute;
 	margin-top: 33px;
-	margin-left: 7px;
-}
-
+	margin-left: 7px;}
 input:hover{
 	background-color: orange;
-	transition: all .5s;
-}
-
+	transition: all .5s;}
 .change-panel{
 	position: absolute;
 	margin-top: 40px;
-	margin-left: -160px;
-
-}
+	margin-left: -160px;}
 .change-panel a{
 	margin:0;
 	text-decoration: none;
@@ -90,14 +69,11 @@ input:hover{
 	opacity: 0.7;
 	font-size: 19px;
 	margin-left: 200px; 
-	margin-top: 31px;
-
-}
+	margin-top: 31px;}
 .change-panel a:hover{
 	transition: all .5s;
 	transform: scale(1.2);
-	opacity: 1;
-}
+	opacity: 1;}
 .change-panel p{
 	position: absolute;
 	margin-left: 440px;
@@ -108,9 +84,7 @@ input:hover{
 	background-color: white;
 	font-size: 19px;
 	margin-top: -38px;
-	opacity: 0.7;
-
-}
+	opacity: 0.7;}
 .wrong_password{
 	position: absolute;
 	font-size: 17px;
@@ -118,7 +92,4 @@ input:hover{
 	margin-top: 5px;
 	margin-left: 120px;
 	background-color:#401f1f;
-	padding: 3px;
-
-
-}
+	padding: 3px;}

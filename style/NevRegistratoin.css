@@ -1,40 +1,34 @@
 body{
 	background-image: url('img/regbg1.png');
-	background-size: 100% auto;
-}
+	background-size: 100% auto;}
 a{
-	color: white;
-}
+	color: white;}
 a:hover{
-	text-decoration: none;
-}
+	text-decoration: none;}
 .container{
 	width: 450px;
 	height: 500px;
 	background-color: #182134;
-	margin:60px auto 0 auto;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
 	border:3px solid orange;
 	border-radius: 3px;
-	text-align: center;
-}
+	text-align: center;}
 .container .avatar {
 	width: 120px;
 	height: 120px;
 	margin: -60px 0 30px 0;
 	border: 3px solid orange;
-	border-radius: 50%;
-}
-
-
-
+	border-radius: 50%;}
 input[type="text"], input[type="password"]{
 	width: 300px;
 	height: 35px;
 	margin-bottom: 10px;
 	border-radius: 4px;
 	padding-left: 25px;
-	border-color: orange;
-}
+	border-color: orange;}
 .dws-submit{
 	margin-bottom: 20px;
 	padding: 13px 30px;
@@ -45,40 +39,29 @@ input[type="text"], input[type="password"]{
 	border:none;
 	border-bottom: 3px solid #fab62d;
 	cursor: pointer;
-	margin-top: 70px;
-
-}
-
+	margin-top: 70px;}
 .dws-submit:hover{
-	
 	background: #b86e00;
 	color: white;
 	transition: all .5s;
-	transform: scale(1.3);
-}
+	transform: scale(1.3);}
 .userpng{
 	position: absolute;
 	margin-top: 10px;
-	margin-left: 5px;
-
-}
+	margin-left: 5px;}
 
 .lockpng{
 	position: absolute;
 	margin-top: 10px;
-	margin-left: 5px;
-}
+	margin-left: 5px;}
 
 input:hover{
 	background-color: orange;
-	transition: all .5s;
-}
+	transition: all .5s;}
 .change-panel{
 	position: absolute;
 	margin-top: 60px;
-	margin-left: 30px;
-
-}
+	margin-left: 30px;}
 .change-panel a{
 	margin:0;
 	text-decoration: none;
@@ -90,14 +73,11 @@ input:hover{
 	opacity: 0.7;
 	font-size: 19px;
 	margin-left: 200px; 
-	margin-top: 31px;
-
-}
+	margin-top: 31px;}
 .change-panel a:hover{
 	transition: all .5s;
 	transform: scale(1.2);
-	opacity: 1;
-}
+	opacity: 1;}
 .change-panel p{
 	position: absolute;
 	margin:0;
@@ -109,56 +89,34 @@ input:hover{
 	background-color: white;
 	font-size: 19px;
 	margin-top: -15px;
-	opacity: 0.7;
-
-}
+	opacity: 0.7;}
  select{
 	position: relative;
 	width: 327px;
 	height: 40px;
 	margin-left: 0%;
-	
-
 	color: black;
 	background-color: white;
 	border:2px solid orange;
-	border-radius: 3px;
-
-}
-
+	border-radius: 3px;}
 select .gg{
-	background-color: white;
-}
-#continue{
-	
-	margin-top: 30px;
-
-
-}
+	background-color: white;}
+#continue{	
+	margin-top: 30px;}
  .option:hover{
-	background-color: orange;
-}
+	background-color: orange;}
 .avatar:hover{
 	background-color: red;
 	transition: all 10s;
-	transform: rotate(1800deg);
-}
-
+	transform: rotate(1800deg);}
 .popup-fade {
-	display: none;
-}
-
+	display: none;}
 .popup-fade:before {
-	content: '';	
-
-}
+	content: '';	}
 .popup p{
-	margin-top: 12px;
-}
-
+	margin-top: 12px;}
 .popup {
-	position: absolute;
-	
+	position: absolute;	
 	top: 209px;
 	left: 840px;
 	padding: -2px;
@@ -172,10 +130,7 @@ select .gg{
 	opacity: 1;	
 	color: red;
 	text-align: center;
-	font-size: 18px;
-}
-
-
+	font-size: 18px;}
 .popup:before {
 content: "";
 width: 0; 
@@ -185,23 +140,15 @@ right: 100%;
 top: calc(50% - 12px);
 border-top: 12px solid transparent;
 border-right: 24px solid #fff;
-border-bottom: 12px solid transparent;
-
-}
+border-bottom: 12px solid transparent;}
 #name_error .popup{
-	top: 159px;
-}
+	top: 159px;}
 #root_error .popup{
-	top: 259px;
-
-}
+	top: 259px;}
 #password_second_error .popup{
-	top: 259px;
-}
+	top: 259px;}
 #login_error .popup{
-	top: 159px;
-}
-
+	top: 159px;}
 #p_name{
 	position: absolute;
 	color: red;
@@ -213,9 +160,7 @@ border-bottom: 12px solid transparent;
 	margin-left: -350px;
 	margin-top: -54px;
 	opacity: 0.8;
-	text-align: center;
-
-}
+	text-align: center;}
 #p_surname{
 	position: absolute;
 	color: red;
@@ -227,9 +172,7 @@ border-bottom: 12px solid transparent;
 	margin-left: -350px;
 	margin-top: -54px;
 	opacity: 0.8;
-	text-align: center;
-
-}
+	text-align: center;}
 #p_login{
 	position: absolute;
 	color: red;
@@ -241,9 +184,6 @@ border-bottom: 12px solid transparent;
 	margin-left: -350px;
 	margin-top: -54px;
 	opacity: 0.8;
-	text-align: center;
-
-}
+	text-align: center;}
 #p_name:hover{
-	opacity: 1;
-}
+	opacity: 1;}

@@ -4,8 +4,7 @@ try{
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	$pdo->exec('SET NAMES "utf8"');
 }
-catch (PDOException $e)
-{
+catch (PDOException $e){
 	$error="Невозможно подключиться к базе данных: ".$e->getMessage();
 	include 'error.html.php';
 	exit();
