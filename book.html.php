@@ -18,19 +18,19 @@
 		let $className;
 		$(document).ready(function(){
 			$('.task').not('.task:first').css("display","none");
-			$('.zaklad:first').attr('src','img/zaclact.png');//темная
+			$('.zaklad:first').attr('src','style/img/zaclact.png');//темная
 			$('.zaklad').click(function(){
 				$('.task').css("display","none");
-				$('.zaklad').attr('src','img/zacl.png'); //светлая
-				$(this).attr('src','img/zaclact.png');//темная
+				$('.zaklad').attr('src','style/img/zacl.png'); //светлая
+				$(this).attr('src','style/img/zaclact.png');//темная
 				$className=$(this).attr("class");
 				$className=$className.split(" ");
 				$('#book .'+$className[1]).slideDown();				
 			});
 			$('.zaklad_title').click(function(){
 				$('.task').css("display","none");
-				$('.zaklad').attr('src','img/zacl.png'); //светлая
-				$(this).next().attr('src','img/zaclact.png');//темная
+				$('.zaklad').attr('src','style/img/zacl.png'); //светлая
+				$(this).next().attr('src','style/img/zaclact.png');//темная
 				$className=$(this).next().attr("class");
 				$className=$className.split(" ");
 				$('#book .'+$className[1]).slideDown();				
