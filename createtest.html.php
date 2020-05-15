@@ -194,7 +194,7 @@
 					</textarea><!--  Развернутый ответ -->
 				</div>
 				<div class="textForPoints_div"><label class="textForPoints" for="points">Введите количество баллов за данное задание</label>
-					<input type="text" class="points" onkeyup="enterPoints(this)">
+					<input type="text" maxlength="6" class="points" onkeyup="enterPoints(this)">
 				</div>
 				
 			</div>
@@ -246,7 +246,7 @@
 				</div>
 				<input type="button" class="add_button_answer" value="+"><!--  Кнопка добавить -->
 				<div class="textForPoints_div"><label class="textForPoints" for="points">Введите количество баллов за данное задание</label>
-					<input type="text" class="points" onkeyup="enterPoints(this)">
+					<input type="text" maxlength="6" class="points" onkeyup="enterPoints(this)">
 				</div>
 				
 			</div>
@@ -296,7 +296,7 @@
 				</div>
 				<input type="button" class="add_button_answer" value="+"><!--  Кнопка добавить -->
 				<div class="textForPoints_div"><label class="textForPoints" for="points">Введите количество баллов за данное задание</label>
-					<input type="text" class="points" onkeyup="enterPoints(this)">
+					<input type="text" maxlength="6" class="points" onkeyup="enterPoints(this)">
 				</div>
 				
 			</div>
@@ -333,7 +333,7 @@
 					<input  type="text" name="task[input_answer]" value="" placeholder="ответ" style="margin-left: 30%; height: 20px; margin-top: 2%; width: 40%;"> <!--  Поле для ввода ответа -->
 				</div>
 				<div class="textForPoints_div"><label class="textForPoints" for="points">Введите количество баллов за данное задание</label>
-					<input type="text" class="points" onkeyup="enterPoints(this)">
+					<input type="text" maxlength="6" class="points" onkeyup="enterPoints(this)">
 				</div>
 				
 			</div>
