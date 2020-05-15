@@ -58,6 +58,7 @@
 					<p>Название: <?=$tests[$i]['taskName'];?></p>
 					<p>Автор: <?=$users[0]['name']?> <?=$users[0]['surname']?></p>
 				</div>
+				
 			</div>
 		<?php endfor;?>
 		<div id="right_block">
