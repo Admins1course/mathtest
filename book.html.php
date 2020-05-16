@@ -37,8 +37,15 @@
 			});
 		});
 	</script>
+	<script type='text/javascript'>
+	$(function (){
+	    var hg=$('#main_content').height();
+	    hg=hg+550+'px';
+	    $('body').height(hg);
+	});
+</script>
 </head>
-<body style="height: 2000px;">
+<body >
 	<div id="page">
 		<div class="forNewFormulas" style="display:none">
 			$$
@@ -79,6 +86,7 @@
 											</div>	
 
 										</div>
+										
 										
 										<p class="question"><?=$dataTest[$i]["total_task"]?></p>
 										<?php for ($j=1; $j<=count($dataTest[$i]["answer"]["radio"]);$j++){?>

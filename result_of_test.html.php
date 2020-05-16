@@ -20,8 +20,15 @@
 			})
 		})
 	</script>
+	<script type='text/javascript'>
+	$(function (){
+	    var hg=$('#main_content').height();
+	    hg=hg+550+'px';
+	    $('body').height(hg);
+	});
+</script>
 </head>
-<body style="height: 2000px;">
+<body >
 	<div id="page">
 			<div class="forNewFormulas" style="display:none">
 			$$

@@ -16,6 +16,9 @@
 //});
 	</script>
 	<script type="text/javascript">
+		document.getElementsByTagName('body').style.height = "200px"
+		</script>
+	<script type="text/javascript">
 	$(document).ready(function(){
 		
 		$('.exit_menu').click(function(){
@@ -50,7 +53,7 @@
 <script >
 $(function(){
 		$(window).scroll(function() {
-			if($(this).scrollTop() >= 501) {
+			if($(this).scrollTop() >= 550) {
 				$('#left_block').addClass('stickytop');
 			}
 			else{

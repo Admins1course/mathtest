@@ -13,6 +13,15 @@
 	</script>
 	<script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script>
 	<?php include 'includes/script_for_nav_menu.php';?>
+	<script type='text/javascript'>
+	$(function height(){
+
+	    var hg=$('.content_form').height();
+	    hg=hg+800+'px';
+	    $('body').height(hg);
+	});
+</script>
+
 	<script>
 		function auto_grow(element) {
     		element.style.height = "5px";
@@ -118,8 +127,8 @@
 	<div id="page">
 		<div id="main_content"><!--  Основной див  сайта -->
 			<?php if (isset($_COOKIE['name'])&&isset($_COOKIE['surname'])):?>
-				<form action="createtest_handler.php" method="post" enctype="multipart/form-data">
-					<div>
+				<form action="createtest_handler.php" method="post" enctype="multipart/form-data" >
+					<div class="content_form">
 						<div id="form_handler">
 							<input type="button" value="1 форма" id="form_1" class="form_btn form_btn_1">
 							<input type="button" value="2 форма" id="form_2" class="form_btn form_btn_2">
