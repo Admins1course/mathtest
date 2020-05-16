@@ -9,11 +9,12 @@
 	text-align: center;
 	margin-bottom: 10%;}
 .test_href{
-	width: 25%;
+	width: 200px;
 	height: 250px;
 	border: 1px solid red;
-	margin-left: 6%;
-	margin-top: 2%;
+	margin-left: 55px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 	float: left;
 	text-align: center;
 	background-color: #fce9a9;
@@ -28,9 +29,9 @@
 	background-color: #ffb833;}
 .search_area{
 	position: relative;
-	width: 30%;
-	height: 80%;
-	margin-top: 0.25%;
+	width: 300px;
+	height: 30px;
+	margin-top: 4px;
 	border: 1px solid red;
 	float: right;
 	margin-right: 2%;}
