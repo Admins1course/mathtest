@@ -115,8 +115,13 @@
 					</div>
 				<div id="zaklad_menu">
 				<?php for($i=1;$i<=count($dataTest);$i++):?>
-					<p class="zaklad_title ">Задание <?=$i?></p>
-					<img class="zaklad <?=$i?>" src="style/img/zacl.png" alt="" style="display:block;" >
+					
+					<div class="zaklad_div">
+						<p class="zaklad_title ">Задание <?=$i?></p>
+						<img class="zaklad <?=$i?>" src="style/img/zacl.png" alt="" style="display:block;" >
+						
+					</div>
+					
 				<?php endfor?>
 				</div>
 			</div>
