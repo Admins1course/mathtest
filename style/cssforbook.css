@@ -67,6 +67,14 @@ color: orange;}
 	margin-top: 4px;}
 .checkbox{
 	margin-bottom: 5%;}
+.answer{
+	float: left;
+	margin-left: 2%;
+	margin-top: 4px;}
+.textarea{
+	margin-bottom: 5%;}
+.input{
+	margin-bottom: 5%;}
 .possibleAnswer{
 	margin-left: 6%;}
 .submit_btn_div{
