@@ -13,8 +13,8 @@ body{
 	position: relative;
 	padding-bottom: 60px;
 	box-sizing: border-box;
-	
-	max-width: 100%;
+	width: 3000px;
+	max-width: 3000px;
 	min-width: 1280px;
 	margin:0 auto;
 	background-color: #fcfcfc;

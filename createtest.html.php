@@ -178,6 +178,8 @@
 				<textarea  oninput="auto_grow(this)"
 					name="task[total_task]"  class="main_text" style="resize:none" onfocus="getData()"> 
 				</textarea><!-- Общее задание -->
+				<div class="preview">
+				</div>
 				<div class="all_icon_load_slider">
 					<div class="swipe_btn swipe_left" onclick="swipe(this)" disabled>
 						<p>&lt;</p>
@@ -187,16 +189,14 @@
 					</div>
 					<div class="all_icon_load">
 						<div class="icontest">
-							<div class="preview">
-							</div>
+							
 							<img id="uploadPreview" style="width:240px; height: 240px;" />
 							<input id="inputfile" type="file" name="task[icontest][myPhoto]" onchange="PreviewImage(this);" accept="image/*" /><!-- Вставить изображение -->
 						</div>
 						<input type="button" class="button icontest" value="+"><!--  Кнопка добавить -->	
 					</div>
 				</div>
-				<div class="preview">
-				</div>			
+							
 					<p class="text_title">Варианты ответов</p>						
 				<div class="areatext">
 					<textarea oninput="auto_grow(this)" name="task[textarea_answer]" id="answer" style="resize:none" class="text_answer">
@@ -216,6 +216,8 @@
 				<textarea oninput="auto_grow(this)"
 					name="task[total_task]"class="main_text" style="resize:none" onfocus="getData()"> 
 				</textarea><!-- Общее задание -->
+				<div class="preview">
+				</div>	
 				<div class="all_icon_load_slider">
 					<div class="swipe_btn swipe_left" onclick="swipe(this)" disabled>
 						<p>&lt;</p>
@@ -226,8 +228,7 @@
 					<div class="all_icon_load">
 						<div class="icontest">
 
-							<div class="preview">
-							</div>
+							
 							<img id="uploadPreview" style="width:240px; height: 240px;" />
 							<input id="inputfile" type="file" name="task[icontest][myPhoto]" onchange="PreviewImage(this);" accept="image/*" /><!-- Вставить изображение -->
 
@@ -235,8 +236,7 @@
 						<input type="button" class="button icontest" value="+"><!--  Кнопка добавить -->	
 					</div>
 				</div>
-				<div class="preview">
-				</div>		
+					
 				<p class="text_title">Варианты ответов</p>						
 				<div class="radio">
 					<label class="radio_button">
@@ -250,7 +250,7 @@
 					<textarea  oninput="auto_grow(this)"
 						class="input_text" name="task[text_answer]" style="resize:none" onfocus="getData()">
 					</textarea><!--  задание1 -->
-					<div class="preview">
+					<div class="preview preview_location">
 					</div>
 				</div>
 				<input type="button" class="add_button_answer" value="+"><!--  Кнопка добавить -->
@@ -268,6 +268,8 @@
 				<textarea oninput="auto_grow(this)"
 					name="task[total_task]" class="main_text" style="resize:none" onfocus="getData()"> 
 				</textarea><!-- Общее задание -->
+				<div class="preview">
+				</div>
 				<div class="all_icon_load_slider">
 					<div class="swipe_btn swipe_left" onclick="swipe(this)" disabled>
 						<p>&lt;</p>
@@ -277,16 +279,14 @@
 					</div>
 					<div class="all_icon_load">
 						<div class="icontest">
-							<div class="preview">
-							</div>
+							
 							<img id="uploadPreview" style="width:240px; height: 240px;" />
 							<input id="inputfile" type="file" name="task[icontest][myPhoto]" onchange="PreviewImage(this);" accept="image/*" /><!-- Вставить изображение -->
 						</div>
 						<input type="button" class="button icontest" value="+"><!--  Кнопка добавить -->	
 					</div>
 				</div>
-				<div class="preview">
-				</div>
+				
 				<p class="text_title">Варианты ответов</p>	
 				<div class="check">
 					<label class="checkbox">
@@ -300,7 +300,7 @@
 					<textarea oninput="auto_grow(this)"
 						class="input_text" id="text" name="task[checkbox_answer][text_answer]" style="resize:none" onfocus="getData()">
 					</textarea><!--  задание1 -->
-					<div class="preview">
+					<div class="preview preview_location">
 					</div>
 				</div>
 				<input type="button" class="add_button_answer" value="+"><!--  Кнопка добавить -->
@@ -318,6 +318,8 @@
 				<textarea oninput="auto_grow(this)"
 					name="task[total_task]" class="main_text" style="resize:none" onfocus="getData()"> 
 				</textarea><!-- Общее задание -->
+				<div class="preview">
+				</div>
 				<div class="all_icon_load_slider">
 					<div class="swipe_btn swipe_left" onclick="swipe(this)" disabled>
 						<p>&lt;</p>
@@ -327,16 +329,14 @@
 					</div>
 					<div class="all_icon_load">
 						<div class="icontest">
-							<div class="preview">
-							</div>
+							
 							<img id="uploadPreview" style="width:240px; height: 240px;" />
 							<input id="inputfile" type="file" name="task[icontest][myPhoto]" onchange="PreviewImage(this);" accept="image/*" /><!-- Вставить изображение -->
 						</div>
 						<input type="button" class="button icontest" value="+"><!--  Кнопка добавить -->	
 					</div>
 				</div>
-				<div class="preview">
-				</div>
+				
 				<p class="text_title">Варианты ответов</p>	
 				<div class="inp">
 					<input  type="text" name="task[input_answer]" value="" placeholder="ответ" style="margin-left: 30%; height: 20px; margin-top: 2%; width: 40%;"> <!--  Поле для ввода ответа -->
