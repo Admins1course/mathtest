@@ -21,8 +21,8 @@
 	<script>
 		$(document).ready(function(){$('textarea').val('');})
 	</script>
-	<script src="js/create_form_for_test.js"></script>
-	<script src="js/mathjax_handler.js"></script>
+	<script src="js/create_form_for_test.js?<?=time()?>"></script>
+	<script src="js/mathjax_handler.js?<?=time()?>"></script>
 	<script>
 	$(document).ready(function() {
 		$('.formul_preview').click(function(){

@@ -6,6 +6,12 @@
 		if ((trim($value)!==false)&&(trim($value)!=='')) return 1;
 		else return 0;
 	}
+	echo "<pre>";
+	echo var_dump($_POST);
+	echo "</pre>";
+	echo "<pre>";
+	echo var_dump($_FILES);
+	echo "</pre>";
 	//основная часть обработчика
 	/*-----------------------------------------------СТРУКТУРА ТАБЛИЦ-----------------------------------------------------------
 	*
@@ -47,6 +53,7 @@
 			 'radio'=>0,
 			 'checkbox'=>0);
 	if (isset($_SESSION['data-user']['id'])){
+		echo '$_SESSION["data-user"]["id"]';
 		try{
 			$pdo->beginTransaction();	
 			//узнаем количество существующих у автора тестов
@@ -56,7 +63,7 @@
 			$count=$rows[0][0];
 			//увеличиваем количество на 1, это же количество станет новым id теста
 			$count++;
-				
+			echo "<br>count=$count";	
 			/*
 			*Общие правила определения правильно заполненных заданий:
 			*1)должно быть хоть что-то, относящееся к заданию, будь то текст или картинка
@@ -161,6 +168,7 @@
 				//4 блок: проверяем есть ли изображения
 				if (isset($_FILES[$k1])){
 					$file_exist=1;
+					echo "file_exist";
 				}
 				//2-й проход для внесения задания в список, который будет отправлен в базу данных
 				if (($task_exist||$file_exist)&&$answer_exist&&$points_exist){
@@ -357,7 +365,7 @@
 											  ]);
 			}
 			$pdo->commit();
-			header('Location: createtest.html.php');
+			//header('Location: createtest.html.php');
 		}
 		catch(PDOException $e){
 			$pdo->rollBack();
@@ -366,6 +374,6 @@
 			exit();
 		}
 	}
-	else{
+	/*else{
 		header('Location: createtest.html.php');
-	}
+	}*/

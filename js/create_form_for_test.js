@@ -19,10 +19,12 @@ $(document).ready(function(){
 		tasks++;
 		$('.radiobutton_template:hidden').clone('deepWithDataAndEvents').insertBefore('#form_handler').attr('id','task'+tasks).slideDown(1000,function(){
 			$('form .radiobutton_template:last .main_text').attr('name','task'+tasks+'[total_task]');
+			$('form .radiobutton_template:last #inputfile').attr('name','task'+tasks+'[icontest1][myPhoto]');
 			$('form .radiobutton_template:last .radio .button_radio').attr('name','task'+tasks+'[radio]').attr('value',1);
 			$('form .radiobutton_template:last .radio .input_text').attr('name','task'+tasks+'[text_answer1]');
 			lenghts['task'+tasks]={}
 			lenghts['task'+tasks]['radio_answer']=1;
+			lenghts['task'+tasks]['icontest']=1;
 			$('form .radiobutton_template:last .textForPoints').attr('for','points'+tasks);
 			$('form .radiobutton_template:last .points').attr('id','points'+tasks).attr('name','task'+tasks+'[points]');
 		});
@@ -32,10 +34,12 @@ $(document).ready(function(){
 		tasks++;
 		$('.checkboxbutton_template:hidden').clone('deepWithDataAndEvents').insertBefore('#form_handler').attr('id','task'+tasks).slideDown(1000,function(){
 			$('form .checkboxbutton_template:last .main_text').attr('name','task'+tasks+'[total_task]');
-			$('form .checkboxbutton_template:last .check .button_checkbox').attr('name','task'+tasks+'[checkbox_answer1][checkbox]');
+			$('form .checkboxbutton_template:last #inputfile').attr('name','task'+tasks+'[icontest1][myPhoto]');
+			$('form .checkboxbutton_template:last .check .button_checkbox').attr('name','task'+tasks+'[checkbox_answer1][checkbox]').attr('value',1);
 			$('form .checkboxbutton_template:last .check .input_text').attr('name','task'+tasks+'[checkbox_answer1][text_answer]');
 			lenghts['task'+tasks]={}
 			lenghts['task'+tasks]['checkbox_answer']=1;
+			lenghts['task'+tasks]['icontest']=1;
 			$('form .checkboxbutton_template:last .textForPoints').attr('for','points'+tasks);
 			$('form .checkboxbutton_template:last .points').attr('id','points'+tasks).attr('name','task'+tasks+'[points]');
 		});
@@ -44,10 +48,12 @@ $(document).ready(function(){
 	$('#form_4').click(function(){
 		tasks++;
 		$('.input_template:hidden').clone('deepWithDataAndEvents').insertBefore('#form_handler').attr('id','task'+tasks).slideDown(1000,function(){
-	$('form .input_template:last .main_text').attr('name','task'+tasks+'[total_task]');
+			$('form .input_template:last .main_text').attr('name','task'+tasks+'[total_task]');
+			$('form .input_template:last #inputfile').attr('name','task'+tasks+'[icontest1][myPhoto]');
 			$('form .input_template:last .inp input').attr('name','task'+tasks+'[input_answer]');
 			$('form .input_template:last .textForPoints').attr('for','points'+tasks);
 			lenghts['task'+tasks]={}
+			lenghts['task'+tasks]={'icontest':1};
 			$('form .input_template:last .points').attr('id','points'+tasks).attr('name','task'+tasks+'[points]');
 		});
 	});
@@ -80,6 +86,7 @@ $(document).ready(function(){
 	$('.add_button_answer').click(function(){
 		let className=$(this).closest('div').attr('class');
 		className=className.split(' ');
+		console.log(className);
 		let idName=$(this).closest('div').attr('id');
 		$('.'+className[1]+' .add_button_answer:hidden').prev().clone('deepWithDataAndEvents').css('display','none').insertBefore(
 			this).slideDown(1000).children().each(function(index,el){
@@ -93,10 +100,10 @@ $(document).ready(function(){
 					$(this).attr('name','task'+tasks+'[text_answer'+len+']');
 				}
 			}
-			else{
+			else if (className[1]=='checkboxbutton_template'){
 				if($(this).children('input').attr('id')=='checkboxbutton'){
 					len=++lenghts[idName]['checkbox_answer'];
-					$(this).attr('name','task'+tasks+'[checkbox_answer'+len+'][checkbox]');
+					$(this).children('input').attr('name','task'+tasks+'[checkbox_answer'+len+'][checkbox]').attr('value',len);
 				}
 				else if($(this).attr('class')=='input_text'){
 					len=lenghts[idName]['checkbox_answer'];
