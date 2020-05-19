@@ -1,35 +1,45 @@
+
 #area_book{
 	width: 100%;
-	height: 800px;
-	border: 1px solid black;}
+	margin-top: 60px;
+
+	height: auto;
+	position: relative;
+	}
 #book{
 	float: right;
 	width: 85%;
 	position: relative;
-	margin-top: 10%;
 	border: 5px solid orange;
-	height: 80%;
+	height: auto;
 	border-radius: 5px;
-	background-size: cover;}
-.zaklad{
-	margin-bottom: 10px;
-	margin-left: 8%;
-	width: 100%;
+	background-size: cover;
+margin-bottom: 60px;}
+.zaklad_div{
+	width: 110px;
 	height: 35px;
-	cursor: pointer;}
+	text-align: center;
+	margin-bottom: 10px;
+}
+.zaklad{
+	
+	
+	width: 110px;
+	height: 35px;
+	cursor: pointer;
+text-align:  center;}
 #zaklad_menu{
-	width: 13%;
-	margin-left: 0%;
-	margin-top: 10%;
+	width: 110px;
+	float: right;
+	
 	height: auto;}
 .zaklad_title:hover{
 color: orange;}
 .zaklad_title{
+	margin-left: 30px;
+	margin-top: 7px;
 	position: absolute;
-	left: 5%;
-	margin-top:0.9%;
-	cursor: pointer;
-	background: transparent;}
+	}
 #area_book{
 	/*display: none;*/}
 .button{
@@ -51,16 +61,30 @@ color: orange;}
 	margin-top: 0%;}
 .question{
 	font-weight: bold;
-	margin-bottom: 5%;
-	margin-left: 2%;}
+	margin-bottom:20px;
+	margin-left: 20px;}
 .radio_answer{
 	float: left;
-	margin-left: 2%;
+	margin-left: 20px;
 	margin-top: 4px;}
 .radio{
-	margin-bottom: 5%;}
+	margin-bottom: 20px;}
+.checkbox_answer{
+	float: left;
+	margin-left: 20px;
+	margin-top: 4px;}
+.checkbox{
+	margin-bottom: 20px;}
+.answer{
+	float: left;
+	margin-left: 20px;
+	margin-top: 4px;}
+.textarea{
+	margin-bottom: 20px;}
+.input{
+	margin-bottom: 20px;}
 .possibleAnswer{
-	margin-left: 6%;}
+	margin-left: 60px;}
 .submit_btn_div{
 	width: auto;
 	height: auto;
@@ -70,6 +94,7 @@ color: orange;}
 	padding-bottom: 10px;
 	padding-right: 5px;
 	padding-left: 5px;
+	margin-bottom: 20px;
 	background-color: orange;
 	border: 1px solid red;
 	cursor: pointer;}
@@ -79,3 +104,18 @@ color: orange;}
 	font-size: 18px;
 	color: red;
 	margin-left: 38%;}
+.image_answer_div{
+	width: 98%;
+	margin-left: 1%;
+	height: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	
+}
+.image_answer{
+	width: 240px;
+	height: 240px;
+	border: 1px solid orange;
+	margin: 0 auto;
+
+}

@@ -19,10 +19,17 @@
 	<script src="js/notifs.js"></script>
 	<?php endif;?>
     <?php include 'includes/script_for_nav_menu.php';?>
+    <script type='text/javascript'>
+	$(function (){
+	    var hg=$('body').height();
+	    hg=hg+550+'px';
+	    $('body').height(hg);
+	});
+</script>
 </head>
-<body style="height: 1500px;">
+<body >
 	<div id="page">
-		<div id="main_content" style="height: 700px;">
+		<div id="main_content" style="height: auto;">
 		</div>
 	</div>
 		<div class="slider midle">

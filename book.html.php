@@ -5,9 +5,9 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Cache-Control" content="no-cache" charset="UTF-8">
-	<link rel="stylesheet" href="style/Main.css" type="text/css">
+	<link rel="stylesheet" href="style/Main.css?<?=time()?>" type="text/css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="style/cssforbook.css" type="text/css">
+	<link rel="stylesheet" href="style/cssforbook.css?<?=time()?>" type="text/css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 	<script type="text/javascript" id="MathJax-script" async
 			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
@@ -37,8 +37,15 @@
 			});
 		});
 	</script>
+	<script type='text/javascript'>
+	$(function (){
+	    var hg=$('#main_content').height();
+	    hg=hg+550+'px';
+	    $('body').height(hg);
+	});
+</script>
 </head>
-<body style="height: 2000px;">
+<body >
 	<div id="page">
 		<div class="forNewFormulas" style="display:none">
 			$$
@@ -73,9 +80,18 @@
 								<?php } 
 								if ($dataTest[$i]["answer"]["radio"]!=0){?>
 									<div class="task radio <?=$i?>">
+										<div class="image_answer_div">
+											<div class="image_answer">
+													<img class="image" src="" alt="" style="height: 240px; width: 240px;">	
+											</div>	
+
+										</div>
+										
+										
 										<p class="question"><?=$dataTest[$i]["total_task"]?></p>
 										<?php for ($j=1; $j<=count($dataTest[$i]["answer"]["radio"]);$j++){?>
 											<div class="radio">
+												
 												<input type="radio" class="radio_answer" name="answers[task<?=$i?>]"
 												value="<?=$dataTest[$i]["answer"]["radio"][$j]["text_answer"]?>" onchange="registeringResponses()">
 												<p class="possibleAnswer"><?=$dataTest[$i]["answer"]["radio"][$j]["text_answer"]?></p>
@@ -107,8 +123,13 @@
 					</div>
 				<div id="zaklad_menu">
 				<?php for($i=1;$i<=count($dataTest);$i++):?>
-					<p class="zaklad_title ">Задание <?=$i?></p>
-					<img class="zaklad <?=$i?>" src="style/img/zacl.png" alt="" style="display:block;" >
+					
+					<div class="zaklad_div">
+						<p class="zaklad_title ">Задание <?=$i?></p>
+						<img class="zaklad <?=$i?>" src="style/img/zacl.png" alt="" style="display:block;" >
+						
+					</div>
+					
 				<?php endfor?>
 				</div>
 			</div>
