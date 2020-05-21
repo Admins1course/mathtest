@@ -16,17 +16,12 @@
 //});
 	</script>
 	<script type="text/javascript">
-		document.getElementsByTagName('body').style.height = "200px"
-		</script>
-	<script type="text/javascript">
 	$(document).ready(function(){
 		
 		$('.exit_menu').click(function(){
 			$('.exit_menu_body').stop().slideToggle(500);
 		});
 	});
-
-
 	</script>
 	<script>
 	$(document).ready(function($) {

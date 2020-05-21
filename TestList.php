@@ -51,25 +51,23 @@
 					</div>
 				</div>
 			</div>
+			<div id="main_content">
 			<?php 
 			$sql='SELECT idAuthor,idTest,taskName FROM tests';
 			$result=$pdo->query($sql);
-			$tests=$result->fetchAll();
-			for ($i=0;$i<count($tests);$i++):
+			$tests=$result->fetchAll(PDO::FETCH_ASSOC);
+			for($i=0;$i<count($tests);$i++){
 				$sql="SELECT name,surname FROM users WHERE id=:idAuthor";
 				$result=$pdo->prepare($sql);
 				$result->execute(['idAuthor'=>$tests[$i]['idAuthor']]);
-				$users=$result->fetchAll();?>
-				<div id="main_content">
+				$users=$result->fetchAll(PDO::FETCH_ASSOC);?>
 					<a href="book.html.php?idUser=<?=$tests[$i]['idAuthor']?>&idTest=<?=$tests[$i]['idTest']?>">
 					<div class="test_href">
 						<p>Название: <?=$tests[$i]['taskName'];?></p>
 						<p>Автор: <?=$users[0]['name']?> <?=$users[0]['surname']?></p>
 					</div>
-					
-					
-				</div>
-			<?php endfor;?>
+			<?php }?>
+			</div>
 			<div id="right_block">
 				<ul class="testlist">
 					<li class="test_name"><a href="" class="test_title">Математический анализ</a></li>

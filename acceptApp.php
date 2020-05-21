@@ -40,7 +40,7 @@ if ($_POST){
 		$pdo->commit();
 		echo json_encode(['answer'=>'success']);
 	}
-	catch(Exciption $e){
+	catch(Exception $e){
 		$pdo->rollBack();
 	}
 }

@@ -6,12 +6,6 @@
 		if ((trim($value)!==false)&&(trim($value)!=='')) return 1;
 		else return 0;
 	}
-	echo "<pre>";
-	echo var_dump($_POST);
-	echo "</pre>";
-	echo "<pre>";
-	echo var_dump($_FILES);
-	echo "</pre>";
 	//основная часть обработчика
 	/*-----------------------------------------------СТРУКТУРА ТАБЛИЦ-----------------------------------------------------------
 	*
@@ -53,7 +47,6 @@
 			 'radio'=>0,
 			 'checkbox'=>0);
 	if (isset($_SESSION['data-user']['id'])){
-		echo '$_SESSION["data-user"]["id"]';
 		try{
 			$pdo->beginTransaction();	
 			//узнаем количество существующих у автора тестов
@@ -63,7 +56,6 @@
 			$count=$rows[0][0];
 			//увеличиваем количество на 1, это же количество станет новым id теста
 			$count++;
-			echo "<br>count=$count";	
 			/*
 			*Общие правила определения правильно заполненных заданий:
 			*1)должно быть хоть что-то, относящееся к заданию, будь то текст или картинка
@@ -177,8 +169,6 @@
 					$checkboxCount=1;
 					
 					if (!$db_flags['tests']){
-						echo 'q';
-						echo "<br>";
 						$db_flags['tests']=1;
 						$sql="INSERT INTO tests VALUES (:idUser,:count,'new_task',NOW())";
 						$result=$pdo->prepare($sql);
@@ -187,8 +177,6 @@
 									
 					//если нет таблицы TOTALTASKTABLE, создаем ее
 					if (!$db_flags['totaltasktable']){
-						echo 'h';
-						echo "<br>";
 						$db_flags['totaltasktable']=1;
 						$sql="CREATE TABLE totaltasktable_".$_SESSION['data-user']['id']."_".$count."(
 								id_Task	int not null,
@@ -197,18 +185,19 @@
 							  )DEFAULT CHARACTER SET utf8 ENGINE=InnoDB";
 						$pdo->exec($sql);
 					}
-					if ($task_exist){
-						echo "w";
-						echo '<br>';
+					if ($task_exist||$file_exist){
+						if ($task_exist){
 						//добавляем запись о новом задании				
-						$sql="INSERT INTO totaltasktable_".$_SESSION['data-user']['id']."_".$count." (id_Task) VALUES (".$numberTask.",:data)";
-						$result=$pdo->prepare($sql);
-						$result->execute(["data"=>$_POST[$k1]["total_task"]]);
+						$sql="INSERT INTO totaltasktable_".$_SESSION['data-user']['id']."_".$count." (id_Task,total_task) VALUES (".$numberTask.",:data)";
+						$result=$pdo->prepare($sql)->execute(["data"=>$_POST[$k1]["total_task"]]);
+						}
+						else{
+							$sql="INSERT INTO totaltasktable_".$_SESSION['data-user']['id']."_".$count." (id_Task) VALUES (".$numberTask.")";
+							$result=$pdo->exec($sql);
+						}
 					}
 					//если нет таблицы answers, то создаем ее
 					if (!$db_flags['answers']){
-						echo "e";
-						echo "<br>";
 						$db_flags['answers']=1;
 						$sql="CREATE TABLE answers_".$_SESSION['data-user']['id']."_".$count."(
 								id_Task tinyint not null,
@@ -282,7 +271,7 @@
 									$sql="CREATE TABLE checkbox_".$_SESSION['data-user']['id']."_".$count."(
 											id_Task int not null,
 											idCheckbox int not null,
-											checbox tinyint DEFAULT 0,
+											checkbox tinyint DEFAULT 0,
 											text_answer text not null
 										  )";
 									$pdo->exec($sql);
@@ -309,6 +298,9 @@
 						}
 					}
 					if (isset($_FILES[$k1])){
+						$sql="UPDATE totaltasktable_".$_SESSION['data-user']['id'].'_'.$count.'
+								SET icontest=1 WHERE id_Task=:id_Task';
+						$pdo->prepare($sql)->execute(['id_Task'=>$numberTask]);
 						if (!$db_flags['icontest']){
 							$db_flags['icontest']=1;
 							$sql="CREATE TABLE icontest_".$_SESSION['data-user']['id']."_".$count."(
@@ -319,18 +311,15 @@
 							$pdo->exec($sql);
 						}
 						$numberOfFile=0;
-						echo "<pre>";
-						echo var_dump($_FILES);
-						echo "</pre>";
 						foreach($_FILES[$k1]['tmp_name'] as $k2=>$v2){
 							if(is_uploaded_file($_FILES[$k1]['tmp_name'][$k2]['myPhoto'])){
-								mkdir('./user-img/'.$_SESSION['data-user']['id'].'/'.$numberTask,0777,true);
+								mkdir('./user-img/'.$_SESSION['data-user']['id'].'/'.$count.'/'.$numberTask,0777,true);
 								$nameAndType=explode('.',$_FILES[$k1]['name'][$k2]['myPhoto']);
 								$numberOfFile++;
 								if(move_uploaded_file
 								(
 									$_FILES[$k1]['tmp_name'][$k2]['myPhoto'],
-									__DIR__ . DIRECTORY_SEPARATOR .'user-img'. DIRECTORY_SEPARATOR .$_SESSION['data-user']['id']. DIRECTORY_SEPARATOR .$numberTask. DIRECTORY_SEPARATOR .$numberOfFile.".".end($nameAndType)
+									__DIR__ . DIRECTORY_SEPARATOR .'user-img'. DIRECTORY_SEPARATOR .$_SESSION['data-user']['id']. DIRECTORY_SEPARATOR .$count. DIRECTORY_SEPARATOR .$numberTask. DIRECTORY_SEPARATOR .$numberOfFile.".".end($nameAndType)
 								)){
 									$idIcontest=str_replace('icontest',"",$k2);
 									$sql="INSERT INTO icontest_".$_SESSION['data-user']['id']."_".$count." VALUES(
@@ -343,16 +332,11 @@
 								}
 							}
 						}
-						echo "<pre>";
-						echo var_dump(scandir('.'));
-						echo "</pre>";
 					}
 					$numberTask++;
 				}
 			}
 			if ($numberTask>1){
-				echo '<br>';
-				echo "hey";
 				$sql="INSERT INTO tasktest_".$_SESSION['data-user']['id']." 
 						VALUES(:id_Test,:countTask,:mark_1,:mark_2,:mark_3,:mark_4,:mark_5)";
 				$pdo->prepare($sql)->execute(['id_Test'=>$count,
@@ -365,7 +349,7 @@
 											  ]);
 			}
 			$pdo->commit();
-			//header('Location: createtest.html.php');
+			header('Location: createtest.html.php');
 		}
 		catch(PDOException $e){
 			$pdo->rollBack();
@@ -374,6 +358,6 @@
 			exit();
 		}
 	}
-	/*else{
+	else{
 		header('Location: createtest.html.php');
-	}*/
+	}
