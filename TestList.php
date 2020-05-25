@@ -10,7 +10,7 @@
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <?php include 'includes/script_for_nav_menu.php';?>	
 <script type='text/javascript'>
-	$(function (){
+	$(document).ready(function (){
 	    var hg=$('#main_content').height();
 	    hg=hg+550+'px';
 	    $('body').height(hg);

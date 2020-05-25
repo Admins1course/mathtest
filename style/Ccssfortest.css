@@ -59,24 +59,55 @@ div[class="icontest"]{
 	height: auto;	
 	width: 100%;
 	overflow-x: hidden;}
-.swipe_btn:hover{
-	opacity: 0.9;}
+/*.swipe_btn:hover{
+	opacity: 0.9;}*/
 .swipe_btn{
 	position: absolute;
 	width: auto;
 	height: auto;
 	padding-top: 90px;
 	padding-bottom: 90px;
-	padding-right: 6px;
-	padding-left: 6px;
+	padding-right: 3px;
+	padding-left: 3px;
 	background-color: orange;
-	font-size: 30px;
+	font-size: 25px;
 	opacity: 0.3;
-	margin-top: 70px;
-	cursor: pointer;}
+	margin-top: 63px;
+	}
 .swipe_right{
-	margin-left: 96.3%;}
- #inputfile{
+	right:0px; 
+}
+.active_swipe{
+	background-color: orange;
+	opacity: 0.8;
+	cursor: pointer;
+}
+.active_swipe:hover{
+	opacity: 1;
+	background-color: darkorange;
+
+}
+.arrow_div_task{
+	width: 100%;
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.arrowupdown{
+	margin: 0 auto;
+	border:1px solid darkorange;
+	background-color: orange;
+	font-size: 25px;
+	opacity: 0.4;
+	width: 200px;
+	height: 30px;
+}
+.div_scroll_answer{
+	width: 100px;
+}
+
+#inputfile{
 	margin-top: 2%;
 	margin-left: 0;}/* Кнопка для добавления файлов*/
 .areatext{
