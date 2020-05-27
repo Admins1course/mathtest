@@ -117,7 +117,7 @@
 							<input type="hidden" name="answers[count]" value="<?=count($dataTest)?>">
 							<div id="error" ></div>
 							<div class="submit_btn_div">
-								<input type="button" id="answer" class="submit_btn" value="Продолжить">
+								<input type="button" id="answer" class="submit_btn active_btn" value="Продолжить">
 							</div>
 						</form>
 					</div>

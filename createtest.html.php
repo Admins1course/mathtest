@@ -139,12 +139,12 @@
 				<form action="createtest_handler.php" method="post" enctype="multipart/form-data" >
 					<div class="content_form">
 						<div id="form_handler">
-							<input type="button" value="1 форма" id="form_1" class="form_btn form_btn_1">
-							<input type="button" value="2 форма" id="form_2" class="form_btn form_btn_2">
-							<input type="button" value="3 форма" id="form_3" class="form_btn form_btn_3">
-							<input type="button" value="4 форма" id="form_4" class="form_btn _4">
+							<input type="button" value="1 форма" id="form_1" class="form_btn active_btn form_btn_1">
+							<input type="button" value="2 форма" id="form_2" class="form_btn active_btn form_btn_2">
+							<input type="button" value="3 форма" id="form_3" class="form_btn active_btn form_btn_3">
+							<input type="button" value="4 форма" id="form_4" class="active_btn form_btn _4">
 						</div>
-						<input type="button" value="Продолжить" class="popup-open">
+						<input type="button" value="Продолжить" class="popup-open active_btn">
 						<div id="nameTest" class="popup-fade">
 							<div class="popup">
 								<p class="popup_text">Введите название теста</p>
@@ -171,8 +171,8 @@
 								<p>Для получения оценки 5 достаточно баллов:<output for="range_5"></output></p>						
 								<datalist id="points_label">
 								</datalist>
-								<input type="button" value="Отменить" class="form_btn form_btn_close form_btn_send">
-								<input type="submit" value="Отправить" class="form_btn form_btn_send">
+								<input type="button" value="Отменить" class="form_btn form_btn_close form_btn_send active_btn">
+								<input type="submit" value="Отправить" class="form_btn form_btn_send active_btn">
 							</div>
 						</div>
 					</div>

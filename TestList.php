@@ -47,7 +47,7 @@
 						<input type="text" class="search_bar">	
 					</div>
 					<div class="search_send">
-						<p class="search_send_title">поиск</p>
+						<input type="button" class="search_send_title active_btn" value="Поиск">
 					</div>
 				</div>
 			</div>

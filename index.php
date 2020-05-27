@@ -62,7 +62,7 @@
 				<div class="search_area">
 					<div class="search">
 						<input type="search" class="search_bar" onkeyup="searchControl(this)" onchange="searchControl(this)">
-						<input type="button" class="search_send_title " value="Поиск" onclick="searchPeople()">
+						<input type="button" class="search_send_title active_btn" value="Поиск" onclick="searchPeople()">
 					<div class="search_send">
 
 						<input type="button" class="search_type " id="pasive_btn" value="Друзья" onclick="callbackFunction($(this),$(this).next())">
