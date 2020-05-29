@@ -35,6 +35,7 @@
 									</div>
 								</div>
 							</div>
+							<a href="allNotifications.html.php">Посмотреть прочтенные оповещения</a>
 						</div>
 					
 
@@ -48,17 +49,17 @@
 							
 							<div class="load_avatar_fade">
 								<div class="load_avatar">
-									<div class="preview_image_div">
-										<div class="preview_image" id="img-preview" >
-											
-										</div>
-										
+									<div>
+										<img id="avatar-full-size" class="preview_image_div">
+										<img id="file-img-preview"class="preview_image">
 									</div>
-									<div class="load_image">
-									  <label for="custom-file-upload" class="filupp">
+									
+									<div class="load_image" id="load_image">
+									  <label for="custom-file-upload" class="filupp" id="filupp">
 									    <span class="filupp-file-name js-value" >Загрузить файл</span>
-									    <input type="file" name="attachment-file " value="1"  id="custom-file-upload"  >
+									    <input type="file" name="attachment-file " id="custom-file-upload"  accept="image/*">
 									  </label>
+									  <span class="Loading-image-text" id="Loading-image-text" style="display:none">ПОДОЖДИТЕ ИДЁТ ЗАГРУЗКА...</span>
 									</div>
 		
 									
@@ -67,7 +68,7 @@
 
 								
 							</div>
-							<div class="profile_avatar load_avatar_open">
+							<div class="profile_avatar load_avatar_open" id="profile_avatar">
 								<p class="plus_photo">+</p>
 							</div>
 							<div class="user_profile_title">
@@ -77,7 +78,7 @@
 							<div class="exit_menu_body" style="display:none">
 
 								<div class="exit_menu_elements">
-									<p class="exit_menu_stat">Роль: <?php $_SESSION['data-user']['root'];?></p>
+									<p class="exit_menu_stat">Роль: <?=$_SESSION['data-user']['root'];?></p>
 								</div>
 								
 								<div class="exit_title exit_menu_elements">

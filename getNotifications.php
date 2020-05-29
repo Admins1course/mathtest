@@ -4,9 +4,15 @@
 	if ($_SESSION['data-user']){
 		try{
 			$pdo->beginTransaction();
-			$sql="SELECT message,add_friends FROM `notifications_".$_SESSION['data-user']['id']."`
-				WHERE _unread=1 AND cancel_add=0 FOR UPDATE";
-			$result=$pdo->query($sql);
+			$sql="SELECT message,add_friends FROM `notifications`
+				WHERE id_User=:idUser AND _unread=1 AND cancel_add=0 FOR UPDATE";
+			$result=$pdo->prepare($sql);
+			$result->execute(['idUser'=>$_SESSION['data-user']['id']]);
+			$json['notif']=$result->fetchAll(PDO::FETCH_ASSOC);
+			$sql="SELECT id_Friend FROM friends WHERE id_User=:idUser AND waiting=0";
+			$result=$pdo->prepare($sql);
+			$result->execute(['idUser'=>$_SESSION['data-user']['id']]);
+			$json['friends']=$result->fetchAll(PDO::FETCH_ASSOC);
 			$pdo->commit();
 			echo json_encode($result->fetchAll(PDO::FETCH_ASSOC));
 		}

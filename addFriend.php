@@ -2,32 +2,35 @@
 include 'includes/db.inc.php';
 if ($_POST){
 	try{
-		
 		$pdo->beginTransaction();
-		$sql="SELECT add_friends FROM notifications_".$_POST['idFriend']."
-				WHERE add_friends=:id FOR UPDATE";
+		$sql="SELECT add_friends FROM notifications
+				WHERE id_User=:idFriend AND add_friends=:id FOR UPDATE";
 		$result=$pdo->prepare($sql);
-		$result->execute(['id'=>$_POST['myid']]);
-		if ($result->fetchAll(PDO::FETCH_ASSOC)==[]){
-			$sql="INSERT INTO notifications_".$_POST['idFriend']."(
-					message,_unread,add_friends,cancel_add,dateOfSend) VALUES(
-					'".$_POST['message']."',1,'".$_POST['myid']."',0,NOW())";
-			$pdo->exec($sql);
+		$result->execute(['idFriend'=>$_POST['idFriend'],
+						  'id'=>$_POST['myid']]);
+		if ($result->fetchAll(PDO::FETCH_ASSOC)===[]){
+			$sql="INSERT INTO notifications(
+					id_User,message,_unread,add_friends,cancel_add,dateOfSend) VALUES(
+					:idFriend,:message,1,:myid,0,NOW())";
+			$result=$pdo->prepare($sql);
+			$result->execute(['idFriend'=>$_POST['idFriend'],
+							  'message'=>$_POST['message'],
+							  'myid'=>$_POST['myid']]);
 		}
 		else{
-			$sql="UPDATE notifications_".$_POST['idFriend']."
-					SET _read=0, _unread=1, cancel_add=0, dateOfSend=NOW()
-					WHERE add_friends=:id";
+			$sql="UPDATE notifications
+					SET _unread=1, cancel_add=0, dateOfSend=NOW()
+					WHERE id_User=:idFriend AND add_friends=:id";
 			$result=$pdo->prepare($sql);
-			$result->execute(['id'=>$_POST['myid']]);
+			$result->execute(['idFriend'=>$_POST['idFriend'],
+							  'id'=>$_POST['myid']]);
 		}
-		if ($_POST['root']==="студент") $root="студенты";
-		else $root="преподаватели";
-		$message=explode(" ",$_POST['message']);
-		$sql="INSERT INTO friends_".$_POST['myid']."(
-				id_Friend,waiting,name,surname,".$root.") VALUES(
-				".$_POST['idFriend'].",1,'".$message[0]."','".$message[1]."',1)";
-		$pdo->exec($sql);
+		$sql="INSERT INTO friends(
+				id_User,id_Friend,waiting) VALUES(
+				:myid, :idFriend, 1)";
+		$result=$pdo->prepare($sql);
+		$result->execute(['myid'=>$_POST['myid'],
+						  'idFriend'=>$_POST['idFriend']]);
 		echo json_encode(['answer'=>'success']);
 		$pdo->commit();
 	}

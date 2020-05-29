@@ -3,7 +3,7 @@ var dataNotifications=0;
 var clearNot=true;
 function notifications(){
 	$.ajax({
-		url:document.location.origin+"/mathtest/getNotifications.php",
+		url:document.location.origin+"/getNotifications.php",
 		cache:false,
 		dataType:'json',
 		type:'POST',
@@ -11,7 +11,7 @@ function notifications(){
 		success:function(data){
 			if ((clearNot)||(data!==[])){
 				dataNotifications=data;
-				console.log(dataNotifications);
+				console.log(data);
 				if (data.length==0) return;
 				if (data.length>9) count="9+";
 				else count=data.length;
@@ -28,10 +28,11 @@ function notifications(){
 					htmlMessage+='<div class="notifications_bar"><p class="text_notifications_bar">';
 					htmlMessage+=data[i]['message'];
 					htmlMessage+='</p>';
-					htmlMessage+='<input type="button" id="userId'+data[i]['add_friends']+'" value="Принять" onclick="acceptApp(this)">';
+					htmlMessage+='<div class="button_friend"><input type="button" id="userId'+data[i]['add_friends']+'" value="Принять" onclick="acceptApp(this)">';
 					htmlMessage+='<input type="button" id="userId'+data[i]['add_friends']+'" value="Отменить" onclick="cancelApp(this)">';
-					htmlMessage+='</div>';
+					htmlMessage+='</div></div>';
 				}
+				htmlMessage+='<a href="allNotifications.html.php">Посмотреть прочтенные оповещения</a>'
 				$('.notifications_body').html(htmlMessage);
 				clearNot=false;
 			}
@@ -48,7 +49,7 @@ $(document).ready(function(){$('#notif').click(function(){
 			htmlMessage+='<div class="notifications_body_text">';
 			htmlMessage+='<p class="text_notification_body">Оповещения</p>';
 			htmlMessage+='</div><div class="notifications_body_title_element_bar">'
-			htmlMessage+='</div></div></div>';
+			htmlMessage+='</div></div></div><a href="allNotifications.html.php">Посмотреть прочтенные оповещения</a>';
 			$('.notifications_body').html(htmlMessage);
 			unreadNot();
 		}
@@ -63,7 +64,7 @@ function unreadNot(){
 			dataNot[String(i)]=dataNotifications[i];
 		}
 		$.ajax({
-			url:document.location.origin+"/mathtest/unreadNotifications.php",
+			url:document.location.origin+"/unreadNotifications.php",
 			cache:false,
 			type:'POST',
 			dataType:'json',
@@ -78,7 +79,7 @@ function unreadNot(){
 function acceptApp(element){
 	$idFriend=$(element).attr('id').replace('userId','');
 	$.ajax({
-		url:document.location.origin+"/mathtest/acceptApp.php",
+		url:document.location.origin+"/acceptApp.php",
 		cache:false,
 		type:'POST',
 		dataType:'json',

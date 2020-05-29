@@ -1,13 +1,12 @@
-<?php session_start();?>
+<?php @session_start();?>
 <script>
 function addFriend(element){
 	$idFriend=$(element).attr('id').replace('user','');
 	friendMessage={message:<?="'".$_SESSION['data-user']['name']."'"?>+' '+<?="'".$_SESSION['data-user']['surname']."'"?>+' хочет добавить вас в друзья',
 				   myid:<?="'".$_SESSION['data-user']['id']."'"?>,
-				   idFriend:$idFriend,
-				   root:$(element).attr('name')};
+				   idFriend:$idFriend};
 	$.ajax({
-		url:document.location.origin+"/mathtest/addFriend.php",
+		url:document.location.origin+"/addFriend.php",
 		cache:false,
 		dataType:'json',
 		data:friendMessage,
@@ -22,7 +21,7 @@ function cancelAddFriend(element){
 	$idFriend=$(element).attr('id').replace('user','');
 	dataPost={id:$idFriend};
 	$.ajax({
-		url:document.location.origin+"/mathtest/cancelAddFriend.php",
+		url:document.location.origin+"/cancelAddFriend.php",
 		cache:false,
 		type:'POST',
 		dataType:'json',

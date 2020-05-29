@@ -25,7 +25,6 @@ body{
 
 #main_content{
 	background-color: #fff;
-	height: 300px;
 	
 
 }
@@ -320,6 +319,7 @@ input[name='r']{
 	border-radius: 50%;
 	background-color: white;
 	cursor: pointer;
+	background-size: cover;
 }
 .profile_avatar:hover{
 	background-color: darkorange;
@@ -375,7 +375,7 @@ input[name='r']{
 	z-index: 99999;
 	opacity: 1;	
 	font-size: 16px;
-	text-align: center;
+	
 
 }
 .load_avatar_close {
@@ -505,19 +505,33 @@ input[name='r']{
 	word-wrap:normal
 }
 
+.Loading-image-text{
+	width:auto;
+	padding: 5px;
+	height: auto;
+	background: #242424;
+	border: 2px solid orange;
+	color: orange;
+	font-size:19px;
+	font-weight:700;
+	float: left;
+	
+}
+
 .preview_image_div{
 	position: relative;
 	width: 250px;
 	height: 300px;
 	border: 1px dashed orange;
-	margin-left: 10px;
+	float:left;
 }
 .preview_image{
 	width: 160px;
 	height: 160px;
 	border: 2px solid orange;
 	border-radius: 50%;
-	margin-left: 290px;
+	margin-bottom: 100px;
+	
 	margin-top: 70px;
 }
 

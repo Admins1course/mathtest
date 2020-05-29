@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Cache-Control" content="no-cache" charset="UTF-8">
-	<link rel="stylesheet" href="style/NevRegistratoin.css?<?=time()?>" type="text/css">
+	<link rel="stylesheet" href="style/NevRegistratoin.css?<?time()?>" type="text/css">
 
 	<title>Регистрация</title>
 	
@@ -18,30 +18,24 @@
 	});
 	</script>
 </head>
-<body style="width: 2000px; height: 1000px;">
+<body>
 
     <!--эти 3 элемента появляются при вводе отсутствии данных-->
-    
+    <div class="popup-fade" style="display:none">
+		<div class="popup">
+			<p>Заполните поле</p>
+		</div>		
+	</div>
 	
 	<div class="container">
-		<div class="popup-fade" style="display:none">
-			<div class="popup">
-				<p>Заполните поле</p>
-			</div>		
-		</div>
 		<img class="avatar" src="style/img/regavatar.png" width="100" height="100" alt="">
-		<div class="enter_text_div">
-			<div class="enter_text">РЕГИСТРАЦИЯ</div>
-		</div>
 		<form action="nevRegistaration.html.php" method="post" autocomplete="off">
 			<div class="dws-input">
-				
 				<img class="userpng" src="style/img/user.png" width="20" height="20" alt="">
 				<input type="text" id="name" name="name" placeholder="Введите имя" maxlength="20">
 				<p id="p_name" style="display:none">Разрешено использовать только символы русского и английского алфавита, цифры и знак подчеркивания</p>
 			</div>
 			<div class="dws-input">
-				
 				<img class="userpng" src="style/img/user.png" width="20" height="20" alt="">
 				<input type="text" id="surname" name="surname" placeholder="Введите фамилию" maxlength="20">
 				<p id="p_surname" style="display:none">Разрешено использовать только символы русского и английского алфавита, цифры и знак подчеркивания</p>
