@@ -4,8 +4,7 @@ function addFriend(element){
 	$idFriend=$(element).attr('id').replace('user','');
 	friendMessage={message:<?="'".$_SESSION['data-user']['name']."'"?>+' '+<?="'".$_SESSION['data-user']['surname']."'"?>+' хочет добавить вас в друзья',
 				   myid:<?="'".$_SESSION['data-user']['id']."'"?>,
-				   idFriend:$idFriend,
-				   root:$(element).attr('name')};
+				   idFriend:$idFriend};
 	$.ajax({
 		url:document.location.origin+"/addFriend.php",
 		cache:false,

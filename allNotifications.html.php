@@ -1,8 +1,6 @@
 <?php require_once 'includes/db.inc.php';
-	  require_once 'registration_control.php';
-	  require_once 'includes/incl_session.inc.php';
-	  include_once 'includes/getUserImage.inc.php';
-	  require_once 'includes/getFriends.inc.php'?>
+	  require_once 'allNotifications_handler.php';
+	  require_once 'includes/incl_session.inc.php';?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,11 +13,6 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-	<?php
-	if ($path){
-	    include_once 'includes/load_user_image.inc.php';
-	}
-	?>
 	<?php if (isset($_SESSION['data-user'])):
 	    include 'includes/searchPeople.js.inc.php';
 	    include 'includes/friendsControl.js.inc.php';?>
@@ -32,12 +25,25 @@
 	    hg=hg+550+'px';
 	    $('body').height(hg);
 	});
-	</script>
-	<script src="js/load_avatars.js?<?=time();?>"></script>
+</script>
 </head>
 <body>
 	<div id="page">
 		<div id="main_content" style="height: auto;">
+		<?php for($i=0;$i<count($data['notif']);$i++){?>
+			<div class="notifications_bar">
+				<p class="text_notifications_bar"><?=$data['notif'][$i]['dateOfSend']?> <?=$data['notif'][$i]['message']?>.
+				<?php if (!in_array($data['notif'][$i]['add_friends'],$data['friends'])):?>
+				</p>
+				<div class="button_friend">
+					<input type="button" id="userId<?=$data['notif'][$i]['add_friends']?>" value="Принять" onclick="acceptApp(this)">
+					<input type="button" id="userId<?=$data['notif'][$i]['add_friends']?>" value="Отменить" onclick="cancelApp(this)">
+				</div>
+				<?else:?>
+				Вы приняли заявку.</p>
+				<?php endif?>
+			</div>
+		<?php }?>
 		</div>
 	</div>
 		<div class="slider midle">
@@ -95,14 +101,6 @@
 								<option label="Преподаватели"></option>
 							</select>
 							<ul id="friendsList">
-							<?php if ($friends!=[]):
-								for ($i=0;$i<count($friends);$i++):?>
-								<li id="userId<?=$friends[$i]['id_Friend']?>"><?=$friends[$i]['name']?> <?=$friends[$i]['surname']?></li>	
-							<?php endfor;
-							endif;
-							?>
-							</ul>
-							<ul id="searchList" style="display:none">
 							</ul>
 						</div>
 					<?php endif;?>

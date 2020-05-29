@@ -4,15 +4,17 @@ if ($_POST){
 	session_start();
 	try{
 		$pdo->beginTransaction();
-		$sql="DELETE FROM friends_".$_SESSION['data-user']['id']."
-				WHERE id_Friend=:id";
+		$sql="DELETE FROM friends
+				WHERE id_User=:idUser AND id_Friend=:id";
 		$result=$pdo->prepare($sql);
-		$result->execute(['id'=>$_POST['id']]);
-		$sql="UPDATE notifications_".$_POST['id']."
-				SET _unread=0, _read=1, cancel_add=1, dateOfSend=NOW()
-				WHERE add_friends=:id";
+		$result->execute(['idUser'=>$_SESSION['data-user']['id'],
+						  'id'=>$_POST['id']]);
+		$sql="UPDATE notifications
+				SET _unread=0, cancel_add=1, dateOfSend=NOW()
+				WHERE id_User=:idUser AND add_friends=:id";
 		$result=$pdo->prepare($sql);
-		$result->execute(['id'=>$_SESSION['data-user']['id']]);
+		$result->execute(['idUser'=>$_POST['id'],
+						  'id'=>$_SESSION['data-user']['id']]);
 		$pdo->commit();
 		echo json_encode($_POST);
 	}

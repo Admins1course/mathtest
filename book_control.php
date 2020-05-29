@@ -4,14 +4,18 @@ if (isset($_SESSION['data-user']['name'])){
 	if (isset($_REQUEST['idUser'])&&isset($_REQUEST['idTest'])){
 		$idUser=$_REQUEST['idUser'];
 		$idTest=$_REQUEST['idTest'];
-		$query="SELECT countTask FROM tasktest_".$idUser." WHERE id_Test=".$idTest;
-		$result=$pdo->query($query);
+		$query="SELECT countTask FROM tasktest WHERE id_User=:idUser AND id_Test=:idTest";
+		$result=$pdo->prepare($query);
+		$result->execute(['idUser'=>$idUser,
+						  'idTest'=>$idTest]);
 		$tasks=$result->fetchAll();
 		$dataTest=[];
 		if (@count($tasks)){
 			try{
-				$query="SELECT total_task,icontest FROM totaltasktable_".$idUser."_".$idTest;
-				$result=$pdo->query($query);
+				$query="SELECT total_task,icontest FROM totaltasktable WHERE id_User=:idUser AND id_Test=:idTest";
+				$result=$pdo->prepare($query);
+				$result->execute(['idUser'=>$idUser,
+								  'idTest'=>$idTest]);
 				$data=$result->fetchAll(PDO::FETCH_ASSOC);
 				for ($i=1; $i<=(int)$tasks[0]['countTask']; $i++){
 					$dataTest[$i]=[];
@@ -23,8 +27,12 @@ if (isset($_SESSION['data-user']['name'])){
 					}
 					if ($data[$i-1]["icontest"]==1){
 						$dataTest[$i]['icontest']=[];
-						$query="SELECT myPhoto FROM icontest_".$idUser."_".$idTest." WHERE myPhoto IS NOT NULL AND id_Task=".$i;
-						$result=$pdo->query($query);
+						$query="SELECT myPhoto FROM icontest
+								WHERE id_User=:idUser AND id_Test=:idTest AND myPhoto IS NOT NULL AND id_Task=:idTask";
+						$result=$pdo->prepare($query);
+						$result->execute(['idUser'=>$idUser,
+										  'idTest'=>$idTest,
+										  'idTask'=>$i]);
 						$icontest=$result->fetchAll(PDO::FETCH_ASSOC);
 						for ($j=1;$j<=count($icontest);$j++){
 							$dataTest[$i]['icontest'][$j]=$icontest[$j-1]['myPhoto'];
@@ -32,8 +40,10 @@ if (isset($_SESSION['data-user']['name'])){
 					}
 					else $dataTest[$i]["icontest"]='';
 				}
-				$query="SELECT textarea, input, radio, checkbox FROM answers_".$idUser."_".$idTest;
-				$result=$pdo->query($query);
+				$query="SELECT textarea, input, radio, checkbox FROM answers WHERE id_User=:idUser AND id_Test=:idTest";
+				$result=$pdo->prepare($query);
+				$result->execute(['idUser'=>$idUser,
+								  'idTest'=>$idTest]);
 				$data=$result->fetchAll(PDO::FETCH_ASSOC);
 				for ($i=1; $i<=count($data);$i++){
 					$dataTest[$i]["answer"]=[];
@@ -49,8 +59,12 @@ if (isset($_SESSION['data-user']['name'])){
 					else $dataTest[$i]["answer"]["input"]=0;
 					
 					if ($data[$i-1]["radio"]!=="0"){
-						$query="SELECT text_answer FROM radio_".$idUser."_".$idTest." WHERE id_Task=".$i;
-						$result=$pdo->query($query);
+						$query="SELECT text_answer FROM radio 
+						        WHERE id_User=:idUser AND id_Test=:idTest AND id_Task=:idTask";
+						$result=$pdo->prepare($query);
+						$result->execute(['idUser'=>$idUser,
+										  'idTest'=>$idTest,
+										  'idTask'=>$i]);
 						$radio=$result->fetchAll();
 						$dataTest[$i]["answer"]["radio"]=[];
 						for ($j=1; $j<=count($radio); $j++){
@@ -64,8 +78,12 @@ if (isset($_SESSION['data-user']['name'])){
 					else $dataTest[$i]["answer"]["radio"]=0;
 					
 					if ($data[$i-1]["checkbox"]!=0){
-						$query="SELECT checkbox, text_answer FROM checkbox_".$idUser."_".$idTest." WHERE id_Task=".$i;
-						$result=$pdo->query($query);
+						$query="SELECT checkbox, text_answer FROM checkbox 
+								WHERE id_User=:idUser AND id_Test=:idTest AND id_Task=:idTask";
+						$result=$pdo->prepare($query);
+						$result->execute(['idUser'=>$idUser,
+										  'idTest'=>$idTest,
+										  'idTask'=>$i]);
 						$checkbox=$result->fetchAll(PDO::FETCH_ASSOC);
 						$dataTest[$i]["answer"]["checkbox"]=[];
 						for ($j=1; $j<=count($checkbox); $j++){
@@ -87,21 +105,4 @@ if (isset($_SESSION['data-user']['name'])){
 		}
 	}
 }
-function question($numberOfTask,$task){
-	$html='';
-	if ($task['total_task']!==''){
-		$html.='<p class="question">'.$task["total_task"].'</p>';
-	}
-	if ($task['icontest']!==''){
-		$html.='<div class="image_answer_div">';
-		for ($i=1;$i<=count($task['icontest']);$i++){
-			$html.='<div class="image_answer">';
-			$html.='<img src="./user-img/'.$_REQUEST['idUser'].'/'.$_REQUEST['idTest'].'/';
-			$html.=$numberOfTask.'/'.$task['icontest'][$i].'"';
-			$html.='class="image" alt="" style="height: 240px; width: 240px;">';
-			$html.='</div>';
-		}
-		$html.='</div>';
-	}
-	echo $html;
-}
+require_once "includes/question.inc.php";
