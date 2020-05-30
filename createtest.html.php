@@ -240,10 +240,10 @@
 					</div>	
 					<div class="all_icon_load_slider">
 						<div class="swipe_btn swipe_left" onclick="swipe(this)" disabled>
-							<p>&lt;</p>
+							<p><i class="fa fa-chevron-left" aria-hidden="true"></i></p>
 						</div>
 						<div class="swipe_btn swipe_right" onclick="swipe(this)" disabled>
-							<p>&gt;</p>
+							<p><i class="fa fa-chevron-right" aria-hidden="true"></i></p>
 						</div>
 						<div class="all_icon_load">
 							<div class="icontest">
@@ -304,10 +304,10 @@
 					</div>
 					<div class="all_icon_load_slider">
 						<div class="swipe_btn swipe_left" onclick="swipe(this)" disabled>
-							<p>&lt;</p>
+							<p><i class="fa fa-chevron-left" aria-hidden="true"></i></p>
 						</div>
 						<div class="swipe_btn swipe_right" onclick="swipe(this)" disabled>
-							<p>&gt;</p>
+							<p><i class="fa fa-chevron-right" aria-hidden="true"></i></p>
 						</div>
 						<div class="all_icon_load">
 							<div class="icontest">
@@ -366,10 +366,10 @@
 					</div>
 					<div class="all_icon_load_slider">
 						<div class="swipe_btn swipe_left" onclick="swipe(this)" disabled>
-							<p>&lt;</p>
+							<p><i class="fa fa-chevron-left" aria-hidden="true"></i></p>
 						</div>
 						<div class="swipe_btn swipe_right" onclick="swipe(this)" disabled>
-							<p>&gt;</p>
+							<p><i class="fa fa-chevron-right" aria-hidden="true"></i></p>
 						</div>
 						<div class="all_icon_load">
 							<div class="icontest">
