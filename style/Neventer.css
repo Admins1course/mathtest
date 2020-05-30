@@ -24,7 +24,7 @@ a:hover{
 input[type="text"], input[type="password"]{
 	width: 300px;
 	height: 40px;
-	margin-bottom: 20px;
+	margin-bottom: 5px;
 	border-radius: 4px;
 	padding-left: 35px;
 	border-color: orange;
@@ -93,3 +93,16 @@ input:hover{
 	margin-left: 120px;
 	background-color:#401f1f;
 	padding: 3px;}
+.enter_text_div{
+	margin: 0 auto;
+	width: 300px;
+	background-color: orange;
+	border:2px solid darkorange;
+	font-size: 20px;
+	font-style: bold;
+	border-radius: 15px;
+}
+.enter_text{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}

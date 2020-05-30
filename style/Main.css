@@ -25,6 +25,7 @@ body{
 
 #main_content{
 	background-color: #fff;
+	min-height: 200px;
 	
 
 }

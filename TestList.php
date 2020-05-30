@@ -10,7 +10,7 @@
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <?php include 'includes/script_for_nav_menu.php';?>	
 <script type='text/javascript'>
-	$(function (){
+	$(document).ready(function (){
 	    var hg=$('#main_content').height();
 	    hg=hg+550+'px';
 	    $('body').height(hg);
@@ -47,27 +47,29 @@
 						<input type="text" class="search_bar">	
 					</div>
 					<div class="search_send">
-						<p class="search_send_title">поиск</p>
+						<input type="button" class="search_send_title active_btn" value="Поиск">
 					</div>
 				</div>
 			</div>
-			<div id="main_content">
 			<?php 
 			$sql='SELECT idAuthor,idTest,taskName FROM tests';
 			$result=$pdo->query($sql);
-			$tests=$result->fetchAll(PDO::FETCH_ASSOC);
-			for($i=0;$i<count($tests);$i++){
+			$tests=$result->fetchAll();
+			for ($i=0;$i<count($tests);$i++):
 				$sql="SELECT name,surname FROM users WHERE id=:idAuthor";
 				$result=$pdo->prepare($sql);
 				$result->execute(['idAuthor'=>$tests[$i]['idAuthor']]);
-				$users=$result->fetchAll(PDO::FETCH_ASSOC);?>
+				$users=$result->fetchAll();?>
+				<div id="main_content">
 					<a href="book.html.php?idUser=<?=$tests[$i]['idAuthor']?>&idTest=<?=$tests[$i]['idTest']?>">
 					<div class="test_href">
 						<p>Название: <?=$tests[$i]['taskName'];?></p>
 						<p>Автор: <?=$users[0]['name']?> <?=$users[0]['surname']?></p>
 					</div>
-			<?php }?>
-			</div>
+					
+					
+				</div>
+			<?php endfor;?>
 			<div id="right_block">
 				<ul class="testlist">
 					<li class="test_name"><a href="" class="test_title">Математический анализ</a></li>

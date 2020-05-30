@@ -69,6 +69,7 @@ $(document).ready(function(){
 		if (count_icon>2) {
 			first_el[0].hidden=true;
 			$('#'+idTask+' .swipe_left').prop('disabled',false);
+			$('#'+idTask+' .swipe_left').addClass('active_swipe');
 			$('#'+idTask+' .swipe_right').prop('disabled',true);
 		}
 		$('.'+className[1]+':hidden div[class="icontest"]').clone('deepWithDataAndEvents').css('display','none').insertBefore(

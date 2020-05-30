@@ -36,7 +36,7 @@
 	</script>
 
 	<script src="js/load_avatars.js?<?=time();?>"></script>
-	<?php include 'includes/create_invite_window_script.php'?>
+	<script src="js/create_invite_window_script.js?<?=time();?>"></script>
 </head>
 <body>
 	<?php include 'includes/create_invite_window.php'?>
@@ -75,11 +75,11 @@
 					<div class="search">
 						<input type="search" class="search_bar" onkeyup="searchControl(this)" onchange="searchControl(this)">
 						<input type="button" class="search_send_title " value="Поиск" onclick="searchPeople()">
-					<div class="search_send">
+						<div class="search_send">
 
-						<input type="button" class="search_type active_btn" value="Друзья" onclick="callbackFunction(this,this.nextElementSibling)">
-						<input type="button" class="search_type pasive_btn" value="Мир" onclick="callbackFunction(this,this.previousElementSibling)">
-					</div>
+							<input type="button" class="search_type active_btn" value="Друзья" onclick="callbackFunction(this,this.nextElementSibling)">
+							<input type="button" class="search_type pasive_btn" value="Мир" onclick="callbackFunction(this,this.previousElementSibling)">
+						</div>
 					</div>
 					
 				</div>
@@ -98,7 +98,7 @@
 								<option label="Студенты"></option>
 								<option label="Преподаватели"></option>
 							</select>
-							<ul id="friendsList">
+							<ul class="listOfPeople" id="friendsList">
 							<?php if ($friends!=[]):
 								for ($i=0;$i<count($friends);$i++):?>
 								<li id="userId<?=$friends[$i]['id_Friend']?>"><?=$friends[$i]['name']?> <?=$friends[$i]['surname']?></li>	
@@ -106,7 +106,7 @@
 							endif;
 							?>
 							</ul>
-							<ul id="searchList" style="display:none">
+							<ul class="listOfPeople" id="searchList" style="display:none">
 							</ul>
 						</div>
 					<?php endif;?>

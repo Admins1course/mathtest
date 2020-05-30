@@ -6,7 +6,8 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Cache-Control" content="no-cache" charset="UTF-8">
-	<link rel="stylesheet" href="style/Main.css" type="text/css">
+	<link rel="stylesheet" href="style/Main.css?<?=time()?>" type="text/css">
+	<link rel="stylesheet" href="style/forresult.css?<?=time()?>" type="text/css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 	<script type="text/javascript" id="MathJax-script" async
@@ -16,7 +17,7 @@
 	<script>
 		$(document).ready(function(){
 			$('#result').click(function(){
-				$('#tasks').stop().slideToggle();
+				$('#tasks').slideToggle();
 			})
 		})
 	</script>
@@ -45,79 +46,75 @@
 			$$
 		</div>
 		<div id="main_content">
-			<p>Результат прохождения теста:</p>
-			<p>Решено заданий: <?=$count?> из <?=$_POST["answers"]["count"]?></p>
-			<p>Получено баллов: <?=$countOfPoints?> из <?=$allPoints?></p>
-			<p>Ваша оценка: <?=$mark?></p>
-			<input type="button" id="result" value="Посмотреть результаты">
-			<div id="tasks" style="display:none">
-				<?php for ($i=1;$i<=count($dataTest);$i++){
-					if ($dataTest[$i]["answer"]["textarea"]!=0){?>
-						<div class="task textarea <?=$i?>">
-							<?php question($i,$dataTest[$i]);?>
-							<textarea class="answer" name="answers[task<?=$i?>]" onchange="registeringResponses()"></textarea>
-							<p>Получено баллов за задание: <?=$right_answers[$i-1][1]?></p>
-						</div>
-					<?php } 
-					if ($dataTest[$i]["answer"]["input"]!=0){?>
-						<div class="task input <?=$i?>">
-							<?php question($i,$dataTest[$i]);?>
-							<p
-								<?php if ($right_answers[$i-1][0]):
-										echo 'style="background-color:green"';
-									else:
-										echo 'style="background-color:red"';
-									endif;?>>
-								<?=$_POST['answers']['task'.$i]?>
-							</p>
-							<p>Получено баллов за задание: <?=$right_answers[$i-1][1]?></p>
-						</div>
-					<?php } 
-					if ($dataTest[$i]["answer"]["radio"]!=0){?>
-						<div class="task radio <?=$i?>">
-							<?php question($i,$dataTest[$i]);?>
-							<?php for ($j=1; $j<=count($dataTest[$i]["answer"]["radio"]);$j++){?>
-								<div class="radio">
-									<p class="possibleAnswer" 
-									<?php if($_POST['answers']['task'.$i]===$dataTest[$i]['answer']['radio'][$j]['text_answer']):
-											if ($right_answers[$i-1][0]):
-												echo 'style="background-color:green"';
-											else:
-												echo 'style="background-color:red"';
-											endif;
-										  endif;
-									?>>
-										<?=$dataTest[$i]["answer"]["radio"][$j]["text_answer"]?>
-									</p>
-								</div>
-							<?php } ?>
-							<p>Получено баллов за задание: <?=$right_answers[$i-1][1]?></p>
-						</div>
-					<?php } 
-					if ($dataTest[$i]["answer"]["checkbox"]!=0){?>
-						<div class="task checkbox <?=$i?>">
-							<?php question($i,$dataTest[$i]);?>
-							<?php for ($j=1; $j<=count($dataTest[$i]["answer"]["checkbox"]);$j++){?>
-								<div class="checkbox">
-									<p class="possibleAnswer"
-									<?php if($_POST['answers']['task'.$i][$j]===$dataTest[$i]['answer']['checkbox'][$j]['text_answer']):
-											if ($right_answers[$i-1][0]):
-												echo 'style="background-color:green"';
-											else:
-												echo 'style="background-color:red"';
-											endif;
-										  endif;
-									?>>
-										<?=$dataTest[$i]["answer"]["checkbox"][$j]["text_answer"]?>
-									</p>
-								</div>
-							<?php } ?>
-							<p>Получено баллов за задание: <?=$right_answers[$i-1][1]?></p>
-						</div>
-					<?php } ?>
-				<?php } ?>
+			<div class="result_div">
+				<p>Результат прохождения теста:</p>
+				<p>Решено заданий: <?=$count?> из <?=$_POST["answers"]["count"]?></p>
+				<p>Получено баллов: <?=$countOfPoints?> из <?=$allPoints?></p>
+				<p>Ваша оценка: <?=$mark?></p>
+				<input type="button" id="result" class="active_btn" value="Посмотреть результаты">
 			</div>
-		</div>
+			
+				<div id="tasks" class="show_result_div" style="display:none">
+					<?php for ($i=1;$i<=count($dataTest);$i++){
+						if ($dataTest[$i]["answer"]["textarea"]!=0){?>
+							<div class="task textarea <?=$i?>">
+								<p class="question"><?=$dataTest[$i]["total_task"]?></p>
+								<textarea class="answer" name="answers[task<?=$i?>]" onchange="registeringResponses()"></textarea>
+								<p>Получено баллов за задание: <?=$right_answers[$i-1][1]?></p>
+							</div>
+						<?php } 
+						if ($dataTest[$i]["answer"]["input"]!=0){?>
+							<div class="task input <?=$i?>">
+								<p class="question"><?=$dataTest[$i]["total_task"]?></p>
+								<p
+									<?php if ($right_answers[$i-1][0]):
+											echo 'style="background-color:green"';
+										else:
+											echo 'style="background-color:red"';
+										endif;?>>
+									<?=$_POST['answers']['task'.$i]?>
+								</p>
+								<p>Получено баллов за задание: <?=$right_answers[$i-1][1]?></p>
+							</div>
+						<?php } 
+						if ($dataTest[$i]["answer"]["radio"]!=0){?>
+							<div class="task radio <?=$i?>">
+								<p class="question"><?=$dataTest[$i]["total_task"]?></p>
+								<?php for ($j=1; $j<=count($dataTest[$i]["answer"]["radio"]);$j++){?>
+									<div class="radio">
+										<p class="possibleAnswer" 
+										<?php if($_POST['answers']['task'.$i]===$dataTest[$i]['answer']['radio'][$j]['text_answer']):
+												if ($right_answers[$i-1][0]):
+													echo 'style="background-color:green"';
+												else:
+													echo 'style="background-color:red"';
+												endif;
+											  endif;
+										?>>
+											<?=$dataTest[$i]["answer"]["radio"][$j]["text_answer"]?>
+										</p>
+									</div>
+								<?php } ?>
+								<p>Получено баллов за задание: <?=$right_answers[$i-1][1]?></p>
+							</div>
+						<?php } 
+							if ($dataTest[$i]["answer"]["checkbox"]!=0){?>
+								<div class="task checkbox <?=$i?>">
+									<p class="question"><?=$dataTest[$i]["total_task"]?></p>
+									<?php for ($j=1; $j<=count($dataTest[$i]["answer"]["checkbox"]);$j++){?>
+										<div class="checkbox">
+											<input type="checkbox" class="checkbox_answer" name="answers[task<?=$i?>][<?=$j?>]"
+											value="<?=$dataTest[$i]["answer"]["checkbox"][$j]["text_answer"]?>" onchange="registeringResponses()">
+											<p class="possibleAnswer"><?=$dataTest[$i]["answer"]["checkbox"][$j]["text_answer"]?></p>
+										</div>
+									<?php } ?>
+									<p>Получено баллов за задание: <?=$right_answers[$i-1][1]?></p>
+								</div>
+						<?php } ?>
+					<?php } ?>
+				</div>
+			</div>
+		
 	</div>
 		<div class="slider midle">
 			<div class="slides">
