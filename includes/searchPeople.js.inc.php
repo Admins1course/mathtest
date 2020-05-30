@@ -34,7 +34,7 @@ function callbackFunction(element1,element2){
 	
 function searchPeople(){
 	if ((valueOfSearch=$('[type="search"]').val())!=='')
-		return searchFunction(valueOfSearch);
+		return searchFunction(valueOfSearch, "friendsList");
 }
 	
 function searchForPiece(searchValue){
@@ -57,10 +57,7 @@ function searchForPiece(searchValue){
 								buttonValue="Отменить заявку";
 								buttonFunction="cancelAddFriend(this)";
 							}
-							else{
-								buttonValue="В друзьях";
-								buttonFunction="cancelAddFriend(this)";
-							}
+							else continue;
 						}
 					listOfPeople+='<li>'+
 						data['people'][i]['name']+" "+
@@ -74,11 +71,48 @@ function searchForPiece(searchValue){
 	})
 }
 	
-	function searchForFriends(){}
+	function searchForFriends(searchValue,idElem){
+		let friends=<?=$jsonFriends?>;
+		let searchFriends=[];
+		for (let i=0;i<friends.length;i++){
+			if (friends[i]['name'].toLowerCase().includes(searchValue.toLowerCase())||
+				friends[i]['surname'].toLowerCase().includes(searchValue.toLowerCase())){
+				searchFriends.push(friends[i]);	
+			}
+		}
+		let listOfFriends='<input type="button" value="Показать всех друзей" id="showFriends" onclick="showAllFriends(\''+idElem+'\')">';
+		for (i=0;i<searchFriends.length;i++){
+			if (idElem=='inviteFriends'){
+				listOfFriends+='<input type="checkbox" value="';
+				listOfFriends+=searchFriends[i]['id_Friend'];
+				listOfFriends+='">';
+			}
+			listOfFriends+='<li id="userId'+searchFriends[i]['id_Friend'];
+			listOfFriends+='">'+searchFriends[i]['name']+' '+searchFriends[i]['surname'];
+			listOfFriends+='</li>';
+		}
+		document.getElementById(idElem).innerHTML=listOfFriends;		
+	}
 	
 	function searchControl(element){
 		var re=/[^a-zA-Zа-яА-Я0-9_]+/gus;
 		if (re.test(element.value)) 
 			element.value=element.value.replace(re, '');
+	}
+	
+	function showAllFriends(idElem){
+		friends=<?=$jsonFriends?>;
+		listOfFriends='';
+		for (i=0;i<friends.length;i++){
+			if (idElem=='inviteFriends'){
+				listOfFriends+='<input type="checkbox" value="';
+				listOfFriends+=friends[i]['id_Friend'];
+				listOfFriends+='">';
+			}
+			listOfFriends+='<li id="userId'+friends[i]['id_Friend'];
+			listOfFriends+='">'+friends[i]['name']+' '+friends[i]['surname'];
+			listOfFriends+='</li>';
+		}
+		document.getElementById(idElem).innerHTML=listOfFriends;
 	}
 </script>
