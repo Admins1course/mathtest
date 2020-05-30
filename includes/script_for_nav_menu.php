@@ -22,8 +22,6 @@
 			$('.exit_menu_body').stop().slideToggle(500);
 		});
 	});
-
-
 	</script>
 	<script>
 	$(document).ready(function($) {

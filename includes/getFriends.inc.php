@@ -16,6 +16,7 @@ if (isset($_SESSION['data-user'])){
 				$friends[$i]['surname']=$result[0]['surname'];
 			}
 		}
+		$jsonFriends=json_encode($friends);
 	}
 	catch(PDOException $e){
 		

@@ -34,7 +34,6 @@
 	    $('body').height(hg);
 	});
 	</script>
-
 	<script src="js/load_avatars.js?<?=time();?>"></script>
 	<script src="js/create_invite_window_script.js?<?=time();?>"></script>
 </head>
