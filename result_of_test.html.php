@@ -6,7 +6,8 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Cache-Control" content="no-cache" charset="UTF-8">
-	<link rel="stylesheet" href="style/Main.css" type="text/css">
+	<link rel="stylesheet" href="style/Main.css?<?=time()?>" type="text/css">
+	<link rel="stylesheet" href="style/forresult.css?<?=time()?>" type="text/css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 	<script type="text/javascript" id="MathJax-script" async
@@ -115,9 +116,9 @@
 							<p>Получено баллов за задание: <?=$right_answers[$i-1][1]?></p>
 						</div>
 					<?php } ?>
-				<?php } ?>
+				</div>
 			</div>
-		</div>
+		
 	</div>
 		<div class="slider midle">
 			<div class="slides">

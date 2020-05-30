@@ -10,11 +10,10 @@ function notifications(){
 		error:function(data){console.log(data)},
 		success:function(data){
 			if ((clearNot)||(data!==[])){
-				dataNotifications=data;
-				console.log(data);
-				if (data.length==0) return;
-				if (data.length>9) count="9+";
-				else count=data.length;
+				dataNotifications=data['notif'];
+				if (data['notif'].length==0) return;
+				if (data['notif'].length>9) count="9+";
+				else count=data['notif'].length;
 				countNotifications='Оповещения<div class="notifications">';
 				countNotifications+='<div class="notific_num"><p>'+count+'</p></div></div>';
 				$('.open_notifications_body a').html(countNotifications);
@@ -22,17 +21,18 @@ function notifications(){
 				htmlMessage+='<div class="notifications_body_title_elements_div">';
 				htmlMessage+='<div class="notifications_body_text">';
 				htmlMessage+='<p class="text_notification_body">Оповещения</p>';
-				htmlMessage+='</div><div class="notifications_body_title_element_bar">'
+				htmlMessage+='</div><div class="notifications_body_title_element_bar">';
 				htmlMessage+='</div></div></div>';
-				for (i=0;i<data.length;i++){
+				for (i=0;i<data['notif'].length;i++){
 					htmlMessage+='<div class="notifications_bar"><p class="text_notifications_bar">';
-					htmlMessage+=data[i]['message'];
+					htmlMessage+=data['notif'][i]['message'];
 					htmlMessage+='</p>';
-					htmlMessage+='<div class="button_friend"><input type="button" id="userId'+data[i]['add_friends']+'" value="Принять" onclick="acceptApp(this)">';
-					htmlMessage+='<input type="button" id="userId'+data[i]['add_friends']+'" value="Отменить" onclick="cancelApp(this)">';
+					htmlMessage+='<div class="button_friend"><input type="button" id="userId'+data['notif'][i]['add_friends']+'" value="Принять" onclick="acceptApp(this)">';
+					htmlMessage+='<input type="button" id="userId'+data['notif'][i]['add_friends']+'" value="Отменить" onclick="cancelApp(this)">';
 					htmlMessage+='</div></div>';
 				}
-				htmlMessage+='<a href="allNotifications.html.php">Посмотреть прочтенные оповещения</a>'
+				htmlMessage+='<a href="allNotifications.html.php">Посмотреть прочтенные оповещения</a>';
+				console.log(htmlMessage);
 				$('.notifications_body').html(htmlMessage);
 				clearNot=false;
 			}

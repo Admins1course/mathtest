@@ -1,4 +1,4 @@
-<?php session_start();?>
+<?php @session_start();?>
 <script>
 function addFriend(element){
 	$idFriend=$(element).attr('id').replace('user','');

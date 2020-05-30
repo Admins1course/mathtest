@@ -10,7 +10,7 @@
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <?php include 'includes/script_for_nav_menu.php';?>	
 <script type='text/javascript'>
-	$(function (){
+	$(document).ready(function (){
 	    var hg=$('#main_content').height();
 	    hg=hg+550+'px';
 	    $('body').height(hg);
@@ -47,7 +47,7 @@
 						<input type="text" class="search_bar">	
 					</div>
 					<div class="search_send">
-						<p class="search_send_title">поиск</p>
+						<input type="button" class="search_send_title active_btn" value="Поиск">
 					</div>
 				</div>
 			</div>

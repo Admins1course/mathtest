@@ -25,6 +25,7 @@ body{
 
 #main_content{
 	background-color: #fff;
+	min-height: 200px;
 	
 
 }
@@ -319,6 +320,7 @@ input[name='r']{
 	border-radius: 50%;
 	background-color: white;
 	cursor: pointer;
+	background-size: cover;
 }
 .profile_avatar:hover{
 	background-color: darkorange;
