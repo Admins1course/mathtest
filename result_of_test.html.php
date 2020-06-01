@@ -1,7 +1,9 @@
 <?php require_once 'includes/db.inc.php';
 	  require_once 'book_control.php';
 	  require_once 'result_of_test_handler.php';
-	  require_once 'includes/incl_session.inc.php';?>
+	  require_once 'includes/incl_session.inc.php';
+	  include_once 'includes/getUserImage.inc.php';
+	  require_once 'includes/getFriends.inc.php';?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +15,16 @@
 	<script type="text/javascript" id="MathJax-script" async
 			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
 	</script>
+	<?php
+	if ($path){
+	    include_once 'includes/load_user_image.inc.php';
+	}
+	?>
+	<?php if (isset($_SESSION['data-user'])):
+	    include 'includes/searchPeople.js.inc.php';
+	    include 'includes/friendsControl.js.inc.php';?>
+		<script src="js/notifs.js?<?=time();?>"></script>
+	<?php endif;?>
 	<?php include 'includes/script_for_nav_menu.php';?>
 	<script>
 		$(document).ready(function(){
@@ -27,9 +39,12 @@
 	    hg=hg+550+'px';
 	    $('body').height(hg);
 	});
-</script>
+	</script>
+	<script src="js/load_avatars.js?<?=time();?>"></script>
+	<script src="js/create_invite_window_script.js?<?=time();?>"></script>
 </head>
 <body >
+	<?php include 'includes/create_invite_window.php'?>
 	<div id="page">
 			<div class="forNewFormulas" style="display:none">
 			$$
@@ -143,9 +158,14 @@
 		<div id="right_block_title"></div>
 		<div id="right_block">
 		</div>
-		<div id="left_block_title"></div>
-		<div id="left_block" class="left_block">
+		<div id="left_block_title">
+			<?php require_once "includes/searchInput.inc.php";?>
 		</div>
+		<div id="left_block" class="left_block">
+			<?php require_once "includes/friendsList.inc.php";?>
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 		<?php include 'includes/nav_menu.php';?>
 	<div id="footer">
 		<div class="text">

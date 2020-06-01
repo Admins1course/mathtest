@@ -11,7 +11,7 @@
 						<li><a href="#m3_4" class="nav_menu_bar">Статистика</a></li>
 						<li><a href="#m3_5" class="nav_menu_bar">Пройти тест по приглашению</a></li>
 				    <?php }else if(isset($_SESSION['data-user']['root'])&&($_SESSION['data-user']['root']=="преподаватель")){?>
-						<li><a href="#m3_3" class="nav_menu_bar">Мой каталог</a></li>
+						<li><a href="myCatalog.php" class="nav_menu_bar">Мой каталог</a></li>
 						<li><a href="createtest.html.php" class="nav_menu_bar">Создать тест</a></li>
 						<li><a href="#m3_5" id="create-invite" class="nav_menu_bar ">Создать приглашение</a></li>
 					<?php } ?>

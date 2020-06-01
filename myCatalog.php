@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="style/CsslistTest.css?<?=time()?>" type="text/css">
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+	<?php include 'includes/script_for_nav_menu.php';?>	
 	<?php
 	if ($path){
 	    include_once 'includes/load_user_image.inc.php';
@@ -21,7 +22,6 @@
 	    include 'includes/friendsControl.js.inc.php';?>
 		<script src="js/notifs.js?<?=time();?>"></script>
 	<?php endif;?>
-	<?php include 'includes/script_for_nav_menu.php';?>	
 	<script type='text/javascript'>
 	$(document).ready(function (){
 	    var hg=$('#main_content').height();
@@ -69,20 +69,16 @@
 			</div>
 			<div id="main_content">
 			<?php 
-			$sql='SELECT idAuthor,idTest,taskName FROM tests';
+			$sql='SELECT idTest,taskName FROM tests WHERE idAuthor='.$_SESSION['data-user']['id'];
 			$result=$pdo->query($sql);
 			$tests=$result->fetchAll(PDO::FETCH_ASSOC);
-			for($i=0;$i<count($tests);$i++){
-				$sql="SELECT name,surname FROM users WHERE id=:idAuthor";
-				$result=$pdo->prepare($sql);
-				$result->execute(['idAuthor'=>$tests[$i]['idAuthor']]);
-				$users=$result->fetchAll(PDO::FETCH_ASSOC);?>
-					<a href="book.html.php?idUser=<?=$tests[$i]['idAuthor']?>&idTest=<?=$tests[$i]['idTest']?>">
-					<div class="test_href">
-						<p>Название: <?=$tests[$i]['taskName'];?></p>
-						<p>Автор: <?=$users[0]['name']?> <?=$users[0]['surname']?></p>
-					</div>
-			<?php }?>
+			for($i=0;$i<count($tests);$i++):?>
+				<a href="book.html.php?idUser=<?=$_SESSION['data-user']['id']?>&idTest=<?=$tests[$i]['idTest']?>">
+				<div class="test_href">
+					<p>Название: <?=$tests[$i]['taskName'];?></p>
+					<p>Автор: <?=$_SESSION['data-user']['name']?> <?=$_SESSION['data-user']['surname']?></p>
+				</div>
+			<?php endfor;?>
 			</div>
 			<div id="right_block">
 				<ul class="testlist">
@@ -105,6 +101,5 @@
 				2020
 			</div>
 		</div>
-	
 </body>
 </html>

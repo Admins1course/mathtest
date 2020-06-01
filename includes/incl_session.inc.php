@@ -6,5 +6,6 @@
 			$_SESSION['data-user']['name']=$_COOKIE['name'];
 			$_SESSION['data-user']['surname']=$_COOKIE['surname'];
 			$_SESSION['data-user']['root']=$_COOKIE['root'];
+			$_SESSION['invitation']=false;
 		}
 	}
