@@ -96,11 +96,10 @@ div[class="icontest"]{
 
 .arrowupdown{
 	margin: 0 auto;
-	border:1px solid darkorange;
 	background-color: orange;
 	font-size: 25px;
 	opacity: 0.4;
-	width: 200px;
+	width: 100%;
 	height: 30px;
 }
 .div_scroll_answer{
