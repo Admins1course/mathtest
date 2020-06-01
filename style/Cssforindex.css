@@ -2,6 +2,17 @@ body{
 
 
 }
+.listOfPeople li{
+	padding-top: 5px;
+	border-width: 98%;
+	border-top: 1px solid orange;
+}
+.people_avatar{
+	width: 40px;height: 40px;
+	float: left;
+	border:1px solid orange;
+	border-radius: 50%;
+}
 .search_bar{
 	border: 1px solid red;
 	width: 75%;
@@ -12,8 +23,6 @@ body{
 	width: 100%;
 	margin-top: 5px;
 	text-align: center;
-	
-	
 }
 
   

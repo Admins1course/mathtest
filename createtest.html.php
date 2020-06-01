@@ -188,7 +188,7 @@
 		<div id="main_content"><!--  Основной див  сайта -->
 			<div id="task_menu_div">
 				<div id="task_menu">
-					<div id="task_menu_open">
+					<div id="task_menu_open" title="Софийский собор">
 						<p class="bars_image"><i class="fa fa-bars" aria-hidden="true"></i></p>
 					</div>
 					
@@ -211,17 +211,40 @@
 							</div>
 						</div>
 							<div id="create_task_btn">
-								<input type="button" value="+" id="form_1" class="form_btn  " style="background-image: url('style/img/1Form.png'); 
-								background-size: cover;">
-								<input type="button" value="+" id="form_2" class="form_btn  " style="background-image: url('style/img/2Form.png'); 
-								background-size: cover;">
-								<input type="button" value="+" id="form_3" class="form_btn  " style="background-image: url('style/img/3Form.png'); 
-								background-size: cover;">
-								<input type="button" value="+" id="form_4" class="form_btn  " style="background-image: url('style/img/4Form.png'); 
-								background-size: cover;">
+								<div id="create_task_btn_div">
+
+									<div class="new_task_btn_div" id="form_1">
+										<div class="plus_onbtn">
+											<p class="plus_onbtn_text">+</p>
+										</div>
+										<div class="new_task_btn_image" style="background-image:linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%), url('style/img/1Form.png'); background-size: cover;"></div>
+										<div class="new_task_btn_title">1</div>
+									</div>
+									<div class="new_task_btn_div" id="form_2">
+										<div class="plus_onbtn">
+											<p class="plus_onbtn_text">+</p>
+										</div>
+										<div class="new_task_btn_image" style="background-image:linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%), url('style/img/2Form.png'); background-size: cover;"></div>
+										<div class="new_task_btn_title">2</div>
+									</div>
+									<div class="new_task_btn_div" id="form_3">
+										<div class="plus_onbtn">
+											<p class="plus_onbtn_text">+</p>
+										</div>
+										<div class="new_task_btn_image" style="background-image:linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%), url('style/img/3Form.png'); background-size: cover;"></div>
+										<div class="new_task_btn_title">3</div>
+									</div>
+									<div class="new_task_btn_div" id="form_4">
+										<div class="plus_onbtn">
+											<p class="plus_onbtn_text">+</p>
+										</div>
+										<div class="new_task_btn_image" style="background-image:linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%), url('style/img/4Form.png'); background-size: cover;"></div>
+										<div class="new_task_btn_title">4</div>
+									</div>
+								</div>
 							</div>
 						</div>
-						<input type="button" value="Продолжить" class="popup-open active_btn">
+						<input type="button" value="Продолжить" class="popup-open active_btn continue_btn">
 						<div id="nameTest" class="popup-fade">
 							<div class="popup">
 								<p class="popup_text">Введите название теста</p>
@@ -248,8 +271,8 @@
 								<p>Для получения оценки 5 достаточно баллов:<output for="range_5"></output></p>						
 								<datalist id="points_label">
 								</datalist>
-								<input type="button" value="Отменить" class="form_btn form_btn_close form_btn_send active_btn">
-								<input type="submit" value="Отправить" class="form_btn form_btn_send active_btn">
+								<input type="button" value="Отменить" class=" form_btn_close form_btn_send active_btn">
+								<input type="submit" value="Отправить" class=" form_btn_send active_btn">
 							</div>
 						</div>
 					</div>

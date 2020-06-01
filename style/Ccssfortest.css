@@ -46,6 +46,7 @@ textarea{
 	opacity: 1;
 	background-color: darkorange;
 	cursor: pointer;
+
 }
 #task_menu_open{
 	text-align: center;
@@ -131,7 +132,7 @@ div[class="icontest"]{
 	right:0px; 
 }
 .active_swipe{
-	width: 240px;
+	
 	background-color: orange;
 	opacity: 0.8;
 	cursor: pointer;
@@ -350,6 +351,64 @@ div[class="icontest"]{
 	height: auto;}
 .text_answer{
 	width: 98%;}
+
+
+#create_task_btn{
+	width: 100%;
+	height: auto;
+	
+	text-align: center;
+
+}
+
+
+.new_task_btn_div{
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-bottom: 10px;
+	margin-right: 10px;
+	width: 400px;
+	height: 230px;
+	display: inline-block;
+	border: 1px solid red;
+	opacity: 0.8;
+	
+}
+.new_task_btn_image{
+	width: 400px;
+	height: 200px;
+}
+.new_task_btn_title{
+	width: 400px;
+	height: 30px;
+	background-color: black;
+	color: white;
+	text-align: center;
+	font-size: 20px;
+}
+.plus_onbtn{
+	position: absolute;
+	width: 400px;
+	height: 230px;
+	color: orange;
+}
+.plus_onbtn_text{
+	margin-top: 80px;
+	font-size: 50px;
+	font-weight: 1000;
+}
+.new_task_btn_div:hover{
+	cursor: pointer;
+	transition: all 0.7s;
+	opacity: 1;
+}
+.new_task_btn_div:hover .plus_onbtn_text{
+	transition: all 0.7s;
+	margin-top: 70px;
+	font-size: 80px;
+}
+
+
 .form_btn{
 	margin-left: 10px;
 	width: 400px;
@@ -362,9 +421,12 @@ div[class="icontest"]{
 	margin-top: 10px;
 	color: orange;
 	font-weight: 1000;
-	background-color: orange;
-	border: 1px solid red;
-	
+	border: 1px solid red;	
+
+}
+.continue_btn{
+	float: right;
+	right: 20px;
 }
 .form_btn:hover{
 	transition: all 0.7s ease;
@@ -373,13 +435,8 @@ div[class="icontest"]{
 	font-size: 80px;
 
 }
-#create_task_btn{
-	text-align: center;
-	height: auto;
-	width: auto;
-	
-	margin: 0 auto;
-}
+
+
 .form_btn_send{
 	width: 100px;}
 #form_handler{
