@@ -174,10 +174,26 @@
 			}
 		}		
 	</script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		
+		$('#task_menu_open').click(function(){
+			$('#task_menu_body').stop().slideToggle(10);
+		});
+	});
+	</script>
 </head>
 <body  >
 	<div id="page">
 		<div id="main_content"><!--  Основной див  сайта -->
+			<div id="task_menu_div">
+				<div id="task_menu">
+					<div id="task_menu_open">
+						<p class="bars_image"><i class="fa fa-bars" aria-hidden="true"></i></p>
+					</div>
+					
+				</div>
+			</div>
 			<?php if (isset($_COOKIE['name'])&&isset($_COOKIE['surname'])):?>
 				<form action="createtest_handler.php" method="post" enctype="multipart/form-data" >
 					<div class="content_form">
@@ -268,7 +284,11 @@
 						</div>
 					</div>
 								
-						<p class="text_title">Варианты ответов</p>						
+						<p class="text_title">Варианты ответов</p>	
+					<div class="prev_menu">
+						<input type="button" class="task_show" value="Задание">
+						<input type="button" class="formul_preview" value="Превью" class="prev_btn" onclick="convert()">
+					</div>					
 					<div class="areatext">
 						<textarea oninput="auto_grow(this)" name="task[textarea_answer]" id="answer" style="resize:none" class="text_answer">
 						</textarea><!--  Развернутый ответ -->
@@ -426,8 +446,13 @@
 						<input type="text" maxlength="6" class="points" onkeyup="enterPoints(this)">
 					</div>
 				</div>
+					<div id="task_menu_body" style="display: none;">
+						<p>GHBDTn</p>
+					</div>
 			</div>
+
 		</div>
+		
 	</div>
 		<div class="slider midle"><!--  Слайдер -->
 			<div class="slides"><!--  Радиокнопки и изображения -->
