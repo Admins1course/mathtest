@@ -182,22 +182,28 @@
 				<form action="createtest_handler.php" method="post" enctype="multipart/form-data" >
 					<div class="content_form">
 						<div id="form_handler">
-						<div class="arrow_div_task" id="arrow-up" disabled style="display:none" onclick="swipeTask(this)">
-							<div class="arrowupdown swipe_up">
+						<div class="arrow_div_task swipe_width" id="arrow-up" disabled style="display:none" onclick="swipeTask(this)">
+							<div class="arrowupdown swipe_up ">
 								<i class="fa fa-chevron-up" aria-hidden="true">
 								</i>
 							</div>
 						</div>
-						<div class="arrow_div_task" id="arrow-down" disabled style="display:none" onclick="swipeTask(this)">
-							<div class="arrowupdown swipe_down">
+						<div class="arrow_div_task swipe_width" id="arrow-down" disabled style="display:none" onclick="swipeTask(this)">
+							<div class="arrowupdown swipe_down ">
 								<i class="fa fa-chevron-down" aria-hidden="true">
 								</i>
 							</div>
 						</div>
-							<input type="button" value="1 форма" id="form_1" class="form_btn active_btn form_btn_1">
-							<input type="button" value="2 форма" id="form_2" class="form_btn active_btn form_btn_2">
-							<input type="button" value="3 форма" id="form_3" class="form_btn active_btn form_btn_3">
-							<input type="button" value="4 форма" id="form_4" class="active_btn form_btn _4">
+							<div id="create_task_btn">
+								<input type="button" value="+" id="form_1" class="form_btn  " style="background-image: url('style/img/1Form.png'); 
+								background-size: cover;">
+								<input type="button" value="+" id="form_2" class="form_btn  " style="background-image: url('style/img/2Form.png'); 
+								background-size: cover;">
+								<input type="button" value="+" id="form_3" class="form_btn  " style="background-image: url('style/img/3Form.png'); 
+								background-size: cover;">
+								<input type="button" value="+" id="form_4" class="form_btn  " style="background-image: url('style/img/4Form.png'); 
+								background-size: cover;">
+							</div>
 						</div>
 						<input type="button" value="Продолжить" class="popup-open active_btn">
 						<div id="nameTest" class="popup-fade">
@@ -284,10 +290,10 @@
 					</div>	
 					<div class="all_icon_load_slider">
 						<div class="swipe_btn swipe_left" onclick="swipeIcontest(this)" disabled>
-							<p>&lt;</p>
+							<p><i class="fa fa-chevron-left" aria-hidden="true"></i></p>
 						</div>
 						<div class="swipe_btn swipe_right" onclick="swipeIcontest(this)" disabled>
-							<p>&gt;</p>
+							<p><i class="fa fa-chevron-right" aria-hidden="true"></i></p>
 						</div>
 						<div class="all_icon_load">
 							<div class="icontest">
@@ -302,7 +308,7 @@
 					</div>
 						
 					<p class="text_title">Варианты ответов</p>
-					<div class="arrow_div_task swipe_up" onclick="swipeRC(this)">
+					<div class="arrow_up arrow_div_task swipe_up" onclick="swipeRC(this)">
 						<div class="arrowupdown div_scroll_answer"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
 					</div>						
 					<div class="radio">
@@ -321,8 +327,8 @@
 						</div>
 					</div>
 					<input type="button" class="add_button_answer radio" value="+"><!--  Кнопка добавить -->
-					<div class="arrow_div_task swipe_down" onclick="swipeRC(this)">
-						<div class="arrowupdown div_scroll_answer"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
+					<div class=" arrow_down arrow_div_task swipe_down" onclick="swipeRC(this)">
+						<div class=" arrowupdown div_scroll_answer"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
 					</div>
 					<div class="textForPoints_div"><label class="textForPoints" for="points">Введите количество баллов за данное задание</label>
 						<input type="text" maxlength="6" class="points" onkeyup="enterPoints(this)">
@@ -341,10 +347,10 @@
 					</div>
 					<div class="all_icon_load_slider">
 						<div class="swipe_btn swipe_left" onclick="swipeIcontest(this)" disabled>
-							<p>&lt;</p>
+							<p><i class="fa fa-chevron-left" aria-hidden="true"></i></p>
 						</div>
 						<div class="swipe_btn swipe_right" onclick="swipeIcontest(this)" disabled>
-							<p>&gt;</p>
+							<p><i class="fa fa-chevron-right" aria-hidden="true"></i></p>
 						</div>
 						<div class="all_icon_load">
 							<div class="icontest">
@@ -357,7 +363,7 @@
 					</div>
 					
 					<p class="text_title">Варианты ответов</p>	
-					<div class="arrow_div_task swipe_up" onclick="swipeRC(this)">
+					<div class="arrow_down arrow_div_task swipe_up" onclick="swipeRC(this)">
 						<div class="arrowupdown div_scroll_answer"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
 					</div>
 					<div class="check">
@@ -376,8 +382,8 @@
 						</div>
 					</div>
 					<input type="button" class="add_button_answer check" value="+"><!--  Кнопка добавить -->
-					<div class="arrow_div_task swipe_down" onclick="swipeRC(this)">
-						<div class="arrowupdown div_scroll_answer"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
+					<div class=" arrow_down arrow_div_task swipe_down" onclick="swipeRC(this)">
+						<div class=" arrowupdown div_scroll_answer"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
 					</div>
 					<div class="textForPoints_div"><label class="textForPoints" for="points">Введите количество баллов за данное задание</label>
 						<input type="text" maxlength="6" class="points" onkeyup="enterPoints(this)">
@@ -396,10 +402,10 @@
 					</div>
 					<div class="all_icon_load_slider">
 						<div class="swipe_btn swipe_left" onclick="swipeIcontest(this)" disabled>
-							<p>&lt;</p>
+							<p><i class="fa fa-chevron-left" aria-hidden="true"></i></p>
 						</div>
 						<div class="swipe_btn swipe_right" onclick="swipeIcontest(this)" disabled>
-							<p>&gt;</p>
+							<p><i class="fa fa-chevron-right" aria-hidden="true"></i></p>
 						</div>
 						<div class="all_icon_load">
 							<div class="icontest">

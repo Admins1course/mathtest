@@ -145,7 +145,7 @@ $(document).ready(function(){
 			$('#'+idTask+' .swipe_up').addClass('active_swipe');
 			$('#'+idTask+' .swipe_down').prop('disabled',true);
 		}
-		$('.'+className[1]+' .add_button_answer:hidden').prev().clone('deepWithDataAndEvents').css('display','none').insertBefore(
+		$('.'+className[1]+' .add_button_answer:hidden:last').prev().clone('deepWithDataAndEvents').css('display','none').insertBefore(
 			this).slideDown(1000).children().each(function(index,el){
 			if (className[1]=='radiobutton_template'){
 				if($(this).children('input').attr('id')=='radiobutton'){
