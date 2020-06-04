@@ -218,28 +218,28 @@
 											<p class="plus_onbtn_text">+</p>
 										</div>
 										<div class="new_task_btn_image" style="background-image:linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%), url('style/img/1Form.png'); background-size: cover;"></div>
-										<div class="new_task_btn_title">1</div>
+										<div class="new_task_btn_title">Задание с развернутым ответом </div>
 									</div>
 									<div class="new_task_btn_div" id="form_2">
 										<div class="plus_onbtn">
 											<p class="plus_onbtn_text">+</p>
 										</div>
 										<div class="new_task_btn_image" style="background-image:linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%), url('style/img/2Form.png'); background-size: cover;"></div>
-										<div class="new_task_btn_title">2</div>
+										<div class="new_task_btn_title new_task_btn_title_long">Задание с одним правильным ответом (из нескольких вариантов)</div>
 									</div>
 									<div class="new_task_btn_div" id="form_3">
 										<div class="plus_onbtn">
 											<p class="plus_onbtn_text">+</p>
 										</div>
 										<div class="new_task_btn_image" style="background-image:linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%), url('style/img/3Form.png'); background-size: cover;"></div>
-										<div class="new_task_btn_title">3</div>
+										<div class="new_task_btn_title new_task_btn_title_long">Задание с несколькими правильными ответами (из нескольких вариантов)</div>
 									</div>
 									<div class="new_task_btn_div" id="form_4">
 										<div class="plus_onbtn">
 											<p class="plus_onbtn_text">+</p>
 										</div>
 										<div class="new_task_btn_image" style="background-image:linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%), url('style/img/4Form.png'); background-size: cover;"></div>
-										<div class="new_task_btn_title">4</div>
+										<div class="new_task_btn_title">Задание с кратким ответом</div>
 									</div>
 								</div>
 							</div>
