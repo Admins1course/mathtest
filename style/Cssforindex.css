@@ -2,16 +2,32 @@ body{
 
 
 }
+.friends_div{
+	
+	height: 50px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-top: 2px solid orange;
+	border-bottom: 2px solid orange;
+}
 .listOfPeople li{
-	padding-top: 5px;
+	list-style-type: none;
 	border-width: 98%;
-	border-top: 1px solid orange;
+	margin-top: 5px;
+}
+.friends_names{
+	width: 200px;
+	margin-left: 70px;
+	text-align: left;
 }
 .people_avatar{
+	margin-left: 10px;
+	margin-top: 5px;
 	width: 40px;height: 40px;
 	float: left;
 	border:1px solid orange;
 	border-radius: 50%;
+	background-size: cover;
 }
 .search_bar{
 	border: 1px solid red;

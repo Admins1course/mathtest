@@ -12,7 +12,16 @@
 		<ul class="listOfPeople" id="friendsList">
 			<?php if ($friends!=[]):
 				for ($i=0;$i<count($friends);$i++):?>
-					<li id="userId<?=$friends[$i]['id_Friend']?>"><?=$friends[$i]['name']?> <?=$friends[$i]['surname']?></li>	
+					<div class="friends_div">
+						<div class="people_avatar">
+							
+						</div>
+						<div class="friends_names">
+							<li id="userId<?=$friends[$i]['id_Friend']?>"><?=$friends[$i]['name']?> <?=$friends[$i]['surname']?></li>	
+						</div>
+					</div>
+					
+					
 				<?php endfor;
 			endif;?>
 		</ul>
