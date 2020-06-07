@@ -1,5 +1,7 @@
 <?php require_once 'includes/db.inc.php';
-	  require_once 'includes/incl_session.inc.php';?>
+	  require_once 'includes/incl_session.inc.php';
+	  include_once 'includes/getUserImage.inc.php';
+	  require_once 'includes/getFriends.inc.php';?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,11 +9,22 @@
 	<link rel="stylesheet" href="style/Main.css?<?=time()?>" type="text/css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="style/Ccssfortest.css?<?=time()?>" type="text/css">
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 	<script type="text/javascript" id="MathJax-script" async
 			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
 	</script>
 	<script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script>
+	<?php
+	if ($path){
+	    include_once 'includes/load_user_image.inc.php';
+	}
+	?>
+	<?php if (isset($_SESSION['data-user'])):
+	    include 'includes/searchPeople.js.inc.php';
+	    include 'includes/friendsControl.js.inc.php';?>
+		<script src="js/notifs.js?<?=time();?>"></script>
+	<?php endif;?>
 	<?php include 'includes/script_for_nav_menu.php';?>
 	<script type='text/javascript'>
 	$(function height(){
@@ -21,6 +34,8 @@
 	    $('body').height(hg);
 	});
 </script>
+	<script src="js/load_avatars.js?<?=time();?>"></script>
+	<script src="js/create_invite_window_script.js?<?=time();?>"></script>
 
 	<script>
 		function auto_grow(element) {
@@ -93,7 +108,7 @@
 		};
 	</script><!--  Превью Изображения на сайте -->	
 	<script>
-		function swipe(element){
+		function swipeIcontest(element){
 			first_el=$($(element)[0]['parentElement']).children('.all_icon_load').children('.icontest:visible:first');
 			last_el=$($(element)[0]['parentElement']).children('.all_icon_load').children('.icontest:visible:last');
 			if ($(element).hasClass('swipe_left')){
@@ -129,22 +144,122 @@
 				}
 			}
 		}
+		function swipeRC(element){//RC = Radio Check
+			let classAnswer=$(element).closest('[class^="task"]').attr('class').split(' ');//[1].substring(0,5);
+			classAnswer=classAnswer[1].substring(0,5);
+			first_el=$($(element)[0]['parentElement']).children('.'+classAnswer+':visible:first');
+			last_el=$($(element)[0]['parentElement']).children('.'+classAnswer+':visible:last');
+			if ($(element).hasClass('swipe_up')){
+
+				if ((element.disabled!==undefined)&&(!Number($(element).prop('disabled')))){
+					last_el.slideUp(1000);
+					last_el=last_el.prev();
+					$(first_el[0].previousElementSibling).slideDown(1000);
+					first_el=first_el[0].previousElementSibling;
+					let swipeDown=$(element).closest('[class^="task"]').children('.swipe_down');
+					swipeDown.prop('disabled',false);
+					swipeDown.addClass('active_swipe');
+					console.log(swipeDown);
+					if (!$(first_el.previousElementSibling).hasClass(classAnswer)){
+						element.disabled=true;					
+						$(element).removeClass('active_swipe');
+						swipeDown.addClass('active_swipe');
+						console.log(swipeDown);
+					}
+				}
+			}
+			else if ($(element).hasClass('swipe_down')){
+				console.log($(element));
+				console.log(element.disabled);
+				if ((element.disabled!==undefined)&&(!Number($(element).prop('disabled')))){
+					first_el.slideUp(1000);
+					first_el=first_el.next();
+					$(last_el[0].nextElementSibling).slideDown(1000);
+					last_el=last_el[0].nextElementSibling;
+					let swipeUp=$(element).closest('[class^="task"]').children('.swipe_up');
+					swipeUp.prop('disabled',false);
+					swipeUp.addClass('active_swipe');
+					if (!$(last_el.nextElementSibling).hasClass(classAnswer)){
+						element.disabled=true;
+						$(element).removeClass('active_swipe');
+						swipeUp.addClass('active_swipe');
+					}
+				}
+			}
+		}		
+	</script>
+	<script type="text/javascript">
+	$(document).ready(function(){
 		
+		$('#task_menu_open').click(function(){
+			$('#task_menu_body').stop().slideToggle(10);
+		});
+	});
 	</script>
 </head>
 <body  >
+	<?php include 'includes/create_invite_window.php'?>
 	<div id="page">
 		<div id="main_content"><!--  Основной див  сайта -->
+			<div id="task_menu_div">
+				<div id="task_menu">
+					<div id="task_menu_open" title="Софийский собор">
+						<p class="bars_image"><i class="fa fa-bars" aria-hidden="true"></i></p>
+					</div>
+					
+				</div>
+			</div>
 			<?php if (isset($_COOKIE['name'])&&isset($_COOKIE['surname'])):?>
 				<form action="createtest_handler.php" method="post" enctype="multipart/form-data" >
 					<div class="content_form">
 						<div id="form_handler">
-							<input type="button" value="1 форма" id="form_1" class="form_btn active_btn form_btn_1">
-							<input type="button" value="2 форма" id="form_2" class="form_btn active_btn form_btn_2">
-							<input type="button" value="3 форма" id="form_3" class="form_btn active_btn form_btn_3">
-							<input type="button" value="4 форма" id="form_4" class="active_btn form_btn _4">
+						<div class="arrow_div_task swipe_width" id="arrow-up" disabled style="display:none" onclick="swipeTask(this)">
+							<div class="arrowupdown swipe_up ">
+								<i class="fa fa-chevron-up" aria-hidden="true">
+								</i>
+							</div>
 						</div>
-						<input type="button" value="Продолжить" class="popup-open active_btn">
+						<div class="arrow_div_task swipe_width" id="arrow-down" disabled style="display:none" onclick="swipeTask(this)">
+							<div class="arrowupdown swipe_down ">
+								<i class="fa fa-chevron-down" aria-hidden="true">
+								</i>
+							</div>
+						</div>
+							<div id="create_task_btn">
+								<div id="create_task_btn_div">
+
+									<div class="new_task_btn_div" id="form_1">
+										<div class="plus_onbtn">
+											<p class="plus_onbtn_text">+</p>
+										</div>
+										<div class="new_task_btn_image" style="background-image:linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%), url('style/img/1Form.png'); background-size: cover;"></div>
+										<div class="new_task_btn_title">Задание с развернутым ответом </div>
+									</div>
+									<div class="new_task_btn_div" id="form_2">
+										<div class="plus_onbtn">
+											<p class="plus_onbtn_text">+</p>
+										</div>
+										<div class="new_task_btn_image" style="background-image:linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%), url('style/img/2Form.png'); background-size: cover;"></div>
+										<div class="new_task_btn_title new_task_btn_title_long">Задание с одним правильным ответом (из нескольких вариантов)</div>
+									</div>
+									<div class="new_task_btn_div" id="form_3">
+										<div class="plus_onbtn">
+											<p class="plus_onbtn_text">+</p>
+										</div>
+										<div class="new_task_btn_image" style="background-image:linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%), url('style/img/3Form.png'); background-size: cover;"></div>
+										<div class="new_task_btn_title new_task_btn_title_long">Задание с несколькими правильными ответами (из нескольких вариантов)</div>
+									</div>
+									<div class="new_task_btn_div" id="form_4">
+										<div class="plus_onbtn">
+											<p class="plus_onbtn_text">+</p>
+										</div>
+										<div class="new_task_btn_image" style="background-image:linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%), url('style/img/4Form.png'); background-size: cover;"></div>
+										<div class="new_task_btn_title">Задание с кратким ответом</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<input type="button" value="Продолжить" class="popup-open active_btn continue_btn">
 						<div id="nameTest" class="popup-fade">
 							<div class="popup">
 								<p class="popup_text">Введите название теста</p>
@@ -171,19 +286,15 @@
 								<p>Для получения оценки 5 достаточно баллов:<output for="range_5"></output></p>						
 								<datalist id="points_label">
 								</datalist>
-								<input type="button" value="Отменить" class="form_btn form_btn_close form_btn_send active_btn">
-								<input type="submit" value="Отправить" class="form_btn form_btn_send active_btn">
+								<input type="button" value="Отменить" class=" form_btn_close form_btn_send active_btn">
+								<input type="submit" value="Отправить" class=" form_btn_send active_btn">
 							</div>
 						</div>
 					</div>
 				</form>
 			<?php endif ?>
 			<div class="task_div task_swipe">
-				
 				<div class="task textarea_template">
-					<div class="arrow_div_task">
-						<div class="arrowupdown swipe_up"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
-					</div>
 					<p class="text_title">Задание</p>
 					<div class="prev_menu">
 						<input type="button" class="task_show" value="Задание">
@@ -195,39 +306,36 @@
 					<div class="preview">
 					</div>
 					<div class="all_icon_load_slider">
-						<div class="swipe_btn swipe_left" onclick="swipe(this)" disabled>
+						<div class="swipe_btn swipe_left" onclick="swipeIcontest(this)" disabled>
 							<p><i class="fa fa-chevron-left" aria-hidden="true"></i></p>
 						</div>
-						<div class="swipe_btn swipe_right" onclick="swipe(this)" disabled>
+						<div class="swipe_btn swipe_right" onclick="swipeIcontest(this)" disabled>
 							<p><i class="fa fa-chevron-right" aria-hidden="true"></i></p>
 						</div>
 						<div class="all_icon_load">
 							<div class="icontest">
 								
 								<img id="uploadPreview" style="width:240px; height: 240px;" />
-								<input id="inputfile" type="file" name="task[icontest][myPhoto]" onchange="PreviewImage(this);" accept="image/*" /><!-- Вставить изображение -->
+								<input class="inputfile" type="file" name="task[icontest][myPhoto]" onchange="PreviewImage(this);" accept="image/*" /><!-- Вставить изображение -->
 							</div>
 							<input type="button" class="button icontest" value="+"><!--  Кнопка добавить -->	
 						</div>
 					</div>
 								
-						<p class="text_title">Варианты ответов</p>						
+						<p class="text_title">Варианты ответов</p>	
+					<div class="prev_menu">
+						<input type="button" class="task_show" value="Задание">
+						<input type="button" class="formul_preview" value="Превью" class="prev_btn" onclick="convert()">
+					</div>					
 					<div class="areatext">
 						<textarea oninput="auto_grow(this)" name="task[textarea_answer]" id="answer" style="resize:none" class="text_answer">
 						</textarea><!--  Развернутый ответ -->
 					</div>
 					<div class="textForPoints_div"><label class="textForPoints" for="points">Введите количество баллов за данное задание</label>
 						<input type="text" maxlength="6" class="points" onkeyup="enterPoints(this)">
-					</div>
-					<div class="arrow_div_task">
-						<div class="arrowupdown swipe_down"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
-					</div>
-					
+					</div>					
 				</div>
 				<div class="task radiobutton_template">
-					<div class="arrow_div_task">
-						<div class="arrowupdown swipe_up"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
-					</div>
 					<p class="text_title">Задание</p>
 					<div class="prev_menu">
 						<input type="button" class="task_show" value="Задание">
@@ -239,18 +347,18 @@
 					<div class="preview">
 					</div>	
 					<div class="all_icon_load_slider">
-						<div class="swipe_btn swipe_left" onclick="swipe(this)" disabled>
-							<p>&lt;</p>
+						<div class="swipe_btn swipe_left" onclick="swipeIcontest(this)" disabled>
+							<p><i class="fa fa-chevron-left" aria-hidden="true"></i></p>
 						</div>
-						<div class="swipe_btn swipe_right" onclick="swipe(this)" disabled>
-							<p>&gt;</p>
+						<div class="swipe_btn swipe_right" onclick="swipeIcontest(this)" disabled>
+							<p><i class="fa fa-chevron-right" aria-hidden="true"></i></p>
 						</div>
 						<div class="all_icon_load">
 							<div class="icontest">
 
 								
 								<img id="uploadPreview" style="width:240px; height: 240px;" />
-								<input id="inputfile" type="file" name="task[icontest][myPhoto]" onchange="PreviewImage(this);" accept="image/*" /><!-- Вставить изображение -->
+								<input class="inputfile" type="file" name="task[icontest][myPhoto]" onchange="PreviewImage(this);" accept="image/*" /><!-- Вставить изображение -->
 
 							</div>
 							<input type="button" class="button icontest" value="+"><!--  Кнопка добавить -->	
@@ -258,8 +366,8 @@
 					</div>
 						
 					<p class="text_title">Варианты ответов</p>
-					<div class="arrow_div_task ">
-						<div class="arrowupdown swipe_up div_scroll_answer"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
+					<div class="arrow_up arrow_div_task swipe_up" onclick="swipeRC(this)">
+						<div class="arrowupdown div_scroll_answer"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
 					</div>						
 					<div class="radio">
 						<label class="radio_button">
@@ -276,22 +384,15 @@
 						<div class="preview preview_location">
 						</div>
 					</div>
-					<input type="button" class="add_button_answer" value="+"><!--  Кнопка добавить -->
-					<div class="arrow_div_task ">
-						<div class="arrowupdown swipe_down div_scroll_answer"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
+					<input type="button" class="add_button_answer radio" value="+"><!--  Кнопка добавить -->
+					<div class=" arrow_down arrow_div_task swipe_down" onclick="swipeRC(this)">
+						<div class=" arrowupdown div_scroll_answer"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
 					</div>
 					<div class="textForPoints_div"><label class="textForPoints" for="points">Введите количество баллов за данное задание</label>
 						<input type="text" maxlength="6" class="points" onkeyup="enterPoints(this)">
 					</div>
-					
-					<div class="arrow_div_task">
-						<div class="arrowupdown swipe_down"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
-					</div>
 				</div>
 				<div class="task checkboxbutton_template">
-					<div class="arrow_div_task">
-						<div class="arrowupdown swipe_up"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
-					</div>
 					<p class="text_title">Задание</p>
 					<div class="prev_menu ">
 						<input type="button" class="task_show" value="Задание">
@@ -303,25 +404,25 @@
 					<div class="preview">
 					</div>
 					<div class="all_icon_load_slider">
-						<div class="swipe_btn swipe_left" onclick="swipe(this)" disabled>
-							<p>&lt;</p>
+						<div class="swipe_btn swipe_left" onclick="swipeIcontest(this)" disabled>
+							<p><i class="fa fa-chevron-left" aria-hidden="true"></i></p>
 						</div>
-						<div class="swipe_btn swipe_right" onclick="swipe(this)" disabled>
-							<p>&gt;</p>
+						<div class="swipe_btn swipe_right" onclick="swipeIcontest(this)" disabled>
+							<p><i class="fa fa-chevron-right" aria-hidden="true"></i></p>
 						</div>
 						<div class="all_icon_load">
 							<div class="icontest">
 								
 								<img id="uploadPreview" style="width:240px; height: 240px;" />
-								<input id="inputfile" type="file" name="task[icontest][myPhoto]" onchange="PreviewImage(this);" accept="image/*" /><!-- Вставить изображение -->
+								<input class="inputfile" type="file" name="task[icontest][myPhoto]" onchange="PreviewImage(this);" accept="image/*" /><!-- Вставить изображение -->
 							</div>
 							<input type="button" class="button icontest" value="+"><!--  Кнопка добавить -->	
 						</div>
 					</div>
 					
 					<p class="text_title">Варианты ответов</p>	
-					<div class="arrow_div_task ">
-						<div class="arrowupdown swipe_up div_scroll_answer"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
+					<div class="arrow_down arrow_div_task swipe_up" onclick="swipeRC(this)">
+						<div class="arrowupdown div_scroll_answer"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
 					</div>
 					<div class="check">
 						<label class="checkbox">
@@ -338,22 +439,15 @@
 						<div class="preview preview_location">
 						</div>
 					</div>
-					<input type="button" class="add_button_answer" value="+"><!--  Кнопка добавить -->
-					<div class="arrow_div_task ">
-						<div class="arrowupdown swipe_down div_scroll_answer"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
+					<input type="button" class="add_button_answer check" value="+"><!--  Кнопка добавить -->
+					<div class=" arrow_down arrow_div_task swipe_down" onclick="swipeRC(this)">
+						<div class=" arrowupdown div_scroll_answer"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
 					</div>
 					<div class="textForPoints_div"><label class="textForPoints" for="points">Введите количество баллов за данное задание</label>
 						<input type="text" maxlength="6" class="points" onkeyup="enterPoints(this)">
 					</div>
-					
-					<div class="arrow_div_task">
-						<div class="arrowupdown swipe_down"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
-					</div>
 				</div>
 				<div class="task input_template">
-					<div class="arrow_div_task">
-						<div class="arrowupdown swipe_up"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
-					</div>
 					<p class="text_title">Задание</p>
 					<div class="prev_menu">
 						<input type="button" class="task_show" value="Задание">
@@ -365,17 +459,17 @@
 					<div class="preview">
 					</div>
 					<div class="all_icon_load_slider">
-						<div class="swipe_btn swipe_left" onclick="swipe(this)" disabled>
-							<p>&lt;</p>
+						<div class="swipe_btn swipe_left" onclick="swipeIcontest(this)" disabled>
+							<p><i class="fa fa-chevron-left" aria-hidden="true"></i></p>
 						</div>
-						<div class="swipe_btn swipe_right" onclick="swipe(this)" disabled>
-							<p>&gt;</p>
+						<div class="swipe_btn swipe_right" onclick="swipeIcontest(this)" disabled>
+							<p><i class="fa fa-chevron-right" aria-hidden="true"></i></p>
 						</div>
 						<div class="all_icon_load">
 							<div class="icontest">
 								
 								<img id="uploadPreview" style="width:240px; height: 240px;" />
-								<input id="inputfile" type="file" name="task[icontest][myPhoto]" onchange="PreviewImage(this);" accept="image/*" /><!-- Вставить изображение -->
+								<input class="inputfile" type="file" name="task[icontest][myPhoto]" onchange="PreviewImage(this);" accept="image/*" /><!-- Вставить изображение -->
 							</div>
 							<input type="button" class="button icontest" value="+"><!--  Кнопка добавить -->	
 						</div>
@@ -389,13 +483,14 @@
 					<div class="textForPoints_div"><label class="textForPoints" for="points">Введите количество баллов за данное задание</label>
 						<input type="text" maxlength="6" class="points" onkeyup="enterPoints(this)">
 					</div>
-
-					<div class="arrow_div_task">
-						<div class="arrowupdown swipe_down"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
-					</div>
 				</div>
+					<div id="task_menu_body" style="display: none;">
+						<p>GHBDTn</p>
+					</div>
 			</div>
+
 		</div>
+		
 	</div>
 		<div class="slider midle"><!--  Слайдер -->
 			<div class="slides"><!--  Радиокнопки и изображения -->
@@ -1041,10 +1136,12 @@
 			</div>
 		<!--  Выподающее меню -->
 		<?php include 'includes/nav_menu.php';?>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+</body>
 	<div id="footer"><!--  Футер либо подвал сайта -->
 		<div class="text">
 			2020
 		</div>
 	</div>
-</body>
 </html>

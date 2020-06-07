@@ -1,5 +1,7 @@
 <?php require_once 'includes/db.inc.php';
-	  require_once 'includes/incl_session.inc.php'?>
+	  require_once 'includes/incl_session.inc.php';
+	  include_once 'includes/getUserImage.inc.php';
+	  require_once 'includes/getFriends.inc.php';?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,17 +9,31 @@
 	<link rel="stylesheet" href="style/Main.css?<?=time()?>" type="text/css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="style/CsslistTest.css?<?=time()?>" type="text/css">
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-<?php include 'includes/script_for_nav_menu.php';?>	
-<script type='text/javascript'>
+	<?php
+	if ($path){
+	    include_once 'includes/load_user_image.inc.php';
+	}
+	?>
+	<?php if (isset($_SESSION['data-user'])):
+	    include 'includes/searchPeople.js.inc.php';
+	    include 'includes/friendsControl.js.inc.php';?>
+		<script src="js/notifs.js?<?=time();?>"></script>
+	<?php endif;?>
+	<?php include 'includes/script_for_nav_menu.php';?>	
+	<script type='text/javascript'>
 	$(document).ready(function (){
 	    var hg=$('#main_content').height();
 	    hg=hg+550+'px';
 	    $('body').height(hg);
 	});
-</script>
+	</script>
+	<script src="js/load_avatars.js?<?=time();?>"></script>
+	<script src="js/create_invite_window_script.js?<?=time();?>"></script>
 </head>
 <body >
+	<?php include 'includes/create_invite_window.php'?>
 	<div id="page">
 	</div>
 	
@@ -76,9 +92,13 @@
 				</ul>
 			</div>
 				<div id="left_block_title">
+					<?php require_once "includes/searchInput.inc.php";?>
 				</div>
 				<div id="left_block" class="left_block">
+					<?php require_once "includes/friendsList.inc.php";?>
 				</div>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<?php include 'includes/nav_menu.php';?>
 		<div id="footer">
 			<div class="text">

@@ -48,8 +48,8 @@
 			</div>
 			<select name="root" id="select">
 					<option selected value="Кто вы такой ааа?" disabled="" class="gg">Кто вы такой ааа?</option>
-					<option class="option" 	value=<?=rawurlencode("Студент")?>>Студент</option>
-					<option class="option" value=<?=rawurlencode("Преподаватель")?>>Преподаватель</option>
+					<option class="option" 	value="cтудент">Студент</option>
+					<option class="option" value="преподаватель">Преподаватель</option>
 			</select>
 			<div class="dws-input">
 

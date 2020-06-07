@@ -32,7 +32,7 @@
 	
 	$('.load_avatar_close').click(function() {
 		$(this).parents('.load_avatar_fade').fadeOut();
-		return false;
+		return false; 
 	});		
  
 	$(document).keydown(function(e) {
@@ -40,7 +40,7 @@
 			e.stopPropagation();
 			$('.load_avatar_fade').fadeOut();
 		}
-	});
+	}); 
 	
 	
 });

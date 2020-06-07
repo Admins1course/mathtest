@@ -5,13 +5,13 @@
 				  <li><a href="index.php" class="nav_menu_bar">Главная</a></li>
 				  <li><a href="#m2" class="nav_menu_bar">О нас</a></li>
 				  <li><a href="#m3" class="nav_menu_bar">Тесты</a>
-				   <ul>
-				    <li><a href="TestList.php" class="nav_menu_bar">Каталог тестов</a></li>
+				   <ul id="testmenu">
+				    <li class="invitation-page"><a href="TestList.php" class="nav_menu_bar">Каталог тестов</a></li>
 					<?php if(isset($_SESSION['data-user']['root'])&&($_SESSION['data-user']['root']=="студент")){?>
 						<li><a href="#m3_4" class="nav_menu_bar">Статистика</a></li>
 						<li><a href="#m3_5" class="nav_menu_bar">Пройти тест по приглашению</a></li>
 				    <?php }else if(isset($_SESSION['data-user']['root'])&&($_SESSION['data-user']['root']=="преподаватель")){?>
-						<li><a href="#m3_3" class="nav_menu_bar">Мой каталог</a></li>
+						<li class="invitation-page"><a href="myCatalog.php" class="nav_menu_bar">Мой каталог</a></li>
 						<li><a href="createtest.html.php" class="nav_menu_bar">Создать тест</a></li>
 						<li><a href="#m3_5" id="create-invite" class="nav_menu_bar ">Создать приглашение</a></li>
 					<?php } ?>
@@ -47,8 +47,8 @@
 					<?php
 						if (isset($_SESSION['data-user']['name'])&&isset($_SESSION['data-user']["surname"])):?>
 							
-							<div class="load_avatar_fade">
-								<div class="load_avatar">
+							<div class="load_avatar_fade"> 
+								<div class="load_avatar"> 
 									<div>
 										<img id="avatar-full-size" class="preview_image_div">
 										<img id="file-img-preview"class="preview_image">

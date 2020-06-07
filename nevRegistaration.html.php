@@ -1,4 +1,4 @@
-<?php include $_SERVER['DOCUMENT_ROOT'].'/mathtest/users_data_control.php';?>
+<?php include 'users_data_control.php';?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
