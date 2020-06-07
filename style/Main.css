@@ -133,7 +133,6 @@ body{
 #menu1 li:hover ul{
 	display: block;
 	top: 60px;
-	
     }
 #menu1 li:hover li{
 	display: block;

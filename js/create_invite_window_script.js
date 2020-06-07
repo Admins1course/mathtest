@@ -81,4 +81,3 @@ $(document).ready(function () {
 		sessionStorage.setItem("invitation",!sessionStorage.getItem("invitation"));
 	}
 });
-
