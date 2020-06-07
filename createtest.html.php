@@ -1,5 +1,7 @@
 <?php require_once 'includes/db.inc.php';
-	  require_once 'includes/incl_session.inc.php';?>
+	  require_once 'includes/incl_session.inc.php';
+	  include_once 'includes/getUserImage.inc.php';
+	  require_once 'includes/getFriends.inc.php';?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +15,16 @@
 			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
 	</script>
 	<script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script>
+	<?php
+	if ($path){
+	    include_once 'includes/load_user_image.inc.php';
+	}
+	?>
+	<?php if (isset($_SESSION['data-user'])):
+	    include 'includes/searchPeople.js.inc.php';
+	    include 'includes/friendsControl.js.inc.php';?>
+		<script src="js/notifs.js?<?=time();?>"></script>
+	<?php endif;?>
 	<?php include 'includes/script_for_nav_menu.php';?>
 	<script type='text/javascript'>
 	$(function height(){
@@ -22,6 +34,8 @@
 	    $('body').height(hg);
 	});
 </script>
+	<script src="js/load_avatars.js?<?=time();?>"></script>
+	<script src="js/create_invite_window_script.js?<?=time();?>"></script>
 
 	<script>
 		function auto_grow(element) {
@@ -184,6 +198,7 @@
 	</script>
 </head>
 <body  >
+	<?php include 'includes/create_invite_window.php'?>
 	<div id="page">
 		<div id="main_content"><!--  Основной див  сайта -->
 			<div id="task_menu_div">
@@ -217,28 +232,29 @@
 										<div class="plus_onbtn">
 											<p class="plus_onbtn_text">+</p>
 										</div>
-										<div class="new_task_btn_image" style="background-image:linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%), url('style/img/1Form.png'); background-size: cover;"></div>
+										<div class="new_task_btn_image" style="background-image:linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%), url('http://mathtest.rfpgu.ru/style/img/Form1.PNG'); background-size: cover;"></div>
 										<div class="new_task_btn_title">Задание с развернутым ответом </div>
 									</div>
 									<div class="new_task_btn_div" id="form_2">
 										<div class="plus_onbtn">
 											<p class="plus_onbtn_text">+</p>
 										</div>
-										<div class="new_task_btn_image" style="background-image:linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%), url('style/img/2Form.png'); background-size: cover;"></div>
+										<div class="new_task_btn_image" style="background-image:linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%), url('http://mathtest.rfpgu.ru/style/img/2Form.PNG'); background-size: cover;"></div>
 										<div class="new_task_btn_title new_task_btn_title_long">Задание с одним правильным ответом (из нескольких вариантов)</div>
 									</div>
 									<div class="new_task_btn_div" id="form_3">
 										<div class="plus_onbtn">
 											<p class="plus_onbtn_text">+</p>
 										</div>
-										<div class="new_task_btn_image" style="background-image:linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%), url('style/img/3Form.png'); background-size: cover;"></div>
+										<div class="new_task_btn_image" style="background-image:linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%), url('http://mathtest.rfpgu.ru/style/img/3Form.PNG'); background-size: cover;"></div>
 										<div class="new_task_btn_title new_task_btn_title_long">Задание с несколькими правильными ответами (из нескольких вариантов)</div>
 									</div>
 									<div class="new_task_btn_div" id="form_4">
 										<div class="plus_onbtn">
 											<p class="plus_onbtn_text">+</p>
 										</div>
-										<div class="new_task_btn_image" style="background-image:linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%), url('style/img/4Form.png'); background-size: cover;"></div>
+										<div class="new_task_btn_image" style="background-image:linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%), url('http://mathtest.rfpgu.ru/style/img/4Form.PNG'); background-size: cover;"></div>
+
 										<div class="new_task_btn_title">Задание с кратким ответом</div>
 									</div>
 								</div>
@@ -1121,10 +1137,12 @@
 			</div>
 		<!--  Выподающее меню -->
 		<?php include 'includes/nav_menu.php';?>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+</body>
 	<div id="footer"><!--  Футер либо подвал сайта -->
 		<div class="text">
 			2020
 		</div>
 	</div>
-</body>
 </html>

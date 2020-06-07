@@ -47,8 +47,8 @@
 					<?php
 						if (isset($_SESSION['data-user']['name'])&&isset($_SESSION['data-user']["surname"])):?>
 							
-							<div class="load_avatar_fade">
-								<div class="load_avatar">
+							<div class="load_avatar_fade"> 
+								<div class="load_avatar"> 
 									<div>
 										<img id="avatar-full-size" class="preview_image_div">
 										<img id="file-img-preview"class="preview_image">

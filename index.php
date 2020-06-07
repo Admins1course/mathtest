@@ -10,9 +10,8 @@
 
 	<link rel="stylesheet" href="style/Main.css?<?=time()?>" type="text/css">
 	<link rel="stylesheet" href="style/Cssforindex.css?<?=time()?>" type="text/css">
+	<link rel="stylesheet" href="style/CssforDialogWindow.css?<?=time()?>" type="text/css">
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	
-
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
