@@ -136,7 +136,7 @@ var $activeContainer='';
 
 	var countOfElements= 0;
 
-	$(window).load(function(){
+	$(document).ready(function(){
 		$('.btnpastepre').click(function() {
 			var myhtml=$(this).attr('value');
 			$activeContainer.insertAtCaret(myhtml);

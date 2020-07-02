@@ -6,7 +6,6 @@
 		if ((trim($value)!==false)&&(trim($value)!=='')) return 1;
 		else return 0;
 	}
-	echo var_dump($_POST);
 	//основная часть обработчика
 	/*-----------------------------------------------СТРУКТУРА ТАБЛИЦ-----------------------------------------------------------
 	*
@@ -166,9 +165,9 @@
 					
 					if (!$db_flags['tests']){
 						$db_flags['tests']=1;
-						$sql="INSERT INTO tests VALUES (:idUser,:count,'new_task',NOW())";
+						$sql="INSERT INTO tests(`idAuthor`,`idTest`,`taskName`,`dataRegistration`) VALUES (:idUser,:count,'new_task',NOW())";
 						$result=$pdo->prepare($sql);
-						$result->execute(['count'=>$count,'idUser'=>$_SESSION['data-user']['id']]);
+						$result->execute(['idUser'=>$_SESSION['data-user']['id'],'count'=>$count]);
 					}
 									
 					if ($task_exist||$file_exist){

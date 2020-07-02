@@ -18,12 +18,26 @@
 				</select>
 				<ul class="listOfPeople" id="inviteFriends">
 				<?php if ($friends!=[]):
+
 					for ($i=0;$i<count($friends);$i++):?>
-						<input type="checkbox" value="<?=$friends[$i]['id_Friend']?>">
-						<li id="userId<?=$friends[$i]['id_Friend']?>"><?=$friends[$i]['name']?> <?=$friends[$i]['surname']?></li>	
+						<input class="choose-friends" type="checkbox" value="<?=$friends[$i]['id_Friend']?>">
+						<div class="people_avatar"></div>
+						<li class="friends_names_invite" id="userId<?=$friends[$i]['id_Friend']?>"><?=$friends[$i]['name']?> <?=$friends[$i]['surname']?></li>	
 					<?php endfor;
 				endif;?>
 				</ul>
+			</div>
+			<div>
+				<select>
+					<option selected disabled>Выберите получателя ответов</option>
+					<?php if ($friends!=[]):
+						for ($i=0;$i<count($friends);$i++):?>
+							<option id="UID<?=$friends[$i]['id_Friend']?>"><?=$friends[$i]['name']?> <?=$friends[$i]['surname']?></option>
+						<?php endfor;
+					else:?>
+					<option>У Вас нет друзей</option>
+					<?php endif;?>
+				</select>
 			</div>
         </div>
  

@@ -18,7 +18,7 @@
 	});
 	</script>
 </head>
-<body style="width: 2000px; height: 1000px;">
+<body style="position: fixed;">
 
     <!--эти 3 элемента появляются при вводе отсутствии данных-->
     
@@ -48,7 +48,7 @@
 			</div>
 			<select name="root" id="select">
 					<option selected value="Кто вы такой ааа?" disabled="" class="gg">Кто вы такой ааа?</option>
-					<option class="option" 	value="cтудент">Студент</option>
+					<option class="option" 	value="студент">Студент</option>
 					<option class="option" value="преподаватель">Преподаватель</option>
 			</select>
 			<div class="dws-input">

@@ -1,16 +1,26 @@
 $(document).ready(function () {
+
 	let timerId;
 	let invitationPages=document.getElementsByClassName("invitation-page");
+
 	$( "#dialog_window_1" ).dialog({
+		resizable: false,
+		height: 450,
+		maxHeight: 450,
+		minHeight: 450,
+		width: 350,
+		maxWidth: 350,
+		minWidth: 350,
 		autoOpen: false,
-		modal:true
+		modal:true,
+		buttons:{
+			"Отменить":closeDialog,
+			"Отправить":sendInvitation
+		}
 	});
 	if (sessionStorage.getItem('ivitation'))openDialog();
 	$("#create-invite").click(openDialog);
  
-	$("div[aria-describedby=dialog_window_1] .ui-button-icon").click(function(){
-		console.log("hi");
-	});
 	$("#dialog_window_1").bind("dialogopen", function(){
 		changeOverlay();
 		if ((document.location.pathname!="/myCatalog.php")&&(document.location.pathname!="/TestList.php")){
@@ -18,15 +28,29 @@ $(document).ready(function () {
 			inclInSession();
 			animTestMenu();
 		}
+		else{
+			showMainContent();
+			changeMainContent();
+		}
 	});
     $( "#dialog_window_1" ).on( "dialogbeforeclose", function( event, ui ) {
-		clearInterval(timerId);
-		invitationPages[0].style.backgroundColor="";
-		invitationPages[1].style.backgroundColor="";
-		hideTestMenu();
-		inclInSession();
+		if ((document.location.pathname!="/myCatalog.php")&&(document.location.pathname!="/TestList.php")){
+			clearInterval(timerId);
+			invitationPages[0].style.backgroundColor="";
+			invitationPages[1].style.backgroundColor="";
+			hideTestMenu();
+		}
+		else{
+			deleteZIndex();
+			returnMainContent();
+		}
+		deleteFromSession()
 	});
 	
+ 
+ 
+
+
 	function openDialog(){
 		$("#dialog_window_1").dialog('open');
 	}
@@ -77,7 +101,97 @@ $(document).ready(function () {
 		}
 	}
 	
-	function inclInSession(){
-		sessionStorage.setItem("invitation",!sessionStorage.getItem("invitation"));
+	function showMainContent(){
+		document.getElementById('main_content').style.zIndex="101";
 	}
+	
+	function changeMainContent(){
+		$('.test_href').each(function(index,elem){
+			href=$(this).closest('a').attr('href');
+			$(this).append('<input type="hidden" value="'+href+'">');
+			$(this).unwrap();
+			$(this).wrap("<div class='div_test_href'></div>");
+			$(this).addClass('div_list').append('<div class="checkbox-div"><input type="checkbox" class="checkbox_list"></div>');
+		});
+	} 
+	
+	function deleteZIndex(){
+		document.getElementById('main_content').style.zIndex="";
+	}
+	
+	function returnMainContent(){
+		$('.div_list').each(function(index,elem){
+			href=$(this).children(':hidden').val();
+			$(this).children('.checkbox-div').remove();
+			$(this).children('input').remove();
+			$(this).unwrap();
+			$(this).wrap('<a href="'+href+'"></a>');
+			$(this).removeClass('div_list');
+			if($(this).hasClass('test_href_min')){
+				$(this).removeClass('test_href_min');
+				$(this).addClass('test_href');
+			}
+		});
+	}
+	
+	function inclInSession(){
+		sessionStorage.setItem("invitation",true);
+	}
+	
+	function deleteFromSession(){
+		sessionStorage.setItem("invitation",false);
+	}
+	
+	function closeDialog(){
+		$(this).dialog('close');
+	}
+	
+	function sendInvitation(e){
+		let tests=collectTests();
+		let friends=collectFriends();
+		console.log(tests,friends);
+		dataPost={"tests":tests,
+			      "friends":friends}
+		if ((tests!=[])&&(friends!=[])){
+			$.ajax({
+				url:document.location.origin+"/includes/sendInvitation.php",
+				cache:false,
+				type:'POST',
+				dataType:'json',
+				data:dataPost,
+				error:function(data){console.log(data)},
+				success:function(data){
+					console.log(data);
+				}
+			});
+		}
+	}
+	
+	function collectTests(){
+		let tests=[];
+		$('.checkbox_list').each(function(){
+			if (this.checked)
+				tests.push(this.parentElement.previousElementSibling.value);
+		});
+		return tests;
+	}
+	
+	function collectFriends(){
+		let friends=[];
+		let idUser;
+		$('.choose-friends').each(function(){
+			if(this.checked){
+				idUser=this.nextElementSibling.id;
+				friends.push(idUser.replace("userId",""));
+			}
+		});
+		return friends;
+	}
+});
+$(document).ready(function() {
+    $(".ui-dialog").css("position", "relative");
+});
+
+$(window).scroll(function() {
+    $(".ui-dialog").css("top", $(window).scrollTop() + "px");
 });

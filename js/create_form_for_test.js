@@ -1,7 +1,7 @@
 var thisTask;
 $(document).ready(function(){
 	let tasks=0;//количество заданий
-	let lenghts={};//массив, фиксирующий количество элементов в заданиях, которые можно добавлять
+	let lenghts={};//массив, фиксирующий количество элементов в заданиях, которые можно добавлять	
 	//форма с textarea
 	$('#form_1').click(function(){
 		tasks++;
@@ -18,12 +18,15 @@ $(document).ready(function(){
 		}
 		thisTask=$('.textarea_template:hidden:last').clone('deepWithDataAndEvents').insertBefore('#arrow-down').attr('id','task'+tasks).slideDown(1000,function(){
 			//формируем аттрибут name для элементов, значение которых отправится на сервер
+			$(this).find('.swipe_left')[0].disabled=true;
+			$(this).find('.swipe_right')[0].disabled=true;
 			$('form .textarea_template:last .main_text').attr('name','task'+tasks+'[total_task]');
 			$('form .textarea_template:last .inputfile').attr('name','task'+tasks+'[icontest1][myPhoto]');
 			lenghts['task'+tasks]={'icontest':1};
 			$('form .textarea_template:last .areatext #answer').attr('name','task'+tasks+'[textarea_answer]');
 			$('form .textarea_template:last .textForPoints').attr('for','points'+tasks);
 			$('form .textarea_template:last .points').attr('id','points'+tasks).attr('name','task'+tasks+'[points]');
+			document.getElementById('task_menu_body').innerHTML+='<p class="'+this.id+'" onclick="showTask(this)">Задание '+this.id.slice(4)+'</p>';
 		});
 	});
 	//аналогично предыдущему, но форма с radiobutton
@@ -41,6 +44,8 @@ $(document).ready(function(){
 			document.getElementById("arrow-down").style.display="block";
 		}
 		thisTask=$('.radiobutton_template:hidden:last').clone('deepWithDataAndEvents').insertBefore('#arrow-down').attr('id','task'+tasks).slideDown(1000,function(){
+			$(this).find('.swipe_left')[0].disabled=true;
+			$(this).find('.swipe_right')[0].disabled=true;
 			$('form .radiobutton_template:last .main_text').attr('name','task'+tasks+'[total_task]');
 			$('form .radiobutton_template:last .inputfile').attr('name','task'+tasks+'[icontest1][myPhoto]');
 			$('form .radiobutton_template:last .radio .button_radio').attr('name','task'+tasks+'[radio]').attr('value',1);
@@ -50,6 +55,7 @@ $(document).ready(function(){
 			lenghts['task'+tasks]['icontest']=1;
 			$('form .radiobutton_template:last .textForPoints').attr('for','points'+tasks);
 			$('form .radiobutton_template:last .points').attr('id','points'+tasks).attr('name','task'+tasks+'[points]');
+			document.getElementById('task_menu_body').innerHTML+='<p class="'+this.id+'" onclick="showTask(this)">Задание '+this.id.slice(4)+'</p>';
 		});
 	});
 	//аналогично предыдущему, но форма с checkboxbutton
@@ -67,6 +73,8 @@ $(document).ready(function(){
 			document.getElementById("arrow-down").style.display="block";
 		}
 		thisTask=$('.checkboxbutton_template:hidden:last').clone('deepWithDataAndEvents').insertBefore('#arrow-down').attr('id','task'+tasks).slideDown(1000,function(){
+			$(this).find('.swipe_left')[0].disabled=true;
+			$(this).find('.swipe_right')[0].disabled=true;
 			$('form .checkboxbutton_template:last .main_text').attr('name','task'+tasks+'[total_task]');
 			$('form .checkboxbutton_template:last .inputfile').attr('name','task'+tasks+'[icontest1][myPhoto]');
 			$('form .checkboxbutton_template:last .check .button_checkbox').attr('name','task'+tasks+'[checkbox_answer1][checkbox]').attr('value',1);
@@ -76,6 +84,7 @@ $(document).ready(function(){
 			lenghts['task'+tasks]['icontest']=1;
 			$('form .checkboxbutton_template:last .textForPoints').attr('for','points'+tasks);
 			$('form .checkboxbutton_template:last .points').attr('id','points'+tasks).attr('name','task'+tasks+'[points]');
+			document.getElementById('task_menu_body').innerHTML+='<p class="'+this.id+'" onclick="showTask(this)">Задание '+this.id.slice(4)+'</p>';
 		});
 	});
 	//аналогично предыдущему, но форма с input
@@ -93,6 +102,8 @@ $(document).ready(function(){
 			document.getElementById("arrow-down").style.display="block";
 		}
 		thisTask=$('.input_template:hidden:last').clone('deepWithDataAndEvents').insertBefore('#arrow-down').attr('id','task'+tasks).slideDown(1000,function(){
+			$(this).find('.swipe_left')[0].disabled=true;
+			$(this).find('.swipe_right')[0].disabled=true;
 			$('form .input_template:last .main_text').attr('name','task'+tasks+'[total_task]');
 			$('form .input_template:last .inputfile').attr('name','task'+tasks+'[icontest1][myPhoto]');
 			$('form .input_template:last .inp input').attr('name','task'+tasks+'[input_answer]');
@@ -100,6 +111,7 @@ $(document).ready(function(){
 			lenghts['task'+tasks]={}
 			lenghts['task'+tasks]={'icontest':1};
 			$('form .input_template:last .points').attr('id','points'+tasks).attr('name','task'+tasks+'[points]');
+			document.getElementById('task_menu_body').innerHTML+='<p class="'+this.id+'" onclick="showTask(this)">Задание '+this.id.slice(4)+'</p>';
 		});
 	});
 	$('.button').click(function(){
@@ -199,4 +211,132 @@ function swipeTask(element){
 			}
 		}
 	}
+}
+
+function closeIcontest(el){
+	let parentEl=el.parentElement;
+	let prevparentEl=parentEl.parentElement.parentElement;
+	swipeRight=$(prevparentEl).children('.swipe_right');
+	swipeLeft=swipeRight.prev();
+	parentEl.parentElement.removeChild(parentEl);
+	first_el=$(swipeRight[0]['parentElement']).children('.all_icon_load').children('.icontest:visible:first');
+	last_el=$(swipeRight[0]['parentElement']).children('.all_icon_load').children('.icontest:visible:last');
+	if (!(swipeRight[0].disabled)){
+		last_el[0].nextElementSibling.hidden=false;
+		last_el=last_el[0].nextElementSibling;
+		if (last_el.nextElementSibling===null){
+			swipeRight[0].disabled=true;
+			swipeRight.removeClass('active_swipe');
+		}
+	}
+	else if(!(swipeLeft[0].disabled)){
+		first_el[0].previousElementSibling.hidden=false;
+		first_el=first_el[0].previousElementSibling;
+		if (first_el.previousElementSibling===null){
+			swipeLeft[0].disabled=true;
+			swipeLeft.removeClass('active_swipe');
+		}
+	}
+}
+
+function closeRC(el){
+	let parentEl=el.parentElement;
+	let prevparentEl=parentEl.parentElement;
+	swipeUp=$(prevparentEl).children('.swipe_up');
+	swipeDown=$(prevparentEl).children('.swipe_down');
+	$(parentEl).slideUp(1000, function(){
+		parentEl.parentElement.removeChild(parentEl);
+	});
+	let classAnswer=swipeUp.closest('[class^="task"]').attr('class').split(' ');
+	classAnswer=classAnswer[1].substring(0,5);
+	first_el=$(swipeUp[0]['parentElement']).children('.'+classAnswer+':visible:first');
+	last_el=$(swipeUp[0]['parentElement']).children('.'+classAnswer+':visible:last');
+	if (!(swipeDown[0].disabled)){
+		$(last_el[0].nextElementSibling).slideDown(1000);
+		last_el=last_el[0].nextElementSibling;
+		if (!$(last_el.nextElementSibling).hasClass(classAnswer)){
+			swipeDown[0].disabled=true;
+			swipeDown.removeClass('active_swipe');
+		}
+	}
+	else if(!(swipeUp[0].disabled)){
+		$(first_el[0].previousElementSibling).slideDown(1000);
+		first_el=first_el[0].previousElementSibling;
+		if (!$(first_el.previousElementSibling).hasClass(classAnswer)){
+			swipeUp[0].disabled=true;
+			swipeUp.removeClass('active_swipe');
+		}
+	}
+}
+
+function closeTask(el){
+	let parentEl=el.parentElement;
+	let prevparentEl=parentEl.parentElement;
+	swipeUp=$('#arrow-up');
+	swipeDown=$('#arrow-down');
+	thisTask.slideUp(1000, function(){
+		parentEl.parentElement.removeChild(parentEl);
+	});
+	taskName=document.getElementsByClassName(thisTask[0].id);
+	document.getElementById('task_menu_body').removeChild(taskName[0]);
+	if ((swipeDown[0].disabled!==undefined)&&(!Number(swipeDown.prop('disabled')))){
+		console.log('hi');
+		thisTask=$(thisTask[0].nextElementSibling);
+		thisTask.slideDown(1000);
+		if(!thisTask.next().hasClass('task')){
+			swipeDown[0].disabled=true;
+			swipeDown.removeClass('active_swipe');
+		}
+	}
+	else if ((swipeUp[0].disabled!==undefined)&&(!Number(swipeUp.prop('disabled')))){
+		console.log('ki');
+		thisTask=$(thisTask[0].previousElementSibling);
+		thisTask.slideDown(1000);
+		if(!thisTask.prev().hasClass('task')){
+			swipeUp[0].disabled=true;
+			swipeUp.removeClass('active_swipe');
+		}
+	}
+	else{
+		thisTask=undefined;
+		swipeDown[0].style.display="none";
+		swipeUp[0].style.display="none";
+	}
+}
+
+function showTask(el){
+	for(i=0;i<el.classList.length;i++){
+		if (el.classList[i].includes('task')){
+			if(thisTask[0]!=$('#'+el.classList[i])[0]){
+				thisTask.slideUp(1000);
+				$('#'+el.classList[i]).slideDown(1000);
+				thisTask=$('#'+el.classList[i]);
+				$('#arrow-down')[0].disabled=false;
+				$('#arrow-down').addClass('active_swipe');
+				$('#arrow-up')[0].disabled=false;
+				$('#arrow-up').addClass('active_swipe');
+				if (!thisTask.prev().hasClass('task')){
+					$('#arrow-up')[0].disabled=true;
+					$('#arrow-up').removeClass('active_swipe');
+					$('#arrow-down')[0].disabled=false;
+					$('#arrow-down').addClass('active_swipe');
+				}
+				else if (!thisTask.next().hasClass('task')){
+					$('#arrow-down')[0].disabled=true;
+					$('#arrow-down').removeClass('active_swipe');
+					$('#arrow-up')[0].disabled=false;
+					$('#arrow-up').addClass('active_swipe');
+				}
+			}
+		}
+	}
+}
+
+function sendData(){
+	let d=document;
+	let btns=d.getElementsByClassName('form_btn_send');
+	for(let i=0;i<btns.length;i++){
+		btns[i].style.display='none';
+	}
+	d.getElementById('check-test').style.display='block';
 }

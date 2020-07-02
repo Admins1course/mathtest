@@ -15,6 +15,8 @@
 	<script type="text/javascript" id="MathJax-script" async
 			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
 	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<?php
 	if ($path){
 	    include_once 'includes/load_user_image.inc.php';
@@ -130,7 +132,8 @@
 							<?php } ?>
 							<p>Получено баллов за задание: <?=$right_answers[$i-1][1]?></p>
 						</div>
-					<?php } ?>
+				<?php } 
+				}?>
 				</div>
 			</div>
 		
@@ -164,8 +167,6 @@
 		<div id="left_block" class="left_block">
 			<?php require_once "includes/friendsList.inc.php";?>
 		</div>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 		<?php include 'includes/nav_menu.php';?>
 	<div id="footer">
 		<div class="text">

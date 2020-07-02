@@ -1,6 +1,7 @@
 <?php @session_start();?>
 <script>
 function addFriend(element){
+	console.log('hi');
 	$idFriend=$(element).attr('id').replace('user','');
 	friendMessage={message:<?="'".$_SESSION['data-user']['name']."'"?>+' '+<?="'".$_SESSION['data-user']['surname']."'"?>+' хочет добавить вас в друзья',
 				   myid:<?="'".$_SESSION['data-user']['id']."'"?>,

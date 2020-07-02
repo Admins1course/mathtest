@@ -7,6 +7,7 @@
 <head>
 	<meta http-equiv="Cache-Control" content="no-cache" charset="UTF-8">
 	<link rel="stylesheet" href="style/Main.css?<?=time()?>" type="text/css">
+	<link rel="stylesheet" href="style/Cssforindex.css?<?=time()?>" type="text/css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="style/Ccssfortest.css?<?=time()?>" type="text/css">
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -15,6 +16,8 @@
 			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
 	</script>
 	<script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<?php
 	if ($path){
 	    include_once 'includes/load_user_image.inc.php';
@@ -26,14 +29,6 @@
 		<script src="js/notifs.js?<?=time();?>"></script>
 	<?php endif;?>
 	<?php include 'includes/script_for_nav_menu.php';?>
-	<script type='text/javascript'>
-	$(function height(){
-
-	    var hg=$('.content_form').height();
-	    hg=hg+800+'px';
-	    $('body').height(hg);
-	});
-</script>
 	<script src="js/load_avatars.js?<?=time();?>"></script>
 	<script src="js/create_invite_window_script.js?<?=time();?>"></script>
 
@@ -72,6 +67,18 @@
 	});
 	</script>
 	<script src="js/points.js?<?=time()?>"></script>
+	<script>
+	function cancelSending(e){
+		e.preventDefault();
+		function cancelClose(e){
+			e.preventDefault();
+		}
+		document.getElementById
+	}
+	$(document).ready(function(){
+		document.getElementById('sendForm').addEventListener("click",cancelSending,false);
+	});
+	</script>
 	<script>
 		$(document).ready(function($) {
 			$('.popup-open').click(function() {
@@ -145,7 +152,7 @@
 			}
 		}
 		function swipeRC(element){//RC = Radio Check
-			let classAnswer=$(element).closest('[class^="task"]').attr('class').split(' ');//[1].substring(0,5);
+			let classAnswer=$(element).closest('[class^="task"]').attr('class').split(' ');
 			classAnswer=classAnswer[1].substring(0,5);
 			first_el=$($(element)[0]['parentElement']).children('.'+classAnswer+':visible:first');
 			last_el=$($(element)[0]['parentElement']).children('.'+classAnswer+':visible:last');
@@ -159,7 +166,6 @@
 					let swipeDown=$(element).closest('[class^="task"]').children('.swipe_down');
 					swipeDown.prop('disabled',false);
 					swipeDown.addClass('active_swipe');
-					console.log(swipeDown);
 					if (!$(first_el.previousElementSibling).hasClass(classAnswer)){
 						element.disabled=true;					
 						$(element).removeClass('active_swipe');
@@ -190,11 +196,39 @@
 	</script>
 	<script type="text/javascript">
 	$(document).ready(function(){
-		
 		$('#task_menu_open').click(function(){
 			$('#task_menu_body').stop().slideToggle(10);
 		});
 	});
+	</script>
+	<script>
+	function showSections(elem){
+		subj=document.getElementById('subjects');
+		for (i=1;i<subj.length;i++){
+			if (subj[i].text===subj.value){
+				id=subj[i].id.slice(7);
+			}
+		}
+		$.ajax({
+			url:document.location.origin+"/includes/getSection.php",
+			cache:false,
+			dataType:'json',
+			type:'POST',
+			data:{
+				section:Number(id)
+			},
+			error:function(data){console.log(data)},
+			success:function(data){
+				document.getElementById('sections').style.display='block';
+				console.log(data);
+			}
+		});
+	}
+	</script>
+	<script>
+		function nameControl(el){
+			el.value=el.value.replace(/[^a-zA-Zа-яА-ЯЁё0-9_\s]+/gus, '');
+		}
 	</script>
 </head>
 <body  >
@@ -209,8 +243,8 @@
 					
 				</div>
 			</div>
-			<?php if (isset($_COOKIE['name'])&&isset($_COOKIE['surname'])):?>
-				<form action="createtest_handler.php" method="post" enctype="multipart/form-data" >
+			<?php if (isset($_SESSION['data-user'])):?>
+				<form onsubmit="sendForm()" action="createtest_handler.php" method="post" enctype="multipart/form-data" >
 					<div class="content_form">
 						<div id="form_handler">
 						<div class="arrow_div_task swipe_width" id="arrow-up" disabled style="display:none" onclick="swipeTask(this)">
@@ -264,14 +298,21 @@
 						<div id="nameTest" class="popup-fade">
 							<div class="popup">
 								<p class="popup_text">Введите название теста</p>
-								<input type="text" class="input_text_popup">
-								<p class="popup_text">Выберите дисциплину (и если нужно раздел дисциплины)<p>
-								<select name="" id="subjects" class="popup_select">
-									<option selected value="Выберите дисциплину" class="option_subject popup_text ">Выберите дисциплину</option>
-									<option class="option_subject" ></option>
+								<input type="text" class="input_text_popup" onkeyup="nameControl(this)" onchange="nameControl(this)">
+								<p class="popup_text">Выберите дисциплину (и, если нужно, раздел дисциплины)<p>
+								<select name="subject" id="subjects" class="popup_select" onchange="showSections(this)">
+									<option disabled selected value="Выберите дисциплину" class="option_subject popup_text ">Выберите дисциплину</option>
+									<?php 
+									$sql="SELECT `id_subject`,`subject` from `subjects`";
+									$result=$pdo->query($sql);
+									$subjects=$result->fetchAll(PDO::FETCH_ASSOC);
+									for ($i=0;$i<count($subjects);$i++):
+									?>
+									<option class="option_subject" id="subject<?=$subjects[$i]['id_subject']?>"><?=$subjects[$i]['subject']?></option>
+									<?php endfor;?>
 								</select>
-								<select name="" id="sections" class="popup_select">
-									<option selected value="Выберите дисциплину" class="option_section popup_text ">Выберите раздел</option>
+								<select name="section" id="sections" class="popup_select" style="display:none">
+									<option disabled selected value="Выберите раздел" class="option_section popup_text ">Выберите раздел</option>
 									<option class="option_section" ></option>
 								</select>
 								<p>Выберите минимальное значение баллов для получения каждой из оценки</p>
@@ -287,8 +328,9 @@
 								<p>Для получения оценки 5 достаточно баллов:<output for="range_5"></output></p>						
 								<datalist id="points_label">
 								</datalist>
+								<span id="check-test" style="display:none">ПРОВЕРКА ЗАПОЛНЕНИЯ ЗАДАНИЙ</span>
 								<input type="button" value="Отменить" class=" form_btn_close form_btn_send active_btn">
-								<input type="submit" value="Отправить" class=" form_btn_send active_btn">
+								<input type="submit" value="Отправить" class=" form_btn_send active_btn" id="sendForm" onclick="sendData()">
 							</div>
 						</div>
 					</div>
@@ -296,6 +338,7 @@
 			<?php endif ?>
 			<div class="task_div task_swipe">
 				<div class="task textarea_template">
+					<input type="button" value="x" class="delete_element" onclick="closeTask(this)">
 					<p class="text_title">Задание</p>
 					<div class="prev_menu">
 						<input type="button" class="task_show" value="Задание">
@@ -315,7 +358,7 @@
 						</div>
 						<div class="all_icon_load">
 							<div class="icontest">
-								
+								<input type="button" value="x" class="delete_element" onclick="closeIcontest(this)">
 								<img id="uploadPreview" style="width:240px; height: 240px;" />
 								<input class="inputfile" type="file" name="task[icontest][myPhoto]" onchange="PreviewImage(this);" accept="image/*" /><!-- Вставить изображение -->
 							</div>
@@ -337,6 +380,7 @@
 					</div>					
 				</div>
 				<div class="task radiobutton_template">
+					<input type="button" value="x" class="delete_element" onclick="closeTask(this)">
 					<p class="text_title">Задание</p>
 					<div class="prev_menu">
 						<input type="button" class="task_show" value="Задание">
@@ -356,11 +400,9 @@
 						</div>
 						<div class="all_icon_load">
 							<div class="icontest">
-
-								
+								<input type="button" value="x" class="delete_element" onclick="closeIcontest(this)">
 								<img id="uploadPreview" style="width:240px; height: 240px;" />
 								<input class="inputfile" type="file" name="task[icontest][myPhoto]" onchange="PreviewImage(this);" accept="image/*" /><!-- Вставить изображение -->
-
 							</div>
 							<input type="button" class="button icontest" value="+"><!--  Кнопка добавить -->	
 						</div>
@@ -384,6 +426,7 @@
 						</textarea><!--  задание1 -->
 						<div class="preview preview_location">
 						</div>
+						<input type="button" value="x" class="delete_element position_delete" onclick="closeRC(this)">
 					</div>
 					<input type="button" class="add_button_answer radio" value="+"><!--  Кнопка добавить -->
 					<div class=" arrow_down arrow_div_task swipe_down" onclick="swipeRC(this)">
@@ -394,6 +437,7 @@
 					</div>
 				</div>
 				<div class="task checkboxbutton_template">
+					<input type="button" value="x" class="delete_element" onclick="closeTask(this)">
 					<p class="text_title">Задание</p>
 					<div class="prev_menu ">
 						<input type="button" class="task_show" value="Задание">
@@ -413,7 +457,7 @@
 						</div>
 						<div class="all_icon_load">
 							<div class="icontest">
-								
+								<input type="button" value="x" class="delete_element" onclick="closeIcontest(this)">
 								<img id="uploadPreview" style="width:240px; height: 240px;" />
 								<input class="inputfile" type="file" name="task[icontest][myPhoto]" onchange="PreviewImage(this);" accept="image/*" /><!-- Вставить изображение -->
 							</div>
@@ -439,6 +483,7 @@
 						</textarea><!--  задание1 -->
 						<div class="preview preview_location">
 						</div>
+						<input type="button" value="x" class="delete_element position_delete" onclick="closeRC(this)">
 					</div>
 					<input type="button" class="add_button_answer check" value="+"><!--  Кнопка добавить -->
 					<div class=" arrow_down arrow_div_task swipe_down" onclick="swipeRC(this)">
@@ -449,6 +494,7 @@
 					</div>
 				</div>
 				<div class="task input_template">
+					<input type="button" value="x" class="delete_element" onclick="closeTask(this)">
 					<p class="text_title">Задание</p>
 					<div class="prev_menu">
 						<input type="button" class="task_show" value="Задание">
@@ -468,7 +514,7 @@
 						</div>
 						<div class="all_icon_load">
 							<div class="icontest">
-								
+								<input type="button" value="x" class="delete_element" onclick="closeIcontest(this)">
 								<img id="uploadPreview" style="width:240px; height: 240px;" />
 								<input class="inputfile" type="file" name="task[icontest][myPhoto]" onchange="PreviewImage(this);" accept="image/*" /><!-- Вставить изображение -->
 							</div>
@@ -486,7 +532,6 @@
 					</div>
 				</div>
 					<div id="task_menu_body" style="display: none;">
-						<p>GHBDTn</p>
 					</div>
 			</div>
 
@@ -1137,8 +1182,6 @@
 			</div>
 		<!--  Выподающее меню -->
 		<?php include 'includes/nav_menu.php';?>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 </body>
 	<div id="footer"><!--  Футер либо подвал сайта -->
 		<div class="text">
