@@ -47,10 +47,6 @@ $(document).ready(function () {
 		deleteFromSession()
 	});
 	
- 
- 
-
-
 	function openDialog(){
 		$("#dialog_window_1").dialog('open');
 	}
@@ -149,9 +145,10 @@ $(document).ready(function () {
 	function sendInvitation(e){
 		let tests=collectTests();
 		let friends=collectFriends();
-		console.log(tests,friends);
 		dataPost={"tests":tests,
-			      "friends":friends}
+			      "friends":friends,
+				  "recipient":document.getElementById('recipient').value}
+		console.log(dataPost);
 		if ((tests!=[])&&(friends!=[])){
 			$.ajax({
 				url:document.location.origin+"/includes/sendInvitation.php",
@@ -181,7 +178,7 @@ $(document).ready(function () {
 		let idUser;
 		$('.choose-friends').each(function(){
 			if(this.checked){
-				idUser=this.nextElementSibling.id;
+				idUser=this.nextElementSibling.nextElementSibling.id;
 				friends.push(idUser.replace("userId",""));
 			}
 		});
