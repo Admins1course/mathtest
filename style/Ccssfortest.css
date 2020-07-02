@@ -71,8 +71,8 @@ textarea{
 }
 .main_text{
 	margin-top: 20px;	
-	margin-left: 2%;
-	width: 96%;
+	margin-left: 16px;
+	width: 800px;
 	height: auto;}
 .task{
 	padding-top:30px;
@@ -176,8 +176,8 @@ div[class="icontest"]{
 .areatext{
 	position: relative;
 	margin-top: 0px;
-	margin-left: 2%;
-	margin-bottom: 2%;}/* Настройка поля для ввода от задания 1*/
+	
+	margin-bottom:15px;}/* Настройка поля для ввода от задания 1*/
 .input_text{
 	margin-top: 10px;
 	height: auto;
@@ -326,13 +326,17 @@ div[class="icontest"]{
 }
 .inp{
 	position: relative;
-	margin-top: 2%;
-	margin-left: 0;
-	margin-bottom: 2%;
+	
+	width: 240px;
+	
+	margin: 0 auto;
 }
 .inp input{
 	border: 1px solid red;
+	margin-bottom: 15px;
+	margin-top: 15px;
 	width: 240px;
+	
 }
 .add_button_answer{
 	position: relative;
@@ -349,10 +353,11 @@ div[class="icontest"]{
 	margin-bottom: 2%;}
 .answer{
 	position: relative;
-	width: 96%;
+	width: 800px;
 	height: auto;}
 .text_answer{
-	width: 98%;}
+	width: 800px;
+margin-left: 16px;}
 
 
 #create_task_btn{
@@ -491,9 +496,9 @@ div[class="icontest"]{
 .preview{
 	display: none;
 	position: relative;
-	top: 19px;
-	width: 93%;
-	margin-left: 2%;
+	top: 15px;
+	width: 750px;
+	margin-left: 16px;
 	min-height: 40px; 
 	height: auto;
 	border:1px solid red;
@@ -501,12 +506,12 @@ div[class="icontest"]{
 	text-align: left;
 	margin-bottom: 10px;}
 .preview_location{
-	margin-left: 5%;
+	margin-left: 35px;
 }
 .prev_btn{
 	margin-left: 20%;}
 .prev_menu{
-	margin-left: 2%;
+	margin-left: 16px;
 	position: relative;
 	top: 12px;}
 .prev_menu_box{
