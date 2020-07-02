@@ -3,13 +3,15 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Cache-Control" content="no-cache" charset="UTF-8">
-	<link rel="stylesheet" href="style/neventer.css" type="text/css">
-
+	<link rel="stylesheet" href="style/Neventer.css?<?=time()?>" type="text/css">
 	<title>Войти</title>
 </head>
 <body>
 	<div class="container">
 		<img class="avatar" src="style/img/regavatar.png" width="100" height="100" alt="">
+		<div class="enter_text_div">
+			<div class="enter_text">АВТОРИЗАЦИЯ</div>
+		</div>
 		<form action="nevEnter_control.php" method="post">
 			<div class="dws-input">
 				<img class="userpng" src="style/img/user.png" width="20" height="20" alt="">

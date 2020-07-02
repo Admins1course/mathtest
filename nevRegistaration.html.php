@@ -1,4 +1,4 @@
-<?php include $_SERVER['DOCUMENT_ROOT'].'/mathtest/users_data_control.php';?>
+<?php include 'users_data_control.php';?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +31,7 @@
 		
 	<div class="container">
 		<img class="avatar" src="style/img/regavatar.png" width="100" height="100" alt="">
-		<form action="index.php" method="post">
+		<form action="registration_control.php" method="post">
 			<div class="dws-input">
 				<img class="userpng" src="style/img/user.png" width="20" height="20" alt="">
 				<input type="text" id="login" name="login" placeholder="Введите логин" >

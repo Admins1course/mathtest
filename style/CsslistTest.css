@@ -1,85 +1,148 @@
 .test_title{
 	font-size: 20px;
 	text-decoration: none;
-	color: black;
-}
+	color: black;}
 .test_title:hover{
 	text-decoration: underline;
-	color: red;
-}
+	color: red;}
 .test_name{
 	text-align: center;
-	margin-bottom: 10%;
-}
+	margin-bottom: 10%;}
 .test_href{
-	width: 25%;
+	width: 200px;
 	height: 250px;
 	border: 1px solid red;
-	margin-left: 6%;
-	margin-top: 2%;
+	margin-left: 55px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 	float: left;
 	text-align: center;
 	background-color: #fce9a9;
 	overflow-y: hidden;
-	overflow-x: auto;
-
-}
-.test_href a{
+	overflow-x: auto;}
+#main_content a{
 	text-decoration: none;
 	display: block;
-	height: 100%;
-	margin-top: 50%;
-
+	color: black;
 	
-}
+	
+		}
+
 .test_href:hover{
-	background-color: #ffb833;
-}
-.search_area{
+	background-color: #ffb833;}
+.search_area_list{
 	position: relative;
-	width: 30%;
-	height: 80%;
-	margin-top: 0.25%;
-	border: 1px solid red;
+	width: 300px;
+	height: 30px;
+	margin-top: 4px;
+	
 	float: right;
-	margin-right: 2%;
-
-}
-
-.search{
+	margin-right: 2%;}
+.search_list{
 	height: 100%;
 	width: 74%;
-	float: left;
-	
-	
-}
-.search_bar{
-	
+	float: left;		}
+.search_bar_list{
 	width: 100%;
 	height: 100%;
-	font-size: 22px;
-	
-
-}
-.search_bar:hover{
-	background-color: darkorange;
+	font-size: 22px;}
+.search_send_title{
+	margin-top: -5px;
 }
 
-.search_send{
+.search_send_list{
 	width: 25%;
 	height: 100%;
-	
 	float: right;
-	background-color: white;
+	background-color: orange;
 	text-align: center;
+	cursor: pointer;}
+
+	.active_btn {
+	width: 75px;
+	height: 30px;
+	padding: 0 5px 2px 5px;
+	font: 16px "Trebuchet MS", Tahoma, Arial, sans-serif;
+	outline: none;
+	position: relative;
 	cursor: pointer;
-
-
-}
-.search_send:hover{
+	border-radius: 3px;
+	color: black;
+	border: 1px solid #D2A146;
+	border-top: 1px solid #EAB551;
+	border-bottom: 1px solid #AF8234;
+	text-shadow: orange;
+	box-shadow:
+		
+		0 2px #B98A37,
+		0 3px #9F7630,
+		0 4px 2px rgba(0,0,0,0.4)
+	;
+	background: -moz-linear-gradient(top, orange 0%, darkorange 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,darkorange), color-stop(100%,#febe4d)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, darkorange 0%,darkorange 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, darkorange 0%,darkorange 100%); /* Opera11.10+ */
+	background: -ms-linear-gradient(top, darkorange 0%,orange 100%); /* IE10+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feda71', endColorstr='#febe4d',GradientType=0 ); /* IE6-9 */
+	background: linear-gradient(top, darkorange 0%,darkorange 100%); /* W3C */
 	background-color: darkorange;
+}
+.active_btn::-moz-focus-inner{border:0}
+.active_btn:hover {
+	border-top: 1px solid #E6A93D;
+	box-shadow:
+		inset 0 1px #FEDB98,
+		inset 1px 0 #FED67F,
+		inset -1px 0 #FEDA85,
+		inset 0 -1px #FED781,
+		0 2px #B98A37,
+		0 3px #9F7630,
+		0 4px 2px rgba(0,0,0,0.4)
+	;
+	background: -moz-linear-gradient(top, darkorange 0%, darkorange 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,darkorange), color-stop(100%,#febe4d)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, darkorange 0%,darkorange 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, darkorange 0%,darkorange 100%); /* Opera11.10+ */
+	background: -ms-linear-gradient(top, darkorange 0%,darkorange 100%); /* IE10+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feda71', endColorstr='#febe4d',GradientType=0 ); /* IE6-9 */
+	background: linear-gradient(top, darkorange 0%,darkorange 100%); /* W3C */
+	background-color: darkorange;
+}
+.active_btn:active {
+	top: 3px;
+	border: 1px solid #CF9D42;
+	border-top: 1px solid #A77F35;
+	border-bottom: 1px solid #E2AC48;
+	background: orange;
+	box-shadow: inset 0 1px 2px #C49846;
+}
+.div_test_href{
+	position: relative;
+	width: 210px;
+	height: 260px;
+	
+	margin-left: 20px;
+	margin-bottom: 20px;
+	float: left;
+	text-align: center;
 
 }
-.search_send_title{
-	margin-top: 5%;
+.test_href_min{
+	width: 180px;
+	height: 230px;
+	border: 1px solid red;
+	margin-left: 65px;
+	margin-top: 30px;
+	
+	float: left;
+	text-align: center;
+	background-color: #fce9a9;
+	overflow-y: hidden;
+	overflow-x: auto;} 
+	.checkbox_list{
+	
+	margin-top: 85%;
+	margin-left: 75%;
+	width: 20px;
+	height: 20px;
 }

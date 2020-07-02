@@ -13,6 +13,19 @@ body{
 	position: relative;
 	padding-bottom: 60px;
 	box-sizing: border-box;
+	width: 100%;
+	max-width: 100%;
+	min-width: 1280px;
+	margin:0 auto;
+	background-color: #fcfcfc;
+
+	
+
+}
+
+#main_content{
+	background-color: #fff;
+	min-height: 200px;
 	
 
 }
@@ -50,10 +63,17 @@ body{
 	border-radius: 50%;
 	background-color: black;
 }
-
+.nav_menu_bar{
+	
+	
+}
 #nav_menu{
-	position: fixed;
-	width: 100%;
+	position: -webkit-sticky;
+	  position: sticky;
+	  top: 0px;
+	
+	width:100%;
+	min-width: 1280px;
 	height: 60px;
 	border:1px solid red;
 	background-color: orange
@@ -72,7 +92,8 @@ body{
 }
 
 #menu1 ul li{
-	padding: 20px;
+	padding-top: 20px;
+	padding-bottom: 20px;
 	/*margin-right: 20px;*/
 
 }
@@ -99,17 +120,19 @@ body{
 #menu1 ul  a{
 	color: black;
 	text-decoration: none;
+	padding: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 #menu1 ul ul a{
 	color: black;
 	text-decoration: none;
-	text-align: left;
+	text-align: center;
 
 }
 #menu1 li:hover ul{
 	display: block;
 	top: 60px;
-	margin-left: -20px;
     }
 #menu1 li:hover li{
 	display: block;
@@ -126,7 +149,12 @@ body{
 	margin-right: 10px;
 
 
+}
+#menu1 ul li {
+	
 
+}
+#menu1 ul li a{
 	
 }
 #nav_menu .profile a{
@@ -157,6 +185,7 @@ body{
 	width: 14%;
 	height: 500px;
 	border:1px solid red;
+	background-color: #fff;
 }
 #right_block_title{
 	width: 14%;
@@ -165,11 +194,13 @@ body{
 	margin-left: 0.5%;
 	height: 30px;
 	top:510px;
+	background-color: #fff;
 
 }
 
+
 .left_block{
-	top:550px;
+	top:590px;
 	margin-left: 80.5%;
 	position: absolute;
 	margin-right: 0.5%;
@@ -178,21 +209,23 @@ body{
 	border:1px solid red;
 	overflow-y: scroll;
 	/*background: radial-gradient(circle, rgba(122,255,180,1) 0%, rgba(255,136,0,1) 80%);*/
+	background-color: #fff;
 }
 #left_block_title{
-	top:550px;
+	background-color: #fff;
 	margin-left: 80.5%;
 	position: absolute;
 	margin-right: 0.5%;
 	width: 19%;
 	border:1px solid red;
 	top:510px;
-	height: 30px;
+	height: 70px;
 }
 .stickytop{
-	position: fixed;
-	top: 60px;
-}
+	position: -webkit-sticky;
+	  position: sticky;
+	  top: 65px;
+	}
 
 
 #plus_inform{
@@ -264,15 +297,7 @@ input[name='r']{
 #r4:checked ~ .s1{
 	margin-left: -75%;
 }
-#menu1 ul li {
-	border-right: 2px solid red;
-	padding-left: 20px;
-	
 
-}
-#menu1 ul li a{
-	margin-left: -10px;
-}
 .profile{
 	position: relative;
 	margin-top: -5px;
@@ -294,6 +319,7 @@ input[name='r']{
 	border-radius: 50%;
 	background-color: white;
 	cursor: pointer;
+	background-size: cover;
 }
 .profile_avatar:hover{
 	background-color: darkorange;
@@ -303,7 +329,8 @@ input[name='r']{
 }
 .plus_photo{
 	text-align: center;
-	margin-top: 8px;
+	margin-top: 7px;
+
 	font-size: 24px;
 	color: black;
 
@@ -326,7 +353,7 @@ input[name='r']{
 }
 .load_avatar_fade:before {
 	content: '';
-	background: #000;
+	background: #000; 
 	position: fixed; 
 	left: 0;
 	top: 0;
@@ -335,7 +362,7 @@ input[name='r']{
 	opacity: 0.7;
 	z-index: 9999;
 }
-.load_avatar {
+.load_avatar { 
 	position: fixed;
 	top: 10%;
 	left: 45%;
@@ -348,7 +375,7 @@ input[name='r']{
 	z-index: 99999;
 	opacity: 1;	
 	font-size: 16px;
-	text-align: center;
+	
 
 }
 .load_avatar_close {
@@ -363,7 +390,6 @@ input[name='r']{
 	margin-bottom: 20px;
 }
 .exit_menu_body{
-
 	position:absolute;
 	border: 1px solid red;
 	width: 200px;
@@ -373,26 +399,33 @@ input[name='r']{
 	text-align: center;
 	font-size: 18px;
 	right: 0px;
+}
+.exit_menu_elements{
+	height: auto;
+	width: auto;
+	margin-top: 10px;
 	
+	display: block;
 	
+}
+.exit_menu_elements:hover{
+	background-color: darkorange;
+}
+.exit_menu_elements_bar{
+	margin-bottom: 10px;
+}
+.exit_menu_elements_text{
+	height: auto;
+	width: 100%;
+	display: block;
+	padding-top: 10px;
+	padding-bottom: 10px;
 
 }
 .exit_title{
 	border-top: 2px solid orange;
-	padding-top: 5px;
 }
-.exit_title:hover{
-	background-color: darkorange;
-	color: black;
 
-}
-.exit_menu_elements{
-	padding-top: 5px;
-	padding-bottom: 5px;
-	margin-top: 15px;
-
-
-}
 
 @import "https://fonts.googleapis.com/css?family=Varela+Round";
 .load_image{
@@ -472,19 +505,33 @@ input[name='r']{
 	word-wrap:normal
 }
 
+.Loading-image-text{
+	width:auto;
+	padding: 5px;
+	height: auto;
+	background: #242424;
+	border: 2px solid orange;
+	color: orange;
+	font-size:19px;
+	font-weight:700;
+	float: left;
+	
+}
+
 .preview_image_div{
 	position: relative;
 	width: 250px;
 	height: 300px;
 	border: 1px dashed orange;
-	margin-left: 10px;
+	float:left;
 }
 .preview_image{
 	width: 160px;
 	height: 160px;
 	border: 2px solid orange;
 	border-radius: 50%;
-	margin-left: 290px;
+	margin-bottom: 100px;
+	
 	margin-top: 70px;
 }
 
@@ -495,7 +542,7 @@ input[name='r']{
 	border: 1px solid red;
 	position: absolute;
 	top: 3px;
-	margin-left: 87px;
+	margin-left: 115px;
 	background-color: #ff4d00;
 }
 .notific_num{
@@ -503,14 +550,88 @@ input[name='r']{
 	font-size: 15px;
 	margin-top: 2px;
 }
+.notifications_body{
+
+	width: 400px;
+	height: 400px;
+	background-color: white;
+	position: absolute;
+	top: 70px;
+	border: 1px solid orange;
+	border-radius: 5px;
+	overflow-y: auto;
+
+}
+.notifications_bar{
+	width: 98%;
+	cursor: pointer;
+	height: auto;
+	margin-top: 20px;
+	margin-left: 1%;
+	border: 1px solid darkorange;
+	margin-bottom: 5px;
+}
+.notifications_bar:hover{
+	background-color: #fab62d;
+}
+.notifications_bar_elements{
+	text-align: center;
+	font-size: 17px;
+}
+.notifications_body_title{
+	width: 98%;
+	margin-left: 1%;
+	height: auto;
+	
+	
+	margin-top: 10px;
+	border-radius: 4px;
+}
+.notifications_body_title_elements_div{
+	height: auto;
+	width: auto;
+	padding: 5px;
+	
+
+}
+.notifications_body_text{
+	width: 98%;
+	height: auto;
+	text-align: center;
+	font-size: 19px;
+
+}
+.notifications_body_title_element_bar{
+	width: 98%;
+	margin-left: 1%;
+	background-color: orange;
+	height: 2px;
+	margin-top: 20px;
+}
+.text_notification_body{
+	padding: 5px;
+	border: 2px solid darkorange;
+	background-color: orange;
+	width: auto;
+	border-radius: 4px;
+}
+.nav_menu_bar{
+	width: 100%;
+	height: 100%;
+	padding-top: 15px;
+	padding-bottom: 15px;
+
+	
+}
 .enter_site_btn{
 	margin-top: 5px;
 	padding: 5px;
 	
 }
 .enter_site_btn a{
-	padding: 17px;
+	padding: 18px;
 }
 .enter_site_btn a:hover{
 	background-color: darkorange;
 }
+
