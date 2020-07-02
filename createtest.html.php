@@ -432,10 +432,14 @@
 						<textarea  oninput="auto_grow(this)"
 							class="input_text" name="task[text_answer]" style="resize:none" onfocus="getData()">
 						</textarea><!--  задание1 -->
+
 						<div class="preview preview_location">
+
 						</div>
-						<input type="button" value="Закрыть" class="delete_element delete_element_choise" onclick="closeRC(this)">
+						<input type="button" value="x" class="delete_element delete_element_choise_radio" onclick="closeRC(this)">
+						
 					</div>
+
 					<input type="button" class="add_button_answer radio" value="+"><!--  Кнопка добавить -->
 					<div class=" arrow_down arrow_div_task swipe_down" onclick="swipeRC(this)">
 						<div class=" arrowupdown div_scroll_answer"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
@@ -491,7 +495,7 @@
 						</textarea><!--  задание1 -->
 						<div class="preview preview_location">
 						</div>
-						<input type="button" value="Закрыть" class="delete_element delete_element_choise" onclick="closeRC(this)">
+						<input type="button" value="x" class="delete_element delete_element_choise_chek" onclick="closeRC(this)">
 					</div>
 					<input type="button" class="add_button_answer check" value="+"><!--  Кнопка добавить -->
 					<div class=" arrow_down arrow_div_task swipe_down" onclick="swipeRC(this)">
