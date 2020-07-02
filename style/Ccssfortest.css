@@ -700,20 +700,27 @@ div[class="icontest"]{
     font-size: 20px;
     line-height: 20px;
     padding: 6px 10px 6px 10px;
-    color: white;
-    
+    color: orange;
+    border-radius: 50%;
+    background-color: white;
     text-transform: uppercase; 
     font-family: 'Roboto Condensed', Тahoma, sans-serif;
-    background: orange;
+    
     transition: box-shadow 0.3s, transform 0.3s;
     cursor: pointer;
 }
 .delete_element:hover,
 .delete_element:active,
 .delete_element:focus {
+	transition: all 1s;
+
     transform: translateY(-4px);
+    
     box-shadow: 0 4px 12px rgba(0,0,0,0.2), 0 16px 20px rgba(0,0,0,0.2);
-    color: #FFF;
+    color: white;
+    background-color: orange;
+    
+
 }
 .delete_element:before {
     content: "";
@@ -743,7 +750,22 @@ div[class="icontest"]{
     animation: pulsate 1.2s linear infinite;
 }
 
+.task_number_menu
+{
+	width: 180px;
+	margin-left: 10px;
+	height: 20px;
+	margin-top: 5px;
+	background-color: orange;
+	border-top: 1px solid darkorange;
+	border-bottom: 1px solid darkorange;
+	text-align: center;
 
+}
+.task_number_menu:hover{
+    cursor: pointer;
+    background-color: darkorange;
+}
 #footer{display: none;
 
 	margin-top: 10000px;
