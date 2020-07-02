@@ -66,6 +66,14 @@
 		});
 	});
 	</script>
+	<script type='text/javascript'>
+	$(function height(){
+
+	    var hg=$('.content_form').height();
+	    hg=hg+2000+'px';
+	    $('body').height(hg);
+	});
+</script>
 	<script src="js/points.js?<?=time()?>"></script>
 	<script>
 	function cancelSending(e){
