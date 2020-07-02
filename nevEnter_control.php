@@ -5,7 +5,7 @@ if (@isset($_POST)){
 		try{
 			$query="SELECT id,userPassword,name,surname,root FROM users WHERE login=:login";
 			$user=$pdo->prepare($query);
-			$user->execute(['login'=>trim($_POST['login']).'_exist']);
+			$user->execute(['login'=>trim($_POST['login'])]);
 		}
 		catch(PDOException $e){
 			$error="Невозможно извлечь данные из базы данных: ".$e->getMessage();

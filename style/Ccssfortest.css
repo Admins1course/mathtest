@@ -75,6 +75,7 @@ textarea{
 	width: 96%;
 	height: auto;}
 .task{
+	padding-top:30px;
 	display:none;
 	top: 0.5%;
 	position: relative;
@@ -180,7 +181,8 @@ div[class="icontest"]{
 .input_text{
 	margin-top: 10px;
 	height: auto;
-	width: 93%;
+	width: 750px;
+	min-width: 700px;
 	margin-left: 35px;	}
 .button{
 	margin-top: 50px;
@@ -680,6 +682,67 @@ div[class="icontest"]{
 	background: orange;
 	box-shadow: inset 0 1px 2px #C49846;
 }
+
+
+
+
+
+   
+  
+  
+.delete_element {
+    display: inline-flex;
+    margin-top: -15px;
+    text-decoration: none;
+    border: 2px solid darkorange;
+    position: absolute;
+    overflow: hidden;
+    font-size: 20px;
+    line-height: 20px;
+    padding: 6px 10px 6px 10px;
+    color: white;
+    
+    text-transform: uppercase; 
+    font-family: 'Roboto Condensed', Тahoma, sans-serif;
+    background: orange;
+    transition: box-shadow 0.3s, transform 0.3s;
+    cursor: pointer;
+}
+.delete_element:hover,
+.delete_element:active,
+.delete_element:focus {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2), 0 16px 20px rgba(0,0,0,0.2);
+    color: #FFF;
+}
+.delete_element:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(-45deg, transparent, rgba(191, 226, 255, 0.3), transparent);
+    transition: left 0.7s;
+}
+.delete_element:hover:before,
+.delete_element:active:before,
+.delete_element:focus:before {
+    left: 100%;
+}
+
+
+
+
+@keyframes pulsate{50%{border-color:#fff;}
+}
+.text_fade {
+    border-color: red;
+    border-width: 2px;
+    -webkit-animation: pulsate 1.2s linear infinite;
+    animation: pulsate 1.2s linear infinite;
+}
+
 
 #footer{display: none;
 

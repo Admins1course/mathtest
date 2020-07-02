@@ -10,8 +10,11 @@
 	<link rel="stylesheet" href="style/Cssforindex.css?<?=time()?>" type="text/css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="style/CsslistTest.css?<?=time()?>" type="text/css">
+	<link rel="stylesheet" href="style/CssforDialogWindow.css?<?=time()?>" type="text/css">
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<?php
 	if ($path){
 	    include_once 'includes/load_user_image.inc.php';
@@ -28,6 +31,21 @@
 	    var hg=$('#main_content').height();
 	    hg=hg+550+'px';
 	    $('body').height(hg);
+	});
+	</script>
+	<script>
+	$(document).on('click', '.div_list', function (e) {
+		e=e||window.event;
+		var $checkbox = $(':checkbox', this);
+		if (e.target !== $checkbox[0]) {
+			$checkbox.prop('checked', !$checkbox.prop('checked'));
+		}
+	});
+	</script>
+	<script>
+	$(document).on('click', '.div_list', function (e) {
+		$(this).toggleClass('test_href_min');
+		$(this).toggleClass('test_href');
 	});
 	</script>
 	<script src="js/load_avatars.js?<?=time();?>"></script>
@@ -78,28 +96,32 @@
 				$result=$pdo->prepare($sql);
 				$result->execute(['idAuthor'=>$tests[$i]['idAuthor']]);
 				$users=$result->fetchAll(PDO::FETCH_ASSOC);?>
-					<a href="book.html.php?idUser=<?=$tests[$i]['idAuthor']?>&idTest=<?=$tests[$i]['idTest']?>">
+				<a href="book.html.php?idUser=<?=$tests[$i]['idAuthor']?>&idTest=<?=$tests[$i]['idTest']?>">	
 					<div class="test_href" style="background: linear-gradient(0deg, rgba(255,145,0,1) 0%, rgba(255,255,255,0) 69%);">
 						<p>Название: <?=$tests[$i]['taskName'];?></p>
 						<p>Автор: <?=$users[0]['name']?> <?=$users[0]['surname']?></p>
 					</div>
+				</a>
 			<?php }?>
 			</div>
 			<div id="right_block">
 				<ul class="testlist">
-					<li class="test_name"><a href="" class="test_title">Математический анализ</a></li>
-					<li class="test_name"><a href="" class="test_title">Интегральные и дифферинциальные уравнения</a></li>
-					<li class="test_name"><a href="" class="test_title">Прикладная математика</a></li>
+				<?php 
+				$sql='SELECT `subject` from `subjects`';
+				$result=$pdo->query($sql);
+				$subjects=$result->fetchAll(PDO::FETCH_ASSOC);
+				for ($i=0;$i<count($subjects);$i++):
+				?>
+					<li class="test_name"><a href="" class="test_title"><?=$subjects[$i]['subject']?></a></li>
+				<?php endfor;?>
 				</ul>
 			</div>
 				<div id="left_block_title">
-				<?php require_once "includes/searchInput.inc.php";?>
-			</div>
-			<div id="left_block" class="left_block">
-				<?php require_once "includes/friendsList.inc.php";?>
-			</div>
-				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+					<?php require_once "includes/searchInput.inc.php";?>
+				</div>
+				<div id="left_block" class="left_block">
+					<?php require_once "includes/friendsList.inc.php";?>
+				</div>
 	<?php include 'includes/nav_menu.php';?>
 		<div id="footer">
 			<div class="text">

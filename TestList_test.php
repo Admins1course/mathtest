@@ -30,23 +30,21 @@
 	    $('body').height(hg);
 	});
 	</script>
-	<script>
-		$(document).on('click', '.div_list', function (e) {
+<script>
+$(document).on('click', '.div_list', function (e) {
+	e=e||window.event;
     var $checkbox = $(':checkbox', this);
     if (e.target !== $checkbox[0]) {
         $checkbox.prop('checked', !$checkbox.prop('checked'));
     }
 });
-	</script>
-	<script>
-	$(document).on('click', '.div_list', function (e) {
+</script>
+<script>
+$(document).on('click', '.div_list', function (e) {
   	$(this).toggleClass('test_href_min');
   	$(this).toggleClass('test_href');
 });
-
-
-	
-	</script>
+</script>
 	<script src="js/load_avatars.js?<?=time();?>"></script>
 	<script src="js/create_invite_window_script.js?<?=time();?>"></script>
 </head>

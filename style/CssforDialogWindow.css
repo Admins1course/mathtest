@@ -25,3 +25,8 @@ div [aria-describedby="dialog_window_1"]
 	{
 		z-index: 99999;
 	}
+.choose{
+	width: 30px;
+	height: 30px;
+	float: left;
+}

@@ -9,6 +9,7 @@ function notifications(){
 		type:'POST',
 		error:function(data){console.log(data)},
 		success:function(data){
+			console.log(data);
 			if ((clearNot)||(data!==[])){
 				dataNotifications=data['notif'];
 				if (data['notif'].length==0) return;
@@ -24,11 +25,17 @@ function notifications(){
 				htmlMessage+='</div><div class="notifications_body_title_element_bar">';
 				htmlMessage+='</div></div></div>';
 				for (i=0;i<data['notif'].length;i++){
+					
 					htmlMessage+='<div class="notifications_bar"><p class="text_notifications_bar">';
 					htmlMessage+=data['notif'][i]['message'];
 					htmlMessage+='</p>';
-					htmlMessage+='<div class="button_friend"><input type="button" id="userId'+data['notif'][i]['add_friends']+'" value="Принять" onclick="acceptApp(this)">';
-					htmlMessage+='<input type="button" id="userId'+data['notif'][i]['add_friends']+'" value="Отменить" onclick="cancelApp(this)">';
+					if (data['notif'][i]['add_friends']){
+						htmlMessage+='<div class="button_friend"><input type="button" id="userId'+data['notif'][i]['add_friends']+'" value="Принять" onclick="acceptApp(this)">';
+						htmlMessage+='<input type="button" id="userId'+data['notif'][i]['add_friends']+'" value="Отменить" onclick="cancelApp(this)">';
+					}
+					else{
+						htmlMessage+='<div class="button_test"><input type="button" value="Принять" onclick="document.location=document.location=document.location.origin+\'/'+data['notif'][i]['invitations']+'\'">';
+					}
 					htmlMessage+='</div></div>';
 				}
 				htmlMessage+='<a href="allNotifications.html.php">Посмотреть прочтенные оповещения</a>';
@@ -63,6 +70,7 @@ function unreadNot(){
 		for (i=0;i<dataNotifications.length;i++){				
 			dataNot[String(i)]=dataNotifications[i];
 		}
+		console.log(dataNot);
 		$.ajax({
 			url:document.location.origin+"/unreadNotifications.php",
 			cache:false,

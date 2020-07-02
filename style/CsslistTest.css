@@ -46,6 +46,9 @@
 	width: 100%;
 	height: 100%;
 	font-size: 22px;}
+.search_send_title{
+	margin-top: -5px;
+}
 
 .search_send_list{
 	width: 25%;
@@ -112,4 +115,34 @@
 	border-bottom: 1px solid #E2AC48;
 	background: orange;
 	box-shadow: inset 0 1px 2px #C49846;
+}
+.div_test_href{
+	position: relative;
+	width: 210px;
+	height: 260px;
+	
+	margin-left: 20px;
+	margin-bottom: 20px;
+	float: left;
+	text-align: center;
+
+}
+.test_href_min{
+	width: 180px;
+	height: 230px;
+	border: 1px solid red;
+	margin-left: 65px;
+	margin-top: 30px;
+	
+	float: left;
+	text-align: center;
+	background-color: #fce9a9;
+	overflow-y: hidden;
+	overflow-x: auto;} 
+	.checkbox_list{
+	
+	margin-top: 85%;
+	margin-left: 75%;
+	width: 20px;
+	height: 20px;
 }
