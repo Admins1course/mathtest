@@ -1,7 +1,14 @@
 <?php
 include 'includes/db.inc.php';
 if (@isset($_POST)){
-	if (trim($_POST['login'])&&trim($_POST['password'])){
+	if ($_POST['login']&&$_POST['password']){
+		$pattern="/[^A-Za-z0-9_]/";
+		if (preg_match($pattern,$_POST['login'])||preg_match($pattern,$_POST['password'])){
+			session_start();
+			$_SESSION['data']=true;
+			header('Location: nevEnter.html.php');
+			exit();
+		}
 		try{
 			$query="SELECT id,userPassword,name,surname,root FROM users WHERE login=:login";
 			$user=$pdo->prepare($query);
@@ -13,16 +20,40 @@ if (@isset($_POST)){
 			exit();
 		}
 		$dataUser=$user->fetchAll();
-		//echo var_dump($dataUser);
+		try{
+			$root=array("студент", "преподаватель");
+			if (preg_match("/[\D]/",$dataUser[0]['id'])){
+				throw new Exception;
+			}
+			if (preg_match("/[^A-Za-z0-9_]/",$dataUser[0]['userPassword'])){
+				throw new Exception;
+			}
+			if (preg_match("/[^А-Яа-яЁёA-Za-z0-9_]/",$dataUser[0]['name'])){
+				throw new Exception;
+			}
+			if (preg_match("/[^А-Яа-яЁёA-Za-z0-9_]/",$dataUser[0]['surname'])){
+				throw new Exception;
+			}
+			if (in_array($dataUser[0]['id'],$root)){
+				throw new Exception;
+			}
+		} 
+		catch(Exception $e){
+			session_start();
+			header('Location: nevEnter.html.php');
+			exit();
+		}
 		
 		if (md5($_POST['password'])==$dataUser[0]['userPassword']){
-			//setcookie("login", "",time()-1);//секунды*минуты*часы*дни trim($_POST['login'])
-			//setcookie("password", "", time()-1);//$_POST['password']
+			setcookie("login", $dataUser[0]["login"],time()+60*60*24*10);//секунды*минуты*часы*дни 
+			setcookie("password", $dataUser[0]["userPassword"], time()+60*60*24*10);//$_POST['password']
 			setcookie("id", $dataUser[0]["id"], time()+60*60*24*10);
 			setcookie("name", $dataUser[0]["name"], time()+60*60*24*10);
 			setcookie("surname", $dataUser[0]['surname'], time()+60*60*24*10);
 			setcookie("root", $dataUser[0]['root'], time()+60*60*24*10);
 			session_start();
+			$_SESSION['data-user']['login']=$dataUser[0]['login'];
+			$_SESSION['data-user']['password']=$dataUser[0]['userPassword'];
 			$_SESSION['data-user']['id']=$dataUser[0]['id'];
 			$_SESSION['data-user']['name']=$dataUser[0]['name'];
 			$_SESSION['data-user']['surname']=$dataUser[0]['surname'];
@@ -33,14 +64,17 @@ if (@isset($_POST)){
 			session_start();
 			$_SESSION['data']=true;
 			header('Location: nevEnter.html.php');
+			exit();
 		}
 	}
 	else{
 		session_start();
 		$_SESSION['data']=true;
 		header('Location: nevEnter.html.php');
+		exit();
 	}
 }
 else{
 	header('Location: nevEnter.html.php');
+	exit();
 }

@@ -2,6 +2,23 @@
     if($_POST){  //Проверка на принятие данных с форм
 		session_start();
 		$_SESSION=[];
+		$pattern="/[^А-Яа-яЁёA-Za-Z0-9_]/";
+		$root=array('студент','преподаватель');
+		try{
+			if(preg_match($pattern,$_POST['name'])){
+				throw new Exception();
+			}
+			if(preg_match($pattern,$_POST['surname'])){
+				throw new Exception();
+			}
+			if(in_array($_POST['root'],$root)){
+				throw new Exception();
+			}
+		}
+		catch(Exception $e){
+			header('Location: /mathtest/users_data.html.php');
+			exit();
+		}
 	    //Проверяем наличие всех необходимых значений и присваиваем сессии, т.к. он нужен если хотя бы одно из значений не указано
 		if($_POST['name']) $_SESSION['users_data']['name']=$_POST['name'];
 		else               $_SESSION['users_data']['name']=null;

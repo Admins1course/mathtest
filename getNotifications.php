@@ -4,7 +4,7 @@
 	if ($_SESSION['data-user']){
 		try{
 			$pdo->beginTransaction();
-			$sql="SELECT message,add_friends,invitations FROM `notifications`
+			$sql="SELECT message,add_friends,invitations,recipient FROM `notifications`
 				WHERE id_User=:idUser AND _unread=1 AND cancel_add!=1";
 			$result=$pdo->prepare($sql);
 			$result->execute(['idUser'=>$_SESSION['data-user']['id']]);

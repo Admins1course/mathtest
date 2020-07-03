@@ -2,7 +2,7 @@
 try{
 	session_start();
 	$pdo->beginTransaction();
-	$query="SELECT message, add_friends, invitations, dateOfSend 
+	$query="SELECT message, add_friends, invitations, recipient, dateOfSend 
 			FROM notifications
 			WHERE id_User=:idUser AND cancel_add=0 ORDER BY dateOfSend DESC";
 	$result=$pdo->prepare($query);

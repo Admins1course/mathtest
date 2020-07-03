@@ -126,6 +126,9 @@
 							<input type="hidden" name="idUser" value="<?=$idUser?>">
 							<input type="hidden" name="idTest" value="<?=$idTest?>">
 							<input type="hidden" name="answers[count]" value="<?=count($dataTest)?>">
+							<?php if ($_GET['recipient']&&ctype_digit($_GET['recipient'])):?>
+							<input type="hidden" name="recipient" value="<?=htmlspecialchars($_GET['recipient'])?>">
+							<?php endif;?>
 							<div id="error" ></div>
 							<div class="submit_btn_div">
 								<input type="button" id="answer" class="submit_btn active_btn" value="Продолжить">

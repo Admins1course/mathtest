@@ -9,22 +9,24 @@ if ($_POST){
 				$sql="UPDATE notifications
 						SET _unread=0
 						WHERE id_User=:idUser AND message=:message AND add_friends=:add_friends";
+				$result=$pdo->prepare($sql)->execute(['idUser'=>$_SESSION['data-user']['id'],
+													'message'=>$_POST[$k]['message'],
+													'add_friends'=>$_POST[$k]['add_friends']]);
 			}
 			else{
 				$sql="UPDATE notifications
 						SET _unread=0
 						WHERE id_User=:idUser AND message=:message AND invitations=:invitations";
+				$result=$pdo->prepare($sql)->execute(['idUser'=>$_SESSION['data-user']['id'],
+													'message'=>$_POST[$k]['message'],
+													'invitations'=>$_POST[$k]['invitations']]);
 			}
-			$result=$pdo->prepare($sql);
-			$result->execute(['idUser'=>$_SESSION['data-user']['id'],
-							  'message'=>$_POST[$k]['message'],
-							  'add_friends'=>$_POST[$k]['add_friends'],
-							  'invitations'=>$_POST[$k]['invitations']]);
-			}
+		}
 		$pdo->commit();
 		echo json_encode($_POST);
 	}
 	catch(Exception $e){
 		$pdo->rollBack();
+		echo json_encode(['answer'=>$e->getMessage()]);
 	}
 }

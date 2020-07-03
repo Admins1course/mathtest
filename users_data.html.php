@@ -19,10 +19,6 @@
 	</script>
 </head>
 <body style="position: fixed;">
-
-    <!--эти 3 элемента появляются при вводе отсутствии данных-->
-    
-	
 	<div class="container">
 		<div class="popup-fade" style="display:none">
 			<div class="popup">

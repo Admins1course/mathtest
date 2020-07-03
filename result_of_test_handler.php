@@ -79,6 +79,9 @@ if ($_POST){
 				break;
 			}
 		}
+		
+		//отправка данных преподавателю
+		//if($_POST['recipient'])
 	}
 	catch(PDOException $e){
 		$error="Невозможно получить данные из базы данных: ".$e->getMessage();

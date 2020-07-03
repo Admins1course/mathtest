@@ -41,19 +41,28 @@
 	<?php include 'includes/create_invite_window.php'?>
 	<div id="page">
 		<div id="main_content" style="height: auto;">
-		<?php for($i=0;$i<count($data['notif']);$i++){?>
-			<div class="notifications_bar">
-				<p class="text_notifications_bar"><?=$data['notif'][$i]['dateOfSend']?> <?=$data['notif'][$i]['message']?>.
-				<?php if (!in_array($data['notif'][$i]['add_friends'],$data['friends'])):?>
-				</p>
-				<div class="button_friend">
-					<input type="button" id="userId<?=$data['notif'][$i]['add_friends']?>" value="Принять" onclick="acceptApp(this)">
-					<input type="button" id="userId<?=$data['notif'][$i]['add_friends']?>" value="Отменить" onclick="cancelApp(this)">
+		<?php for($i=0;$i<count($data['notif']);$i++){
+			if ($data['notif'][$i]['add_friends']):?>
+				<div class="notifications_bar">
+					<p class="text_notifications_bar"><?=$data['notif'][$i]['dateOfSend']?> <?=$data['notif'][$i]['message']?>.
+					<?php if (!in_array($data['notif'][$i]['add_friends'],$data['friends'])):?>
+					</p>
+					<div class="button_friend">
+						<input type="button" id="userId<?=$data['notif'][$i]['add_friends']?>" value="Принять" onclick="acceptApp(this)">
+						<input type="button" id="userId<?=$data['notif'][$i]['add_friends']?>" value="Отменить" onclick="cancelApp(this)">
+					</div>
+					<?else:?>
+					Вы приняли заявку.</p>
+					<?php endif?>
 				</div>
-				<?else:?>
-				Вы приняли заявку.</p>
-				<?php endif?>
-			</div>
+			<?php else:?>
+				<div class="notifications_bar">
+					<p class="text_notifications_bar"><?=$data['notif'][$i]['dateOfSend']?></p>
+					<div class="button_friend">
+						<a href="<?=$data['notif'][$i]['invitations']?>&recipient=<?=$data['notif'][$i]['recipient']?>">Перейти к прохождению теста</a>
+					</div>
+				</div>
+			<?php endif;?>
 		<?php }?>
 		</div>
 	</div>

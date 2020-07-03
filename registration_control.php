@@ -60,6 +60,8 @@
 			$pdo->commit();
 			echo var_dump($_SESSION);
 			setcookie("id", $id[0]["id"], time()+60*60*24*10);
+			setcookie("login",$_POST['login'], time()+60*60*24*10);
+			setcookie("password",$_POST['password_first'], time()+60*60*24*10);
 			setcookie("name", trim($_POST["name"]), time()+60*60*24*10);
 			setcookie("surname", trim($_POST['surname']), time()+60*60*24*10);
 			setcookie("root", $_POST['root'], time()+60*60*24*10);

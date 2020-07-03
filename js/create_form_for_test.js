@@ -26,7 +26,7 @@ $(document).ready(function(){
 			$('form .textarea_template:last .areatext #answer').attr('name','task'+tasks+'[textarea_answer]');
 			$('form .textarea_template:last .textForPoints').attr('for','points'+tasks);
 			$('form .textarea_template:last .points').attr('id','points'+tasks).attr('name','task'+tasks+'[points]');
-			document.getElementById('task_menu_body').innerHTML+='<p class="'+this.id+'" onclick="showTask(this)">Задание '+this.id.slice(4)+'</p>';
+			document.getElementById('task_menu_body').innerHTML+='<p class="'+this.id+' " onclick="showTask(this)">Задание '+this.id.slice(4)+'</p>';
 		});
 	});
 	//аналогично предыдущему, но форма с radiobutton
@@ -55,7 +55,7 @@ $(document).ready(function(){
 			lenghts['task'+tasks]['icontest']=1;
 			$('form .radiobutton_template:last .textForPoints').attr('for','points'+tasks);
 			$('form .radiobutton_template:last .points').attr('id','points'+tasks).attr('name','task'+tasks+'[points]');
-			document.getElementById('task_menu_body').innerHTML+='<p class="'+this.id+'" onclick="showTask(this)">Задание '+this.id.slice(4)+'</p>';
+			document.getElementById('task_menu_body').innerHTML+='<p class="'+this.id+' task_number_menu" onclick="showTask(this)">Задание '+this.id.slice(4)+'</p>';
 		});
 	});
 	//аналогично предыдущему, но форма с checkboxbutton
@@ -84,7 +84,7 @@ $(document).ready(function(){
 			lenghts['task'+tasks]['icontest']=1;
 			$('form .checkboxbutton_template:last .textForPoints').attr('for','points'+tasks);
 			$('form .checkboxbutton_template:last .points').attr('id','points'+tasks).attr('name','task'+tasks+'[points]');
-			document.getElementById('task_menu_body').innerHTML+='<p class="'+this.id+'" onclick="showTask(this)">Задание '+this.id.slice(4)+'</p>';
+			document.getElementById('task_menu_body').innerHTML+='<p class="'+this.id+' task_number_menu" onclick="showTask(this)">Задание '+this.id.slice(4)+'</p>';
 		});
 	});
 	//аналогично предыдущему, но форма с input
@@ -111,7 +111,7 @@ $(document).ready(function(){
 			lenghts['task'+tasks]={}
 			lenghts['task'+tasks]={'icontest':1};
 			$('form .input_template:last .points').attr('id','points'+tasks).attr('name','task'+tasks+'[points]');
-			document.getElementById('task_menu_body').innerHTML+='<p class="'+this.id+'" onclick="showTask(this)">Задание '+this.id.slice(4)+'</p>';
+			document.getElementById('task_menu_body').innerHTML+='<p class="'+this.id+' task_number_menu" onclick="showTask(this)">Задание '+this.id.slice(4)+'</p>';
 		});
 	});
 	$('.button').click(function(){
@@ -305,29 +305,25 @@ function closeTask(el){
 }
 
 function showTask(el){
-	for(i=0;i<el.classList.length;i++){
-		if (el.classList[i].includes('task')){
-			if(thisTask[0]!=$('#'+el.classList[i])[0]){
-				thisTask.slideUp(1000);
-				$('#'+el.classList[i]).slideDown(1000);
-				thisTask=$('#'+el.classList[i]);
-				$('#arrow-down')[0].disabled=false;
-				$('#arrow-down').addClass('active_swipe');
-				$('#arrow-up')[0].disabled=false;
-				$('#arrow-up').addClass('active_swipe');
-				if (!thisTask.prev().hasClass('task')){
-					$('#arrow-up')[0].disabled=true;
-					$('#arrow-up').removeClass('active_swipe');
-					$('#arrow-down')[0].disabled=false;
-					$('#arrow-down').addClass('active_swipe');
-				}
-				else if (!thisTask.next().hasClass('task')){
-					$('#arrow-down')[0].disabled=true;
-					$('#arrow-down').removeClass('active_swipe');
-					$('#arrow-up')[0].disabled=false;
-					$('#arrow-up').addClass('active_swipe');
-				}
-			}
+	if(thisTask[0]!=$('#'+el.classList[0])[0]){
+		thisTask.slideUp(1000);
+		$('#'+el.classList[0]).slideDown(1000);
+		thisTask=$('#'+el.classList[0]);
+		$('#arrow-down')[0].disabled=false;
+		$('#arrow-down').addClass('active_swipe');
+		$('#arrow-up')[0].disabled=false;
+		$('#arrow-up').addClass('active_swipe');
+		if (!thisTask.prev().hasClass('task')){
+			$('#arrow-up')[0].disabled=true;
+			$('#arrow-up').removeClass('active_swipe');
+			$('#arrow-down')[0].disabled=false;
+			$('#arrow-down').addClass('active_swipe');
+		}
+		else if (!thisTask.next().hasClass('task')){
+			$('#arrow-down')[0].disabled=true;
+			$('#arrow-down').removeClass('active_swipe');
+			$('#arrow-up')[0].disabled=false;
+			$('#arrow-up').addClass('active_swipe');
 		}
 	}
 }

@@ -62,7 +62,7 @@
 					let rep;
 					if ($(this).attr('type')=='text'&&$(this).attr('id')!='login')
 						rep = /[^a-zA-Zа-яА-Я0-9_]+/us;
-					else rep = /[^a-zA-Z0-9]+/us;
+					else rep = /[^a-zA-Z0-9_]+/us;
 					let result=$(this).val();
 					if (rep.test(result)) { 
 						result=result.replace(rep, '');
