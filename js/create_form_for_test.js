@@ -26,7 +26,7 @@ $(document).ready(function(){
 			$('form .textarea_template:last .areatext #answer').attr('name','task'+tasks+'[textarea_answer]');
 			$('form .textarea_template:last .textForPoints').attr('for','points'+tasks);
 			$('form .textarea_template:last .points').attr('id','points'+tasks).attr('name','task'+tasks+'[points]');
-			document.getElementById('task_menu_body').innerHTML+='<p class="'+this.id+' " onclick="showTask(this)">Задание '+this.id.slice(4)+'</p>';
+			document.getElementById('task_menu_body').innerHTML+='<p class="'+this.id+' task_number_menu" onclick="showTask(this)">Задание '+this.id.slice(4)+'</p>';
 		});
 	});
 	//аналогично предыдущему, но форма с radiobutton

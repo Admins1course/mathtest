@@ -66,14 +66,19 @@
 		});
 	});
 	</script>
+	<script type='text/javascript'>
+	$(function height(){
+
+	    var hg=$('.content_form').height();
+	    hg=hg+2000+'px';
+	    $('body').height(hg);
+	});
+</script>
 	<script src="js/points.js?<?=time()?>"></script>
 	<script>
 	function cancelSending(e){
 		e.preventDefault();
-		function cancelClose(e){
-			e.preventDefault();
-		}
-		document.getElementById
+		document.getElementById('nameTest').removeEventListener("click",fadePopup);
 	}
 	$(document).ready(function(){
 		document.getElementById('sendForm').addEventListener("click",cancelSending,false);
@@ -98,11 +103,12 @@
 				}
 			});
 			
-			$('.popup-fade').click(function(e) {
+			document.getElementById('nameTest').addEventListener('click',fadePopup,false);
+			function fadePopup(e) {
 				if ($(e.target).closest('.popup').length == 0) {
 					$(this).fadeOut(0);					
 				}
-			});
+			};
 		});
 	</script>
 	<script>
@@ -338,7 +344,7 @@
 			<?php endif ?>
 			<div class="task_div task_swipe">
 				<div class="task textarea_template">
-					<input type="button" value="x" class="delete_element" onclick="closeTask(this)">
+					<input type="button" value="x" class="delete_element delete_element_main" onclick="closeTask(this)">
 					<p class="text_title">Задание</p>
 					<div class="prev_menu">
 						<input type="button" class="task_show" value="Задание">
@@ -358,7 +364,7 @@
 						</div>
 						<div class="all_icon_load">
 							<div class="icontest">
-								<input type="button" value="x" class="delete_element" onclick="closeIcontest(this)">
+								<input type="button" value="x" class="delete_element delete_element_img" onclick="closeIcontest(this)">
 								<img id="uploadPreview" style="width:240px; height: 240px;" />
 								<input class="inputfile" type="file" name="task[icontest][myPhoto]" onchange="PreviewImage(this);" accept="image/*" /><!-- Вставить изображение -->
 							</div>
@@ -372,15 +378,17 @@
 						<input type="button" class="formul_preview" value="Превью" class="prev_btn" onclick="convert()">
 					</div>					
 					<div class="areatext">
-						<textarea oninput="auto_grow(this)" name="task[textarea_answer]" id="answer" style="resize:none" class="text_answer">
+						<textarea oninput="auto_grow(this)" name="task[textarea_answer]" id="answer" style="resize:none" class="main_text">
 						</textarea><!--  Развернутый ответ -->
+					</div>
+					<div class="preview">
 					</div>
 					<div class="textForPoints_div"><label class="textForPoints" for="points">Введите количество баллов за данное задание</label>
 						<input type="text" maxlength="6" class="points" onkeyup="enterPoints(this)">
 					</div>					
 				</div>
 				<div class="task radiobutton_template">
-					<input type="button" value="x" class="delete_element" onclick="closeTask(this)">
+					<input type="button" value="x" class="delete_element delete_element_main" onclick="closeTask(this)">
 					<p class="text_title">Задание</p>
 					<div class="prev_menu">
 						<input type="button" class="task_show" value="Задание">
@@ -400,7 +408,7 @@
 						</div>
 						<div class="all_icon_load">
 							<div class="icontest">
-								<input type="button" value="x" class="delete_element" onclick="closeIcontest(this)">
+								<input type="button" value="x" class="delete_element delete_element_img" onclick="closeIcontest(this)">
 								<img id="uploadPreview" style="width:240px; height: 240px;" />
 								<input class="inputfile" type="file" name="task[icontest][myPhoto]" onchange="PreviewImage(this);" accept="image/*" /><!-- Вставить изображение -->
 							</div>
@@ -424,10 +432,14 @@
 						<textarea  oninput="auto_grow(this)"
 							class="input_text" name="task[text_answer]" style="resize:none" onfocus="getData()">
 						</textarea><!--  задание1 -->
+
 						<div class="preview preview_location">
+
 						</div>
-						<input type="button" value="x" class="delete_element position_delete" onclick="closeRC(this)">
+						<input type="button" value="x" class="delete_element delete_element_choise_radio" onclick="closeRC(this)">
+						
 					</div>
+
 					<input type="button" class="add_button_answer radio" value="+"><!--  Кнопка добавить -->
 					<div class=" arrow_down arrow_div_task swipe_down" onclick="swipeRC(this)">
 						<div class=" arrowupdown div_scroll_answer"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
@@ -437,7 +449,7 @@
 					</div>
 				</div>
 				<div class="task checkboxbutton_template">
-					<input type="button" value="x" class="delete_element" onclick="closeTask(this)">
+					<input type="button" value="x" class="delete_element delete_element_main" onclick="closeTask(this)">
 					<p class="text_title">Задание</p>
 					<div class="prev_menu ">
 						<input type="button" class="task_show" value="Задание">
@@ -457,7 +469,7 @@
 						</div>
 						<div class="all_icon_load">
 							<div class="icontest">
-								<input type="button" value="x" class="delete_element" onclick="closeIcontest(this)">
+								<input type="button" value="x" class="delete_element delete_element_img" onclick="closeIcontest(this)">
 								<img id="uploadPreview" style="width:240px; height: 240px;" />
 								<input class="inputfile" type="file" name="task[icontest][myPhoto]" onchange="PreviewImage(this);" accept="image/*" /><!-- Вставить изображение -->
 							</div>
@@ -483,7 +495,7 @@
 						</textarea><!--  задание1 -->
 						<div class="preview preview_location">
 						</div>
-						<input type="button" value="x" class="delete_element position_delete" onclick="closeRC(this)">
+						<input type="button" value="x" class="delete_element delete_element_choise_chek" onclick="closeRC(this)">
 					</div>
 					<input type="button" class="add_button_answer check" value="+"><!--  Кнопка добавить -->
 					<div class=" arrow_down arrow_div_task swipe_down" onclick="swipeRC(this)">
@@ -494,7 +506,7 @@
 					</div>
 				</div>
 				<div class="task input_template">
-					<input type="button" value="x" class="delete_element" onclick="closeTask(this)">
+					<input type="button" value="x" class="delete_element delete_element_main" onclick="closeTask(this)">
 					<p class="text_title">Задание</p>
 					<div class="prev_menu">
 						<input type="button" class="task_show" value="Задание">
@@ -514,7 +526,7 @@
 						</div>
 						<div class="all_icon_load">
 							<div class="icontest">
-								<input type="button" value="x" class="delete_element" onclick="closeIcontest(this)">
+								<input type="button" value="x" class="delete_element delete_element_img" onclick="closeIcontest(this)">
 								<img id="uploadPreview" style="width:240px; height: 240px;" />
 								<input class="inputfile" type="file" name="task[icontest][myPhoto]" onchange="PreviewImage(this);" accept="image/*" /><!-- Вставить изображение -->
 							</div>
@@ -525,7 +537,7 @@
 					<p class="text_title">Варианты ответов</p>	
 
 					<div class="inp">
-						<input  type="text" name="task[input_answer]" value="" placeholder="ответ" style="margin-left: 30%; height: 20px; margin-top: 2%; width: 40%;"> <!--  Поле для ввода ответа -->
+						<input  type="text" name="task[input_answer]" value="" placeholder="ответ" > <!--  Поле для ввода ответа -->
 					</div>
 					<div class="textForPoints_div"><label class="textForPoints" for="points">Введите количество баллов за данное задание</label>
 						<input type="text" maxlength="6" class="points" onkeyup="enterPoints(this)">

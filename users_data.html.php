@@ -10,8 +10,9 @@
 	<script>
 	$(document).ready(function(){
 		//при загрузке страницы окно один раз мигнет 
-		$('.popup-fade').not('.popup-fade:first').stop(true).fadeTo(2000,1);
-		$('.popup-fade').not('.popup-fade:first').stop(true).fadeTo(3000,0.3)
+		$('.popup-fade').not('.popup-fade:first').stop(true).fadeTo(10000,1,function(){
+			$('.popup-fade').not('.popup-fade:first').stop(true).fadeTo(5000,0.3);
+		})
 		//обработчик событий с всплывающим окном
 		$('.popup-fade').not('.popup-fade:first').mouseout(function(){ $(this).stop(true).fadeTo(2000,0.4 );});
 		$('.popup-fade').not('.popup-fade:first').mouseover(function(){ $(this).stop(true).fadeTo(10,1);});

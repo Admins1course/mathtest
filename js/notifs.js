@@ -29,11 +29,11 @@ function notifications(){
 					htmlMessage+=data['notif'][i]['message'];
 					htmlMessage+='</p>';
 					if (data['notif'][i]['add_friends']){
-						htmlMessage+='<div class="button_friend"><input type="button" id="userId'+data['notif'][i]['add_friends']+'" value="Принять" onclick="acceptApp(this)">';
-						htmlMessage+='<input type="button" id="userId'+data['notif'][i]['add_friends']+'" value="Отменить" onclick="cancelApp(this)">';
+						htmlMessage+='<div class="button_friend "><input type="button" class=" notifications_buttons" id="userId'+data['notif'][i]['add_friends']+'" value="Принять" onclick="acceptApp(this)">';
+						htmlMessage+='<input type="button notifications_buttons" id="userId'+data['notif'][i]['add_friends']+'" value="Отменить" onclick="cancelApp(this)">';
 					}
 					else{
-						htmlMessage+='<div class="button_test"><input type="button" value="Принять" recipient="'+data['notif'][i]['recipient']+'" onclick="document.location=document.location.origin+\'/'+data['notif'][i]['invitations']+'&recipient='+data['notif'][i]['recipient']+'\'">';
+						htmlMessage+='<div class="button_test notifications_buttons"><input type="button" value="Принять" recipient="'+data['notif'][i]['recipient']+'" onclick="document.location=document.location.origin+\'/'+data['notif'][i]['invitations']+'&recipient='+data['notif'][i]['recipient']+'\'">';
 					}
 					htmlMessage+='</div></div>';
 				}

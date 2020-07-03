@@ -11,40 +11,40 @@
 </script>    
 	<?php 
 	    if (@basename($_SERVER['HTTP_REFERER'])==@basename($_SERVER['PHP_SELF'])){  //проверяем произошел ли переход на эту страницу по причине отсутствия всех данных  
-		    session_start();
+			switch (basename($_SERVER['PHP_SELF'])){
+				case 'user_data.html.php':
+					$usersData=array("name","surname","root");
+					break;
+				case 'nevRegistaration.html.php':
+					$usersData=array("login","password_first","password_second");
+					break;
+			}
+			session_start();
+			var_dump($_SESSION);
 			if (isset($_SESSION['users_data'])){
+				echo "ki";
 				foreach ($_SESSION['users_data'] as $k=>$v){
-					if ($_SESSION['users_data'][$k]==null){?><!--Если какое-то поле не было заполнено, запускаем всплывающее окно-->
+					if (in_array($k,$usersData)&&($_SESSION['users_data'][$k]==null)){echo "hi";?><!--Если какое-то поле не было заполнено, запускаем всплывающее окно-->
 						<script type="text/javascript">
 							$(document).ready(function(){
 								$('.popup-fade:first').clone('deepWithDataAndEvents').insertAfter('.popup-fade:last').attr(
-									'id', <?='"'.$k.'_error"'?>);
+									'id', <?='"'.htmlspecialchars($k).'_error"'?>);
 							});
 						</script>
 				<?php }
 				}
 			}
 			//Если пароли не совпадают, то выводим сообщение о несовпадении паролей
+			$errors=array("is_wrong_password","login_exist");
 			foreach ($_SESSION as $k=>$v){
-				if ($k!=='users_data'){
-					if ($v===null):?>
-						<script type="text/javascript">
-							$(document).ready(function(){
-								$('.popup-fade:first').clone('deepWithDataAndEvents').insertAfter('.popup-fade:last').attr(
-									'id', <?='"'.$k.'_error"'?>);
-							});
-						</script>
-					<?php endif;
-					//echo $k.'='.$v.' ';
-					if ($_SESSION[$k]===true):?>
-						<script type="text/javascript">
-							id="#"+<?="\"".$k."\""?>;
-							$(function(){
-								$(id).css('display','block');
-							})
-						</script>
-					<?php endif;
-				}
+				if (in_array($k,$errors)&&$_SESSION[$k]===true):?>
+					<script type="text/javascript">
+						id="#"+<?="\"".$k."\""?>;
+						$(function(){
+							$(id).css('display','block');
+						})
+					</script>
+				<?php endif;
 			}
 		}?>
 <script type="text/javascript">

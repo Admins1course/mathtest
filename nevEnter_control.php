@@ -23,24 +23,25 @@ if (@isset($_POST)){
 		try{
 			$root=array("студент", "преподаватель");
 			if (preg_match("/[\D]/",$dataUser[0]['id'])){
-				throw new Exception;
+				throw new Exception(1);
 			}
 			if (preg_match("/[^A-Za-z0-9_]/",$dataUser[0]['userPassword'])){
-				throw new Exception;
+				throw new Exception(2);
 			}
-			if (preg_match("/[^А-Яа-яЁёA-Za-z0-9_]/",$dataUser[0]['name'])){
-				throw new Exception;
+			if (preg_match("/[^А-Яа-яA-Za-z0-9Ёё_]/",$dataUser[0]['name'])){
+				echo $dataUser[0]['name'];
+				throw new Exception(3);
 			}
 			if (preg_match("/[^А-Яа-яЁёA-Za-z0-9_]/",$dataUser[0]['surname'])){
-				throw new Exception;
+				throw new Exception(4);
 			}
-			if (in_array($dataUser[0]['id'],$root)){
-				throw new Exception;
+			if (!in_array($dataUser[0]['id'],$root)){
+				throw new Exception(5);
 			}
 		} 
 		catch(Exception $e){
-			session_start();
-			header('Location: nevEnter.html.php');
+			echo $e->getMessage();
+			//header('Location: nevEnter.html.php');
 			exit();
 		}
 		
