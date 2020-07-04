@@ -735,6 +735,7 @@ margin-left: 16px;}
 @keyframes pulsate{50%{border-color:#fff;}
 }
 .text_fade {
+	border: 1px solid red;
     border-color: red;
     border-width: 2px;
     -webkit-animation: pulsate 1.2s linear infinite;
@@ -777,6 +778,12 @@ margin-left: 16px;}
 	position: absolute;
 	top: 57px;
 	left: 795px;
+}
+.requirement_of_job{
+
+	width: 99.5%;
+	
+
 }
 #footer{display: none;
 

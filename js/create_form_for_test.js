@@ -335,4 +335,52 @@ function sendData(){
 		btns[i].style.display='none';
 	}
 	d.getElementById('check-test').style.display='block';
+
+	function testing(value){
+    return new Promise(function(resolve, reject){
+        masOfPromis=[new Promise(function(resolve, reject){
+        	id=value[0].id;
+        	let imagesFlag=0;
+        	for(let i=0; i<$("#"+id+" .inputfile" ).length; i++){
+        		let files = $("#"+id+" .inputfile" )[i].files;
+        		if(typeof files != 'undefined'){
+        			imagesFlag=1;
+        			break;
+        		}
+        	}
+        	if(($("#"+id+" .requirement_of_job textarea" ).value!=="")||(imagesFlag)){
+        		resolve();
+        	}
+        	else{
+        		reject($("#"+id+" .requirement_of_job"));
+        	}
+        	
+        })];
+        /*switch(value){
+		    case 'areatext':masOfPromis.push(
+		            new Promise(function(resolve,reject){
+		            resolve()
+		        }));
+		        break;
+		    case 'radio':masOfPromis.push(
+		            new Promise(function(resolve,reject){
+		                resolve()
+		            }));
+		        break;
+		}
+    	masOfPromis.push(new Promise)*/
+    	Promise.all(masOfPromis).then(value=>resolve(value)).catch(reject);
+    }) 
+}
+
+function addClass(value){
+    $(value).addClass('text_fade');
+}
+function recursion(value){
+    if (value.next().hasClass('task')){
+        testing(value.next()).then(recursion).catch(addClass);}
+    }
+
+testing($('.task:first')).then(recursion).catch(addClass);
+recursion($('.task:first'));
 }
