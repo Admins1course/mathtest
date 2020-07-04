@@ -1,3 +1,4 @@
+
 <?php require_once 'includes/db.inc.php';
 	  require_once 'includes/incl_session.inc.php';
 	  include_once 'includes/getUserImage.inc.php';
@@ -9,8 +10,12 @@
 	<link rel="stylesheet" href="style/Main.css?<?=time()?>" type="text/css">
 	<link rel="stylesheet" href="style/Cssforindex.css?<?=time()?>" type="text/css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
 	<link rel="stylesheet" href="style/Ccssfortest.css?<?=time()?>" type="text/css">
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+	<link rel="stylesheet" href="style/Ccssfort.css?323" type="text/css">
+
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 	<script type="text/javascript" id="MathJax-script" async
 			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
@@ -40,9 +45,305 @@
 	<script>
 		$(document).ready(function(){$('textarea').val('');})
 	</script>
+
 	<script src="js/create_form_for_test.js?<?=time()?>"></script>
 	<script src="js/mathjax_handler.js?<?=time()?>"></script>
 	<script>
+
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			let tasks=0;//количество заданий
+			let lenghts={};//массив, фиксирующий количество элементов в заданиях, которые можно добавлять
+			//форма с textarea
+			$('#form_1').click(function(){
+				tasks++;
+				$('.textarea_template:hidden').clone('deepWithDataAndEvents').insertBefore('#form_handler').attr('id','task'+tasks).slideDown(1000,function(){
+					//формируем аттрибут name для элементов, значение которых отправится на сервер
+					$('.textarea_template:last .main_text').attr('name','task'+tasks+'[total_task]');
+					$('.textarea_template:last .areatext #answer').attr('name','task'+tasks+'[textarea_answer]');
+					$('.textarea_template:last .textForPoints').attr('for','points'+tasks);
+					$('.textarea_template:last .points').attr('id','points'+tasks).attr('name','task'+tasks+'[points]');
+				});
+			});
+			//аналогично предыдущему, но форма с radiobutton
+			$('#form_2').click(function(){
+				tasks++;
+				$('.radiobutton_template:hidden').clone('deepWithDataAndEvents').insertBefore('#form_handler').attr('id','task'+tasks).slideDown(1000,function(){
+					$('.radiobutton_template:last .main_text').attr('name','task'+tasks+'[total_task]');
+					$('.radiobutton_template:last .radio .button_radio').attr('name','task'+tasks+'[radio]').attr('value',1);
+					$('.radiobutton_template:last .radio .input_text').attr('name','task'+tasks+'[text_answer1]');
+					lenghts['task'+tasks]={}
+					lenghts['task'+tasks]['radio_answer']=1;
+					$('.radiobutton_template:last .textForPoints').attr('for','points'+tasks);
+					$('.radiobutton_template:last .points').attr('id','points'+tasks).attr('name','task'+tasks+'[points]');
+				});
+			});
+			//аналогично предыдущему, но форма с checkboxbutton
+			$('#form_3').click(function(){
+				tasks++;
+				$('.checkboxbutton_template:hidden').clone('deepWithDataAndEvents').insertBefore('#form_handler').attr('id','task'+tasks).slideDown(1000,function(){
+					$('.checkboxbutton_template:last .main_text').attr('name','task'+tasks+'[total_task]');
+					$('.checkboxbutton_template:last .check .button_checkbox').attr('name','task'+tasks+'[checkbox_answer1][checkbox]');
+					$('.checkboxbutton_template:last .check .input_text').attr('name','task'+tasks+'[checkbox_answer1][text_answer]');
+					lenghts['task'+tasks]={}
+					lenghts['task'+tasks]['checkbox_answer']=1;
+					$('.checkboxbutton_template:last .textForPoints').attr('for','points'+tasks);
+					$('.checkboxbutton_template:last .points').attr('id','points'+tasks).attr('name','task'+tasks+'[points]');
+				});
+			});
+			//аналогично предыдущему, но форма с input
+			$('#form_4').click(function(){
+				tasks++;
+				$('.input_template:hidden').clone('deepWithDataAndEvents').insertBefore('#form_handler').attr('id','task'+tasks).slideDown(1000,function(){
+					$('.input_template:last .main_text').attr('name','task'+tasks+'[total_task]');
+					$('.input_template:last .inp input').attr('name','task'+tasks+'[input_answer]');
+					$('.input_template:last .textForPoints').attr('for','points'+tasks);
+					$('.input_template:last .points').attr('id','points'+tasks).attr('name','task'+tasks+'[points]');
+				});
+			});
+
+			$('.button').click(function(){
+				let className=$(this).closest('[class^="task"]').attr('class');//получаем значение класса родительского diva для данной кнопки
+				let idName=$(this).closest('[class^="task"]').attr('id');//извлекаем все классы
+				className=className.split(' ');//получаем также id, генерируемое при создании diva
+				//добавляем div icontest
+				$('.'+className[1]+' .icontest:hidden').clone('deepWithDataAndEvents').css('display','none').insertBefore(
+				this).slideDown(1000).children().not('#uploadPreview').each(function(index, el){
+					//подготавливаем для элементов diva аттрибут name
+					if($(this).attr('id')=='inputfile'){
+						len=++lenghts[idName]['icontest'];
+						$(this).attr('name','task'+tasks+'[icontest'+len+'][myPhoto]');
+					}
+					else if ($(this).attr('id')=='text1'){
+						len=lenghts[idName]['icontest'];
+						$(this).attr('name','task'+tasks+'[icontest'+len+'][task2photo1]');
+					}
+					else{
+						len=lenghts[idName]['icontest'];
+						$(this).attr('name','task'+tasks+'[icontest'+len+'][task2photo1]');
+					}
+				});
+				
+			});
+			
+
+			$('.add_button_answer').click(function(){
+				let className=$(this).closest('div').attr('class');
+				className=className.split(' ');
+				let idName=$(this).closest('div').attr('id');
+				$('.'+className[1]+' .add_button_answer:hidden').prev().clone('deepWithDataAndEvents').css('display','none').insertBefore(
+				this).slideDown(1000).children().each(function(index,el){
+					if (className[1]=='radiobutton_template'){
+						if($(this).children('input').attr('id')=='radiobutton'){
+							len=++lenghts[idName]['radio_answer'];
+							$(this).children('input').attr('name','task'+tasks+'[radio]').attr('value',len);
+						}
+						else if($(this).attr('class')=='input_text'){
+							len=lenghts[idName]['radio_answer'];
+							$(this).attr('name','task'+tasks+'[text_answer'+len+']');
+						}
+					}
+					else{
+						if($(this).children('input').attr('id')=='checkboxbutton'){
+							len=++lenghts[idName]['checkbox_answer'];
+							$(this).attr('name','task'+tasks+'[checkbox_answer'+len+'][checkbox]');
+						}
+						else if($(this).attr('class')=='input_text'){
+							len=lenghts[idName]['checkbox_answer'];
+							$(this).attr('name','task'+tasks+'[checkbox_answer'+len+'][text_answer]');
+						}
+					}
+				});
+			});
+		});
+		
+	</script>
+	
+	<script>
+	var $activeContainer='';
+	var activeContainer1='';
+	function getData(){
+		$activeContainer=$('textarea:focus');
+		activeContainer1=document.querySelectorAll('textarea:focus');
+	}
+	function strForConvert(str){
+		data={};
+		data['str']='';
+		data['len']=0;
+		data['option']=false;
+		if (/^$/.test(str)){
+			data['str']=false;
+			return data;
+		}
+		else if (/^\\\(/u.test(str)){ //ищем начало строчной формулы
+			if (/^\\\(.+?\\\)/us.test(str)){//проверяем имеет ли конец строчная формула
+				data['str']=str.match(/^\\\((.+?)\\\)/us)[1];
+				data['length']=data['str'].length+4;//4=/(/)
+				data['option']='in-row formula';
+				return data; //возвращаем строчную формулу
+			}
+			else{
+				data['str']=str.match(/^\\\((.+?)$/)[1];
+				data['str']=data['str'].length+4;//4=/(/)
+				data['option']='in-row formula';
+				return data;
+			}
+		}
+		else if (/^\$\$/u.test(str)){ //ищем начало выключной формулы
+			if (/^\$\$.+?\$\$/us.test(str)){ //проверяем имеет ли конец выключная формула
+				data['str']=str.match(/^\$\$(.+?)\$\$/us)[1];
+				data['length']=data['str'].length+4;//4=$$$$
+				data['option']='alternative formula';
+				return data; //возвращаем выключную формулу
+			}
+			else
+				data['str']=str.match(/^\$\$(.+?)$/us)[1];
+				data['length']=data['str'].length+4;//4=$$$$
+				data['option']='alternative formula';
+				return data;
+		}
+		else if (/^./us){
+			data['str']=str.match(/^(.+?)(?=\\\(|\$\$|$)/us)[1];
+			data['length']=data['str'].length;
+			data['option']='text';
+			return data;
+		}
+	}
+	
+	function convert() {
+		//
+		//  Get the TeX input
+		//
+		var input = $activeContainer.val().trim();
+		var str='';
+		var count=0;
+	    //
+		//  Disable the display and render buttons until MathJax is done
+		//
+		var button = document.querySelectorAll('.btnpastepre');
+		button.disabled = true;
+		//
+		//  Clear the old output
+		//
+		output = activeContainer1[0]['nextElementSibling'];//document.getElementById('left_block');
+		output.innerHTML = '';
+		//
+		//  Reset the tex labels (and automatic equation numbers, though there aren't any here).
+		//  Get the conversion options (metrics and display settings)
+		//  Convert the input to CommonHTML output and use a promise to wait for it to be ready
+		//    (in case an extension needs to be loaded dynamically).
+		//
+		MathJax.texReset();
+		var options = MathJax.getMetricsFor(output);
+		while (strForConvert(input)['str']){
+			str=strForConvert(input);
+			input=input.slice(str['length']);
+			if (str['option']=='in-row formula')       options.display=0;
+			if (str['option']=='alternative formula')  options.display=1;
+			if (str['option']=='text'){
+				str['str']='\\mbox\{'+str['str']+'\}';
+				options.display=0;
+			}
+			console.log(str['str']);
+			MathJax.tex2chtmlPromise(str['str'], options).then(function (node) {
+				//
+				//  The promise returns the typeset node, which we add to the output
+				//  Then update the document to include the adjusted CSS for the
+				//    content of the new equation.
+				//
+				output.appendChild(node);
+				MathJax.startup.document.clear();
+				MathJax.startup.document.updateDocument();
+			}).catch(function (err) {
+				//
+				//  If there was an error, put the message into the output instead
+				//
+				output.appendChild(document.createElement('pre')).appendChild(document.createTextNode(err.message));
+			}).then(function () {
+				//
+				//  Error or not, re-enable the display and render buttons
+				//
+				button.disabled = false;
+			});
+		}
+    }
+	
+	jQuery.fn.extend({
+    insertAtCaret: function(myValue){
+        return this.each(function(i) {
+            if (document.selection) {
+                //For browsers like Internet Explorer
+                this.focus();
+                sel = document.selection.createRange();
+                sel.text = myValue;
+                this.focus();
+            }
+            else if (this.selectionStart || this.selectionStart == '0') {
+                //For browsers like Firefox and Webkit based
+                var startPos = this.selectionStart;
+                var endPos = this.selectionEnd;
+                var scrollTop = this.scrollTop;
+                this.value = this.value.substring(0, startPos)+myValue+this.value.substring(endPos,this.value.length);
+                this.focus();
+                this.selectionStart = startPos + myValue.length;
+                this.selectionEnd = startPos + myValue.length;
+                this.scrollTop = scrollTop;
+            } 
+            else {
+                this.value += myValue;
+                this.focus();
+            }
+        })
+    }
+	});
+
+	var countOfElements= 0;
+
+	$(window).load(function(){
+		$('button').click(function() {
+			var myhtml=$(this).attr('value');
+			$activeContainer.insertAtCaret(myhtml);
+			console.log($activeContainer.val().trim());
+			convert();
+			var flagOfExist=false;
+			if (countOfElements){
+				console.log(countOfElements);
+				if (countOfElements<=9){
+					$('.formul_body:first').children('button').each(function(){
+						if (myhtml==$(this).attr('value')){
+							flagOfExist=true;
+						}
+					});
+					if(!flagOfExist){
+						$(this).clone('withDataAndEvents').insertBefore('button:first');
+						countOfElements++;
+					}
+				}
+				else{
+					$('.formul_body:first').children('button').each(function(){
+						if (myhtml==$(this).attr('value')){
+							flagOfExist=true;
+						}
+					});
+					if(!flagOfExist){
+						$('.formul_body:first').children('button:last').remove();
+						$(this).clone('withDataAndEvents').insertBefore('button:first');
+					}
+				}
+			}
+			else{
+				$button=$(this).clone('withDataAndEvents');
+				$('.formul_body:first').append(function(){return $button});
+				countOfElements++;
+			}
+    })
+})
+	</script>
+	<script>
+		
+	
+
 	$(document).ready(function() {
 		$('.formul_preview').click(function(){
 			$(this).closest('.prev_menu').next().slideUp(100).next().slideDown(100);
@@ -241,10 +542,106 @@
 	<?php include 'includes/create_invite_window.php'?>
 	<div id="page">
 		<div id="main_content"><!--  Основной див  сайта -->
+
 			<div id="task_menu_div">
 				<div id="task_menu">
 					<div id="task_menu_open" title="Софийский собор">
 						<p class="bars_image"><i class="fa fa-bars" aria-hidden="true"></i></p>
+
+			<div class="task textarea_template">
+				<p class="text_title">Задание</p>
+				<div class="prev_menu">
+					<input type="button" class="task_show" value="Задание">
+					<input type="button" class="formul_preview" value="Превью" class="prev_btn" onclick="convert()">
+				</div>			
+				<textarea  oninput="auto_grow(this)"
+					name="task[total_task]"  class="main_text" style="resize:none" onfocus="getData()"> 
+				</textarea><!-- Общее задание -->
+				
+					<div class="all_icon_load">
+						<div class="icontest">
+
+							<div class="preview">
+							</div>
+							<img id="uploadPreview" style="width:240px; height: 240px;" />
+							<input id="inputfile" type="file" name="task[icontest][myPhoto]" onchange="PreviewImage(this);" accept="image/*" /><!-- Вставить изображение -->
+
+						</div>
+						<input type="button" class="button" value="+"><!--  Кнопка добавить -->	
+					</div>
+					
+
+				
+						
+							
+				
+					<p class="text_title">Варианты ответов</p>						
+				<div class="areatext">
+					<textarea oninput="auto_grow(this)" name="task[textarea_answer]" id="answer" style="resize:none" class="text_answer">
+					</textarea><!--  Развернутый ответ -->
+				</div>
+				<label class="textForPoints" for="points">Введите количество баллов за данное задание</label>
+				<input type="text" class="points" onkeyup="enterPoints(this)">
+							
+			</div>
+			<div class="task radiobutton_template">
+				<p class="text_title">Задание</p>
+				<div class="prev_menu">
+					<input type="button" class="task_show" value="Задание">
+					<input type="button" class="formul_preview" value="Превью" class="prev_btn" onclick="convert()">
+				</div>
+				<textarea oninput="auto_grow(this)"
+					name="task[total_task]"class="main_text" style="resize:none" onfocus="getData()"> 
+				</textarea><!-- Общее задание -->
+				<div class="preview">
+				</div>		
+				<p class="text_title">Варианты ответов</p>						
+				
+				<div class="radio">
+					<label class="radio_button">
+						<input id="radiobutton" name="task[radio]" value="answer" type="radio" class="button_radio">  <!--  радио кнопка -->
+						<span class="radiomark"></span>
+					</label>
+					<div class="prev_menu prev_menu_box">
+						<input type="button" class="task_show" value="Задание">
+						<input type="button" class="formul_preview" value="Превью" class="prev_btn" onclick="convert()">
+					</div>
+					<textarea  oninput="auto_grow(this)"
+						class="input_text" name="task[text_answer]" style="resize:none" onfocus="getData()">
+					</textarea><!--  задание1 -->
+					<div class="preview">
+					</div>
+				</div>
+				
+				<input type="button" class="add_button_answer" value="+"><!--  Кнопка добавить -->
+				<label class="textForPoints" for="points">Введите количество баллов за данное задание</label>
+				<input type="text" class="points" onkeyup="enterPoints(this)">
+							
+			</div>
+		
+			<div class="task checkboxbutton_template">
+				<p class="text_title">Задание</p>
+				<div class="prev_menu ">
+					<input type="button" class="task_show" value="Задание">
+					<input type="button" class="formul_preview" value="Превью" class="prev_btn" onclick="convert()">
+				</div>
+				<textarea oninput="auto_grow(this)"
+					name="task[total_task]" class="main_text" style="resize:none" onfocus="getData()"> 
+				</textarea><!-- Общее задание -->
+				<div class="preview">
+				</div>
+				<p class="text_title">Варианты ответов</p>	
+			
+				<div class="check">
+					<label class="checkbox">
+						<input id="checkboxbutton"type="checkbox" name="task[checkbox_answer][checkbox]" value="answer" class="button_checkbox" > <!--  чекбокс -->
+						<span class="checkmark"></span>
+					</label>
+
+                    <div class="prev_menu prev_menu_box">
+						<input type="button" class="task_show" value="Задание">
+						<input type="button" class="formul_preview" value="Превью" class="prev_btn" onclick="convert()">
+
 					</div>
 					
 				</div>
