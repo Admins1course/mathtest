@@ -7,6 +7,7 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Cache-Control" content="no-cache" charset="UTF-8">
+    <link rel="shortcut icon" href="https://yt3.ggpht.com/a/AATXAJxlfSf_BLhbPIyEHCJNTC8rl0cyWljApDBdnQ=s900-c-k-c0xffffffff-no-rj-mo" type="image/x-icon">
 
 	<link rel="stylesheet" href="style/Main.css?<?=time()?>" type="text/css">
 	<link rel="stylesheet" href="style/Cssforindex.css?<?=time()?>" type="text/css">
