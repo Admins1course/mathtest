@@ -3,7 +3,7 @@ if ($_POST){
 	session_start();
 	require_once 'includes/db.inc.php';
 	require_once 'includes/checkSession.inc.php';
-	if (checkSession()){
+	if ($is_login){
 		try{
 			if (preg_match("/\D/",$_POST['id'])){
 				echo json_encode(['answer'=>'errorDataFriend']);

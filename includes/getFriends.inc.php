@@ -1,5 +1,5 @@
 <?php
-if (isset($_SESSION['data-user'])){
+if ($is_login){
 	try{
 		$sql="SELECT `id_Friend` FROM `friends` WHERE `waiting`!=1 AND `id_User`=:id";
 		$result=$pdo->prepare($sql);

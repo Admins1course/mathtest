@@ -57,6 +57,7 @@ if (@isset($_POST)){
 			$_SESSION['data-user']['name']=$dataUser[0]['name'];
 			$_SESSION['data-user']['surname']=$dataUser[0]['surname'];
 			$_SESSION['data-user']['root']=$dataUser[0]['root'];
+			$_SESSION['invitation']=false;
 			header('Location: index.php');
 		}
 		else {

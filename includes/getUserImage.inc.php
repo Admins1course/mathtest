@@ -1,5 +1,5 @@
 <?php
-if (isset($_SESSION['data-user'])){
+if ($is_login){
 	try{
 		$sql="SELECT `file` FROM `avatars` WHERE id_User=:id";
 		$result=$pdo->prepare($sql);

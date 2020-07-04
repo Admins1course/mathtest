@@ -15,5 +15,10 @@ function checkSession($pdo){
 		$_SESSION['data-user']['surname']=$result[0]['surname'];
 		$_SESSION['data-user']['root']=$result[0]['root'];
 	}
+	else{
+		session_destroy();
+		$_SESSION=[];
+	}
 	return $is_login;
 }
+$is_login=checkSession();

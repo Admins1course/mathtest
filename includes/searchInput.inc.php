@@ -1,4 +1,5 @@
-<?php if($_SESSION['data-user']):?>
+<?php require_once 'checkSession.inc.php';
+if($is_login):?>
 	<div class="search_area">
 		<div class="search">
 			<input type="search" class="search_bar" onkeyup="searchControl(this)" onchange="searchControl(this)">

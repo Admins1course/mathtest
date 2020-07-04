@@ -97,10 +97,13 @@ function acceptApp(element){
 					break;
 				case 'errorDataUser':
 					alert("Данные вашего аккаунта не подтверждены");
+					break;
 				case 'errorDataFriend':
 					alert("Невозможно добавить несуществующего пользователя");
+					break;
 				case 'serverError':
 					alert("Произощла ошибка на сервере");
+					break;
 			}
 		}
 	});

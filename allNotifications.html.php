@@ -1,6 +1,7 @@
 <?php require_once 'includes/db.inc.php';
-	  require_once 'allNotifications_handler.php';
 	  require_once 'includes/incl_session.inc.php';
+	  require_once 'includes/checkSession.inc.php';
+	  require_once 'allNotifications_handler.php';
 	  include_once 'includes/getUserImage.inc.php';
 	  require_once 'includes/getFriends.inc.php';?>
 <!DOCTYPE html>
@@ -17,15 +18,15 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>	
 	<?php
-	if ($path){
+	if (isset($path)){
 	    include_once 'includes/load_user_image.inc.php';
 	}
 	?>
-	<?php if (isset($_SESSION['data-user'])):
-	    include 'includes/searchPeople.js.inc.php';
-	    include 'includes/friendsControl.js.inc.php';?>
-	<script src="js/notifs.js?<?=time();?>"></script>
+	<?php if ($is_login):?>
+		<script src="js/notifs.js?<?=time();?>"></script>
 	<?php endif;?>
+	<?php include 'includes/searchPeople.js.inc.php';
+	    include 'includes/friendsControl.js.inc.php';?>
     <?php include 'includes/script_for_nav_menu.php';?>
     <script type='text/javascript'>
 	$(function (){
@@ -34,36 +35,40 @@
 	    $('body').height(hg);
 	});
 	</script>
+	<?php if($is_login):?>
 	<script src="js/load_avatars.js?<?=time();?>"></script>
 	<script src="js/create_invite_window_script.js?<?=time();?>"></script>
+	<?php endif;?>
 </head>
 <body>
-	<?php include 'includes/create_invite_window.php'?>
+	<?php include 'includes/create_invite_window.php';?>
 	<div id="page">
 		<div id="main_content" style="height: auto;">
-		<?php for($i=0;$i<count($data['notif']);$i++){
-			if ($data['notif'][$i]['add_friends']):?>
-				<div class="notifications_bar">
-					<p class="text_notifications_bar"><?=$data['notif'][$i]['dateOfSend']?> <?=$data['notif'][$i]['message']?>.
-					<?php if (!in_array($data['notif'][$i]['add_friends'],$data['friends'])):?>
-					</p>
-					<div class="button_friend">
-						<input type="button" id="userId<?=$data['notif'][$i]['add_friends']?>" value="Принять" onclick="acceptApp(this)">
-						<input type="button" id="userId<?=$data['notif'][$i]['add_friends']?>" value="Отменить" onclick="cancelApp(this)">
+		<?php if($is_login):
+			for($i=0;$i<count($data['notif']);$i++){
+				if ($data['notif'][$i]['add_friends']):?>
+					<div class="notifications_bar">
+						<p class="text_notifications_bar"><?=htmlspecialchars($data['notif'][$i]['dateOfSend'])?> <?=htmlspecialchars($data['notif'][$i]['message'])?>.
+						<?php if(!in_array($data['notif'][$i]['add_friends'],$data['friends'])):?>
+						</p>
+						<div class="button_friend">
+							<input type="button" id="userId<?=htmlspecialchars($data['notif'][$i]['add_friends'])?>" value="Принять" onclick="acceptApp(this)">
+							<input type="button" id="userId<?=htmlspecialchars($data['notif'][$i]['add_friends'])?>" value="Отменить" onclick="cancelApp(this)">
+						</div>
+						<?else:?>
+						Вы приняли заявку.</p>
+						<?php endif;?>
 					</div>
-					<?else:?>
-					Вы приняли заявку.</p>
-					<?php endif?>
-				</div>
-			<?php else:?>
-				<div class="notifications_bar">
-					<p class="text_notifications_bar"><?=$data['notif'][$i]['dateOfSend']?></p>
-					<div class="button_friend">
-						<a href="<?=$data['notif'][$i]['invitations']?>&recipient=<?=$data['notif'][$i]['recipient']?>">Перейти к прохождению теста</a>
+				<?php else:?>
+					<div class="notifications_bar">
+						<p class="text_notifications_bar"><?=htmlspecialchars($data['notif'][$i]['dateOfSend'])?></p>
+						<div class="button_friend">
+							<a href="<?=htmlspecialchars($data['notif'][$i]['invitations'])?>&recipient=<?=htmlspecialchars($data['notif'][$i]['recipient'])?>">Перейти к прохождению теста</a>
+						</div>
 					</div>
-				</div>
-			<?php endif;?>
-		<?php }?>
+				<?php endif;?>
+			<?php }
+		endif;?>
 		</div>
 	</div>
 		<div class="slider midle">

@@ -1,4 +1,5 @@
-<?php if($_SESSION['data-user']):?>
+<?php require_once 'checkSession.inc.php'; 
+if($is_login):?>
 	<div class="friends_bar">
 		<p>Друзья</p>
 	</div>

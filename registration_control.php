@@ -88,6 +88,7 @@
 			$_SESSION['data-user']['name']=$_POST[0]['name'];
 			$_SESSION['data-user']['surname']=$_POST[0]['surname'];
 			$_SESSION['data-user']['root']=$_POST[0]['root'];
+			$_SESSION['invitation']=false;
 			header("Location: index.php");
 		}
 		catch(PDOException $e){
