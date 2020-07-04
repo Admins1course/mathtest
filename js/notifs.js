@@ -90,8 +90,18 @@ function acceptApp(element){
 		data:{id:$idFriend},
 		error:function(data){console.log(data);},
 		success:function(data){
-			app="<p>Заявка принята</p>";
-			$(element).closest('.notifications_bar').html(app);
+			switch(data['answer']){
+				case 'success':
+					app="<p>Заявка принята</p>";
+					$(element).closest('.notifications_bar').html(app);
+					break;
+				case 'errorDataUser':
+					alert("Данные вашего аккаунта не подтверждены");
+				case 'errorDataFriend':
+					alert("Невозможно добавить несуществующего пользователя");
+				case 'serverError':
+					alert("Произощла ошибка на сервере");
+			}
 		}
 	});
 }

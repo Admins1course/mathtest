@@ -1,7 +1,7 @@
 <?php
 	require_once 'includes/db.inc.php';
 	
-	if(isset($_POST)){  //Проверка на принятие данных с форм
+	if($_POST){  //Проверка на принятие данных с форм
 		session_start();
 		$_SESSION['is_wrong_password']=false;
 		$_SESSION['login_exist']=false;

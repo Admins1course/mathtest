@@ -1,8 +1,8 @@
 <?php 
-    if(isset($_POST){  //Проверка на принятие данных с форм
+    if(isset($_POST)){  //Проверка на принятие данных с форм
 		session_start();
 		$_SESSION=[];
-		$pattern="/[^А-Яа-яЁёA-Za-Z0-9_]/";
+		$pattern="/[^А-Яа-яЁёA-Za-Z0-9_]/u";
 		$root=array('студент','преподаватель');
 		try{
 			if(preg_match($pattern,$_POST['name'])){

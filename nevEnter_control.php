@@ -28,25 +28,23 @@ if (@isset($_POST)){
 			if (preg_match("/[^A-Za-z0-9_]/",$dataUser[0]['userPassword'])){
 				throw new Exception(2);
 			}
-			if (preg_match("/[^А-Яа-яA-Za-z0-9Ёё_]/",$dataUser[0]['name'])){
-				echo $dataUser[0]['name'];
+			if (preg_match("/[^А-Яа-яЁёA-Za-Z0-9_]/u",$dataUser[0]['name'])){
 				throw new Exception(3);
 			}
-			if (preg_match("/[^А-Яа-яЁёA-Za-z0-9_]/",$dataUser[0]['surname'])){
+			if (preg_match("/[^А-Яа-яЁёA-Za-z0-9_]/u",$dataUser[0]['surname'])){
 				throw new Exception(4);
 			}
-			if (!in_array($dataUser[0]['id'],$root)){
+			if (!in_array($dataUser[0]['root'],$root)){
 				throw new Exception(5);
 			}
 		} 
 		catch(Exception $e){
-			echo $e->getMessage();
-			//header('Location: nevEnter.html.php');
+			header('Location: nevEnter.html.php');
 			exit();
 		}
 		
 		if (md5($_POST['password'])==$dataUser[0]['userPassword']){
-			setcookie("login", $dataUser[0]["login"],time()+60*60*24*10);//секунды*минуты*часы*дни 
+			setcookie("login", $_POST["login"],time()+60*60*24*10);//секунды*минуты*часы*дни 
 			setcookie("password", $dataUser[0]["userPassword"], time()+60*60*24*10);//$_POST['password']
 			setcookie("id", $dataUser[0]["id"], time()+60*60*24*10);
 			setcookie("name", $dataUser[0]["name"], time()+60*60*24*10);
