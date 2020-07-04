@@ -201,6 +201,15 @@ select option{
 .friends_names_invite{
 	
 }
+.notifications_buttons{
+	padding: 5px 2px 5px 2px;
+	background-color: orange;
+	cursor: pointer;
+	border:1px solid darkorange;
+}
+.notifications_buttons:hover{
+	background-color: darkorange;
+}
 .ui-dialog{
 	position: fixed;
 	top: 150px;
