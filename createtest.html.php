@@ -95,7 +95,7 @@
 				}
 			});
 			
-			document.getElementById('nameTest').addEventListener('click',fadePopup,false);
+			//document.getElementById('nameTest').addEventListener('click',fadePopup);
 			function fadePopup(e) {
 				if ($(e.target).closest('.popup').length == 0) {
 					$(this).fadeOut(0);					
@@ -106,11 +106,14 @@
 	<script>
 	function cancelSending(e){
 		e.preventDefault();
-		document.getElementById('nameTest').removeEventListener("click",fadePopup);
+		document.getElementById('nameTest').removeEventListener("click",fadePopup,false);
 	}
 	$(document).ready(function(){
-		document.getElementById('sendForm').addEventListener("click",cancelSending,false);
-	});
+		$('#sendForm').click(function() {
+				document.getElementById('nameTest').addEventListener("click",fadePopup,true);
+
+				
+			}});
 	</script>
 	<script>
 		function PreviewImage(elem) {
