@@ -62,3 +62,16 @@
 	font-size: 21px;
 	margin-top: 12px;
 }
+.exit_menu_stat i:hover{
+	transition: all 1s;
+	transform: rotate(720deg);
+	color: red;
+}
+/*@keyframes pulsate{50%{color:#fff;} 100%{ transform: rotate(360deg);}
+}
+.exit_menu_stat i{
+	color: orange;
+	
+	animation: pulsate 3s linear infinite;
+}*/
+
