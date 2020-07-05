@@ -376,8 +376,14 @@ function sendData(){
 function addClass(value){
     $(value).addClass('text_fade');
     $('.popup-fade').fadeOut(0);
-    showTask($("."+$(value).closest('.task')[0].id)[0]);
-    //скролл к value
+     showTask($("."+$(value).closest('.task')[0].id)[0]);
+    //value[0].scrollIntoView();
+    let top=value[0].offsetTop;
+    window.scrollTo({
+    top: top + 500,
+    behavior: "smooth"
+});
+    //скролл к value[0]
 }
 function recursion(value){
     if (value[0].next().hasClass('task')){
