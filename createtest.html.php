@@ -95,26 +95,27 @@
 				}
 			});
 			
-			//document.getElementById('nameTest').addEventListener('click',fadePopup);
+			document.getElementById('nameTest').addEventListener('click',fadePopup);
 			function fadePopup(e) {
 				if ($(e.target).closest('.popup').length == 0) {
 					$(this).fadeOut(0);					
 				}
+				$('#sendForm').click(function() {
+					document.getElementById('nameTest').removeEventListener("click",fadePopup);
+				});
 			};
+			
 		});
 	</script>
-	<script>
+	<!--<script>
 	function cancelSending(e){
 		e.preventDefault();
 		document.getElementById('nameTest').removeEventListener("click",fadePopup,false);
 	}
 	$(document).ready(function(){
-		$('#sendForm').click(function() {
-				document.getElementById('nameTest').addEventListener("click",fadePopup,true);
-
-				
-			}});
-	</script>
+		document.getElementById('sendForm').addEventListener("click",fadePopup,true);
+	});
+	</script>-->
 	<script>
 		function PreviewImage(elem) {
 			var oFReader = new FileReader();
