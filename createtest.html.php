@@ -384,7 +384,7 @@
 						<input type="button" class="task_show" value="Задание">
 						<input type="button" class="formul_preview" value="Превью" class="prev_btn" onclick="convert()">
 					</div>					
-					<div class="areatext">
+					<div class="areatext" id="areatext">
 						<textarea oninput="auto_grow(this)" name="task[textarea_answer]" id="answer" style="resize:none" class="main_text">
 						</textarea><!--  Развернутый ответ -->
 					</div>

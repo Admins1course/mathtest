@@ -338,9 +338,10 @@ function sendData(){
 	d.getElementById('check-test').style.display='block';
 
 	function testing(value){
+
     return new Promise(function(resolve, reject){
+    	id=value[0].id;
         masOfPromis=[new Promise(function(resolve, reject){
-        	id=value[0].id;
         	let imagesFlag=0;
         	for(let i=0; i<$("#"+id+" .inputfile" ).length; i++){
         		let files = $("#"+id+" .inputfile" )[i].files;
@@ -356,21 +357,55 @@ function sendData(){
         		reject($("#"+id+" .requirement_of_job"));
         	}
         })];
-        /*switch(value){
+        let classOfAnswers;
+        if($("#"+id+" .areatext").length)
+        	classOfAnswers='areatext';
+        else if ($("#"+id+" .radio").length)
+        	classOfAnswers='radio';
+        else if ($("#"+id+" .check").length)
+        	classOfAnswers='check';
+        else if ($("#"+id+" .inp").length)
+        	classOfAnswers='inp';
+
+        switch(classOfAnswers){
 		    case 'areatext':masOfPromis.push(
-		            new Promise(function(resolve,reject){
-		            resolve()
+		        new Promise(function(resolve,reject){
+		            if(($("#"+id+" .areatext textarea" )[0].value!=="")){
+        				resolve(value);
+        			}
+        			else{
+		        		reject($("#"+id+" .areatext textarea" ));
+		        	}
 		        }));
 		        break;
-		    case 'radio':masOfPromis.push(
-		            new Promise(function(resolve,reject){
-		                resolve()
-		            }));
+		  /*  case 'radio':masOfPromis.push(    
+		        new Promise(function(resolve,reject){
+		            resolve() 
+		        }));
 		        break;
-		}*/
+		    case 'check':masOfPromis.push(
+		        new Promise(function(resolve,reject){
+		            resolve()
+		        }));
+		        break;*/
+		    case 'inp':masOfPromis.push(
+		        new Promise(function(resolve,reject){
+		            if(($("#"+id+" .inp input" )[0].value!=="")){
+        				resolve(value);
+        			}
+        			else{
+		        		reject($("#"+id+" .inp input" ));
+		        	}
+		        }));
+		        break;
+		}
+		//for rirst radio or checkbix(check)
+		//for length 
+		//create Promise
+		//push Promise on new masive
+		//Promise.all(masive)
+
     	masOfPromis.push(new Promise(function(resolve, reject){
-        	id=value[0].id;
-        	
         	if(($("#"+id+" .textForPoints_div input" )[0].value!=="")){
         		resolve(value);
         	}
