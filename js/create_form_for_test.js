@@ -367,8 +367,17 @@ function sendData(){
 		                resolve()
 		            }));
 		        break;
-		}
-    	masOfPromis.push(new Promise)*/
+		}*/
+    	masOfPromis.push(new Promise(function(resolve, reject){
+        	id=value[0].id;
+        	
+        	if(($("#"+id+" .textForPoints_div input" )[0].value!=="")){
+        		resolve(value);
+        	}
+        	else{
+        		reject($("#"+id+" .textForPoints_div input" ));
+        	}
+        }))
     	Promise.all(masOfPromis).then(resolve).catch(reject);
     }) 
 }
