@@ -88,34 +88,34 @@
 				return false;
 			});		
 		 
-			$(document).keydown(function(e) {
+			/*$(document).keydown(function(e) {
 				if (e.keyCode === 27) {
 					e.stopPropagation();
 					$('.popup-fade').fadeOut(0);
 				}
-			});
+			});*/
 			
 			document.getElementById('nameTest').addEventListener('click',fadePopup);
 			function fadePopup(e) {
 				if ($(e.target).closest('.popup').length == 0) {
 					$(this).fadeOut(0);					
-				}
-				$('#sendForm').click(function() {
+				}	
+			}
+			$('#sendForm').click(function() {
 					document.getElementById('nameTest').removeEventListener("click",fadePopup);
-				});
-			};
+			});
 			
 		});
 	</script>
-	<!--<script>
+	<script>
 	function cancelSending(e){
 		e.preventDefault();
-		document.getElementById('nameTest').removeEventListener("click",fadePopup,false);
+		
 	}
 	$(document).ready(function(){
-		document.getElementById('sendForm').addEventListener("click",fadePopup,true);
+		document.getElementById('sendForm').addEventListener("click",cancelSending);
 	});
-	</script>-->
+	</script>
 	<script>
 		function PreviewImage(elem) {
 			var oFReader = new FileReader();
