@@ -8,7 +8,7 @@
 <head>
 	<meta http-equiv="Cache-Control" content="no-cache" charset="UTF-8">
     <link rel="shortcut icon" href="style/img/LOGO.png" type="image/x-icon">
-
+	<link rel="stylesheet" href="style/Cssforprofile.css?<?=time()?>" type="text/css">
 	<link rel="stylesheet" href="style/Main.css?<?=time()?>" type="text/css">
 	<link rel="stylesheet" href="style/Cssforindex.css?<?=time()?>" type="text/css">
 	<link rel="stylesheet" href="style/CssforDialogWindow.css?<?=time()?>" type="text/css">

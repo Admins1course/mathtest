@@ -18,16 +18,11 @@ body{
 	min-width: 1280px;
 	margin:0 auto;
 	background-color: #fcfcfc;
-
-	
-
 }
 
 #main_content{
 	background-color: #fff;
 	min-height: 200px;
-	
-
 }
 #menu_bg {
 	position: absolute;
@@ -36,8 +31,6 @@ body{
 	height: 360px;
 	margin:0 auto;	
 	opacity: 1;
-	
-	
 }
 #menu_bg:hover{
 	/* opacity: 0.9;*/
@@ -389,42 +382,7 @@ input[name='r']{
 	border: 1px solid red;
 	margin-bottom: 20px;
 }
-.exit_menu_body{
-	position:absolute;
-	border: 1px solid red;
-	width: 200px;
-	height: auto;
-	top: 50px;
-	background-color: white;
-	text-align: center;
-	font-size: 18px;
-	right: 0px;
-}
-.exit_menu_elements{
-	height: auto;
-	width: auto;
-	margin-top: 10px;
-	
-	display: block;
-	
-}
-.exit_menu_elements:hover{
-	background-color: darkorange;
-}
-.exit_menu_elements_bar{
-	margin-bottom: 10px;
-}
-.exit_menu_elements_text{
-	height: auto;
-	width: 100%;
-	display: block;
-	padding-top: 10px;
-	padding-bottom: 10px;
 
-}
-.exit_title{
-	border-top: 2px solid orange;
-}
 
 
 @import "https://fonts.googleapis.com/css?family=Varela+Round";
