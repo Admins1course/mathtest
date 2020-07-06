@@ -31,14 +31,14 @@
     <script type='text/javascript'>
 	$(function (){
 	    var hg=$('body').height();
-	    hg=hg+550+'px';
+	    hg=hg+750+'px';
 	    $('body').height(hg);
 	});
 	</script>
 	<script src="js/load_avatars.js?<?=time();?>"></script>
 	<script src="js/create_invite_window_script.js?<?=time();?>"></script>
 </head>
-<body>
+<body style="position: relative;">
 	<?php include 'includes/create_invite_window.php'?>
 	<div id="page">
 		<div id="main_content" style="height: auto;">
@@ -75,36 +75,41 @@
 			<div id="left_block" class="left_block">
 				<?php require_once "includes/friendsList.inc.php";?>
 			</div>
+
 			<?php include 'includes/nav_menu.php';?>
-		<!--<div id="footer">
-			<footer>
-				<ul>
-					<li>
-						<p class="main">Главная</p>
-						<a class="siteImage" href="#">MathTest <i>&copy; 2020</i></a>
-					</li>
-					<li>
-						<p class="reachus">Контакты</p>
-
-						<ul>
-							<li><a href="#">Email</a></li>
-							<li><a href="#">Vk</a></li>
-							<li><a href="#">Facebook</a></li>
-							<li>Номер можно</li>
-						</ul>
-					</li>
-					<li>
-						<p class="clients">Пользователи</p>
-
-						<ul>
-							<li><a href="#">Войти</a></li>
-							<li><a href="#">Поддержка</a></li>
-							<li><a href="#">FAQ</a></li>
-						</ul>
-					</li>
-				</ul>
-			</footer>
-		</div>-->
-</body>
 		
+
+		
+</body>
+	<div class="footerMain">
+		<div class="footerWeight">
+			<footer>
+					<ul>
+						<li>
+							<p class="main">Главная</p>
+							<a class="siteImage" href="#">MathTest <i>&copy; 2020</i></a>
+						</li>
+						<li>
+							<p class="reachus">Контакты</p>
+
+							<ul>
+								<li><a href="#">Email</a></li>
+								<li><a href="#">Vk</a></li>
+								<li><a href="#">Facebook</a></li>
+								<li><a href="">Номер можно</a></li>
+							</ul>
+						</li>
+						<li>
+							<p class="clients">Пользователи</p>
+
+							<ul>
+								<li><a href="#">Войти</a></li>
+								<li><a href="#">Поддержка</a></li>
+								<li><a href="#">FAQ</a></li>
+							</ul>
+						</li>
+					</ul>
+			</footer>
+		</div>
+	</div>
 </html>
