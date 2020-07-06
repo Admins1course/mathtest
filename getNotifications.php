@@ -1,7 +1,8 @@
 <?php
+	@session_start();
 	require_once 'includes/db.inc.php';
-	session_start();
-	if ($_SESSION['data-user']){
+	require_once 'includes/checkSession.inc.php';
+	if ($is_login){
 		try{
 			$pdo->beginTransaction();
 			$sql="SELECT message,add_friends,invitations,recipient FROM `notifications`
@@ -20,3 +21,4 @@
 			$pdo->rollBack();
 		}
 	}
+	else json_encode(['answer'=>'errorDataUser']);

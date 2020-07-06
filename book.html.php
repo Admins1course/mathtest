@@ -1,6 +1,7 @@
 <?php require_once "includes/db.inc.php";
-	  require_once "book_control.php";
 	  require_once 'includes/incl_session.inc.php';
+	  require_once "includes/checkSession.inc.php";
+	  require_once "book_control.php";
 	  include_once 'includes/getUserImage.inc.php';
 	  require_once 'includes/getFriends.inc.php';?>
 <!DOCTYPE html>
@@ -23,11 +24,11 @@
 	    include_once 'includes/load_user_image.inc.php';
 	}
 	?>
-	<?php if (isset($_SESSION['data-user'])):
-	    include 'includes/searchPeople.js.inc.php';
-	    include 'includes/friendsControl.js.inc.php';?>
+	<?php if ($is_login):?>
 		<script src="js/notifs.js?<?=time();?>"></script>
 	<?php endif;?>
+	<?php include 'includes/searchPeople.js.inc.php';
+	      include 'includes/friendsControl.js.inc.php';?>
 	<?php include 'includes/script_for_nav_menu.php';?>
 	<?php include 'includes/answers_of_user.js.inc.php';?>
 	<script>
@@ -60,8 +61,10 @@
 	    $('body').height(hg);
 	});
 	</script>
+	<?php if($is_login):?>
 	<script src="js/load_avatars.js?<?=time();?>"></script>
 	<script src="js/create_invite_window_script.js?<?=time();?>"></script>
+	<?php endif;?>
 </head>
 <body >
 	<?php include 'includes/create_invite_window.php'?>
@@ -81,6 +84,7 @@
 			$$
 		</div>
 		<div id="main_content">
+		<?php if(message):?>
 			<div id="area_book">
 					<div id="book">
 						<form action="result_of_test.html.php" method="post">
@@ -104,8 +108,8 @@
 											<div class="radio">
 												
 												<input type="radio" class="radio_answer" name="answers[task<?=$i?>]"
-												value="<?=$dataTest[$i]["answer"]["radio"][$j]["text_answer"]?>" onchange="registeringResponses()">
-												<p class="possibleAnswer"><?=$dataTest[$i]["answer"]["radio"][$j]["text_answer"]?></p>
+												value="<?=htmlspecialchars($dataTest[$i]["answer"]["radio"][$j]["text_answer"])?>" onchange="registeringResponses()">
+												<p class="possibleAnswer"><?=htmlspecialchars($dataTest[$i]["answer"]["radio"][$j]["text_answer"])?></p>
 											</div>
 										<?php } ?>
 									</div>
@@ -116,16 +120,16 @@
 										<?php for ($j=1; $j<=count($dataTest[$i]["answer"]["checkbox"]);$j++){?>
 											<div class="checkbox">
 												<input type="checkbox" class="checkbox_answer" name="answers[task<?=$i?>][<?=$j?>]"
-												value="<?=$dataTest[$i]["answer"]["checkbox"][$j]["text_answer"]?>" onchange="registeringResponses()">
-												<p class="possibleAnswer"><?=$dataTest[$i]["answer"]["checkbox"][$j]["text_answer"]?></p>
+												value="<?=htmlspecialchars($dataTest[$i]["answer"]["checkbox"][$j]["text_answer"])?>" onchange="registeringResponses()">
+												<p class="possibleAnswer"><?=htmlspecialchars($dataTest[$i]["answer"]["checkbox"][$j]["text_answer"])?></p>
 											</div>
 										<?php } ?>
 									</div>
 								<?php } ?>
 							<?php } ?>
-							<input type="hidden" name="idUser" value="<?=$idUser?>">
-							<input type="hidden" name="idTest" value="<?=$idTest?>">
-							<input type="hidden" name="answers[count]" value="<?=count($dataTest)?>">
+							<input type="hidden" name="idUser" value="<?=htmlspecialchars($idUser)?>">
+							<input type="hidden" name="idTest" value="<?=htmlspecialchars($idTest)?>">
+							<input type="hidden" name="answers[count]" value="<?=htmlspecialchars(count($dataTest))?>">
 							<?php if ($_GET['recipient']&&ctype_digit($_GET['recipient'])):?>
 							<input type="hidden" name="recipient" value="<?=htmlspecialchars($_GET['recipient'])?>">
 							<?php endif;?>
@@ -136,8 +140,7 @@
 						</form>
 					</div>
 				<div id="zaklad_menu">
-				<?php for($i=1;$i<=count($dataTest);$i++):?>
-					
+				<?php for($i=1;$i<=(count($dataTest);$i++):?>			
 					<div class="zaklad_div">
 						<p class="zaklad_title ">Задание <?=$i?></p>
 						<img class="zaklad <?=$i?>" src="style/img/zacl.png" alt="" style="display:block;" >
@@ -147,7 +150,8 @@
 				<?php endfor?>
 				</div>
 			</div>
-
+		<?php else: echo htmlspecialchars($message);?>
+		<?php endif;?>
 		</div>
 	</div>
 		<div class="slider midle">

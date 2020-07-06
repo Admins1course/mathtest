@@ -1,3 +1,5 @@
+<?php require_once "checkSession.inc.php";
+if($is_login):?>
 <script>
 let count;
 let tasks;
@@ -68,3 +70,4 @@ function registeringResponses(){
 	error.innerHTML="";
 }
 </script>
+<?php endif;?>

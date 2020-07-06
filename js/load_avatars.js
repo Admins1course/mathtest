@@ -30,7 +30,7 @@ $(document).ready(function(){
 			// AJAX запрос
 			$.ajax({
 				url         : document.location.origin+"/loadAvatars.php",
-				type        : 'POST', // важно!
+				type        : 'POST', 
 				data        : data,
 				cache       : false,
 				dataType    : 'json',
@@ -40,15 +40,40 @@ $(document).ready(function(){
 				contentType : false, 
 				// функция успешного ответа сервера
 				success:function(data){
-					avat=document.getElementById('profile_avatar');
-					avat.innerHTML='';
-					avat.style.backgroundImage="url(avatars/"+data['id']+"/"+data['name']+")";
-					loading.style.display="block";
-					waiting.style.display="none";
+					if(data['answer']=='errorDataUser'){
+						alert('Данные вашего аккаунта не подтверждены');
+					}
+					else if(data['answer']=='errorDataImage'){
+						alert("Файл не может быть загружен");
+					}
+					else if(data['errorUpload']){
+						masOfErrors=['Размер файла превысил значение upload_max_filesize в конфигурации PHP.',
+									 'Размер загружаемого файла превысил значение MAX_FILE_SIZE в HTML-форме.',
+									 'Загружаемый файл был получен только частично.',
+									 'Файл не был загружен.',
+									 'Отсутствует временная папка.',
+									 'Не удалось записать файл на диск.',
+									 'PHP-расширение остановило загрузку файла.',
+									 'Можно загружать только изображения.',
+									 'Размер изображения не должен превышать 5 Мбайт.',
+									 'Высота изображения не должна превышать 768 точек.',
+									 'При записи изображения на диск произошла ошибка.']
+						if(masOfErrors.indexOf(data['errorUpload'])){
+							alert(data['errorUpload']);
+						}
+					}
+					else{
+						avat=document.getElementById('profile_avatar');
+						avat.innerHTML='';
+						avat.style.backgroundImage="url(avatars/"+data['id']+"/"+data['name']+")";
+						loading.style.display="block";
+						waiting.style.display="none";
+					}
 				},
 				// функция ошибки ответа сервера
 				error: function(data){
 					console.log(data);
+					alert('Не удалось загрузить файл');
 					loading.style.display="block";
 					waiting.style.display="none";
 				}

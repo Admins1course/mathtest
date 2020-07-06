@@ -1,47 +1,48 @@
 <?php
     //дополнения
-    include 'includes/db.inc.php';
 	session_start();
-	function exist_data($value){
-		if ((trim($value)!==false)&&(trim($value)!=='')) return 1;
-		else return 0;
-	}
-	//основная часть обработчика
-	/*-----------------------------------------------СТРУКТУРА ТАБЛИЦ-----------------------------------------------------------
-	*
-	*
-	*                                                  tasktest_idUser
-	*                                              +-----------------+
-	*                                              |id_Test | id_Task|
-	*                                              +-----------------+
-	*                                                            |
-	*                                                            |               
-	*    |-------------------------------------------------------+------------------------------
-	*    |                                                                                     |
-	*    |                                                                                     |
-	*    |                                                                                     |
-    *	 |    totaltasktable_idUser_idTest                                                     |          answers_idUser_idTest
-	*    |        +------------------+                                                         |        +-------------------------------------+
-	*    |        |id_Task|total_task|                                                         |        |id_Task|textarea|input|radio|checkbox|
-	*    |        +------------------+                                                         |        +-------------------------------------+ 
-	*    |            |                                                                        |            |
-	*    |            |                                                                        |            |
-	*    --------------                                                                        --------------
-	*                                                                                                |
-	*                                                                                                |         
-	*                                 ----------------------------------------------------------------
-	*                                 |                                                              |
-	*                                 |  radio_idUser_idTest                                         |   checkbox_idUser
-	*                              +----------------------------------------+                    +----------------------------------------------+      
-	*                              |id_Task|idRadio|radio_answer|text_answer|                    |id_Task|idCheckbox|checkbox_answer|text_answer|
-	*                              +----------------------------------------+                    +----------------------------------------------+
-	*
-	*
-	*$db_flags - массив флагов определяющих созданы ли таблицы или нет
-	*/
-	$db_flags=array(
-	         'tests'=>0);
-	if (isset($_SESSION['data-user']['id'])){
+    include 'includes/db.inc.php';
+    include 'includes/checkSession.inc.php';
+	if($is_login){
+		function exist_data($value){
+			if ((trim($value)!==false)&&(trim($value)!=='')) return 1;
+			else return 0;
+		}
+		//основная часть обработчика
+		/*-----------------------------------------------СТРУКТУРА ТАБЛИЦ-----------------------------------------------------------
+		*
+		*
+		*                                                  tasktest_idUser
+		*                                              +-----------------+
+		*                                              |id_Test | id_Task|
+		*                                              +-----------------+
+		*                                                            |
+		*                                                            |               
+		*    |-------------------------------------------------------+------------------------------
+		*    |                                                                                     |
+		*    |                                                                                     |
+		*    |                                                                                     |
+		*	 |    totaltasktable_idUser_idTest                                                     |          answers_idUser_idTest
+		*    |        +------------------+                                                         |        +-------------------------------------+
+		*    |        |id_Task|total_task|                                                         |        |id_Task|textarea|input|radio|checkbox|
+		*    |        +------------------+                                                         |        +-------------------------------------+ 
+		*    |            |                                                                        |            |
+		*    |            |                                                                        |            |
+		*    --------------                                                                        --------------
+		*                                                                                                |
+		*                                                                                                |         
+		*                                 ----------------------------------------------------------------
+		*                                 |                                                              |
+		*                                 |  radio_idUser_idTest                                         |   checkbox_idUser
+		*                              +----------------------------------------+                    +----------------------------------------------+      
+		*                              |id_Task|idRadio|radio_answer|text_answer|                    |id_Task|idCheckbox|checkbox_answer|text_answer|
+		*                              +----------------------------------------+                    +----------------------------------------------+
+		*
+		*
+		*$db_flags - массив флагов определяющих созданы ли таблицы или нет
+		*/
+		$db_flags=array(
+				 'tests'=>0);
 		try{
 			$pdo->beginTransaction();	
 			//узнаем количество существующих у автора тестов
@@ -182,7 +183,7 @@
 						else{
 							$sql="INSERT INTO totaltasktable(id_User,id_Test,id_Task) VALUES (:idUser,:idTest,:numberTask)";
 							$result=$pdo->prepare($sql)->execute(["idUser"=>$_SESSION['data-user']['id'],
-															      "idTest"=>$count,
+																  "idTest"=>$count,
 																  "numberTask"=>$numberTask]);
 						}
 					}
@@ -222,7 +223,7 @@
 										WHERE id_User=:idUser AND id_Test=:idTest AND id_Task=:numberTask";
 								$pdo->prepare($sql)->execute(['idUser'=>$_SESSION['data-user']['id'],
 															  'idTest'=>$count,
-														      'numberTask'=>$numberTask]);
+															  'numberTask'=>$numberTask]);
 								$radio=0;//переменная отвечающая, за то была ли радиокнопка выделена как ответ
 								if ('text_answer'.$_POST[$k1]['radio']==$k2){
 									$radio=1;
@@ -325,5 +326,5 @@
 		}
 	}
 	else{
-		header('Location: createtest.html.php');
+		header('Location: createtest.html.php?dataUser=1');
 	}

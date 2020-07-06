@@ -1,6 +1,7 @@
 <?php require_once 'includes/db.inc.php';
-	  require_once 'registration_control.php';
 	  require_once 'includes/incl_session.inc.php';
+	  require_once 'includes/checkSession.inc.php';
+	  require_once 'registration_control.php';
 	  include_once 'includes/getUserImage.inc.php';
 	  require_once 'includes/getFriends.inc.php';?>
 <!DOCTYPE html>
@@ -22,11 +23,11 @@
 	    include_once 'includes/load_user_image.inc.php';
 	}
 	?>
-	<?php if (isset($_SESSION['data-user'])):
-	    include 'includes/searchPeople.js.inc.php';
-	    include 'includes/friendsControl.js.inc.php';?>
+	<?php if ($is_login):?>
 		<script src="js/notifs.js?<?=time();?>"></script>
 	<?php endif;?>
+	<?php include 'includes/searchPeople.js.inc.php';
+		  include 'includes/friendsControl.js.inc.php';?>
     <?php include 'includes/script_for_nav_menu.php';?>
     <script type='text/javascript'>
 	$(function (){
@@ -35,8 +36,10 @@
 	    $('body').height(hg);
 	});
 	</script>
+	<?php if($is_login):?>
 	<script src="js/load_avatars.js?<?=time();?>"></script>
 	<script src="js/create_invite_window_script.js?<?=time();?>"></script>
+	<?php endif;?>
 </head>
 <body>
 	<?php include 'includes/create_invite_window.php'?>

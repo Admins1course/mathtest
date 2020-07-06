@@ -43,7 +43,20 @@ if($is_login):?>
 			data:dataPost,
 			error:function(data){console.log(data)},
 			success:function(data){
-				$(element).val('+ В друзья').attr("onclick","addFriend(this)");
+				switch(data['answer']){
+					case 'success':
+						$(element).val('+ В друзья').attr("onclick","addFriend(this)");
+						break;
+					case 'errorDataUser':
+						alert("Данные вашего аккаунта не подтверждены");
+						break;
+					case 'errorDataFriend':
+						alert("Невозможно добавить несуществующего пользователя");
+						break;
+					case 'serverError':
+						alert("Произощла ошибка на сервере");
+						break;
+				}
 			}
 		});
 	}

@@ -7,8 +7,8 @@
 </head>
 <body>
 	<div id="error">
-		<?php
-			echo $error;
+		<?php if(isset($error)){
+		echo htmlspecialchars($error);}
 		?>
 	</div>
 <div class="box">

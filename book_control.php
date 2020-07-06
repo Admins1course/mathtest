@@ -1,7 +1,26 @@
 <?php
-session_start();
-if (isset($_SESSION['data-user']['name'])){
+@session_start();
+require_once "includes/checkSession.html.php";
+$message='';
+if ($is_login){
 	if (isset($_REQUEST['idUser'])&&isset($_REQUEST['idTest'])){
+		try{
+			if(preg_match("/[\D]/",$_REQUEST['idUser'])){
+				throw new Exception();
+			}
+			if(preg_match("/[\D]/",$_REQUEST['idTest'])){
+				throw new Exception();
+			}
+			$sql="SELECT * FROM 'tests' WHERE idAuthor=:idUser AND idTest=:idTest";
+			$result=$pdo->prepare($sql)->execute(['idUser'=>$_REQUEST['idUser'],
+												  'idTest'=>$_REQUEST['idTest']]);
+			if (empty($result->fetchAll(PDO::FETCH_ASSOC))){
+				throw new Exception();
+			}
+		}
+		catch(Exception $e){
+			$message="Данный тест не существует";
+		}
 		$idUser=$_REQUEST['idUser'];
 		$idTest=$_REQUEST['idTest'];
 		$query="SELECT countTask FROM tasktest WHERE id_User=:idUser AND id_Test=:idTest";

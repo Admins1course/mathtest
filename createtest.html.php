@@ -1,5 +1,6 @@
 <?php require_once 'includes/db.inc.php';
 	  require_once 'includes/incl_session.inc.php';
+	  require_once 'includes/checkSession.inc.php';
 	  include_once 'includes/getUserImage.inc.php';
 	  require_once 'includes/getFriends.inc.php';?>
 <!DOCTYPE html>
@@ -23,15 +24,16 @@
 	    include_once 'includes/load_user_image.inc.php';
 	}
 	?>
-	<?php if (isset($_SESSION['data-user'])):
-	    include 'includes/searchPeople.js.inc.php';
-	    include 'includes/friendsControl.js.inc.php';?>
+	<?php if ($is_login):?>
 		<script src="js/notifs.js?<?=time();?>"></script>
 	<?php endif;?>
+	<?php include 'includes/searchPeople.js.inc.php';
+		  include 'includes/friendsControl.js.inc.php';?>
 	<?php include 'includes/script_for_nav_menu.php';?>
+	<?php if ($is_login):?>
 	<script src="js/load_avatars.js?<?=time();?>"></script>
 	<script src="js/create_invite_window_script.js?<?=time();?>"></script>
-
+	<?php endif;?>
 	<script>
 		function auto_grow(element) {
     		element.style.height = "5px";
@@ -238,9 +240,15 @@
 	</script>
 </head>
 <body  >
-	<?php include 'includes/create_invite_window.php'?>
+	<?php if($is_login):
+	include 'includes/create_invite_window.php';
+	endif;?>
 	<div id="page">
 		<div id="main_content"><!--  Основной див  сайта -->
+		<?php if(isset($_GET['dataUser'])&&($_GET['dataUser']==='1')){
+			echo "Ваши персональные данные защищены";
+		}?>
+		<?php if($is_login):?>
 			<div id="task_menu_div">
 				<div id="task_menu">
 					<div id="task_menu_open" title="Софийский собор">
@@ -249,99 +257,95 @@
 					
 				</div>
 			</div>
-			<?php if (isset($_SESSION['data-user'])):?>
-				<form onsubmit="sendForm()" action="createtest_handler.php" method="post" enctype="multipart/form-data" >
-					<div class="content_form">
-						<div id="form_handler">
-						<div class="arrow_div_task swipe_width" id="arrow-up" disabled style="display:none" onclick="swipeTask(this)">
-							<div class="arrowupdown swipe_up ">
-								<i class="fa fa-chevron-up" aria-hidden="true">
-								</i>
-							</div>
+			<form onsubmit="sendForm()" action="createtest_handler.php" method="post" enctype="multipart/form-data" >
+				<div class="content_form">
+					<div id="form_handler">
+					<div class="arrow_div_task swipe_width" id="arrow-up" disabled style="display:none" onclick="swipeTask(this)">
+						<div class="arrowupdown swipe_up ">
+							<i class="fa fa-chevron-up" aria-hidden="true">
+							</i>
 						</div>
-						<div class="arrow_div_task swipe_width" id="arrow-down" disabled style="display:none" onclick="swipeTask(this)">
-							<div class="arrowupdown swipe_down ">
-								<i class="fa fa-chevron-down" aria-hidden="true">
-								</i>
-							</div>
+					</div>
+					<div class="arrow_div_task swipe_width" id="arrow-down" disabled style="display:none" onclick="swipeTask(this)">
+						<div class="arrowupdown swipe_down ">
+							<i class="fa fa-chevron-down" aria-hidden="true">
+							</i>
 						</div>
-							<div id="create_task_btn">
-								<div id="create_task_btn_div">
-
-									<div class="new_task_btn_div" id="form_1">
-										<div class="plus_onbtn">
-											<p class="plus_onbtn_text">+</p>
-										</div>
-										<div class="new_task_btn_image" style="background-image:linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%), url('http://mathtest.rfpgu.ru/style/img/Form1.PNG'); background-size: cover;"></div>
-										<div class="new_task_btn_title">Задание с развернутым ответом </div>
+					</div>
+						<div id="create_task_btn">
+							<div id="create_task_btn_div">
+								<div class="new_task_btn_div" id="form_1">
+									<div class="plus_onbtn">
+										<p class="plus_onbtn_text">+</p>
 									</div>
-									<div class="new_task_btn_div" id="form_2">
-										<div class="plus_onbtn">
-											<p class="plus_onbtn_text">+</p>
-										</div>
-										<div class="new_task_btn_image" style="background-image:linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%), url('http://mathtest.rfpgu.ru/style/img/2Form.PNG'); background-size: cover;"></div>
-										<div class="new_task_btn_title new_task_btn_title_long">Задание с одним правильным ответом (из нескольких вариантов)</div>
+									<div class="new_task_btn_image" style="background-image:linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%), url('http://mathtest.rfpgu.ru/style/img/Form1.PNG'); background-size: cover;"></div>
+									<div class="new_task_btn_title">Задание с развернутым ответом </div>
+								</div>
+								<div class="new_task_btn_div" id="form_2">
+									<div class="plus_onbtn">
+										<p class="plus_onbtn_text">+</p>
 									</div>
-									<div class="new_task_btn_div" id="form_3">
-										<div class="plus_onbtn">
-											<p class="plus_onbtn_text">+</p>
-										</div>
-										<div class="new_task_btn_image" style="background-image:linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%), url('http://mathtest.rfpgu.ru/style/img/3Form.PNG'); background-size: cover;"></div>
-										<div class="new_task_btn_title new_task_btn_title_long">Задание с несколькими правильными ответами (из нескольких вариантов)</div>
+									<div class="new_task_btn_image" style="background-image:linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%), url('http://mathtest.rfpgu.ru/style/img/2Form.PNG'); background-size: cover;"></div>
+									<div class="new_task_btn_title new_task_btn_title_long">Задание с одним правильным ответом (из нескольких вариантов)</div>
+								</div>
+								<div class="new_task_btn_div" id="form_3">
+									<div class="plus_onbtn">
+										<p class="plus_onbtn_text">+</p>
 									</div>
-									<div class="new_task_btn_div" id="form_4">
-										<div class="plus_onbtn">
-											<p class="plus_onbtn_text">+</p>
-										</div>
-										<div class="new_task_btn_image" style="background-image:linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%), url('http://mathtest.rfpgu.ru/style/img/4Form.PNG'); background-size: cover;"></div>
-
-										<div class="new_task_btn_title">Задание с кратким ответом</div>
+									<div class="new_task_btn_image" style="background-image:linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%), url('http://mathtest.rfpgu.ru/style/img/3Form.PNG'); background-size: cover;"></div>
+									<div class="new_task_btn_title new_task_btn_title_long">Задание с несколькими правильными ответами (из нескольких вариантов)</div>
+								</div>
+								<div class="new_task_btn_div" id="form_4">
+									<div class="plus_onbtn">
+										<p class="plus_onbtn_text">+</p>
 									</div>
+									<div class="new_task_btn_image" style="background-image:linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%), url('http://mathtest.rfpgu.ru/style/img/4Form.PNG'); background-size: cover;"></div>
+									<div class="new_task_btn_title">Задание с кратким ответом</div>
 								</div>
 							</div>
 						</div>
-						<input type="button" value="Продолжить" class="popup-open active_btn continue_btn">
-						<div id="nameTest" class="popup-fade">
-							<div class="popup">
-								<p class="popup_text">Введите название теста</p>
-								<input type="text" class="input_text_popup" onkeyup="nameControl(this)" onchange="nameControl(this)">
-								<p class="popup_text">Выберите дисциплину (и, если нужно, раздел дисциплины)<p>
-								<select name="subject" id="subjects" class="popup_select" onchange="showSections(this)">
-									<option disabled selected value="Выберите дисциплину" class="option_subject popup_text ">Выберите дисциплину</option>
-									<?php 
-									$sql="SELECT `id_subject`,`subject` from `subjects`";
-									$result=$pdo->query($sql);
-									$subjects=$result->fetchAll(PDO::FETCH_ASSOC);
-									for ($i=0;$i<count($subjects);$i++):
-									?>
-									<option class="option_subject" id="subject<?=$subjects[$i]['id_subject']?>"><?=$subjects[$i]['subject']?></option>
-									<?php endfor;?>
-								</select>
-								<select name="section" id="sections" class="popup_select" style="display:none">
-									<option disabled selected value="Выберите раздел" class="option_section popup_text ">Выберите раздел</option>
-									<option class="option_section" ></option>
-								</select>
-								<p>Выберите минимальное значение баллов для получения каждой из оценки</p>
-								<input type="range" id="range_1" min="0" step="0.1" oninput="outputPoints(this)" list="points_label" name="marks[0]">
-								<p>Для получения оценки 1 достаточно баллов:<output for="range_1"></output></p>
-								<input type="range" id="range_2" min="0" step="0.1" oninput="outputPoints(this)" list="points_label" name="marks[1]">
-								<p>Для получения оценки 2 достаточно баллов:<output for="range_2"></output></p>
-								<input type="range" id="range_3" min="0" step="0.1" oninput="outputPoints(this)" list="points_label" name="marks[2]">
-								<p>Для получения оценки 3 достаточно баллов:<output for="range_3"></output></p>
-								<input type="range" id="range_4" min="0" step="0.1" oninput="outputPoints(this)" list="points_label" name="marks[3]">
-								<p>Для получения оценки 4 достаточно баллов:<output for="range_4"></output></p>
-								<input type="range" id="range_5" min="0" step="0.1" oninput="outputPoints(this)" list="points_label" name="marks[4]">
-								<p>Для получения оценки 5 достаточно баллов:<output for="range_5"></output></p>						
-								<datalist id="points_label">
-								</datalist>
-								<span id="check-test" style="display:none">ПРОВЕРКА ЗАПОЛНЕНИЯ ЗАДАНИЙ</span>
-								<input type="button" value="Отменить" class=" form_btn_close form_btn_send active_btn">
-								<input type="submit" value="Отправить" class=" form_btn_send active_btn" id="sendForm" onclick="sendData()">
-							</div>
+					</div>
+					<input type="button" value="Продолжить" class="popup-open active_btn continue_btn">
+					<div id="nameTest" class="popup-fade">
+						<div class="popup">
+							<p class="popup_text">Введите название теста</p>
+							<input type="text" class="input_text_popup" onkeyup="nameControl(this)" onchange="nameControl(this)">
+							<p class="popup_text">Выберите дисциплину (и, если нужно, раздел дисциплины)<p>
+							<select name="subject" id="subjects" class="popup_select" onchange="showSections(this)">
+								<option disabled selected value="Выберите дисциплину" class="option_subject popup_text ">Выберите дисциплину</option>
+								<?php 
+								$sql="SELECT `id_subject`,`subject` from `subjects`";
+								$result=$pdo->query($sql);
+								$subjects=$result->fetchAll(PDO::FETCH_ASSOC);
+								for ($i=0;$i<count($subjects);$i++):
+								?>
+								<option class="option_subject" id="subject<?=htmlspecialchars($subjects[$i]['id_subject'])?>"><?=htmlspecialchars($subjects[$i]['subject'])?></option>
+								<?php endfor;?>
+							</select>
+							<select name="section" id="sections" class="popup_select" style="display:none">
+								<option disabled selected value="Выберите раздел" class="option_section popup_text ">Выберите раздел</option>
+								<option class="option_section" ></option>
+							</select>
+							<p>Выберите минимальное значение баллов для получения каждой из оценки</p>
+							<input type="range" id="range_1" min="0" step="0.1" oninput="outputPoints(this)" list="points_label" name="marks[0]">
+							<p>Для получения оценки 1 достаточно баллов:<output for="range_1"></output></p>
+							<input type="range" id="range_2" min="0" step="0.1" oninput="outputPoints(this)" list="points_label" name="marks[1]">
+							<p>Для получения оценки 2 достаточно баллов:<output for="range_2"></output></p>
+							<input type="range" id="range_3" min="0" step="0.1" oninput="outputPoints(this)" list="points_label" name="marks[2]">
+							<p>Для получения оценки 3 достаточно баллов:<output for="range_3"></output></p>
+							<input type="range" id="range_4" min="0" step="0.1" oninput="outputPoints(this)" list="points_label" name="marks[3]">
+							<p>Для получения оценки 4 достаточно баллов:<output for="range_4"></output></p>
+							<input type="range" id="range_5" min="0" step="0.1" oninput="outputPoints(this)" list="points_label" name="marks[4]">
+							<p>Для получения оценки 5 достаточно баллов:<output for="range_5"></output></p>						
+							<datalist id="points_label">
+							</datalist>
+							<span id="check-test" style="display:none">ПРОВЕРКА ЗАПОЛНЕНИЯ ЗАДАНИЙ</span>
+							<input type="button" value="Отменить" class=" form_btn_close form_btn_send active_btn">
+							<input type="submit" value="Отправить" class=" form_btn_send active_btn" id="sendForm" onclick="sendData()">
 						</div>
 					</div>
-				</form>
-			<?php endif ?>
+				</div>
+			</form>
 			<div class="task_div task_swipe">
 				<div class="task textarea_template">
 					<input type="button" value="x" class="delete_element delete_element_main" onclick="closeTask(this)">
@@ -546,7 +550,7 @@
 					<div id="task_menu_body" style="display: none;">
 					</div>
 			</div>
-
+		<?php endif;?>
 		</div>
 		
 	</div>
@@ -577,7 +581,7 @@
 		</div>
 			<div id="left_block_title"></div>
 			<div id="left_block" class="left_block"><!--  правый див  сайта -->
-			    <?php if (isset($_COOKIE['name'])&&isset($_COOKIE['surname'])):?>
+			    <?php if ($is_login):?>
 					<div class="forNewFormulas" style="display:none">
 						$$
 							\newcommand{\tg}{\mathop{\rm tg}\nolimits}
@@ -1190,7 +1194,7 @@
 						<button class="btnpastepre" value="\vec{}">\(\vec a\)</button>
 						<button class="btnpastepre" value="\overline{}">\(\overline {abcx}\)</button>
 					</div>
-				<?php endif ?>
+				<?php endif;?>
 			</div>
 		<!--  Выподающее меню -->
 		<?php include 'includes/nav_menu.php';?>

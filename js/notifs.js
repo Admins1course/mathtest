@@ -9,7 +9,10 @@ function notifications(){
 		type:'POST',
 		error:function(data){console.log(data)},
 		success:function(data){
-			if ((clearNot)||(data!==[])){
+			if (data['answer']=='errorDataUser'){
+				alert('Данные вашего аккаунта не подтверждены');
+			}
+			else if ((clearNot)||(data!==[])){
 				dataNotifications=data['notif'];
 				if (data['notif'].length==0) return;
 				if (data['notif'].length>9) count="9+";
