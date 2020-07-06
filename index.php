@@ -76,10 +76,35 @@
 				<?php require_once "includes/friendsList.inc.php";?>
 			</div>
 			<?php include 'includes/nav_menu.php';?>
+		<!--<div id="footer">
+			<footer>
+				<ul>
+					<li>
+						<p class="main">Главная</p>
+						<a class="siteImage" href="#">MathTest <i>&copy; 2020</i></a>
+					</li>
+					<li>
+						<p class="reachus">Контакты</p>
+
+						<ul>
+							<li><a href="#">Email</a></li>
+							<li><a href="#">Vk</a></li>
+							<li><a href="#">Facebook</a></li>
+							<li>Номер можно</li>
+						</ul>
+					</li>
+					<li>
+						<p class="clients">Пользователи</p>
+
+						<ul>
+							<li><a href="#">Войти</a></li>
+							<li><a href="#">Поддержка</a></li>
+							<li><a href="#">FAQ</a></li>
+						</ul>
+					</li>
+				</ul>
+			</footer>
+		</div>-->
 </body>
-	<div id="footer">
-			<div class="text">
-				2020
-			</div>
-		</div>
+		
 </html>

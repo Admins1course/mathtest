@@ -305,7 +305,6 @@ function closeTask(el){
 }
 
 function showTask(el){
-	console.log(el);
 	if(thisTask[0]!=$('#'+el.classList[0])[0]){
 		thisTask.slideUp(1000);
 		$('#'+el.classList[0]).slideDown(1000);
@@ -341,7 +340,7 @@ function sendData(){
 
     return new Promise(function(resolve, reject){
     	id=value[0].id;
-        masOfPromis=[new Promise(function(resolve, reject){
+        let promiseCase=new Promise(function(resolve, reject){
         	let imagesFlag=0;
         	for(let i=0; i<$("#"+id+" .inputfile" ).length; i++){
         		let files = $("#"+id+" .inputfile" )[i].files;
@@ -356,79 +355,124 @@ function sendData(){
         	else{
         		reject($("#"+id+" .requirement_of_job"));
         	}
-        })];
-        let classOfAnswers;
-        if($("#"+id+" .areatext").length)
-        	classOfAnswers='areatext';
-        else if ($("#"+id+" .radio").length)
-        	classOfAnswers='radio';
-        else if ($("#"+id+" .check").length)
-        	classOfAnswers='check';
-        else if ($("#"+id+" .inp").length)
-        	classOfAnswers='inp';
+        });
+        promiseCase
+        	.then(function(){
+        		let classOfAnswers;
+		        if($("#"+id+" .areatext").length)
+		        	classOfAnswers='areatext';
+		        else if ($("#"+id+" .radio").length)
+		        	classOfAnswers='radio';
+		        else if ($("#"+id+" .check").length)
+		        	classOfAnswers='check';
+		        else if ($("#"+id+" .inp").length)
+		        	classOfAnswers='inp';
 
-        switch(classOfAnswers){
-		    case 'areatext':masOfPromis.push(
-		        new Promise(function(resolve,reject){
-		            if(($("#"+id+" .areatext textarea" )[0].value!=="")){
-        				resolve(value);
-        			}
-        			else{
-		        		reject($("#"+id+" .areatext textarea" ));
+		        switch(classOfAnswers){
+				    case 'areatext':
+				        return new Promise(function(resolve,reject){
+				            if(($("#"+id+" .areatext textarea" )[0].value!=="")){
+		        				resolve(value);
+		        			}
+		        			else{
+				        		reject($("#"+id+" .areatext textarea" ));
+				        	}
+				        });
+				        break;
+				    case 'radio':
+				        return new Promise(function(resolve,reject){
+				        	let answersFlag=0;
+				        	for(let i=0; i<($("#"+id+" .radio .radio_button" ).length); i++){
+				        		console.log($("#"+id+" .answers .radio_button input" )[i]);
+				        		if(($("#"+id+" .answers .radio_button input" )[i].checked)){
+		        					answersFlag=1;
+		        					break;
+		        				}
+				        	}
+				        	if(!answersFlag){
+				        		reject($("#"+id+" .answers"));
+				        	}
+				        	masOfAnswers=[];
+				        	for(let i=0; i<($("#"+id+" .radio textarea" ).length); i++){
+				        		masOfAnswers.push(
+				        			new Promise(function(resolve,reject){
+				        				if($("#"+id+" .radio textarea" )[i].value!=="") {
+				        					resolve(value);
+				        				}
+				        				else{
+				        					reject($("#"+id+" .answers"));
+				        				}
+				        			}));
+				        	}
+				        	Promise.all(masOfAnswers).then(resolve).catch(reject);
+				        });
+				        break;   
+				    case 'check':
+				         return new Promise(function(resolve,reject){
+				        	let answersFlag=0;
+				        	for(let i=0; i<($("#"+id+" .check .checkbox" ).length); i++){
+				        		console.log($("#"+id+" .answerscheck .checkbox input" )[i]);
+				        		if(($("#"+id+" .answerscheck .checkbox input" )[i].checked)){
+		        					answersFlag=1;
+		        					break;
+		        				}
+				        	}
+				        	if(!answersFlag){
+				        		reject($("#"+id+" .answerscheck"));
+				        	}
+				        	masOfAnswers=[];
+				        	for(let i=0; i<($("#"+id+" .check textarea" ).length); i++){
+				        		masOfAnswers.push(
+				        			new Promise(function(resolve,reject){
+				        				if($("#"+id+" .check textarea" )[i].value!=="") {
+				        					resolve(value);
+				        				}
+				        				else{
+				        					reject($("#"+id+" .answerscheck"));
+				        				}
+				        			}));
+				        	}
+				        	Promise.all(masOfAnswers).then(resolve).catch(reject);
+				        });
+				        break;
+				    case 'inp':
+				        return new Promise(function(resolve,reject){
+				            if(($("#"+id+" .inp input" )[0].value!=="")){
+		        				resolve(value);
+		        			}
+		        			else{
+				        		reject($("#"+id+" .inp input" ));
+				        	}
+				        });
+				        break;
+				}
+        	})
+        	.then(function(){
+        		return new Promise(function(resolve, reject){
+		        	if(($("#"+id+" .textForPoints_div input" )[0].value!=="")){
+		        		resolve(value);
 		        	}
-		        }));
-		        break;
-		  /*  case 'radio':masOfPromis.push(    
-		        new Promise(function(resolve,reject){
-		            resolve() 
-		        }));
-		        break;
-		    case 'check':masOfPromis.push(
-		        new Promise(function(resolve,reject){
-		            resolve()
-		        }));
-		        break;*/
-		    case 'inp':masOfPromis.push(
-		        new Promise(function(resolve,reject){
-		            if(($("#"+id+" .inp input" )[0].value!=="")){
-        				resolve(value);
-        			}
-        			else{
-		        		reject($("#"+id+" .inp input" ));
+		        	else{
+		        		reject($("#"+id+" .textForPoints_div input" ));
 		        	}
-		        }));
-		        break;
-		}
-		//for rirst radio or checkbix(check)
-		//for length 
-		//create Promise
-		//push Promise on new masive
-		//Promise.all(masive)
-
-    	masOfPromis.push(new Promise(function(resolve, reject){
-        	if(($("#"+id+" .textForPoints_div input" )[0].value!=="")){
-        		resolve(value);
-        	}
-        	else{
-        		reject($("#"+id+" .textForPoints_div input" ));
-        	}
-        }))
-    	Promise.all(masOfPromis).then(resolve).catch(reject);
+		        })
+        	})
+        	.catch(reject);
     }) 
 }
 
 function addClass(value){
-    $(value).addClass('text_fade');
+	console.log(value);
+    value.addClass('text_fade');
     $('.popup-fade').fadeOut(0);
-     showTask($("."+$(value).closest('.task')[0].id)[0]);
+     showTask($("."+value.closest('.task')[0].id)[0]);
     //value[0].scrollIntoView();
     let top=value[0].offsetTop;
     window.scrollTo({
     top: top + 500,
     behavior: "smooth"
-});
-    //скролл к value[0]
-}
+});}
+
 function recursion(value){
     if (value[0].next().hasClass('task')){
         testing(value[0].next()).then(recursion).catch(addClass);}

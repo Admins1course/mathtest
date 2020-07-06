@@ -705,7 +705,6 @@ margin-left: 16px;}
     text-transform: uppercase; 
     font-family: 'Roboto Condensed', Тahoma, sans-serif;
     opacity: 0.3;
-    
     cursor: pointer;
 }
 .delete_element:hover,
@@ -713,18 +712,10 @@ margin-left: 16px;}
 .delete_element:focus {
 	transition: all 1s;
 	opacity: 1;
-
     border: 2px solid darkorange;
     color: white;
     background-color: orange;
-    
-
 }
-
-
-
-
-
 @keyframes pulsate{50%{border-color:#fff;}
 }
 .text_fade {
@@ -734,7 +725,6 @@ margin-left: 16px;}
     -webkit-animation: pulsate 1.2s linear infinite;
     animation: pulsate 1.2s linear infinite;
 }
-
 .task_number_menu
 {
 	width: 180px;
@@ -745,7 +735,6 @@ margin-left: 16px;}
 	border-top: 1px solid darkorange;
 	border-bottom: 1px solid darkorange;
 	text-align: center;
-
 }
 .task_number_menu:hover{
     cursor: pointer;
@@ -765,7 +754,6 @@ margin-left: 16px;}
 	position: absolute;
 	top: 57px;
 	left: 795px;
-
 }
 .delete_element_choise_radio{
 	position: absolute;
@@ -773,10 +761,7 @@ margin-left: 16px;}
 	left: 795px;
 }
 .requirement_of_job{
-
 	width: 99.5%;
-	
-
 }
 #footer{display: none;
 

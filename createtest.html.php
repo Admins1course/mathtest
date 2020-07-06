@@ -34,7 +34,7 @@
 
 	<script>
 		function auto_grow(element) {
-    		element.style.height = "5px";
+    		element.style.height = "40px";
     		element.style.height = (element.scrollHeight)+"px";}
 	</script>
 	<script>
@@ -428,28 +428,28 @@
 					<p class="text_title">Варианты ответов</p>
 					<div class="arrow_up arrow_div_task swipe_up" onclick="swipeRC(this)">
 						<div class="arrowupdown div_scroll_answer"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
-					</div>						
-					<div class="radio">
-						<label class="radio_button">
-							<input id="radiobutton" name="task[radio]" value="answer" type="radio" class="button_radio">  <!--  радио кнопка -->
-							<span class="radiomark"></span>
-						</label>
-						<div class="prev_menu prev_menu_box">
-							<input type="button" class="task_show" value="Задание">
-							<input type="button" class="formul_preview" value="Превью" class="prev_btn" onclick="convert()">
-						</div>
-						<textarea  oninput="auto_grow(this)"
-							class="input_text" name="task[text_answer]" style="resize:none" onfocus="getData()">
-						</textarea><!--  задание1 -->
+					</div>	
+					<div class="answers">				
+						<div class="radio">
+							<label class="radio_button">
+								<input id="radiobutton" name="task[radio]" value="answer" type="radio" class="button_radio">  <!--  радио кнопка -->
+								<span class="radiomark"></span>
+							</label>
+							<div class="prev_menu prev_menu_box">
+								<input type="button" class="task_show" value="Задание">
+								<input type="button" class="formul_preview" value="Превью" class="prev_btn" onclick="convert()">
+							</div>
+							<textarea  oninput="auto_grow(this)"
+								class="input_text" name="task[text_answer]" style="resize:none" onfocus="getData()">
+							</textarea><!--  задание1 -->
 
-						<div class="preview preview_location">
+							<div class="preview preview_location">
 
+							</div>
+							<input type="button" value="x" class="delete_element delete_element_choise_radio" onclick="closeRC(this)">
 						</div>
-						<input type="button" value="x" class="delete_element delete_element_choise_radio" onclick="closeRC(this)">
-						
+						<input type="button" class="add_button_answer radio" value="+"><!--  Кнопка добавить -->
 					</div>
-
-					<input type="button" class="add_button_answer radio" value="+"><!--  Кнопка добавить -->
 					<div class=" arrow_down arrow_div_task swipe_down" onclick="swipeRC(this)">
 						<div class=" arrowupdown div_scroll_answer"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
 					</div>
@@ -492,23 +492,25 @@
 					<div class="arrow_down arrow_div_task swipe_up" onclick="swipeRC(this)">
 						<div class="arrowupdown div_scroll_answer"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
 					</div>
-					<div class="check">
-						<label class="checkbox">
-							<input id="checkboxbutton"type="checkbox" name="task[checkbox_answer][checkbox]" value="answer" class="button_checkbox" > <!--  чекбокс -->
-							<span class="checkmark"></span>
-						</label>
-	                    <div class="prev_menu prev_menu_box">
-							<input type="button" class="task_show" value="Задание">
-							<input type="button" class="formul_preview" value="Превью" class="prev_btn" onclick="convert()">
+					<div class="answerscheck">
+						<div class="check">
+							<label class="checkbox">
+								<input id="checkboxbutton"type="checkbox" name="task[checkbox_answer][checkbox]" value="answer" class="button_checkbox" > <!--  чекбокс -->
+								<span class="checkmark"></span>
+							</label>
+		                    <div class="prev_menu prev_menu_box">
+								<input type="button" class="task_show" value="Задание">
+								<input type="button" class="formul_preview" value="Превью" class="prev_btn" onclick="convert()">
+							</div>
+							<textarea oninput="auto_grow(this)"
+								class="input_text" id="text" name="task[checkbox_answer][text_answer]" style="resize:none" onfocus="getData()">
+							</textarea><!--  задание1 -->
+							<div class="preview preview_location">
+							</div>
+							<input type="button" value="x" class="delete_element delete_element_choise_chek" onclick="closeRC(this)">
 						</div>
-						<textarea oninput="auto_grow(this)"
-							class="input_text" id="text" name="task[checkbox_answer][text_answer]" style="resize:none" onfocus="getData()">
-						</textarea><!--  задание1 -->
-						<div class="preview preview_location">
-						</div>
-						<input type="button" value="x" class="delete_element delete_element_choise_chek" onclick="closeRC(this)">
+						<input type="button" class="add_button_answer check" value="+"><!--  Кнопка добавить -->
 					</div>
-					<input type="button" class="add_button_answer check" value="+"><!--  Кнопка добавить -->
 					<div class=" arrow_down arrow_div_task swipe_down" onclick="swipeRC(this)">
 						<div class=" arrowupdown div_scroll_answer"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
 					</div>
