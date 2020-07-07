@@ -86,26 +86,26 @@
 			<footer>
 					<ul>
 						<li>
-							<p class="main">Главная</p>
+							<p class="main">Главная </p>
 							<a class="siteImage" href="#">MathTest <i>&copy; 2020</i></a>
 						</li>
 						<li>
-							<p class="reachus">Контакты</p>
+							<p class="reachus">Контакты </p>
 
 							<ul>
-								<li><a href="#">Email</a></li>
-								<li><a href="#">Vk</a></li>
-								<li><a href="#">Facebook</a></li>
-								<li><a href="">Номер можно</a></li>
+								<li><a href="#">Email <i class="fa fa-envelope-o" aria-hidden="true"></i></a></li>
+								<li><a href="#">Vk <i class="fa fa-vk" aria-hidden="true"></i></a></li>
+								<li><a href="#">Facebook <i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+								<li><a href="">Номер можно <i class="fa fa-phone" aria-hidden="true"></i></a></li>
 							</ul>
 						</li>
 						<li>
-							<p class="clients">Пользователи</p>
+							<p class="clients">Пользователи </p>
 
 							<ul>
-								<li><a href="#">Войти</a></li>
-								<li><a href="#">Поддержка</a></li>
-								<li><a href="#">FAQ</a></li>
+								<li><a href="#">Войти <i class="fa fa-sign-in" aria-hidden="true"></i></a></li>
+								<li><a href="#">Поддержка <i class="fa fa-info" aria-hidden="true"></i></a></li>
+								<li><a href="#">FAQ <i class="fa fa-question" aria-hidden="true"></i></a></li>
 							</ul>
 						</li>
 					</ul>

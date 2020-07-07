@@ -390,21 +390,25 @@ function sendData(){
 		        				}
 				        	}
 				        	if(!answersFlag){
-				        		reject($("#"+id+" .answers"));
+				        		reject($("#"+id+" .radiomark"));
 				        	}
-				        	masOfAnswers=[];
-				        	for(let i=0; i<($("#"+id+" .radio textarea" ).length); i++){
-				        		masOfAnswers.push(
-				        			new Promise(function(resolve,reject){
-				        				if($("#"+id+" .radio textarea" )[i].value!=="") {
-				        					resolve(value);
-				        				}
-				        				else{
-				        					reject($("#"+id+" .answers"));
-				        				}
-				        			}));
+				        	function radioTextareaCheck(value){
+				        		return new Promise(function(resolve, reject){
+				        			if (value.children('textarea')[0].value!=="") {
+				        				resolve(value);
+				        			}
+				        			else{
+				        				console.log('45');
+				        				reject(value.children('textarea'));
+				        			}
+				        		})
 				        	}
-				        	Promise.all(masOfAnswers).then(resolve).catch(reject);
+				        	function radioTextareaRecursion(value){
+				        		if (!value.next().hasClass('add_button_answer')) {
+				        			 radioTextareaCheck(value.next()).then(radioTextareaRecursion).catch(reject);
+				        		}
+				        	}
+				        	radioTextareaCheck($("#"+id+" .radio:first")).then(radioTextareaRecursion).catch(reject);
 				        });
 				        break;   
 				    case 'check':
@@ -418,21 +422,24 @@ function sendData(){
 		        				}
 				        	}
 				        	if(!answersFlag){
-				        		reject($("#"+id+" .answerscheck"));
+				        		reject($("#"+id+" .checkmark"));
 				        	}
-				        	masOfAnswers=[];
-				        	for(let i=0; i<($("#"+id+" .check textarea" ).length); i++){
-				        		masOfAnswers.push(
-				        			new Promise(function(resolve,reject){
-				        				if($("#"+id+" .check textarea" )[i].value!=="") {
-				        					resolve(value);
-				        				}
-				        				else{
-				        					reject($("#"+id+" .answerscheck"));
-				        				}
-				        			}));
+				        	function chekTextareaCheck(value){
+				        		return new Promise(function(resolve, reject){
+				        			if (value.children('textarea')[0].value!=="") {
+				        				resolve(value);
+				        			}
+				        			else{
+				        				reject(value.children('textarea'));
+				        			}
+				        		})
 				        	}
-				        	Promise.all(masOfAnswers).then(resolve).catch(reject);
+				        	function chekTextareaRecursion(value){
+				        		if (!value.next().hasClass('add_button_answer')) {
+				        			 chekTextareaCheck(value.next()).then(chekTextareaRecursion).catch(reject);
+				        		}
+				        	}
+				        	chekTextareaCheck($("#"+id+" .check:first")).then(chekTextareaRecursion).catch(reject);
 				        });
 				        break;
 				    case 'inp':
@@ -462,7 +469,7 @@ function sendData(){
 }
 
 function addClass(value){
-	console.log(value);
+	console.log(value,'9');
     value.addClass('text_fade');
     $('.popup-fade').fadeOut(0);
      showTask($("."+value.closest('.task')[0].id)[0]);
