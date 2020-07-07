@@ -88,7 +88,7 @@
 			<div id="area_book">
 					<div id="book">
 						<form action="result_of_test.html.php" method="post">
-							<?php for ($i=1;$i<=count($dataTest);$i++){
+							<?php for ($i=1;$i<=count($dataTest);$i++):
 								if ($dataTest[$i]["answer"]["textarea"]!=0){?>
 									<div class="task textarea <?=$i?>">
 										<?php question($i,$dataTest[$i]);?>
@@ -126,7 +126,7 @@
 										<?php } ?>
 									</div>
 								<?php } ?>
-							<?php } ?>
+							<?php endfor; ?>
 							<input type="hidden" name="idUser" value="<?=htmlspecialchars($idUser)?>">
 							<input type="hidden" name="idTest" value="<?=htmlspecialchars($idTest)?>">
 							<input type="hidden" name="answers[count]" value="<?=htmlspecialchars(count($dataTest))?>">
@@ -140,14 +140,14 @@
 						</form>
 					</div>
 				<div id="zaklad_menu">
-				<?php for($i=1;$i<=(count($dataTest);$i++):?>			
+				<?php for($i=1;$i<=count($dataTest);$i++):?>			
 					<div class="zaklad_div">
 						<p class="zaklad_title ">Задание <?=$i?></p>
 						<img class="zaklad <?=$i?>" src="style/img/zacl.png" alt="" style="display:block;" >
 						
 					</div>
 					
-				<?php endfor?>
+				<?php endfor;?>
 				</div>
 			</div>
 		<?php else: echo htmlspecialchars($message);?>

@@ -5,7 +5,7 @@ if($is_login):?>
 	function addFriend(element){
 		console.log('hi');
 		$idFriend=$(element).attr('id').replace('user','');
-		friendMessage={message:<?="'".$_SESSION['data-user']['name']."'"?>+' '+<?="'".$_SESSION['data-user']['surname']."'"?>+' хочет добавить вас в друзья.',
+		friendMessage={message:<?="'".htmlspecialchars($_SESSION['data-user']['name'])."'"?>+' '+<?="'".htmlspecialchars($_SESSION['data-user']['surname'])."'"?>+' хочет добавить вас в друзья.',
 					   idFriend:$idFriend};
 		$.ajax({
 			url:document.location.origin+"/addFriend.php",

@@ -276,15 +276,63 @@
 													  'idTest'=>$count,
 													  'id_Task'=>$numberTask]);
 						$numberOfFile=0;
+						function myscandir($dir)
+							{
+								$list = scandir($dir);
+								unset($list[0],$list[1]);
+								return array_values($list);
+							}
+							function clear_dir($dir)
+							{
+								$list = myscandir($dir);
+								foreach ($list as $file)
+								{
+									unlink($dir.$file);
+								}
+							}
 						foreach($_FILES[$k1]['tmp_name'] as $k2=>$v2){
+							
+							$filePath  = $_FILES[$k1]['tmp_name'][$k2]['myPhoto'];
+							$errorCode = $_FILES[$k1]['error'][$k2]['myPhoto'];
+
+							if ($errorCode !== UPLOAD_ERR_OK || !is_uploaded_file($filePath)) {
+								endOfCheck:
+									$sql="INSERT INTO icontest VALUES(
+											:idUser,:idTest,:numberTask,:idIcontest,'Файл отсутсвует по причине ошибки загрузки')";
+									$pdo->prepare($sql)->execute([
+										'idUser'=>$_SESSION['data-user']['id'],
+										'idTest'=>$count,
+										'numberTask'=>$numberTask,
+										'idIcontest'=>$idIcontest
+									]);
+									continue;
+							}
+							
+							$fi = finfo_open(FILEINFO_MIME_TYPE);
+
+							$mime = (string) finfo_file($fi, $filePath);
+
+							if (strpos($mime, 'image') === false){
+								goto endOfCheck;
+							}
+							
+							$limitBytes  = 1024 * 1024 * 5;
+
+							if (filesize($filePath) > $limitBytes){
+								goto endOfCheck;
+							}
+							
+							$name = md5_file($filePath);
+
+							$extension = image_type_to_extension($image[2]);
+
+							$format = str_replace('jpeg', 'jpg', $extension);
 							if(is_uploaded_file($_FILES[$k1]['tmp_name'][$k2]['myPhoto'])){
-								mkdir('./user-img/'.$_SESSION['data-user']['id'].'/'.$count.'/'.$numberTask,0777,true);
-								$nameAndType=explode('.',$_FILES[$k1]['name'][$k2]['myPhoto']);
-								$numberOfFile++;
+								mkdir('./user-img/'.$_SESSION['data-user']['id']. DIRECTORY_SEPARATOR .$count,0777,true);
 								if(move_uploaded_file
 								(
 									$_FILES[$k1]['tmp_name'][$k2]['myPhoto'],
-									__DIR__ . DIRECTORY_SEPARATOR .'user-img'. DIRECTORY_SEPARATOR .$_SESSION['data-user']['id']. DIRECTORY_SEPARATOR .$count. DIRECTORY_SEPARATOR .$numberTask. DIRECTORY_SEPARATOR .$numberOfFile.".".end($nameAndType)
+									__DIR__ . DIRECTORY_SEPARATOR .'user-img'. DIRECTORY_SEPARATOR .$_SESSION['data-user']['id']. DIRECTORY_SEPARATOR .$count. DIRECTORY_SEPARATOR .$name.$format
 								)){
 									$idIcontest=str_replace('icontest',"",$k2);
 									$sql="INSERT INTO icontest VALUES(
@@ -294,8 +342,11 @@
 										'idTest'=>$count,
 										'numberTask'=>$numberTask,
 										'idIcontest'=>$idIcontest,
-										'myPhoto'=>$numberOfFile.".".end($nameAndType)
+										'myPhoto'=>$name.$format
 									]);
+								}
+								else{
+									goto endOfCheck;
 								}
 							}
 						}

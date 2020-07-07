@@ -1,5 +1,6 @@
 <?php require_once 'includes/db.inc.php';
 	  require_once 'includes/incl_session.inc.php';
+	  require_once 'includes/checkSession.inc.php';
 	  include_once 'includes/getUserImage.inc.php';
 	  require_once 'includes/getFriends.inc.php';?>
 <!DOCTYPE html>
@@ -21,11 +22,11 @@
 	    include_once 'includes/load_user_image.inc.php';
 	}
 	?>
-	<?php if (isset($_SESSION['data-user'])):
-	    include 'includes/searchPeople.js.inc.php';
-	    include 'includes/friendsControl.js.inc.php';?>
+	<?php if ($is_login):?>
 		<script src="js/notifs.js?<?=time();?>"></script>
 	<?php endif;?>
+	<?php include 'includes/searchPeople.js.inc.php';
+		  include 'includes/friendsControl.js.inc.php';?>
 	<script type='text/javascript'>
 	$(document).ready(function (){
 	    var hg=$('#main_content').height();
@@ -79,8 +80,8 @@
 			for($i=0;$i<count($tests);$i++):?>
 			<a href="book.html.php?idUser=<?=$_SESSION['data-user']['id']?>&idTest=<?=$tests[$i]['idTest']?>">
 				<div class="test_href" style="background: linear-gradient(0deg, rgba(255,145,0,1) 0%, rgba(255,255,255,0) 69%);">
-					<p>Название: <?=$tests[$i]['taskName'];?></p>
-					<p>Автор: <?=$_SESSION['data-user']['name']?> <?=$_SESSION['data-user']['surname']?></p>
+					<p>Название: <?=htmlspecialchars($tests[$i]['taskName']);?></p>
+					<p>Автор: <?=htmlspecialchars($_SESSION['data-user']['name']);?> <?=htmlspecialchars($_SESSION['data-user']['surname'])?></p>
 				</div>
 			</a>
 			<?php endfor;?>

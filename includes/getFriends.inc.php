@@ -22,3 +22,4 @@ if ($is_login){
 		
 	}
 }
+else $jsonFriends=json_encode([]);

@@ -18,11 +18,9 @@ if($is_login):?>
 							
 						</div>
 						<div class="friends_names">
-							<li id="userId<?=$friends[$i]['id_Friend']?>"><?=$friends[$i]['name']?> <?=$friends[$i]['surname']?></li>	
+							<li id="userId<?=htmlspecialchars($friends[$i]['id_Friend'])?>"><?=htmlspecialchars($friends[$i]['name'])?> <?=htmlspecialchars($friends[$i]['surname'])?></li>	
 						</div>
 					</div>
-					
-					
 				<?php endfor;
 			endif;?>
 		</ul>

@@ -1,7 +1,8 @@
 <?php require_once 'includes/db.inc.php';
+	  require_once 'includes/incl_session.inc.php';
+	  require_once 'includes/checkSession.inc.php';
 	  require_once 'book_control.php';
 	  require_once 'result_of_test_handler.php';
-	  require_once 'includes/incl_session.inc.php';
 	  include_once 'includes/getUserImage.inc.php';
 	  require_once 'includes/getFriends.inc.php';?>
 <!DOCTYPE html>
@@ -22,11 +23,11 @@
 	    include_once 'includes/load_user_image.inc.php';
 	}
 	?>
-	<?php if (isset($_SESSION['data-user'])):
-	    include 'includes/searchPeople.js.inc.php';
-	    include 'includes/friendsControl.js.inc.php';?>
+	<?php if ($is_login):?>
 		<script src="js/notifs.js?<?=time();?>"></script>
 	<?php endif;?>
+	<?php include 'includes/searchPeople.js.inc.php';
+	      include 'includes/friendsControl.js.inc.php';?>
 	<?php include 'includes/script_for_nav_menu.php';?>
 	<script>
 		$(document).ready(function(){
@@ -74,7 +75,7 @@
 						<div class="task textarea <?=$i?>">
 							<?php question($i,$dataTest[$i]);?>
 							<textarea class="answer" name="answers[task<?=$i?>]" onchange="registeringResponses()"></textarea>
-							<p>Получено баллов за задание: <?=$right_answers[$i-1][1]?></p>
+							<p>Получено баллов за задание: <?=htmlspecialchars($right_answers[$i-1][1])?></p>
 						</div>
 					<?php } 
 					if ($dataTest[$i]["answer"]["input"]!=0){?>
@@ -86,9 +87,9 @@
 									else:
 										echo 'style="background-color:red"';
 									endif;?>>
-								<?=$_POST['answers']['task'.$i]?>
+								<?=htmlspecialchars($_POST['answers']['task'.$i])?>
 							</p>
-							<p>Получено баллов за задание: <?=$right_answers[$i-1][1]?></p>
+							<p>Получено баллов за задание: <?=htmlspecialchars($right_answers[$i-1][1])?></p>
 						</div>
 					<?php } 
 					if ($dataTest[$i]["answer"]["radio"]!=0){?>
@@ -105,11 +106,11 @@
 											endif;
 										  endif;
 									?>>
-										<?=$dataTest[$i]["answer"]["radio"][$j]["text_answer"]?>
+										<?=htmlspecialchars($dataTest[$i]["answer"]["radio"][$j]["text_answer"])?>
 									</p>
 								</div>
 							<?php } ?>
-							<p>Получено баллов за задание: <?=$right_answers[$i-1][1]?></p>
+							<p>Получено баллов за задание: <?=htmlspecialchars($right_answers[$i-1][1])?></p>
 						</div>
 					<?php } 
 					if ($dataTest[$i]["answer"]["checkbox"]!=0){?>
@@ -126,17 +127,16 @@
 											endif;
 										  endif;
 									?>>
-										<?=$dataTest[$i]["answer"]["checkbox"][$j]["text_answer"]?>
+										<?=htmlspecialchars($dataTest[$i]["answer"]["checkbox"][$j]["text_answer"])?>
 									</p>
 								</div>
 							<?php } ?>
-							<p>Получено баллов за задание: <?=$right_answers[$i-1][1]?></p>
+							<p>Получено баллов за задание: <?=htmlspecialchars($right_answers[$i-1][1])?></p>
 						</div>
 				<?php } 
 				}?>
 				</div>
 			</div>
-		
 	</div>
 		<div class="slider midle">
 			<div class="slides">

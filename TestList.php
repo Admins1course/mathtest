@@ -1,5 +1,6 @@
 <?php require_once 'includes/db.inc.php';
 	  require_once 'includes/incl_session.inc.php';
+	  require_once 'includes/checkSession.inc.php';
 	  include_once 'includes/getUserImage.inc.php';
 	  require_once 'includes/getFriends.inc.php';?>
 <!DOCTYPE html>
@@ -20,11 +21,11 @@
 	    include_once 'includes/load_user_image.inc.php';
 	}
 	?>
-	<?php if (isset($_SESSION['data-user'])):
-	    include 'includes/searchPeople.js.inc.php';
-	    include 'includes/friendsControl.js.inc.php';?>
+	<?php if ($is_login):?>
 		<script src="js/notifs.js?<?=time();?>"></script>
 	<?php endif;?>
+	<?php include 'includes/searchPeople.js.inc.php';
+	      include 'includes/friendsControl.js.inc.php';?>
 	<?php include 'includes/script_for_nav_menu.php';?>	
 	<script type='text/javascript'>
 	$(document).ready(function (){
@@ -48,8 +49,10 @@
 		$(this).toggleClass('test_href');
 	});
 	</script>
+	<?php if($is_login):?>
 	<script src="js/load_avatars.js?<?=time();?>"></script>
 	<script src="js/create_invite_window_script.js?<?=time();?>"></script>
+	<?php endif;?>
 </head>
 <body >
 	<?php include 'includes/create_invite_window.php'?>
@@ -98,8 +101,8 @@
 				$users=$result->fetchAll(PDO::FETCH_ASSOC);?>
 				<a href="book.html.php?idUser=<?=$tests[$i]['idAuthor']?>&idTest=<?=$tests[$i]['idTest']?>">	
 					<div class="test_href" style="background: linear-gradient(0deg, rgba(255,145,0,1) 0%, rgba(255,255,255,0) 69%);">
-						<p>Название: <?=$tests[$i]['taskName'];?></p>
-						<p>Автор: <?=$users[0]['name']?> <?=$users[0]['surname']?></p>
+						<p>Название: <?=htmlspecialchars($tests[$i]['taskName']);?></p>
+						<p>Автор: <?=htmlspecialchars($users[0]['name'])?> <?=htmlspecialchars($users[0]['surname'])?></p>
 					</div>
 				</a>
 			<?php }?>
@@ -112,7 +115,7 @@
 				$subjects=$result->fetchAll(PDO::FETCH_ASSOC);
 				for ($i=0;$i<count($subjects);$i++):
 				?>
-					<li class="test_name"><a href="" class="test_title"><?=$subjects[$i]['subject']?></a></li>
+					<li class="test_name"><a href="" class="test_title"><?=htmlspecialchars($subjects[$i]['subject'])?></a></li>
 				<?php endfor;?>
 				</ul>
 			</div>

@@ -49,9 +49,9 @@
 				<p id="is_wrong_password" style="display:none">Пароли не совпадают</p>
 				<p id="p_password_second" style="display:none">Разрешено использовать только символы английского алфавита и цифры</p>
 			</div>
-			<input type="hidden" name="name" value=<?=$_SESSION['users_data']['name']?>>
-			<input type="hidden" name="surname" value=<?=$_SESSION['users_data']['surname']?>>
-			<input type="hidden" name="root" value=<?=$_SESSION['users_data']['root']?>>
+			<input type="hidden" name="name" value=<?=htmlspecialchars($_SESSION['users_data']['name'])?>>
+			<input type="hidden" name="surname" value=<?=htmlspecialchars($_SESSION['users_data']['surname'])?>>
+			<input type="hidden" name="root" value=<?=htmlspecialchars($_SESSION['users_data']['root'])?>>
 			<input class="dws-submit" type="submit" name="submit" placeholder="Регистрация">
 			
 			<div class="change-panel">

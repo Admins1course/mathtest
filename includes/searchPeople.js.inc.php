@@ -48,26 +48,34 @@ if($is_login):?>
 			type:'POST',
 			error:function(data){console.log(data)},
 			success:function(data){
-				var listOfPeople='';
-				for (i=0;i<data['people'].length;i++){
-					if (data['people'][i]['id']!=<?=$_SESSION['data-user']['id']?>){
-						buttonValue="+ В друзья";
-						buttonFunction="addFriend(this)";
-						if (data['friends'])
-							if (~data['friends']['id'].indexOf(data['people'][i]['id'])){
-								if(data['friends']['waiting'][data['friends']['id'].indexOf(data['people'][i]['id'])]==1){
-									buttonValue="Отменить заявку";
-									buttonFunction="cancelAddFriend(this)";
+				if(data['answer']=='serverError'){
+					alert("Произощла ошибка на сервере");
+				}
+				else if(data["answer"]=='errorDataUser'){
+					alert("Данные вашего аккаунта не подтверждены");
+				}
+				else{
+					var listOfPeople='';
+					for (i=0;i<data['people'].length;i++){
+						if (data['people'][i]['id']!=<?=$_SESSION['data-user']['id']?>){
+							buttonValue="+ В друзья";
+							buttonFunction="addFriend(this)";
+							if (data['friends'])
+								if (~data['friends']['id'].indexOf(data['people'][i]['id'])){
+									if(data['friends']['waiting'][data['friends']['id'].indexOf(data['people'][i]['id'])]==1){
+										buttonValue="Отменить заявку";
+										buttonFunction="cancelAddFriend(this)";
+									}
+									else continue;
 								}
-								else continue;
-							}
-						listOfPeople+='<li>'+
-							data['people'][i]['name']+" "+
-							data['people'][i]['surname']+
-							'<input type="button" value="'+buttonValue+'" onclick="'+buttonFunction+'" id="user'+
-							data['people'][i]['id']+'">'+'</li>';
+							listOfPeople+='<li>'+
+								data['people'][i]['name']+" "+
+								data['people'][i]['surname']+
+								'<input type="button" value="'+buttonValue+'" onclick="'+buttonFunction+'" id="user'+
+								data['people'][i]['id']+'">'+'</li>';
+						}
+						$('#searchList').html(listOfPeople);
 					}
-					$('#searchList').html(listOfPeople);
 				}
 			}
 		})

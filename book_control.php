@@ -1,6 +1,6 @@
 <?php
 @session_start();
-require_once "includes/checkSession.html.php";
+require_once "includes/checkSession.inc.php";
 $message='';
 if ($is_login){
 	if (isset($_REQUEST['idUser'])&&isset($_REQUEST['idTest'])){
