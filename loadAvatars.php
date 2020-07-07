@@ -4,7 +4,20 @@ require_once "includes/checkSession.inc.php";
 if ($is_login){
 	if(isset($_POST['my_file_upload'])&&$_POST['my_file_upload']){  
 		require_once "includes/db.inc.php";
-
+		function myscandir($dir)
+		{
+			$list = scandir($dir);
+			unset($list[0],$list[1]);
+			return array_values($list);
+		}
+		function clear_dir($dir)
+		{
+			$list = myscandir($dir);
+			foreach ($list as $file)
+			{
+				unlink($dir.$file);
+			}
+		}
 		$filePath  = $_FILES[0]['tmp_name'];
 		$errorCode = $_FILES[0]['error'];
 
@@ -36,22 +49,10 @@ if ($is_login){
 			echo json_encode(['errorUpload'=>'Можно загружать только изображения.']);
 		}
 		
-		$image = getimagesize($filePath);
-
 		$limitBytes  = 1024 * 1024 * 5;
-		$limitWidth  = 1280;
-		$limitHeight = 768;
 
 		if (filesize($filePath) > $limitBytes){
 			echo json_encode(['errorUpload'=>'Размер изображения не должен превышать 5 Мбайт.']);
-			exit();
-		}
-		if ($image[1] > $limitHeight){
-			echo json_encode(['errorUpload'=>'Высота изображения не должна превышать 768 точек.']);
-			exit();
-		}
-		if ($image[0] > $limitWidth){
-			echo json_encode(['errorUpload'=>'Ширина изображения не должна превышать 1280 точек.']);
 			exit();
 		}
 		
@@ -78,10 +79,11 @@ if ($is_login){
 										  'id'=>$_SESSION['data-user']['id']]);
 		}
 		else{
-			echo json_encode(['errorUpload'=>'При записи изображения на диск произошла ошибка.'])
+			echo json_encode(['errorUpload'=>'При записи изображения на диск произошла ошибка.']);
 		}
 		$data['name']=$name.$format;
 		$data['id']=$_SESSION['data-user']['id'];
+		$data['error']=$errorCode;
 		echo json_encode($data);
 	}
 }

@@ -3,14 +3,6 @@ $(document).ready(function(){
 	$('#custom-file-upload').on("change",function(event){
 		files = this.files;
 		if (typeof files != 'undefined') {
-			var oFReader = new FileReader();
-			oFReader.readAsDataURL(files[0]);
-			oFReader.onload = function (oFREvent) {
-				var rect=document.getElementById("avatar-full-size");
-				var circ=document.getElementById("file-img-preview");
-				rect.src = oFREvent.target.result;
-				circ.src = oFREvent.target.result;
-			};
 			event.stopPropagation(); // остановка всех текущих JS событий
 			event.preventDefault();  // остановка дефолтного события для текущего элемента
 
@@ -40,11 +32,16 @@ $(document).ready(function(){
 				contentType : false, 
 				// функция успешного ответа сервера
 				success:function(data){
+					console.log(data);
 					if(data['answer']=='errorDataUser'){
 						alert('Данные вашего аккаунта не подтверждены');
+						loading.style.display="block";
+						waiting.style.display="none";
 					}
 					else if(data['answer']=='errorDataImage'){
 						alert("Файл не может быть загружен");
+						loading.style.display="block";
+						waiting.style.display="none";
 					}
 					else if(data['errorUpload']){
 						masOfErrors=['Размер файла превысил значение upload_max_filesize в конфигурации PHP.',
@@ -60,12 +57,22 @@ $(document).ready(function(){
 									 'При записи изображения на диск произошла ошибка.']
 						if(masOfErrors.indexOf(data['errorUpload'])){
 							alert(data['errorUpload']);
+							loading.style.display="block";
+							waiting.style.display="none";
 						}
 					}
 					else{
 						avat=document.getElementById('profile_avatar');
 						avat.innerHTML='';
 						avat.style.backgroundImage="url(avatars/"+data['id']+"/"+data['name']+")";
+						var oFReader = new FileReader();
+						oFReader.readAsDataURL(files[0]);
+						oFReader.onload = function (oFREvent) {
+							var rect=document.getElementById("avatar-full-size");
+							var circ=document.getElementById("file-img-preview");
+							rect.src = oFREvent.target.result;
+							circ.src = oFREvent.target.result;
+						};
 						loading.style.display="block";
 						waiting.style.display="none";
 					}
