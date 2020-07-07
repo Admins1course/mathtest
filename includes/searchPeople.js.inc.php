@@ -59,11 +59,11 @@ function searchForPiece(searchValue){
 							}
 							else continue;
 						}
-					listOfPeople+='<li>'+
+					listOfPeople+='<div class="friends_div">'+'<div class="people_avatar">'+'</div>'+'<div class="friends_names">'+'<li>'+
 						data['people'][i]['name']+" "+
 						data['people'][i]['surname']+
 						'<input type="button" value="'+buttonValue+'" onclick="'+buttonFunction+'" id="user'+
-						data['people'][i]['id']+'">'+'</li>';
+						data['people'][i]['id']+'">'+'</li>'+'</div>'+'</div>';
 				}
 				$('#searchList').html(listOfPeople);
 			}
@@ -83,13 +83,13 @@ function searchForPiece(searchValue){
 		let listOfFriends='<input type="button" value="Показать всех друзей" id="showFriends" onclick="showAllFriends(\''+idElem+'\')">';
 		for (i=0;i<searchFriends.length;i++){
 			if (idElem=='inviteFriends'){
-				listOfFriends+='<input type="checkbox" value="';
+				listOfFriends+='<div class="friends_div_dialog">'+'<input class="choose-friends location_chek_friend" type="checkbox" value="';
 				listOfFriends+=searchFriends[i]['id_Friend'];
-				listOfFriends+='">';
+				listOfFriends+='">'+'</div>';
 			}
-			listOfFriends+='<li id="userId'+searchFriends[i]['id_Friend'];
+			listOfFriends+='<div class="friends_div">'+'<div class="people_avatar">'+'</div>'+'<div class="friends_names">'+'<li id="userId'+searchFriends[i]['id_Friend'];
 			listOfFriends+='">'+searchFriends[i]['name']+' '+searchFriends[i]['surname'];
-			listOfFriends+='</li>';
+			listOfFriends+='</li>'+'</div>'+'</div>';
 		}
 		document.getElementById(idElem).innerHTML=listOfFriends;		
 	}
@@ -105,13 +105,13 @@ function searchForPiece(searchValue){
 		listOfFriends='';
 		for (i=0;i<friends.length;i++){
 			if (idElem=='inviteFriends'){
-				listOfFriends+='<input type="checkbox" value="';
+				listOfFriends+='<div class="friends_div_dialog">'+'<input class="choose-friends location_chek_friend" type="checkbox" value="';
 				listOfFriends+=friends[i]['id_Friend'];
-				listOfFriends+='">';
+				listOfFriends+='">'+'</div>';
 			}
-			listOfFriends+='<li id="userId'+friends[i]['id_Friend'];
+			listOfFriends+='<div class="friends_div">'+'<div class="people_avatar">'+'</div>'+'<div class="friends_names">'+'<li id="userId'+friends[i]['id_Friend'];
 			listOfFriends+='">'+friends[i]['name']+' '+friends[i]['surname'];
-			listOfFriends+='</li>';
+			listOfFriends+='</li>'+'</div>'+'</div>';
 		}
 		document.getElementById(idElem).innerHTML=listOfFriends;
 	}
