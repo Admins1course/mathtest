@@ -64,7 +64,7 @@ $(document).ready(function(){
 					else{
 						avat=document.getElementById('profile_avatar');
 						avat.innerHTML='';
-						avat.style.backgroundImage="url(avatars/"+data['id']+"/"+data['name']+")";
+						avat.style.backgroundImage="url(avatars/"+data['name']+")";
 						var oFReader = new FileReader();
 						oFReader.readAsDataURL(files[0]);
 						oFReader.onload = function (oFREvent) {

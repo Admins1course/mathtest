@@ -62,16 +62,16 @@ if ($is_login){
 
 		$format = str_replace('jpeg', 'jpg', $extension);
 
-		if (is_dir('./avatars/'.$_SESSION['data-user']['id'])){
+		/*if (is_dir('./avatars/'.$_SESSION['data-user']['id'])){
 			clear_dir('./avatars/'.$_SESSION['data-user']['id'].'/');
 		}
 		else{
 			mkdir('./avatars/'.$_SESSION['data-user']['id'],0777,true);
-		}
+		}*/
 		if(move_uploaded_file
 			(
 				$_FILES[0]['tmp_name'],
-				__DIR__ . DIRECTORY_SEPARATOR .'avatars'. DIRECTORY_SEPARATOR .$_SESSION['data-user']['id']. DIRECTORY_SEPARATOR . $name . $format
+				__DIR__ . DIRECTORY_SEPARATOR .'avatars'. DIRECTORY_SEPARATOR . $name . $format
 			))
 		{
 			$sql="UPDATE `avatars` SET `file`=:name WHERE id_User=:id";
