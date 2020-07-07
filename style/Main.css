@@ -203,6 +203,7 @@ body{
 	overflow-y: scroll;
 	/*background: radial-gradient(circle, rgba(122,255,180,1) 0%, rgba(255,136,0,1) 80%);*/
 	background-color: #fff;
+	/*z-index: 20;*/
 }
 #left_block_title{
 	background-color: #fff;
