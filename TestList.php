@@ -49,6 +49,8 @@
 		$(this).toggleClass('test_href');
 	});
 	</script>
+	
+	
 	<script src="js/load_avatars.js?<?=time();?>"></script>
 	<script src="js/create_invite_window_script.js?<?=time();?>"></script>
 </head>
@@ -71,10 +73,10 @@
 				</div>
 
 				<div class="navigation">
-					<label for="r1" class="bar"></label>
-					<label for="r2" class="bar"></label>
-					<label for="r3" class="bar"></label>
-					<label for="r4" class="bar"></label>
+					<label for="r1" class="bar" ></label>
+					<label for="r2" class="bar" ></label>
+					<label for="r3" class="bar" ></label>
+					<label for="r4" class="bar" ></label>
 				</div>
 			</div>
 			<div id="plus_inform">
@@ -97,15 +99,19 @@
 				$result=$pdo->prepare($sql);
 				$result->execute(['idAuthor'=>$tests[$i]['idAuthor']]);
 				$users=$result->fetchAll(PDO::FETCH_ASSOC);?>
-				<a href="book.html.php?idUser=<?=$tests[$i]['idAuthor']?>&idTest=<?=$tests[$i]['idTest']?>">	
-					<div class="test_href" style="background: linear-gradient(0deg, rgba(255,145,0,1) 0%, rgba(255,255,255,0) 69%);">
+				<a class="" href="book.html.php?idUser=<?=$tests[$i]['idAuthor']?>&idTest=<?=$tests[$i]['idTest']?>"  >	
+					<div class="test_href tests_div" style="background: linear-gradient(0deg, rgba(255,145,0,1) 0%, rgba(255,255,255,0) 69%);">
+						<div class="viewNum">
+							<i class="fa fa-eye" aria-hidden="true"></i> 0
+						</div>
 						<p>Название: <?=$tests[$i]['taskName'];?></p>
 						<p>Автор: <?=$users[0]['name']?> <?=$users[0]['surname']?></p>
+						
 					</div>
 				</a>
 			<?php }?>
 			</div>
-			<div id="right_block">
+			<div id="right_block" >
 				<ul class="testlist">
 				<?php 
 				$sql='SELECT `subject` from `subjects`';
