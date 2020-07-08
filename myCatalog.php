@@ -8,6 +8,7 @@
 <head>
 	<meta http-equiv="Cache-Control" content="no-cache" charset="UTF-8">
 	<link rel="stylesheet" href="style/Main.css?<?=time()?>" type="text/css">
+	<link rel="stylesheet" href="style/Cssforprofile.css?<?=time()?>" type="text/css">
 	<link rel="stylesheet" href="style/Cssforindex.css?<?=time()?>" type="text/css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="style/CssforDialogWindow.css?<?=time()?>" type="text/css">
@@ -28,11 +29,35 @@
 	<?php include 'includes/searchPeople.js.inc.php';
 		  include 'includes/friendsControl.js.inc.php';?>
 	<script type='text/javascript'>
-	$(document).ready(function (){
-	    var hg=$('#main_content').height();
-	    hg=hg+550+'px';
+	$(function(){
+	    let hg=$('body').height();
+	    let main=$('#main_content').height();
+	    console.log($('#main_content').height());
+	    hg=hg+900+'px';
 	    $('body').height(hg);
 	});
+	</script>
+	<script type='text/javascript'>
+		$(document).ready(function(){
+			$('#result').click(function(){
+				$('#tasks').stop().slideToggle();
+				bodyHeight();
+			})
+		})
+	function bodyHeight(){
+	    let hg=$('body').height();
+	    let main=$('#main_content').height();
+	    let tasks=$('#tasks').height();
+	    let normal = 1490+'px';
+	    console.log($('#tasks').height());
+	    if($('body').height()<2000){
+	    		hg=hg+600+'px';
+	    		$('body').height(hg);
+	    }
+	    else{
+	    	$('body').height(normal);
+	    }
+	};
 	</script>
 	<script src="js/load_avatars.js?<?=time();?>"></script>
 	<script src="js/create_invite_window_script.js?<?=time();?>"></script>
@@ -72,7 +97,7 @@
 					</div>
 				</div>
 			</div>
-			<div id="main_content">
+			<div id="main_content" style="height: auto; max-height: 600px; overflow-y:scroll; ">
 			<?php 
 			$sql='SELECT idTest,taskName FROM tests WHERE idAuthor='.$_SESSION['data-user']['id'];
 			$result=$pdo->query($sql);
@@ -100,10 +125,37 @@
 					<?php require_once "includes/friendsList.inc.php";?>
 				</div>
 	<?php include 'includes/nav_menu.php';?>
-		<div id="footer">
-			<div class="text">
-				2020
-			</div>
-		</div>
+		
 </body>
+<div class="footerMain">
+		<div class="footerWeight">
+			<footer>
+					<ul>
+						<li>
+							<p class="main">Главная </p>
+							<a class="siteImage" href="#">MathTest <i>&copy; 2020</i></a>
+						</li>
+						<li>
+							<p class="reachus">Контакты </p>
+
+							<ul>
+								<li><a href="#">Email <i class="fa fa-envelope-o" aria-hidden="true"></i></a></li>
+								<li><a href="#">Vk <i class="fa fa-vk" aria-hidden="true"></i></a></li>
+								<li><a href="#">Facebook <i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+								<li><a href="">Номер можно <i class="fa fa-phone" aria-hidden="true"></i></a></li>
+							</ul>
+						</li>
+						<li>
+							<p class="clients">Пользователи </p>
+
+							<ul>
+								<li><a href="#">Войти <i class="fa fa-sign-in" aria-hidden="true"></i></a></li>
+								<li><a href="#">Поддержка <i class="fa fa-info" aria-hidden="true"></i></a></li>
+								<li><a href="#">FAQ <i class="fa fa-question" aria-hidden="true"></i></a></li>
+							</ul>
+						</li>
+					</ul>
+			</footer>
+		</div>
+	</div>
 </html>

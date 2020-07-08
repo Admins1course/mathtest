@@ -1,0 +1,158 @@
+#site_title_div{
+	width: 100%;
+	height: 500px;
+	border: 1px solid red;
+}
+#site_title{
+	width: 1200px;
+	min-height: 400px;
+	margin-top: 50px;
+	border: 1px solid red;
+	margin: 50px auto;
+	overflow: hidden;
+	height: auto;
+}
+#site_title_image{
+	position: relative;
+	width: 300px;
+	height: 300px;
+	border: 1px solid red;
+	margin-top: 50px;
+	left: 1200px;
+}
+#site_title_info{
+	position: relative;
+	width: 670px;
+	height: 300px;
+	margin-top: 50px;
+	border: 1px solid red;
+	left: -680px;
+	float: left;
+
+}
+#FirstInfoDivTitle{
+	width: 100%;
+	height: 600px;
+	margin-top: 30px;
+}
+#FirstInfoDiv{
+	width: 1260px;
+	margin:50px auto;
+	height: 500px;
+}
+#FirstInfoElementsDiv{
+	width: 100%;
+	height: 100%;
+	border: 1px solid red;
+}
+.FirstInfoElementsDiv{
+	float: left;
+	display: none;
+	width: 400px;
+	height: 100%;
+	margin-left: 13.5px;
+	
+}
+.FirstInfoElements{
+	width: 380px;
+	margin: 25px auto;
+	height: 450px;
+	border: 1px solid red;
+}
+.FirstInfoElementsImg{
+	width: 150px;
+	height: 150px;
+	margin: 10px auto;
+	border: 1px solid red;
+	border-radius: 50%;
+	background-size: cover;
+}
+.FirstInfoElementsTitleDiv{
+	width: 100%;
+	height: 40px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	
+}
+.FirstInfoElementsTitle{
+	width: 350px;
+	margin: 0 auto;
+	height: 40px;
+	border: 1px solid red;
+}
+.FirstInfoElementsInfo{
+	width: 350px;
+	margin: 10px auto;
+	border: 1px solid red;
+	height: 215px;
+}
+
+
+
+#SecondInfoDivTitle{
+	width: 100%;
+	height: 600px;
+	border: 1px solid red;
+	margin-top: 30px;
+}
+#SecondInfoDiv{
+	width: 1250px;
+	min-height: 500px;
+	margin-top: 50px;
+	margin: 50px auto;
+	height: auto;
+}
+#SecondInfoDivElements{
+	width: 1250px;
+	height: 500px;
+	overflow: hidden;
+	border: 1px solid red;
+}
+.SecondInfoDivElementsTitle{
+	width: 390px;
+	height: 500px;
+	margin-left: 18.5px;
+	float: left;
+
+}
+.SecondInfoDivElementsDiv{
+	width: 390px;
+	height: 500px;
+	border: 1px solid red;
+	position: relative;
+}
+#FirstInfoDivElement{
+	top: -510px;
+}
+.Info{
+	width: 200px;
+	height: 200px;
+	margin: 0 auto;
+	border: 1px solid red;
+}
+#SecondInfoDivElement{
+	top: 510px;
+}
+#ThirdInfoDivElement{
+	top: -510px;
+}
+
+
+
+
+#ThirdInfoDivTitle{
+	width: 100%;
+	height: 600px;
+	border: 1px solid red;
+	margin-top: 30px;
+}
+
+
+
+
+#FourthInfoDivTitle{
+	width: 100%;
+	height: 600px;
+	border: 1px solid red;
+	margin-top: 30px;
+}

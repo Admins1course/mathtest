@@ -8,6 +8,7 @@
 <head>
 	<meta http-equiv="Cache-Control" content="no-cache" charset="UTF-8">
 	<link rel="stylesheet" href="style/Main.css?<?=time()?>" type="text/css">
+	<link rel="stylesheet" href="style/Cssforprofile.css?<?=time()?>" type="text/css">
 	<link rel="stylesheet" href="style/Cssforindex.css?<?=time()?>" type="text/css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="style/Ccssfortest.css?<?=time()?>" type="text/css">
@@ -36,7 +37,7 @@
 	<?php endif;?>
 	<script>
 		function auto_grow(element) {
-    		element.style.height = "5px";
+    		element.style.height = "40px";
     		element.style.height = (element.scrollHeight)+"px";}
 	</script>
 	<script>
@@ -77,15 +78,7 @@
 	});
 </script>
 	<script src="js/points.js?<?=time()?>"></script>
-	<script>
-	function cancelSending(e){
-		e.preventDefault();
-		document.getElementById('nameTest').removeEventListener("click",fadePopup);
-	}
-	$(document).ready(function(){
-		document.getElementById('sendForm').addEventListener("click",cancelSending,false);
-	});
-	</script>
+	
 	<script>
 		$(document).ready(function($) {
 			$('.popup-open').click(function() {
@@ -98,20 +91,33 @@
 				return false;
 			});		
 		 
-			$(document).keydown(function(e) {
+			/*$(document).keydown(function(e) {
 				if (e.keyCode === 27) {
 					e.stopPropagation();
 					$('.popup-fade').fadeOut(0);
 				}
-			});
+			});*/
 			
-			document.getElementById('nameTest').addEventListener('click',fadePopup,false);
+			document.getElementById('nameTest').addEventListener('click',fadePopup);
 			function fadePopup(e) {
 				if ($(e.target).closest('.popup').length == 0) {
 					$(this).fadeOut(0);					
-				}
-			};
+				}	
+			}
+			$('#sendForm').click(function() {
+					document.getElementById('nameTest').removeEventListener("click",fadePopup);
+			});
+			
 		});
+	</script>
+	<script>
+	function cancelSending(e){
+		e.preventDefault();
+		
+	}
+	$(document).ready(function(){
+		document.getElementById('sendForm').addEventListener("click",cancelSending);
+	});
 	</script>
 	<script>
 		function PreviewImage(elem) {
@@ -350,38 +356,40 @@
 				<div class="task textarea_template">
 					<input type="button" value="x" class="delete_element delete_element_main" onclick="closeTask(this)">
 					<p class="text_title">Задание</p>
-					<div class="prev_menu">
-						<input type="button" class="task_show" value="Задание">
-						<input type="button" class="formul_preview" value="Превью" class="prev_btn" onclick="convert()">
-					</div>			
-					<textarea  oninput="auto_grow(this)"
-						name="task[total_task]"  class="main_text" style="resize:none" onfocus="getData()"> 
-					</textarea><!-- Общее задание -->
-					<div class="preview">
-					</div>
-					<div class="all_icon_load_slider">
-						<div class="swipe_btn swipe_left" onclick="swipeIcontest(this)" disabled>
-							<p><i class="fa fa-chevron-left" aria-hidden="true"></i></p>
+					<div class="requirement_of_job ">
+						<div class="prev_menu">
+							<input type="button" class="task_show" value="Задание">
+							<input type="button" class="formul_preview" value="Превью" class="prev_btn" onclick="convert()">
 						</div>
-						<div class="swipe_btn swipe_right" onclick="swipeIcontest(this)" disabled>
-							<p><i class="fa fa-chevron-right" aria-hidden="true"></i></p>
+							
+						<textarea  oninput="auto_grow(this)"
+							name="task[total_task]"  class="main_text" style="resize:none" onfocus="getData()"> 
+						</textarea><!-- Общее задание -->
+						<div class="preview">
 						</div>
-						<div class="all_icon_load">
-							<div class="icontest">
-								<input type="button" value="x" class="delete_element delete_element_img" onclick="closeIcontest(this)">
-								<img id="uploadPreview" style="width:240px; height: 240px;" />
-								<input class="inputfile" type="file" name="task[icontest][myPhoto]" onchange="PreviewImage(this);" accept="image/*" /><!-- Вставить изображение -->
+						<div class="all_icon_load_slider">
+							<div class="swipe_btn swipe_left" onclick="swipeIcontest(this)" disabled>
+								<p><i class="fa fa-chevron-left" aria-hidden="true"></i></p>
 							</div>
-							<input type="button" class="button icontest" value="+"><!--  Кнопка добавить -->	
+							<div class="swipe_btn swipe_right" onclick="swipeIcontest(this)" disabled>
+								<p><i class="fa fa-chevron-right" aria-hidden="true"></i></p>
+							</div>
+							<div class="all_icon_load">
+								<div class="icontest">
+									<input type="button" value="x" class="delete_element delete_element_img" onclick="closeIcontest(this)">
+									<img id="uploadPreview" style="width:240px; height: 240px;" />
+									<input class="inputfile" type="file" name="task[icontest][myPhoto]" onchange="PreviewImage(this);" accept="image/*" /><!-- Вставить изображение -->
+								</div>
+								<input type="button" class="button icontest" value="+"><!--  Кнопка добавить -->	
+							</div>
 						</div>
-					</div>
-								
+					</div>		
 						<p class="text_title">Варианты ответов</p>	
 					<div class="prev_menu">
 						<input type="button" class="task_show" value="Задание">
 						<input type="button" class="formul_preview" value="Превью" class="prev_btn" onclick="convert()">
 					</div>					
-					<div class="areatext">
+					<div class="areatext" id="areatext">
 						<textarea oninput="auto_grow(this)" name="task[textarea_answer]" id="answer" style="resize:none" class="main_text">
 						</textarea><!--  Развернутый ответ -->
 					</div>
@@ -394,57 +402,59 @@
 				<div class="task radiobutton_template">
 					<input type="button" value="x" class="delete_element delete_element_main" onclick="closeTask(this)">
 					<p class="text_title">Задание</p>
-					<div class="prev_menu">
-						<input type="button" class="task_show" value="Задание">
-						<input type="button" class="formul_preview" value="Превью" class="prev_btn" onclick="convert()">
-					</div>
-					<textarea oninput="auto_grow(this)"
-						name="task[total_task]"class="main_text" style="resize:none" onfocus="getData()"> 
-					</textarea><!-- Общее задание -->
-					<div class="preview">
-					</div>	
-					<div class="all_icon_load_slider">
-						<div class="swipe_btn swipe_left" onclick="swipeIcontest(this)" disabled>
-							<p><i class="fa fa-chevron-left" aria-hidden="true"></i></p>
+					<div class="requirement_of_job ">
+						<div class="prev_menu">
+							<input type="button" class="task_show" value="Задание">
+							<input type="button" class="formul_preview" value="Превью" class="prev_btn" onclick="convert()">
 						</div>
-						<div class="swipe_btn swipe_right" onclick="swipeIcontest(this)" disabled>
-							<p><i class="fa fa-chevron-right" aria-hidden="true"></i></p>
-						</div>
-						<div class="all_icon_load">
-							<div class="icontest">
-								<input type="button" value="x" class="delete_element delete_element_img" onclick="closeIcontest(this)">
-								<img id="uploadPreview" style="width:240px; height: 240px;" />
-								<input class="inputfile" type="file" name="task[icontest][myPhoto]" onchange="PreviewImage(this);" accept="image/*" /><!-- Вставить изображение -->
+						<textarea oninput="auto_grow(this)"
+							name="task[total_task]"class="main_text" style="resize:none" onfocus="getData()"> 
+						</textarea><!-- Общее задание -->
+						<div class="preview">
+						</div>	
+						<div class="all_icon_load_slider">
+							<div class="swipe_btn swipe_left" onclick="swipeIcontest(this)" disabled>
+								<p><i class="fa fa-chevron-left" aria-hidden="true"></i></p>
 							</div>
-							<input type="button" class="button icontest" value="+"><!--  Кнопка добавить -->	
+							<div class="swipe_btn swipe_right" onclick="swipeIcontest(this)" disabled>
+								<p><i class="fa fa-chevron-right" aria-hidden="true"></i></p>
+							</div>
+							<div class="all_icon_load">
+								<div class="icontest">
+									<input type="button" value="x" class="delete_element delete_element_img" onclick="closeIcontest(this)">
+									<img id="uploadPreview" style="width:240px; height: 240px;" />
+									<input class="inputfile" type="file" name="task[icontest][myPhoto]" onchange="PreviewImage(this);" accept="image/*" /><!-- Вставить изображение -->
+								</div>
+								<input type="button" class="button icontest" value="+"><!--  Кнопка добавить -->	
+							</div>
 						</div>
 					</div>
 						
 					<p class="text_title">Варианты ответов</p>
 					<div class="arrow_up arrow_div_task swipe_up" onclick="swipeRC(this)">
 						<div class="arrowupdown div_scroll_answer"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
-					</div>						
-					<div class="radio">
-						<label class="radio_button">
-							<input id="radiobutton" name="task[radio]" value="answer" type="radio" class="button_radio">  <!--  радио кнопка -->
-							<span class="radiomark"></span>
-						</label>
-						<div class="prev_menu prev_menu_box">
-							<input type="button" class="task_show" value="Задание">
-							<input type="button" class="formul_preview" value="Превью" class="prev_btn" onclick="convert()">
-						</div>
-						<textarea  oninput="auto_grow(this)"
-							class="input_text" name="task[text_answer]" style="resize:none" onfocus="getData()">
-						</textarea><!--  задание1 -->
+					</div>	
+					<div class="answers">				
+						<div class="radio">
+							<label class="radio_button">
+								<input id="radiobutton" name="task[radio]" value="answer" type="radio" class="button_radio">  <!--  радио кнопка -->
+								<span class="radiomark"></span>
+							</label>
+							<div class="prev_menu prev_menu_box">
+								<input type="button" class="task_show" value="Задание">
+								<input type="button" class="formul_preview" value="Превью" class="prev_btn" onclick="convert()">
+							</div>
+							<textarea  oninput="auto_grow(this)"
+								class="input_text" name="task[text_answer]" style="resize:none" onfocus="getData()">
+							</textarea><!--  задание1 -->
 
-						<div class="preview preview_location">
+							<div class="preview preview_location">
 
+							</div>
+							<input type="button" value="x" class="delete_element delete_element_choise_radio" onclick="closeRC(this)">
 						</div>
-						<input type="button" value="x" class="delete_element delete_element_choise_radio" onclick="closeRC(this)">
-						
+						<input type="button" class="add_button_answer radio" value="+"><!--  Кнопка добавить -->
 					</div>
-
-					<input type="button" class="add_button_answer radio" value="+"><!--  Кнопка добавить -->
 					<div class=" arrow_down arrow_div_task swipe_down" onclick="swipeRC(this)">
 						<div class=" arrowupdown div_scroll_answer"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
 					</div>
@@ -455,29 +465,31 @@
 				<div class="task checkboxbutton_template">
 					<input type="button" value="x" class="delete_element delete_element_main" onclick="closeTask(this)">
 					<p class="text_title">Задание</p>
-					<div class="prev_menu ">
-						<input type="button" class="task_show" value="Задание">
-						<input type="button" class="formul_preview" value="Превью" class="prev_btn" onclick="convert()">
-					</div>
-					<textarea oninput="auto_grow(this)"
-						name="task[total_task]" class="main_text" style="resize:none" onfocus="getData()"> 
-					</textarea><!-- Общее задание -->
-					<div class="preview">
-					</div>
-					<div class="all_icon_load_slider">
-						<div class="swipe_btn swipe_left" onclick="swipeIcontest(this)" disabled>
-							<p><i class="fa fa-chevron-left" aria-hidden="true"></i></p>
+					<div class="requirement_of_job ">
+						<div class="prev_menu ">
+							<input type="button" class="task_show" value="Задание">
+							<input type="button" class="formul_preview" value="Превью" class="prev_btn" onclick="convert()">
 						</div>
-						<div class="swipe_btn swipe_right" onclick="swipeIcontest(this)" disabled>
-							<p><i class="fa fa-chevron-right" aria-hidden="true"></i></p>
+						<textarea oninput="auto_grow(this)"
+							name="task[total_task]" class="main_text" style="resize:none" onfocus="getData()"> 
+						</textarea><!-- Общее задание -->
+						<div class="preview">
 						</div>
-						<div class="all_icon_load">
-							<div class="icontest">
-								<input type="button" value="x" class="delete_element delete_element_img" onclick="closeIcontest(this)">
-								<img id="uploadPreview" style="width:240px; height: 240px;" />
-								<input class="inputfile" type="file" name="task[icontest][myPhoto]" onchange="PreviewImage(this);" accept="image/*" /><!-- Вставить изображение -->
+						<div class="all_icon_load_slider">
+							<div class="swipe_btn swipe_left" onclick="swipeIcontest(this)" disabled>
+								<p><i class="fa fa-chevron-left" aria-hidden="true"></i></p>
 							</div>
-							<input type="button" class="button icontest" value="+"><!--  Кнопка добавить -->	
+							<div class="swipe_btn swipe_right" onclick="swipeIcontest(this)" disabled>
+								<p><i class="fa fa-chevron-right" aria-hidden="true"></i></p>
+							</div>
+							<div class="all_icon_load">
+								<div class="icontest">
+									<input type="button" value="x" class="delete_element delete_element_img" onclick="closeIcontest(this)">
+									<img id="uploadPreview" style="width:240px; height: 240px;" />
+									<input class="inputfile" type="file" name="task[icontest][myPhoto]" onchange="PreviewImage(this);" accept="image/*" /><!-- Вставить изображение -->
+								</div>
+								<input type="button" class="button icontest" value="+"><!--  Кнопка добавить -->	
+							</div>
 						</div>
 					</div>
 					
@@ -485,23 +497,25 @@
 					<div class="arrow_down arrow_div_task swipe_up" onclick="swipeRC(this)">
 						<div class="arrowupdown div_scroll_answer"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
 					</div>
-					<div class="check">
-						<label class="checkbox">
-							<input id="checkboxbutton"type="checkbox" name="task[checkbox_answer][checkbox]" value="answer" class="button_checkbox" > <!--  чекбокс -->
-							<span class="checkmark"></span>
-						</label>
-	                    <div class="prev_menu prev_menu_box">
-							<input type="button" class="task_show" value="Задание">
-							<input type="button" class="formul_preview" value="Превью" class="prev_btn" onclick="convert()">
+					<div class="answerscheck">
+						<div class="check">
+							<label class="checkbox">
+								<input id="checkboxbutton"type="checkbox" name="task[checkbox_answer][checkbox]" value="answer" class="button_checkbox" > <!--  чекбокс -->
+								<span class="checkmark"></span>
+							</label>
+		                    <div class="prev_menu prev_menu_box">
+								<input type="button" class="task_show" value="Задание">
+								<input type="button" class="formul_preview" value="Превью" class="prev_btn" onclick="convert()">
+							</div>
+							<textarea oninput="auto_grow(this)"
+								class="input_text" id="text" name="task[checkbox_answer][text_answer]" style="resize:none" onfocus="getData()">
+							</textarea><!--  задание1 -->
+							<div class="preview preview_location">
+							</div>
+							<input type="button" value="x" class="delete_element delete_element_choise_chek" onclick="closeRC(this)">
 						</div>
-						<textarea oninput="auto_grow(this)"
-							class="input_text" id="text" name="task[checkbox_answer][text_answer]" style="resize:none" onfocus="getData()">
-						</textarea><!--  задание1 -->
-						<div class="preview preview_location">
-						</div>
-						<input type="button" value="x" class="delete_element delete_element_choise_chek" onclick="closeRC(this)">
+						<input type="button" class="add_button_answer check" value="+"><!--  Кнопка добавить -->
 					</div>
-					<input type="button" class="add_button_answer check" value="+"><!--  Кнопка добавить -->
 					<div class=" arrow_down arrow_div_task swipe_down" onclick="swipeRC(this)">
 						<div class=" arrowupdown div_scroll_answer"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
 					</div>
@@ -512,29 +526,31 @@
 				<div class="task input_template">
 					<input type="button" value="x" class="delete_element delete_element_main" onclick="closeTask(this)">
 					<p class="text_title">Задание</p>
-					<div class="prev_menu">
-						<input type="button" class="task_show" value="Задание">
-						<input type="button" class="formul_preview" value="Превью" class="prev_btn" onclick="convert()">
-					</div>
-					<textarea oninput="auto_grow(this)"
-						name="task[total_task]" class="main_text" style="resize:none" onfocus="getData()"> 
-					</textarea><!-- Общее задание -->
-					<div class="preview">
-					</div>
-					<div class="all_icon_load_slider">
-						<div class="swipe_btn swipe_left" onclick="swipeIcontest(this)" disabled>
-							<p><i class="fa fa-chevron-left" aria-hidden="true"></i></p>
+					<div class="requirement_of_job ">
+						<div class="prev_menu">
+							<input type="button" class="task_show" value="Задание">
+							<input type="button" class="formul_preview" value="Превью" class="prev_btn" onclick="convert()">
 						</div>
-						<div class="swipe_btn swipe_right" onclick="swipeIcontest(this)" disabled>
-							<p><i class="fa fa-chevron-right" aria-hidden="true"></i></p>
+						<textarea oninput="auto_grow(this)"
+							name="task[total_task]" class="main_text" style="resize:none" onfocus="getData()"> 
+						</textarea><!-- Общее задание -->
+						<div class="preview">
 						</div>
-						<div class="all_icon_load">
-							<div class="icontest">
-								<input type="button" value="x" class="delete_element delete_element_img" onclick="closeIcontest(this)">
-								<img id="uploadPreview" style="width:240px; height: 240px;" />
-								<input class="inputfile" type="file" name="task[icontest][myPhoto]" onchange="PreviewImage(this);" accept="image/*" /><!-- Вставить изображение -->
+						<div class="all_icon_load_slider">
+							<div class="swipe_btn swipe_left" onclick="swipeIcontest(this)" disabled>
+								<p><i class="fa fa-chevron-left" aria-hidden="true"></i></p>
 							</div>
-							<input type="button" class="button icontest" value="+"><!--  Кнопка добавить -->	
+							<div class="swipe_btn swipe_right" onclick="swipeIcontest(this)" disabled>
+								<p><i class="fa fa-chevron-right" aria-hidden="true"></i></p>
+							</div>
+							<div class="all_icon_load">
+								<div class="icontest">
+									<input type="button" value="x" class="delete_element delete_element_img" onclick="closeIcontest(this)">
+									<img id="uploadPreview" style="width:240px; height: 240px;" />
+									<input class="inputfile" type="file" name="task[icontest][myPhoto]" onchange="PreviewImage(this);" accept="image/*" /><!-- Вставить изображение -->
+								</div>
+								<input type="button" class="button icontest" value="+"><!--  Кнопка добавить -->	
+							</div>
 						</div>
 					</div>
 					

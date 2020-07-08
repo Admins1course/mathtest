@@ -79,14 +79,62 @@
 								<p class="exit_menu"><?=htmlspecialchars($_SESSION['data-user']['name'])." <br /> ".htmlspecialchars($_SESSION['data-user']['surname'])?></p>
 							</div>
 							<div class="exit_menu_body" style="display:none">
-
-								<div class="exit_menu_elements">
-									<p class="exit_menu_stat">Роль: <?=htmlspecialchars($_SESSION['data-user']['root']);?></p>
-								</div>
-								
-								<div class="exit_title exit_menu_elements">
-
-									<p><a href="vyhod.php">Выход</a></p>
+								<div id="profile_div">
+									<div id="profile_block">
+										<div id="profile_title_div">
+											<div id="profile_title">
+												<div class="exit_title">
+													<p><a href="vyhod.php">Выход <i class="fa fa-sign-out" aria-hidden="true"></i></a></p>
+												</div>
+											</div>
+											
+										</div>
+										<div id="profile_img_block">
+											<div id="profile_img">
+												
+											</div>
+											
+										</div>
+										<div id="profile_elements_div">
+											<div class="profile_elements_all">
+												<div class="profile_elements">
+													<div class="exit_menu_elements">
+														<p class="exit_menu_stat"><i class="fa fa-star-o" aria-hidden="true"></i> Роль: <?=$_SESSION['data-user']['root'];?></p>
+													</div>
+												</div>
+											</div>
+											<div class="profile_elements_all">
+												<div class="profile_elements">
+													<p class="exit_menu_stat">Роль: <?=htmlspecialchars($_SESSION['data-user']['root']);?></p>
+												</div>
+												
+											</div>
+											<div class="profile_elements_all">
+												<div class="profile_elements">
+													<p><a href="vyhod.php">Выход</a></p>
+												</div>
+												
+											</div>
+											<div class="profile_elements_all">
+												<div class="profile_elements">
+													
+												</div>
+												
+											</div>
+											<div class="profile_elements_all">
+												<div class="profile_elements">
+													
+												</div>
+												
+											</div>
+											
+											</div>
+										<div id="profile_footer_div">
+											<div id="profile_footer">
+												
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						<?php 

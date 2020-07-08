@@ -335,4 +335,155 @@ function sendData(){
 		btns[i].style.display='none';
 	}
 	d.getElementById('check-test').style.display='block';
+
+	function testing(value){
+
+    return new Promise(function(resolve, reject){
+    	id=value[0].id;
+        let promiseCase=new Promise(function(resolve, reject){
+        	let imagesFlag=0;
+        	for(let i=0; i<$("#"+id+" .inputfile" ).length; i++){
+        		let files = $("#"+id+" .inputfile" )[i].files;
+        		if(files.length){
+        			imagesFlag=1;
+        			break;
+        		}
+        	}
+        	if(($("#"+id+" .requirement_of_job textarea" )[0].value!=="")||(imagesFlag)){
+        		resolve(value);
+        	}
+        	else{
+        		reject($("#"+id+" .requirement_of_job"));
+        	}
+        });
+        promiseCase
+        	.then(function(){
+        		let classOfAnswers;
+		        if($("#"+id+" .areatext").length)
+		        	classOfAnswers='areatext';
+		        else if ($("#"+id+" .radio").length)
+		        	classOfAnswers='radio';
+		        else if ($("#"+id+" .check").length)
+		        	classOfAnswers='check';
+		        else if ($("#"+id+" .inp").length)
+		        	classOfAnswers='inp';
+
+		        switch(classOfAnswers){
+				    case 'areatext':
+				        return new Promise(function(resolve,reject){
+				            if(($("#"+id+" .areatext textarea" )[0].value!=="")){
+		        				resolve(value);
+		        			}
+		        			else{
+				        		reject($("#"+id+" .areatext textarea" ));
+				        	}
+				        });
+				        break;
+				    case 'radio':
+				        return new Promise(function(resolve,reject){
+				        	let answersFlag=0;
+				        	for(let i=0; i<($("#"+id+" .radio .radio_button" ).length); i++){
+				        		console.log($("#"+id+" .answers .radio_button input" )[i]);
+				        		if(($("#"+id+" .answers .radio_button input" )[i].checked)){
+		        					answersFlag=1;
+		        					break;
+		        				}
+				        	}
+				        	if(!answersFlag){
+				        		reject($("#"+id+" .radiomark"));
+				        	}
+				        	function radioTextareaCheck(value){
+				        		return new Promise(function(resolve, reject){
+				        			if (value.children('textarea')[0].value!=="") {
+				        				resolve(value);
+				        			}
+				        			else{
+				        				console.log('45');
+				        				reject(value.children('textarea'));
+				        			}
+				        		})
+				        	}
+				        	function radioTextareaRecursion(value){
+				        		if (!value.next().hasClass('add_button_answer')) {
+				        			 radioTextareaCheck(value.next()).then(radioTextareaRecursion).catch(reject);
+				        		}
+				        	}
+				        	radioTextareaCheck($("#"+id+" .radio:first")).then(radioTextareaRecursion).catch(reject);
+				        });
+				        break;   
+				    case 'check':
+				         return new Promise(function(resolve,reject){
+				        	let answersFlag=0;
+				        	for(let i=0; i<($("#"+id+" .check .checkbox" ).length); i++){
+				        		console.log($("#"+id+" .answerscheck .checkbox input" )[i]);
+				        		if(($("#"+id+" .answerscheck .checkbox input" )[i].checked)){
+		        					answersFlag=1;
+		        					break;
+		        				}
+				        	}
+				        	if(!answersFlag){
+				        		reject($("#"+id+" .checkmark"));
+				        	}
+				        	function chekTextareaCheck(value){
+				        		return new Promise(function(resolve, reject){
+				        			if (value.children('textarea')[0].value!=="") {
+				        				resolve(value);
+				        			}
+				        			else{
+				        				reject(value.children('textarea'));
+				        			}
+				        		})
+				        	}
+				        	function chekTextareaRecursion(value){
+				        		if (!value.next().hasClass('add_button_answer')) {
+				        			 chekTextareaCheck(value.next()).then(chekTextareaRecursion).catch(reject);
+				        		}
+				        	}
+				        	chekTextareaCheck($("#"+id+" .check:first")).then(chekTextareaRecursion).catch(reject);
+				        });
+				        break;
+				    case 'inp':
+				        return new Promise(function(resolve,reject){
+				            if(($("#"+id+" .inp input" )[0].value!=="")){
+		        				resolve(value);
+		        			}
+		        			else{
+				        		reject($("#"+id+" .inp input" ));
+				        	}
+				        });
+				        break;
+				}
+        	})
+        	.then(function(){
+        		return new Promise(function(resolve, reject){
+		        	if(($("#"+id+" .textForPoints_div input" )[0].value!=="")){
+		        		resolve(value);
+		        	}
+		        	else{
+		        		reject($("#"+id+" .textForPoints_div input" ));
+		        	}
+		        })
+        	})
+        	.catch(reject);
+    }) 
+}
+
+function addClass(value){
+	console.log(value,'9');
+    value.addClass('text_fade');
+    $('.popup-fade').fadeOut(0);
+     showTask($("."+value.closest('.task')[0].id)[0]);
+    //value[0].scrollIntoView();
+    let top=value[0].offsetTop;
+    window.scrollTo({
+    top: top + 500,
+    behavior: "smooth"
+});}
+
+function recursion(value){
+    if (value[0].next().hasClass('task')){
+        testing(value[0].next()).then(recursion).catch(addClass);}
+    }
+$('.text_fade').removeClass('text_fade');
+testing($('form .task:first')).then(recursion).catch(addClass);
 }

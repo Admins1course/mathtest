@@ -1,7 +1,6 @@
 <?php require_once 'includes/db.inc.php';
-	  require_once 'includes/incl_session.inc.php';
-	  require_once 'includes/checkSession.inc.php';
 	  require_once 'registration_control.php';
+	  require_once 'includes/incl_session.inc.php';
 	  include_once 'includes/getUserImage.inc.php';
 	  require_once 'includes/getFriends.inc.php';?>
 <!DOCTYPE html>
@@ -13,6 +12,7 @@
 	<link rel="stylesheet" href="style/Main.css?<?=time()?>" type="text/css">
 	<link rel="stylesheet" href="style/Cssforindex.css?<?=time()?>" type="text/css">
 	<link rel="stylesheet" href="style/CssforDialogWindow.css?<?=time()?>" type="text/css">
+	<link rel="stylesheet" href="style/CssForStudentsResults.css?<?=time()?>" type="text/css">
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
@@ -23,11 +23,11 @@
 	    include_once 'includes/load_user_image.inc.php';
 	}
 	?>
-	<?php if ($is_login):?>
+	<?php if (isset($_SESSION['data-user'])):
+	    include 'includes/searchPeople.js.inc.php';
+	    include 'includes/friendsControl.js.inc.php';?>
 		<script src="js/notifs.js?<?=time();?>"></script>
 	<?php endif;?>
-	<?php include 'includes/searchPeople.js.inc.php';
-		  include 'includes/friendsControl.js.inc.php';?>
     <?php include 'includes/script_for_nav_menu.php';?>
     <script type='text/javascript'>
 	$(function (){
@@ -36,38 +36,65 @@
 	    $('body').height(hg);
 	});
 	</script>
-	<?php if($is_login):?>
 	<script src="js/load_avatars.js?<?=time();?>"></script>
 	<script src="js/create_invite_window_script.js?<?=time();?>"></script>
-	<?php endif;?>
 </head>
 <body style="position: relative;">
 	<?php include 'includes/create_invite_window.php'?>
-	<div id="page">
-		<div id="main_content" style="height: auto;">
+	<div id="Student_Info_Div">
+		<div id="Student_Info_title">
+			<div id="Student_Info">
+				<div id="Student_img_title">
+					<div id="Student_img">
+						
+					</div>
+				</div>
+				<div id="Student_Info_title_div">	
+					<div id="Student_Info_title_elemsnts">	
+						<div id="Student_left_block_elemsnts">
+							<div id="Student_left_block_elemsnts_name_title">
+								<div id="Student_left_block_elemsnts_name">
+									
+								</div>
+							</div>
+							<div id="Student_left_block_elemsnts_info_title">
+								<div id="Student_left_block_elemsnts_info_div">
+									
+								</div>
+							</div>
+						</div>
+						<div id="Student_right_block_elemsnts" >
+							<div id="Student_right_block_elemsnts_info_title">
+								
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				
+			</div>
 		</div>
 	</div>
-		<div class="slider midle">
-			<div class="slides">
-				<input type="radio" name="r" id="r1" checked>
-				<input type="radio" name="r" id="r2" >
-				<input type="radio" name="r" id="r3" >
-				<input type="radio" name="r" id="r4" >
-
-				<div class="slide s1"> <img src="style/img/FonBooks.png" alt=""></div>
-				<div class="slide"> <img src="style/img/books.png" alt=""></div>
-				<div class="slide"> <img src="style/img/rtx.png" alt=""></div>
-				<div class="slide"> <img src="style/img/Artem.png" alt=""></div>
+	<div id="page">
+		<div id="main_content" style="height: auto;">
+			<div id="table_div">
+				<div id="table_title">
+					<table>
+						<tr><th class="first_level">Данные</th><th class="first_level">Результаты</th><th class="first_level">Результаты</th></tr>
+						<tr><td>Данные</td><td>Данные</td><td>Данные</td></tr>
+						<tr><td>Данные</td><td>Данные</td><td>Данные</td></tr>
+						<tr><td>Данные</td><td>Данные</td><td>Данные</td></tr>
+						<tr><td>Данные</td><td>Данные</td><td>Данные</td></tr>
+						<tr><td>Данные</td><td>Данные</td><td>Данные</td></tr>
+						<tr><td>Данные</td><td>Данные</td><td>Данные</td></tr>
+						<tr><td>Данные</td><td>Данные</td><td>Данные</td></tr>
+					</table>
+				</div>
 			</div>
-			<div class="navigation">
-				<label for="r1" class="bar"></label>
-				<label for="r2" class="bar"></label>
-				<label for="r3" class="bar"></label>
-				<label for="r4" class="bar"></label>
-			</div>
+			
 		</div>
-		<div id="plus_inform">
-		</div>
+	</div>
+		
 		<div class="all_right_block">
 			<div id="right_block_title"></div>
 			<div id="right_block"></div>
