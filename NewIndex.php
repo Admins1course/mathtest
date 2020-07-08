@@ -18,6 +18,7 @@
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
 	
     <script type='text/javascript'>
 	$(function (){
@@ -63,9 +64,11 @@
 
 	   function getLocateInfoDiv(){
 	   		document.getElementById('site_title_info').style.left = '50px';
+	   		console.log(divInfo);
 	   }
 	   setTimeout(getLocateInfoDiv, 2000);
 	   })
+
 
 
 </script>
@@ -81,6 +84,71 @@
 	//}
 })
 </script>
+<script>
+	$(function (){
+		let divInfo1 = document.getElementById('FirstInfoDivElement');
+		let divInfo2 = document.getElementById('SecondInfoDivElement');
+		let divInfo3 = document.getElementById('ThirdInfoDivElement');
+		let num1 = 1;
+	
+	 function InfoDiv21(){
+		   	
+		}
+	
+	$(window).scroll(function(){
+	if($(window).scrollTop()>900){
+		if (num1==1) {
+			num1=0;
+			console.log(num1);
+			console.log(divInfo1);
+			divInfo1.animate([
+			  {top: "-510px"},
+			  {top: "0px"}
+			], {
+			  duration: 500,
+			  iteration: 2,
+			  delay: 1000,
+			});
+				setTimeout(getLocatedivInfoSecond1, 1000);
+		 	function getLocatedivInfoSecond1(){
+		   		document.getElementById('FirstInfoDivElement').style.top = '0px';
+
+		   }
+		   divInfo2.animate([
+			  {top: "510px"},
+			  {top: "0px"}
+			], {
+			  duration: 500,
+			  iteration: 2,
+			  delay: 1000,
+			});
+				setTimeout(getLocatedivInfoSecond2, 1000);
+		 	function getLocatedivInfoSecond2(){
+		   		document.getElementById('SecondInfoDivElement').style.top = '0px';
+
+		   }
+		   divInfo3.animate([
+			  {top: "-510px"},
+			  {top: "0px"}
+			], {
+			  duration: 500,
+			  iteration: 2,
+			  delay: 1000,
+			});
+				setTimeout(getLocatedivInfoSecond3, 1000);
+		 	function getLocatedivInfoSecond3(){
+		   		document.getElementById('ThirdInfoDivElement').style.top = '0px';
+
+		   }
+		}
+		
+	}
+	
+})
+	})
+	
+</script>
+
 <!--<script>
 	window.onscroll = function() {
 	posLeft = (window.pageXOffset !== undefined) ? window.pageXOffset : (document.documentElement || document.body.parentNode || document.body).scrollLeft;
@@ -114,15 +182,10 @@
 						<div class="FirstInfoElementsImg">
 							
 						</div>
-						<div class="FirstInfoElementsInfo">
-							
-						</div>
-					</div>
-				</div>
-				<div class="FirstInfoElementsDiv">
-					<div class="FirstInfoElements">
-						<div class="FirstInfoElementsImg">
-							
+						<div class="FirstInfoElementsTitleDiv">
+							<div class="FirstInfoElementsTitle">
+								
+							</div>
 						</div>
 						<div class="FirstInfoElementsInfo">
 							
@@ -133,6 +196,26 @@
 					<div class="FirstInfoElements">
 						<div class="FirstInfoElementsImg">
 							
+						</div>
+						<div class="FirstInfoElementsTitleDiv">
+							<div class="FirstInfoElementsTitle">
+								
+							</div>
+						</div>
+						<div class="FirstInfoElementsInfo">
+							
+						</div>
+					</div>
+				</div>
+				<div class="FirstInfoElementsDiv">
+					<div class="FirstInfoElements">
+						<div class="FirstInfoElementsImg">
+							
+						</div>
+						<div class="FirstInfoElementsTitleDiv">
+							<div class="FirstInfoElementsTitle">
+								
+							</div>
 						</div>
 						<div class="FirstInfoElementsInfo">
 							
@@ -142,12 +225,37 @@
 			</div>
 		</div>
 	</div>
-	<div id="SecontInfoDivTitle">
-		
+
+	<div id="SecondInfoDivTitle">
+		<div id="SecondInfoDiv">
+			<div id="SecondInfoDivElements">
+				<div class="SecondInfoDivElementsTitle ">
+					<div class="SecondInfoDivElementsDiv " id="FirstInfoDivElement">
+						<div class="Info">
+							
+						</div>
+					</div>
+				</div>
+				<div class="SecondInfoDivElementsTitle ">
+					<div class="SecondInfoDivElementsDiv " id="SecondInfoDivElement">
+						
+					</div>
+				</div>
+				<div class="SecondInfoDivElementsTitle ">
+					<div class="SecondInfoDivElementsDiv " id="ThirdInfoDivElement">
+						
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
+
+
 	<div id="ThirdInfoDivTitle">
 		
 	</div>
+
+
 	<div id="FourthInfoDivTitle">
 		
 	</div>

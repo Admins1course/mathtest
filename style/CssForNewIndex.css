@@ -60,12 +60,25 @@
 	border: 1px solid red;
 }
 .FirstInfoElementsImg{
-	width: 200px;
-	height: 200px;
+	width: 150px;
+	height: 150px;
 	margin: 10px auto;
 	border: 1px solid red;
 	border-radius: 50%;
 	background-size: cover;
+}
+.FirstInfoElementsTitleDiv{
+	width: 100%;
+	height: 40px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	
+}
+.FirstInfoElementsTitle{
+	width: 350px;
+	margin: 0 auto;
+	height: 40px;
+	border: 1px solid red;
 }
 .FirstInfoElementsInfo{
 	width: 350px;
@@ -73,13 +86,56 @@
 	border: 1px solid red;
 	height: 215px;
 }
-#SecontInfoDivTitle{
+
+
+
+#SecondInfoDivTitle{
 	width: 100%;
 	height: 600px;
 	border: 1px solid red;
 	margin-top: 30px;
 }
+#SecondInfoDiv{
+	width: 1250px;
+	min-height: 500px;
+	margin-top: 50px;
+	margin: 50px auto;
+	height: auto;
+}
+#SecondInfoDivElements{
+	width: 1250px;
+	height: 500px;
+	overflow: hidden;
+	border: 1px solid red;
+}
+.SecondInfoDivElementsTitle{
+	width: 390px;
+	height: 500px;
+	margin-left: 18.5px;
+	float: left;
 
+}
+.SecondInfoDivElementsDiv{
+	width: 390px;
+	height: 500px;
+	border: 1px solid red;
+	position: relative;
+}
+#FirstInfoDivElement{
+	top: -510px;
+}
+.Info{
+	width: 200px;
+	height: 200px;
+	margin: 0 auto;
+	border: 1px solid red;
+}
+#SecondInfoDivElement{
+	top: 510px;
+}
+#ThirdInfoDivElement{
+	top: -510px;
+}
 
 
 
