@@ -12,101 +12,125 @@
 	<link rel="stylesheet" href="style/Main.css?<?=time()?>" type="text/css">
 	<link rel="stylesheet" href="style/Cssforindex.css?<?=time()?>" type="text/css">
 	<link rel="stylesheet" href="style/CssforDialogWindow.css?<?=time()?>" type="text/css">
-	<link rel="stylesheet" href="style/CssForStudentsResults.css?<?=time()?>" type="text/css">
+	<link rel="stylesheet" href="style/CssForNewIndex.css?<?=time()?>" type="text/css">
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-	<?php
-	if ($path){
-	    include_once 'includes/load_user_image.inc.php';
-	}
-	?>
-	<?php if (isset($_SESSION['data-user'])):
-	    include 'includes/searchPeople.js.inc.php';
-	    include 'includes/friendsControl.js.inc.php';?>
-		<script src="js/notifs.js?<?=time();?>"></script>
-	<?php endif;?>
-    <?php include 'includes/script_for_nav_menu.php';?>
+	
     <script type='text/javascript'>
 	$(function (){
 	    var hg=$('body').height();
-	    hg=hg+750+'px';
+	    hg=hg+150+'px';
 	    $('body').height(hg);
 	});
 	</script>
-	<script src="js/load_avatars.js?<?=time();?>"></script>
-	<script src="js/create_invite_window_script.js?<?=time();?>"></script>
+
+<script>
+	$(function (){
+		let div = document.getElementById('site_title_image');
+		let style = getComputedStyle(document.querySelector('#site_title_image'));
+		let divInfo = document.getElementById('site_title_info');
+		let styleInfo = getComputedStyle(document.querySelector('#site_title_info'));
+		   div.animate([
+			  {left: "1200px"},
+			  {left: "800px"}
+			], {
+			  duration: 1000,
+			  iteration: 2,
+			  delay: 1000,
+			});
+
+	   function getLocate(){
+	   		document.getElementById('site_title_image').style.left = '800px';
+	   }
+
+	   setTimeout(getLocate, 2000);
+
+	   function animateInfoDiv(){
+		   	divInfo.animate([
+			  {left: "-680px"},
+			  {left: "50px"}
+			], {
+			  duration: 1000,
+			  iteration: 2,
+			  delay: 1000,
+			});
+		}
+
+	   setTimeout(animateInfoDiv, 1000);
+
+	   function getLocateInfoDiv(){
+	   		document.getElementById('site_title_info').style.left = '50px';
+	   }
+	   setTimeout(getLocateInfoDiv, 3000);
+	   })
+
+
+</script>
+
+
+	
 </head>
 <body style="position: relative;">
-	<?php include 'includes/create_invite_window.php'?>
-	<div id="Student_Info_Div">
-		<div id="Student_Info_title">
-			<div id="Student_Info">
-				<div id="Student_img_title">
-					<div id="Student_img">
-						
-					</div>
-				</div>
-				<div id="Student_Info_title_div">	
-					<div id="Student_Info_title_elemsnts">	
-						<div id="Student_left_block_elemsnts">
-							<div id="Student_left_block_elemsnts_name_title">
-								<div id="Student_left_block_elemsnts_name">
-									
-								</div>
-							</div>
-							<div id="Student_left_block_elemsnts_info_title">
-								<div id="Student_left_block_elemsnts_info_div">
-									
-								</div>
-							</div>
-						</div>
-						<div id="Student_right_block_elemsnts" >
-							<div id="Student_right_block_elemsnts_info_title">
-								
-							</div>
-						</div>
-						
-					</div>
-				</div>
-				
+	<div id="site_title_div">
+		<div id="site_title">
+			<div id="site_title_info">
+
 			</div>
-		</div>
-	</div>
-	<div id="page">
-		<div id="main_content" style="height: auto;">
-			<div id="table_div">
-				<div id="table_title">
-					<table>
-						<tr><th class="first_level">Данные</th><th class="first_level">Результаты</th><th class="first_level">Результаты</th></tr>
-						<tr><td>Данные</td><td>Данные</td><td>Данные</td></tr>
-						<tr><td>Данные</td><td>Данные</td><td>Данные</td></tr>
-						<tr><td>Данные</td><td>Данные</td><td>Данные</td></tr>
-						<tr><td>Данные</td><td>Данные</td><td>Данные</td></tr>
-						<tr><td>Данные</td><td>Данные</td><td>Данные</td></tr>
-						<tr><td>Данные</td><td>Данные</td><td>Данные</td></tr>
-						<tr><td>Данные</td><td>Данные</td><td>Данные</td></tr>
-					</table>
-				</div>
+			<div id="site_title_image">
+
 			</div>
 			
 		</div>
 	</div>
-		
-		<div class="all_right_block">
-			<div id="right_block_title"></div>
-			<div id="right_block"></div>
+	<div id="FirstInfoDivTitle">
+		<div id="FirstInfoDiv">
+			<div id="FirstInfoElementsDiv">
+				<div class="FirstInfoElementsDiv">
+					<div class="FirstInfoElements">
+						<div class="FirstInfoElementsImg">
+							
+						</div>
+						<div class="FirstInfoElementsInfo">
+							
+						</div>
+					</div>
+				</div>
+				<div class="FirstInfoElementsDiv">
+					<div class="FirstInfoElements">
+						<div class="FirstInfoElementsImg">
+							
+						</div>
+						<div class="FirstInfoElementsInfo">
+							
+						</div>
+					</div>
+				</div>
+				<div class="FirstInfoElementsDiv">
+					<div class="FirstInfoElements">
+						<div class="FirstInfoElementsImg">
+							
+						</div>
+						<div class="FirstInfoElementsInfo">
+							
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-			<div id="left_block_title">
-				<?php require_once "includes/searchInput.inc.php";?>
-			</div>
-			<div id="left_block" class="left_block">
-				<?php require_once "includes/friendsList.inc.php";?>
-			</div>
-
-			<?php include 'includes/nav_menu.php';?>
+	</div>
+	<div id="SecontInfoDivTitle">
+		
+	</div>
+	<div id="ThirdInfoDivTitle">
+		
+	</div>
+	<div id="FourthInfoDivTitle">
+		
+	</div>
+	
 		
 
 		

@@ -87,4 +87,34 @@
 	height: 100%;
 	border: 1px solid red;
 }
+#table_div{
+	width: 100%;
+	height: auto;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+#table_title{
+	width: 700px;
+	height: auto;
+	margin: 0 auto;
+}
+table{
+	margin: 0 auto;
+	border: 1px solid orange;
+	width: 100%;
+}
+.first_level{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid orange;
+}
+table tr{
+	text-align: center;
+}
+table td{
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid orange;
+	border-left: 1px solid orange;
+}
 
