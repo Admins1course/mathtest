@@ -33,7 +33,6 @@
 #FirstInfoDivTitle{
 	width: 100%;
 	height: 600px;
-	border: 1px solid red;
 	margin-top: 30px;
 }
 #FirstInfoDiv{
@@ -48,6 +47,7 @@
 }
 .FirstInfoElementsDiv{
 	float: left;
+	display: none;
 	width: 400px;
 	height: 100%;
 	margin-left: 13.5px;

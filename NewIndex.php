@@ -37,7 +37,7 @@
 			  {left: "1200px"},
 			  {left: "800px"}
 			], {
-			  duration: 1000,
+			  duration: 500,
 			  iteration: 2,
 			  delay: 1000,
 			});
@@ -46,29 +46,50 @@
 	   		document.getElementById('site_title_image').style.left = '800px';
 	   }
 
-	   setTimeout(getLocate, 2000);
+	   setTimeout(getLocate, 1500);
 
 	   function animateInfoDiv(){
 		   	divInfo.animate([
 			  {left: "-680px"},
 			  {left: "50px"}
 			], {
-			  duration: 1000,
+			  duration: 500,
 			  iteration: 2,
 			  delay: 1000,
 			});
 		}
 
-	   setTimeout(animateInfoDiv, 1000);
+	   setTimeout(animateInfoDiv, 500);
 
 	   function getLocateInfoDiv(){
 	   		document.getElementById('site_title_info').style.left = '50px';
 	   }
-	   setTimeout(getLocateInfoDiv, 3000);
+	   setTimeout(getLocateInfoDiv, 2000);
 	   })
 
 
 </script>
+<script>
+	$(window).scroll(function(){
+	if($(window).scrollTop()>400){
+	$('.FirstInfoElementsDiv:eq(0)').slideDown(500, function(){
+		$(this).next().slideDown(500, arguments.callee);
+	});
+	}
+	//if($(window).scrollTop()<300){
+	//$('.FirstInfoElementsDiv').slideUp(2000)
+	//}
+})
+</script>
+<!--<script>
+	window.onscroll = function() {
+	posLeft = (window.pageXOffset !== undefined) ? window.pageXOffset : (document.documentElement || document.body.parentNode || document.body).scrollLeft;
+	posTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+	if (posTop>=600 && posTop<=700) {
+		console.log(posTop);
+	}
+}
+</script>-->
 
 
 	
