@@ -148,6 +148,41 @@
 	})
 	
 </script>
+<script>
+	$(function (){
+		let divInfo1 = document.getElementById('startAnimation');
+		let divInfo2 = document.getElementById('clickmeDiv');
+			$('#startAnimation').click(function() {
+				divInfo1.animate([
+				  {top: "0px"},
+				  {top: "-550px"}
+				], {
+				  duration: 1500,
+				  iteration: 2,
+				  delay: 100,
+				});
+				divInfo2.animate([
+				  {top: "0px"},
+				  {top: "1100px"}
+				], {
+				  duration: 1500,
+				  iteration: 2,
+				  delay: 100,
+				});
+				setTimeout(getLocatecircul, 1500);
+		 	function getLocatecircul(){
+		   		document.getElementById('startAnimation').style.top = '-550px';
+
+		   }
+		   setTimeout(getLocatetext, 1000);
+		 	function getLocatetext(){
+		   		document.getElementById('clickmeDiv').style.top = '1100px';
+
+		   }
+				});	
+			
+		});
+</script>
 
 <!--<script>
 	window.onscroll = function() {
@@ -231,9 +266,7 @@
 			<div id="SecondInfoDivElements">
 				<div class="SecondInfoDivElementsTitle ">
 					<div class="SecondInfoDivElementsDiv " id="FirstInfoDivElement">
-						<div class="Info">
-							
-						</div>
+						
 					</div>
 				</div>
 				<div class="SecondInfoDivElementsTitle ">
@@ -252,6 +285,11 @@
 
 
 	<div id="ThirdInfoDivTitle">
+		<div id="startAnimation" class="text_fade">
+			<div id="clickmeDiv">
+				<p id="clickme">CLICK ME</p>
+			</div>
+		</div>
 		
 	</div>
 
