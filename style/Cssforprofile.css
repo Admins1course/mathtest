@@ -10,7 +10,7 @@
 	border: 1px solid orange;
 	background-color: white;
 	background-size: contain;
-	background-image: url(img/profileBacground.jpg);
+
 }
 #profile_title_div{
 	width: 100%;
@@ -29,7 +29,6 @@
 	margin-top: 25px;
 	border-radius: 50%;
 	background-size: cover;
-	background-image: url(img/Artem.png);
 }
 #profile_elements_div{
 	width: 300px;
