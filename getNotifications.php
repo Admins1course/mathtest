@@ -15,6 +15,13 @@
 			$result->execute(['idUser'=>$_SESSION['data-user']['id']]);
 			$json['friends']=$result->fetchAll(PDO::FETCH_ASSOC);
 			$pdo->commit();
+			foreach($json as $k=>$v){
+				for ($i=0;$i<count($json[$k]);$i++){
+					foreach($json[$k][$i] as $k1=>$v1){
+						$json[$k][$i][$k1]=htmlspecialchars($json[$k][$i][$k1]);
+					}
+				}
+			}
 			echo json_encode($json);
 		}
 		catch(Exception $e){

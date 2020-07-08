@@ -158,7 +158,13 @@ $(document).ready(function () {
 				data:dataPost,
 				error:function(data){console.log(data)},
 				success:function(data){
-					console.log(data);
+					switch(data['answer']){
+						case 'success':break;
+						case 'serverError':alert('Произошла ошибка на сервере, приглашнение не отправлено');
+										   break;
+						case 'errorDataUser':alert('Данные вашего аккаунта не подтверждены');
+											 break;
+					}
 				}
 			});
 		}

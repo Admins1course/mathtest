@@ -22,6 +22,23 @@
 			header('Location: /nevRegistaration.html.php');
 			exit();
 		}
+		$pattern="/[^А-Яа-яЁёA-Za-Z0-9_]/u";
+		$root=array('студент','преподаватель');
+		try{
+			if(preg_match($pattern,$_POST['name'])){
+				throw new Exception();
+			}
+			if(preg_match($pattern,$_POST['surname'])){
+				throw new Exception();
+			}
+			if(!in_array($_POST['root'],$root)){
+				throw new Exception();
+			}
+		}
+		catch(Exception $e){
+			header('Location: /users_data.html.php');
+			exit();
+		}
 	    //Проверяем наличие всех необходимых значений и присваиваем сессии, т.к. он нужен если хотя бы одно из значений не указано
 		if($_POST['login']) $_SESSION['users_data']['login']=$_POST['login'];
 		else               	$_SESSION['users_data']['login']=null;
@@ -63,14 +80,14 @@
 			$pdo->beginTransaction();
 			$sql='INSERT INTO `users`(`login`,`userPassword`,`name`,`surname`,`root`,`dateRegistration`) 
 					VALUES(:login,:userPassword,:name,:surname,:root,NOW())';
-			$pdo->prepare($sql)->execute(['login'=>$_SESSION['login'],
-										  'userPassword'=>$_SESSION['password_first'],
+			$pdo->prepare($sql)->execute(['login'=>$_SESSION['users_data']['login'],
+										  'userPassword'=>$_SESSION['users_data']['password_first'],
 										  'name'=>$_SESSION['users_data']['name'],
 										  'surname'=>$_SESSION['users_data']['surname'],
 										  'root'=>$_SESSION['users_data']['root']]);
 			$query="SELECT id FROM users WHERE login=:login";
 			$result=$pdo->prepare($query);
-			$result->execute(['login'=>$_SESSION['login']]);
+			$result->execute(['login'=>$_SESSION['users_data']['login']]);
 			$id=$result->fetchAll();
 			$sql="INSERT INTO `avatars`(`id_User`) VALUES(:id)";
 			$pdo->prepare($sql)->execute(['id'=>$id[0]['id']]);
@@ -81,7 +98,9 @@
 			setcookie("name", $_POST["name"], time()+60*60*24*10);
 			setcookie("surname", $_POST['surname'], time()+60*60*24*10);
 			setcookie("root", $_POST['root'], time()+60*60*24*10);
-
+			
+			unset($_SESSION['users_data']);
+			
 			$_SESSION['data-user']['id']=$id[0]['id'];
 			$_SESSION['data-user']['login']=$_POST['login'];
 			$_SESSION['data-user']['password']=$_POST['password_first'];

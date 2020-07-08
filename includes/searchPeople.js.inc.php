@@ -57,7 +57,7 @@ if($is_login):?>
 				else{
 					var listOfPeople='';
 					for (i=0;i<data['people'].length;i++){
-						if (data['people'][i]['id']!=<?=$_SESSION['data-user']['id']?>){
+						if (data['people'][i]['id']!=<?=htmlspecialchars($_SESSION['data-user']['id'])?>){
 							buttonValue="+ В друзья";
 							buttonFunction="addFriend(this)";
 							if (data['friends'])

@@ -75,9 +75,9 @@ if ($is_login){
 		else{
 			echo json_encode(['errorUpload'=>'При записи изображения на диск произошла ошибка.']);
 		}
-		$data['name']=$name.$format;
-		$data['id']=$_SESSION['data-user']['id'];
-		$data['error']=$errorCode;
+		$data['name']=htmlspecialchars($name.$format);
+		$data['id']=htmlspecialchars($_SESSION['data-user']['id']);
+		$data['error']=htmlspecialchars($errorCode);
 		echo json_encode($data);
 	}
 }

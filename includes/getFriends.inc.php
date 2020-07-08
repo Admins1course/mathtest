@@ -12,14 +12,14 @@ if ($is_login){
 				$result=$pdo->prepare($sql);
 				$result->execute(['id'=>$friends[$i]['id_Friend']]);
 				$result=$result->fetchAll(PDO::FETCH_ASSOC);
-				$friends[$i]['name']=$result[0]['name'];
-				$friends[$i]['surname']=$result[0]['surname'];
+				$friends[$i]['name']=htmlspecialchars($result[0]['name']);
+				$friends[$i]['surname']=htmlspecialchars($result[0]['surname']);
 			}
 		}
 		$jsonFriends=json_encode($friends);
 	}
 	catch(PDOException $e){
-		
+		$jsonFriends=json_encode([]);
 	}
 }
 else $jsonFriends=json_encode([]);
