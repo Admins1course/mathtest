@@ -9,6 +9,8 @@ if ($is_login):?>
 		var circ=document.getElementById("file-img-preview");
 		rect.src = <?='"'.htmlspecialchars($path).'"'?>;
 		circ.src = <?='"'.htmlspecialchars($path).'"'?>;
+		var bigAvatar=document.getElementById('profile_img');
+		bigAvatar.style.backgroundImage=<?='"url('.htmlspecialchars($path).')"'?>;
 	})
 	</script>
 <?php endif;?>

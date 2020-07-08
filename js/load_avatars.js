@@ -73,6 +73,7 @@ $(document).ready(function(){
 							rect.src = oFREvent.target.result;
 							circ.src = oFREvent.target.result;
 						};
+						$('#profile_img').css('background-image','url(avatars/'+data['name']+')');
 						loading.style.display="block";
 						waiting.style.display="none";
 					}

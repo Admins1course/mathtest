@@ -21,8 +21,20 @@ if($is_login):?>
 							<li id="userId<?=htmlspecialchars($friends[$i]['id_Friend'])?>"><?=htmlspecialchars($friends[$i]['name'])?> <?=htmlspecialchars($friends[$i]['surname'])?></li>	
 						</div>
 					</div>
-				<?php endfor;
-			endif;?>
+				<?php endfor;?>
+				<script>
+				$(document).ready(function(){
+					friends=<?=$jsonFriends?>;
+					console.log(friends);
+					for(i=0;i<friends.length;i++){
+						console.log(friends[i]['avatar']);
+						if (friends[i]['avatar']){
+							$('.people_avatar')[i].style.backgroundImage='url(avatars/'+friends[i]['avatar']+')';
+						}
+					}
+				});
+				</script>
+			<?php endif;?>
 		</ul>
 		<ul class="listOfPeople" id="searchList" style="display:none">
 		</ul>

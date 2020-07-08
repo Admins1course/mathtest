@@ -14,6 +14,11 @@ if ($is_login){
 				$result=$result->fetchAll(PDO::FETCH_ASSOC);
 				$friends[$i]['name']=htmlspecialchars($result[0]['name']);
 				$friends[$i]['surname']=htmlspecialchars($result[0]['surname']);
+				$sql="SELECT `file` FROM `avatars` WHERE `id_User`=:id";
+				$result=$pdo->prepare($sql);
+				$result->execute(['id'=>$friends[$i]['id_Friend']]);
+				$result=$result->fetchAll(PDO::FETCH_ASSOC);
+				$friends[$i]['avatar']=htmlspecialchars($result[0]['file']);
 			}
 		}
 		$jsonFriends=json_encode($friends);

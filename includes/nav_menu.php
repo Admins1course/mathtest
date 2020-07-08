@@ -99,19 +99,17 @@
 											<div class="profile_elements_all">
 												<div class="profile_elements">
 													<div class="exit_menu_elements">
-														<p class="exit_menu_stat"><i class="fa fa-star-o" aria-hidden="true"></i> Роль: <?=$_SESSION['data-user']['root'];?></p>
+														<p class="exit_menu_stat"><i class="fa fa-star-o" aria-hidden="true"></i> Роль: <?=htmlspecialchars($_SESSION['data-user']['root']);?></p>
 													</div>
 												</div>
 											</div>
 											<div class="profile_elements_all">
 												<div class="profile_elements">
-													<p class="exit_menu_stat">Роль: <?=htmlspecialchars($_SESSION['data-user']['root']);?></p>
 												</div>
 												
 											</div>
 											<div class="profile_elements_all">
 												<div class="profile_elements">
-													<p><a href="vyhod.php">Выход</a></p>
 												</div>
 												
 											</div>
