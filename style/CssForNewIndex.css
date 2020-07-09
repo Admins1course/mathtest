@@ -147,6 +147,11 @@
 	margin-top: 30px;
 	overflow: hidden;
 }
+#ThirdInfoAllDivTitle{
+	width: 1200px;
+	height: 600px;
+	margin: 0 auto;
+}
 @keyframes pulsate{50%{border-color:#fff;}30%{background-color: orange;}60%{background-color: darkorange;}50%{width: 450px;}50%{height: 450px;}
 50%{margin-top: 75px;}
 
@@ -161,7 +166,8 @@
     border-color: red;
     border-radius: 50%;
     text-align: center;
-    top: 0px;
+    top: -600px;
+    display: block;
     -webkit-animation: pulsate 2s linear infinite;
     animation: pulsate 2s linear infinite;
 }
@@ -180,7 +186,30 @@
 	position: relative;
 	top: 0px;
 }
+#ThirdInfoRightAndLeftDivTitle{
+	width: 1280px;
+	height: 600px;
+	overflow: hidden;
+}
+#ThirdInfoLeftDivTitle{
+	position: relative;
+	width: 550px;
+	height: 500px;
+	border: 1px solid red;
+	margin-top: 50px;
+	float: left;
+	right: 670px;
+}
 
+#ThirdInfoRightDivTitle{
+	position: relative;
+	width: 550px;
+	height: 500px;
+	border: 1px solid red;
+	margin-top: 50px;
+	margin-left: 650px;
+	left: 670px;
+}
 
 
 #FourthInfoDivTitle{

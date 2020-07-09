@@ -152,10 +152,12 @@
 	$(function (){
 		let divInfo1 = document.getElementById('startAnimation');
 		let divInfo2 = document.getElementById('clickmeDiv');
+		let divInfoleft = document.getElementById('ThirdInfoLeftDivTitle');
+		let divInforight = document.getElementById('ThirdInfoRightDivTitle');
 			$('#startAnimation').click(function() {
 				divInfo1.animate([
-				  {top: "0px"},
-				  {top: "-550px"}
+				  {top: "-550px"},
+				  {top: "-1500px"}
 				], {
 				  duration: 1500,
 				  iteration: 2,
@@ -163,7 +165,23 @@
 				});
 				divInfo2.animate([
 				  {top: "0px"},
-				  {top: "1100px"}
+				  {top: "1700px"}
+				], {
+				  duration: 1500,
+				  iteration: 2,
+				  delay: 100,
+				});
+				divInfoleft.animate([
+				  {right: "670px"},
+				  {right: "0px"}
+				], {
+				  duration: 1500,
+				  iteration: 2,
+				  delay: 100,
+				});
+				divInforight.animate([
+				  {left: "670px"},
+				  {left: "0px"}
 				], {
 				  duration: 1500,
 				  iteration: 2,
@@ -172,6 +190,9 @@
 				setTimeout(getLocatecircul, 1500);
 		 	function getLocatecircul(){
 		   		document.getElementById('startAnimation').style.top = '-550px';
+		   		document.getElementById('startAnimation').style.display = 'none';
+		   		document.getElementById('ThirdInfoLeftDivTitle').style.right = '0px';
+		   		document.getElementById('ThirdInfoRightDivTitle').style.left = '0px';
 
 		   }
 		   setTimeout(getLocatetext, 1000);
@@ -285,12 +306,23 @@
 
 
 	<div id="ThirdInfoDivTitle">
-		<div id="startAnimation" class="text_fade">
-			<div id="clickmeDiv">
-				<p id="clickme">CLICK ME</p>
+		<div id="ThirdInfoAllDivTitle">
+			<div id="ThirdInfoRightAndLeftDivTitle">
+				<div id="ThirdInfoLeftDivTitle">
+				
+				</div>
+				<div id="ThirdInfoRightDivTitle">
+					
+				</div>
 			</div>
+			
+			<div id="startAnimation" class="text_fade">
+				<div id="clickmeDiv">
+					<p id="clickme">CLICK ME</p>
+				</div>
+			</div>
+			
 		</div>
-		
 	</div>
 
 
