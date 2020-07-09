@@ -32,7 +32,7 @@
 	$(function (){
 		let openMenu = document.getElementById('openMenu');
 		let openMenuLocation = document.getElementById('openMenu').style.marginLeft;
-			$('#openMenu').click(function() {
+			$('#arrowPickDiv').click(function() {
 				
 				if (document.getElementById('openMenu').style.marginLeft!='50%') {
 					document.getElementById("arrowPickDiv").innerHTML = '<i style="font-size: 70px;" class="fa fa-caret-right arrowPick" aria-hidden="true"></i>'; 
@@ -271,6 +271,25 @@
 	<div id="openMenu">
 		<div id="arrowPickDiv">
 			<i style="font-size: 70px;" class="fa fa-caret-left arrowPick" aria-hidden="true"></i>
+		</div>
+		<div id="MenuDivTitle">
+			<div id="MenuDivContainer">
+				<div id="MenuDivContainerElements">
+					<div id="MenuDivContainerElementsTitle">
+						
+					</div>
+					<div class="MenuDivContainerElementsDiv">
+						
+					</div>
+					<div class="MenuDivContainerElementsDiv">
+						
+					</div>
+					<div class="MenuDivContainerElementsDiv">
+						
+					</div>
+				</div>
+				
+			</div>
 		</div>
 	</div>
 	<div id="site_title_div">
