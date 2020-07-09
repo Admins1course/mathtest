@@ -30,6 +30,55 @@
 
 <script>
 	$(function (){
+		let openMenu = document.getElementById('openMenu');
+		let openMenuLocation = document.getElementById('openMenu').style.marginLeft;
+			$('#openMenu').click(function() {
+				
+				if (document.getElementById('openMenu').style.marginLeft!='50%') {
+					document.getElementById("arrowPickDiv").innerHTML = '<i style="font-size: 70px;" class="fa fa-caret-right arrowPick" aria-hidden="true"></i>'; 
+					openMenu.animate([
+					  {marginLeft : "98%"},
+					  {marginLeft : "50%"}
+					], {
+					  duration: 1000,
+					  iteration: 2,
+					  delay: 100,
+					});
+					function getLocateOpenMenuLeft(){
+					let openMenuLocation = document.getElementById('openMenu').style.marginLeft;
+			   		document.getElementById('openMenu').style.marginLeft = '50%';
+			   		
+			   		console.log(openMenuLocation);
+			    }
+			    setTimeout(getLocateOpenMenuLeft, 1000);
+				}
+				else{
+					document.getElementById("arrowPickDiv").innerHTML = '<i style="font-size: 70px;" class="fa fa-caret-left arrowPick" aria-hidden="true"></i>';
+					openMenu.animate([
+					  {marginLeft : "50%"},
+					  {marginLeft : "98%"}
+					], {
+					  duration: 1000,
+					  iteration: 2,
+					  delay: 100,
+					});
+					function getLocateOpenMenuRight(){
+					let openMenuLocation = document.getElementById('openMenu').style.marginLeft;
+			   		document.getElementById('openMenu').style.marginLeft = '98%';
+			   		
+			   		console.log(openMenuLocation);
+			    }
+			    setTimeout(getLocateOpenMenuRight, 1000);
+				}
+				
+			});
+			
+		});
+
+</script>
+
+<script>
+	$(function (){
 		let div = document.getElementById('site_title_image');
 		let style = getComputedStyle(document.querySelector('#site_title_image'));
 		let divInfo = document.getElementById('site_title_info');
@@ -219,10 +268,15 @@
 	
 </head>
 <body style="position: relative;">
+	<div id="openMenu">
+		<div id="arrowPickDiv">
+			<i style="font-size: 70px;" class="fa fa-caret-left arrowPick" aria-hidden="true"></i>
+		</div>
+	</div>
 	<div id="site_title_div">
 		<div id="site_title">
 			<div id="site_title_info">
-
+				
 			</div>
 			<div id="site_title_image">
 

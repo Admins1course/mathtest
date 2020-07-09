@@ -1,3 +1,38 @@
+#openMenu{
+	position: fixed;
+	border: 1px solid black;
+	height: 100%;
+	width: 200%;
+	margin-left: 98%;
+	top: 50%;
+	transform: translateY(-50%);
+	background-color: black;
+	cursor: pointer;
+	z-index: 100;
+}
+#openMenu:hover{
+	margin-left: 97%;
+}
+@keyframes pulsatearrowPickDiv{10%{margin-left: -25px}20%{margin-left: -15px}}
+#arrowPickDiv{
+	border-radius: 10px;
+	position: fixed;
+	width: 100px;
+	height: 200px;
+	background-color: orange;
+	top: 50%;
+	transform: translateY(-50%);
+	margin-left: -15px;
+	-webkit-animation: pulsatearrowPickDiv 1s linear infinite;
+    animation: pulsatearrowPickDiv 3s linear infinite;
+}
+.arrowPick{
+
+	position: fixed;
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: 70px;
+}
 #site_title_div{
 	width: 100%;
 	height: 500px;
