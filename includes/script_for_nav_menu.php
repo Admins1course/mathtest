@@ -5,7 +5,7 @@
 		});
 	});
 	$('.open_notifications').click( function() {
-		$(this).siblings(".notifications_body").slideToggle(500);
+		$(this).siblings(".notifications_body").stop().slideToggle(500);
 		return false;
 	});
 	//$(document).on("mousedown touchstart",function(e){
@@ -17,7 +17,6 @@
 	</script>
 	<script type="text/javascript">
 	$(document).ready(function(){
-		
 		$('.exit_menu').click(function(){
 			$('.exit_menu_body').stop().slideToggle(500);
 		});

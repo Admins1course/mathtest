@@ -1,4 +1,18 @@
 <?php if($_SESSION['data-user']):?>
+	<script>
+		$(document).ready(function(){
+			$('.dots').click( function(e) {
+				$(this).siblings(".FriendsMenuDiv").stop().slideToggle(500);
+				return false;
+			});
+			$(document).mouseup(function (e) {
+			    let dotDiv =$('.dots');
+			    if ($('.FriendsMenuDiv').has(e.target).length === 0){
+        			$(".FriendsMenuDiv").stop().hide(500);
+    			}
+			});
+		})
+	</script>
 	<div class="friends_bar">
 		<p>Друзья</p>
 	</div>
@@ -17,7 +31,36 @@
 							
 						</div>
 						<div class="friends_names">
-							<li id="userId<?=$friends[$i]['id_Friend']?>"><?=$friends[$i]['name']?> <?=$friends[$i]['surname']?></li>	
+							<li id="userId<?=$friends[$i]['id_Friend']?>"> 
+								<div class="friend_name">
+									<?=$friends[$i]['name']?>
+								</div>
+								<div class="friend_surname">
+									<?=$friends[$i]['surname']?>
+								</div>
+								<div class="dots">
+									<i class="fa fa-ellipsis-v dotsHover" aria-hidden="true"></i>
+								</div>
+								<div class="FriendsMenuDiv">
+									<div class="FriendsMenuDivAll">
+										<div class="FriendsMenuDivElements">
+											<div class="FriendsMenuElementsText">
+												
+											</div>
+										</div>
+										<div class="FriendsMenuDivElements">
+											<div class="FriendsMenuElementsText">
+												
+											</div>
+										</div>
+										<div class="FriendsMenuDivElements">
+											<div class="FriendsMenuElementsText">
+												
+											</div>
+										</div>
+									</div>
+								</div>
+							</li>	
 						</div>
 					</div>
 					

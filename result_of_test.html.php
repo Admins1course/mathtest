@@ -31,33 +31,33 @@
 	<?php endif;?>
 	<?php include 'includes/script_for_nav_menu.php';?>
 	<script type='text/javascript'>
+
 	$(function(){
 	    let hg=$('body').height();
-	    let main=$('#main_content').height();
-	    console.log($('#main_content').height());
-	    hg=hg+750+'px';
+	    let shg= screen.height;
+	    let documenthg = $(document).height();
+
+	    hg=documenthg+shg+'px';
 	    $('body').height(hg);
+
 	});
 	</script>
 	<script type='text/javascript'>
 		$(document).ready(function(){
 			$('#result').click(function(){
+				console.log($('#tasks').height());
 				$('#tasks').stop().slideToggle();
+				console.log($('#tasks').height());
 				bodyHeight();
 			})
 		})
 	function bodyHeight(){
 	    let hg=$('body').height();
-	    let main=$('#main_content').height();
-	    let tasks=$('#tasks').height();
-	    let normal = 1490+'px';
-	    console.log($('#tasks').height());
-	    if($('body').height()<2000){
-	    		hg=hg+600+'px';
-	    		$('body').height(hg);
-	    }
-	    else{
-	    	$('body').height(normal);
+	    let main=1200;
+	     let shg= screen.height;
+	    let documenthg = $(document).height();
+	    if ($('body').height()<=shg+main) {
+	    	$('body').height(hg+shg);
 	    }
 	};
 	</script>

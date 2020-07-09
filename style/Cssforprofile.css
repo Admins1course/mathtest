@@ -10,7 +10,7 @@
 	border: 1px solid orange;
 	background-color: white;
 	background-size: contain;
-
+	background-image: url(img/profileBacground.jpg);
 }
 #profile_title_div{
 	width: 100%;

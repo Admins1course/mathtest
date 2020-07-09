@@ -31,8 +31,11 @@
     <script type='text/javascript'>
 	$(function (){
 	    var hg=$('body').height();
-	    hg=hg+750+'px';
+	    var shg= screen.height;
+	    hg=hg+shg+750+'px';
 	    $('body').height(hg);
+	    console.log(hg);
+	    console.log(shg);
 	});
 	</script>
 	<script src="js/load_avatars.js?<?=time();?>"></script>
