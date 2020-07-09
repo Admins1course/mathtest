@@ -151,7 +151,7 @@
 			console.log(num1);
 			console.log(divInfo1);
 			divInfo1.animate([
-			  {top: "-510px"},
+			  {top: "-520px"},
 			  {top: "0px"}
 			], {
 			  duration: 500,
@@ -164,7 +164,7 @@
 
 		   }
 		   divInfo2.animate([
-			  {top: "510px"},
+			  {top: "520px"},
 			  {top: "0px"}
 			], {
 			  duration: 500,
@@ -177,7 +177,7 @@
 
 		   }
 		   divInfo3.animate([
-			  {top: "-510px"},
+			  {top: "-520px"},
 			  {top: "0px"}
 			], {
 			  duration: 500,

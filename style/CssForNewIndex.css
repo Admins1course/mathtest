@@ -177,7 +177,7 @@
 #SecondInfoDivTitle{
 	width: 100%;
 	height: 600px;
-	border: 1px solid red;
+	
 	margin-top: 30px;
 }
 #SecondInfoDiv{
@@ -189,15 +189,16 @@
 }
 #SecondInfoDivElements{
 	width: 1250px;
-	height: 500px;
+	height: 502px;
 	overflow: hidden;
-	border: 1px solid red;
+
 }
 .SecondInfoDivElementsTitle{
 	width: 390px;
 	height: 500px;
 	margin-left: 18.5px;
 	float: left;
+	
 
 }
 .SecondInfoDivElementsDiv{
@@ -205,9 +206,10 @@
 	height: 500px;
 	border: 1px solid red;
 	position: relative;
+	box-shadow:7px 9px 10px 0px rgba(44, 48, 60, 0.42);
 }
 #FirstInfoDivElement{
-	top: -510px;
+	top: -520px;
 }
 .Info{
 	width: 200px;
@@ -216,10 +218,10 @@
 	border: 1px solid red;
 }
 #SecondInfoDivElement{
-	top: 510px;
+	top: 520px;
 }
 #ThirdInfoDivElement{
-	top: -510px;
+	top: -520px;
 }
 
 
@@ -228,7 +230,7 @@
 #ThirdInfoDivTitle{
 	width: 100%;
 	height: 600px;
-	border: 1px solid red;
+	
 	margin-top: 30px;
 	overflow: hidden;
 }
@@ -275,6 +277,7 @@
 	width: 1280px;
 	height: 600px;
 	overflow: hidden;
+	
 }
 #ThirdInfoLeftDivTitle{
 	position: relative;
@@ -284,6 +287,7 @@
 	margin-top: 50px;
 	float: left;
 	right: 670px;
+	box-shadow:7px 9px 10px 0px rgba(44, 48, 60, 0.42);
 }
 
 #ThirdInfoRightDivTitle{
@@ -294,6 +298,8 @@
 	margin-top: 50px;
 	margin-left: 650px;
 	left: 670px;
+	box-shadow:7px 9px 10px 0px rgba(44, 48, 60, 0.42);
+	
 }
 
 
