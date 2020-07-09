@@ -47,6 +47,7 @@ if ($is_login){
 
 		if (strpos($mime, 'image') === false){
 			echo json_encode(['errorUpload'=>'Можно загружать только изображения.']);
+			exit();
 		}
 		
 		$limitBytes  = 1024 * 1024 * 5;

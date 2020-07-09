@@ -34,6 +34,7 @@ $(document).ready(function(){
 			sum+=value;
 		});
 		$('[type="range"]').attr('max',sum);
+		$('output').html(sum);
 		let label_data='';
 		for (i=0;i<=10;i++){
 			label_data+='<option value="'+((sum/10.0)*i).toFixed(2)+'" label="'+i*10+'%">'

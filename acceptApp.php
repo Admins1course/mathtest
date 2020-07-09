@@ -25,8 +25,8 @@ if ($_POST){
 				$sql="UPDATE notifications
 						SET _unread=0
 						WHERE id_User=:idUser AND add_friends=:id";
-				$pdo->prepare($sql)->execute(['id'=>$_SESSION['data-user']['id'],
-											'idUser'=>$_SESSION['data-user']['id']]);
+				$pdo->prepare($sql)->execute(['id'=>$_POST['id'],
+											  'idUser'=>$_SESSION['data-user']['id']]);
 				$pdo->commit();
 				echo json_encode(['answer'=>'success']);
 			}

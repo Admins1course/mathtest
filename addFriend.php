@@ -7,7 +7,7 @@ if ($is_login){
 			if(preg_match("/[\D]/",$_POST['id_Friend'])){
 				throw new Exception();
 			}
-			if(preg_match("/[^A-Za-zА-Яа-яЁё0-9_]/u",$_POST['message'])&&strpos($_POST['message'],'хочет добавить вас в друзья.')){
+			if(preg_match("/[^A-Za-zА-Яа-яЁё0-9_]/u",$_POST['message'])&&!strpos($_POST['message'],'хочет добавить вас в друзья.')){
 				throw new Exception();
 			}
 		}

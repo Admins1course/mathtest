@@ -82,21 +82,15 @@
 	<script>
 		$(document).ready(function($) {
 			$('.popup-open').click(function() {
-				$('.popup-fade').fadeIn(0);
+				if($('form .task:first').length) $('.popup-fade').fadeIn(0);
+				else alert('Вы не создали задание');
 				return false;
 			});	
 			
 			$('.form_btn_close').click(function() {
 				$(this).parents('.popup-fade').fadeOut(0);
 				return false;
-			});		
-		 
-			/*$(document).keydown(function(e) {
-				if (e.keyCode === 27) {
-					e.stopPropagation();
-					$('.popup-fade').fadeOut(0);
-				}
-			});*/
+			});	
 			
 			document.getElementById('nameTest').addEventListener('click',fadePopup);
 			function fadePopup(e) {
@@ -315,10 +309,10 @@
 					<div id="nameTest" class="popup-fade">
 						<div class="popup">
 							<p class="popup_text">Введите название теста</p>
-							<input type="text" class="input_text_popup" onkeyup="nameControl(this)" onchange="nameControl(this)">
-							<p class="popup_text">Выберите дисциплину (и, если нужно, раздел дисциплины)<p>
+							<input type="text" class="input_text_popup" onkeyup="nameControl(this)" onchange="nameControl(this)" name="testName">
+							<p class="popup_text">Выберите дисциплину (и, если нужно, раздел дисциплины)</p>
 							<select name="subject" id="subjects" class="popup_select" onchange="showSections(this)">
-								<option disabled selected value="Выберите дисциплину" class="option_subject popup_text ">Выберите дисциплину</option>
+								<option disabled selected value="" class="option_subject popup_text ">Выберите дисциплину</option>
 								<?php 
 								$sql="SELECT `id_subject`,`subject` from `subjects`";
 								$result=$pdo->query($sql);
@@ -329,7 +323,7 @@
 								<?php endfor;?>
 							</select>
 							<select name="section" id="sections" class="popup_select" style="display:none">
-								<option disabled selected value="Выберите раздел" class="option_section popup_text ">Выберите раздел</option>
+								<option disabled selected value="" class="option_section popup_text ">Выберите раздел</option>
 								<option class="option_section" ></option>
 							</select>
 							<p>Выберите минимальное значение баллов для получения каждой из оценки</p>

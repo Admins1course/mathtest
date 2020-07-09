@@ -48,7 +48,7 @@
 			for($i=0;$i<count($data['notif']);$i++){
 				if ($data['notif'][$i]['add_friends']):?>
 					<div class="notifications_bar">
-						<p class="text_notifications_bar"><?=htmlspecialchars($data['notif'][$i]['dateOfSend'])?> <?=htmlspecialchars($data['notif'][$i]['message'])?>.
+						<p class="text_notifications_bar"><?=htmlspecialchars($data['notif'][$i]['dateOfSend'])?> <?=htmlspecialchars($data['notif'][$i]['message'])?>
 						<?php if(!in_array($data['notif'][$i]['add_friends'],$data['friends'])):?>
 						</p>
 						<div class="button_friend">

@@ -46,7 +46,7 @@
 		try{
 			$pdo->beginTransaction();	
 			//узнаем количество существующих у автора тестов
-			$query="SELECT MAX(idTest) FROM tests WHERE idAuthor=".$_SESSION['data-user']['id'];
+			$query="SELECT MAX(id) FROM tests";
 			$count=$pdo->query($query);
 			$rows=$count->fetchAll();
 			$count=$rows[0][0];
@@ -113,6 +113,30 @@
 			*/
 			$numberTask=1;
 			$post=[];
+			if(isset($_POST['marks'])){
+				for($i=0;$i<count($_POST['marks'])){
+					if(preg_match("/[\D]/",$_POST['marks'][$i])){
+						header("Location: createtest.html.php");
+					}
+				}
+			}
+			if(isset($_POST['nameTask'])){
+				if(preg_match("/[^A-Za-zА-Яа-яЁё0-9_]/u",$_POST['nameTask'])){
+					header("Location: createtest.html.php");
+				}
+			}
+			if(isset($_POST['subject'])){
+				$sql="SELECT `subject` FROM `subjects`";
+				$result=$pdo->query($sql);
+				$result=$result->fetchAll(PDO::FETCH_ASSOC);
+				for($i=0;$i<count($result);$i++){
+					$result[$i]=$result[$i]['subject'];
+				}
+				if(!in_array($_POST['subject'],$result)){
+					header('Location: createtest.html.php');
+				}
+			}
+			else header('Location: createtest.html.php');
 			foreach ($_POST as $k1=>$v1){
 				$task_exist=0;
 				$answer_exist=0;
@@ -139,7 +163,9 @@
 						}
 					}
 					else if ($k2=="textarea_answer"){
-						$answer_exist=1;
+						if (exist_data($v2)){
+							$answer_exist=1;
+						}
 					}
 					else if (@$k2=='radio'&&@exist_data($v2)){
 						if (@exist_data($_POST[$k1]['text_answer'.$v2])){
@@ -154,9 +180,13 @@
 				}
 					
 				//4 блок: проверяем есть ли изображения
-				if (isset($_FILES[$k1])){
-					$file_exist=1;
-					echo "file_exist";
+				if (isset($_FILES[$k1]['tmp_name'])){
+					foreach($_FILES[$k1]['tmp_name'] as $k2=>$v2){
+						if(exist_data($v2['myPhoto'])){
+							$file_exist=1;
+							break;
+						}
+					}
 				}
 				//2-й проход для внесения задания в список, который будет отправлен в базу данных
 				if (($task_exist||$file_exist)&&$answer_exist&&$points_exist){
@@ -166,9 +196,10 @@
 					
 					if (!$db_flags['tests']){
 						$db_flags['tests']=1;
-						$sql="INSERT INTO tests(`idAuthor`,`idTest`,`taskName`,`dataRegistration`) VALUES (:idUser,:count,'new_task',NOW())";
+						$sql="INSERT INTO tests(`idAuthor`,`taskName`,`dataRegistration`) VALUES (:idUser,:nameTask,NOW())";
 						$result=$pdo->prepare($sql);
-						$result->execute(['idUser'=>$_SESSION['data-user']['id'],'count'=>$count]);
+						$result->execute(['idUser'=>$_SESSION['data-user']['id'],
+										  'nameTask'=>$_POST['nameTask']]);
 					}
 									
 					if ($task_exist||$file_exist){
@@ -196,7 +227,7 @@
 									  'idTest'=>$count,
 									  'numberTask'=>$numberTask,
 									  'points'=>$_POST[$k1]['points']]);
-					
+									  
 					foreach($_POST[$k1] as $k2=>$v2){
 						if ($k2=="input_answer"){
 							if (exist_data($v2)){
@@ -210,11 +241,14 @@
 						}
 						
 						else if ($k2=="textarea_answer"){
-							$sql="UPDATE answers SET textarea=1 
-									WHERE id_User=:idUser AND id_Test=:idTest AND id_Task=:numberTask";
-							$pdo->prepare($sql)->execute(['idUser'=>$_SESSION['data-user']['id'],
-														  'idTest'=>$count,
-														  'numberTask'=>$numberTask]);
+							if(exist_data($v2)){
+								$sql="UPDATE answers SET textarea=:data
+										WHERE id_User=:idUser AND id_Test=:idTest AND id_Task=:numberTask";
+								$pdo->prepare($sql)->execute(['data'=>trim($v2),
+															  'idUser'=>$_SESSION['data-user']['id'],
+															  'idTest'=>$count,
+															  'numberTask'=>$numberTask]);
+							}
 						}
 						
 						else if (strpos($k2,'text_answer')!==false){
@@ -290,9 +324,13 @@
 									unlink($dir.$file);
 								}
 							}
+						$idIcontest=1;
 						foreach($_FILES[$k1]['tmp_name'] as $k2=>$v2){
 							
 							$filePath  = $_FILES[$k1]['tmp_name'][$k2]['myPhoto'];
+							if($_FILES[$k1]['tmp_name'][$k2]['myPhoto']===''){
+								continue;
+							}
 							$errorCode = $_FILES[$k1]['error'][$k2]['myPhoto'];
 
 							if ($errorCode !== UPLOAD_ERR_OK || !is_uploaded_file($filePath)) {
@@ -334,7 +372,6 @@
 									$_FILES[$k1]['tmp_name'][$k2]['myPhoto'],
 									__DIR__ . DIRECTORY_SEPARATOR .'user-img'. DIRECTORY_SEPARATOR .$_SESSION['data-user']['id']. DIRECTORY_SEPARATOR .$count. DIRECTORY_SEPARATOR .$name.$format
 								)){
-									$idIcontest=str_replace('icontest',"",$k2);
 									$sql="INSERT INTO icontest VALUES(
 											:idUser,:idTest,:numberTask,:idIcontest,:myPhoto)";
 									$pdo->prepare($sql)->execute([
@@ -349,6 +386,7 @@
 									goto endOfCheck;
 								}
 							}
+							$idIcontest++;
 						}
 					}
 					$numberTask++;
@@ -365,6 +403,7 @@
 											  'mark_4'=>$_POST['marks'][3],
 											  'mark_5'=>$_POST['marks'][4],
 											  ]);
+				$sql="INSERT INTO "
 			}
 			$pdo->commit();
 			header('Location: createtest.html.php');
