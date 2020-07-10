@@ -32,7 +32,7 @@
 	$(function (){
 		let openMenu = document.getElementById('openMenu');
 		let openMenuLocation = document.getElementById('openMenu').style.marginLeft;
-			$('#arrowPickDiv').click(function() {
+			$('#arrowPickDiv, #NavMenuIndexSignInDivText').click(function() {
 				
 				if (document.getElementById('openMenu').style.marginLeft!='50%') {
 					document.getElementById("arrowPickDiv").innerHTML = '<i style="font-size: 70px;" class="fa fa-caret-right arrowPick" aria-hidden="true"></i>'; 
@@ -79,51 +79,61 @@
 
 <script>
 	$(function (){
+		let num2 = 1;
+	
+		   	
+	$(window).scroll(function(){
+	if($(window).scrollTop()>400){
+		if (num2==1) {
+			num2=0;
 		let div = document.getElementById('site_title_image');
-		let style = getComputedStyle(document.querySelector('#site_title_image'));
-		let divInfo = document.getElementById('site_title_info');
-		let styleInfo = getComputedStyle(document.querySelector('#site_title_info'));
-		   div.animate([
-			  {left: "1200px"},
-			  {left: "800px"}
-			], {
-			  duration: 500,
-			  iteration: 2,
-			  delay: 1000,
-			});
+			let style = getComputedStyle(document.querySelector('#site_title_image'));
+			let divInfo = document.getElementById('site_title_info');
+			let styleInfo = getComputedStyle(document.querySelector('#site_title_info'));
+			   div.animate([
+				  {left: "1200px"},
+				  {left: "800px"}
+				], {
+				  duration: 500,
+				  iteration: 2,
+				  delay: 1000,
+				});
 
-	   function getLocate(){
-	   		document.getElementById('site_title_image').style.left = '800px';
-	   }
+		   function getLocate(){
+		   		document.getElementById('site_title_image').style.left = '800px';
+		   }
 
-	   setTimeout(getLocate, 1500);
+		   setTimeout(getLocate, 1500);
 
-	   function animateInfoDiv(){
-		   	divInfo.animate([
-			  {left: "-680px"},
-			  {left: "50px"}
-			], {
-			  duration: 500,
-			  iteration: 2,
-			  delay: 1000,
-			});
+		   function animateInfoDiv(){
+			   	divInfo.animate([
+				  {left: "-680px"},
+				  {left: "50px"}
+				], {
+				  duration: 500,
+				  iteration: 2,
+				  delay: 1000,
+				});
+			}
+
+		   setTimeout(animateInfoDiv, 500);
+
+		   function getLocateInfoDiv(){
+		   		document.getElementById('site_title_info').style.left = '50px';
+		   		console.log(divInfo);
+		   }
+		   setTimeout(getLocateInfoDiv, 2000);
 		}
-
-	   setTimeout(animateInfoDiv, 500);
-
-	   function getLocateInfoDiv(){
-	   		document.getElementById('site_title_info').style.left = '50px';
-	   		console.log(divInfo);
-	   }
-	   setTimeout(getLocateInfoDiv, 2000);
-	   })
-
-
+		//if($(window).scrollTop()<300){
+		//$('.FirstInfoElementsDiv').slideUp(2000)
+		//}
+	}
+	})})
 
 </script>
 <script>
 	$(window).scroll(function(){
-	if($(window).scrollTop()>400){
+	if($(window).scrollTop()>1000){
 	$('.FirstInfoElementsDiv:eq(0)').slideDown(500, function(){
 		$(this).next().slideDown(500, arguments.callee);
 	});
@@ -145,7 +155,7 @@
 		}
 	
 	$(window).scroll(function(){
-	if($(window).scrollTop()>900){
+	if($(window).scrollTop()>1600){
 		if (num1==1) {
 			num1=0;
 			console.log(num1);
@@ -268,6 +278,25 @@
 	
 </head>
 <body style="position: relative; background-color: white;">
+	<div id="NavMenuIndexDiv">
+		<div id="NavMenuIndexDivTitle">
+			<div id="NavMenuIndexInfo">
+				
+			</div>
+			<div id="NavMenuIndexSignIn">
+				<div id="NavMenuIndexSignInDivText">
+					<p id="NavMenuIndexSignInText">
+						Меню <i class="fa fa-bars" aria-hidden="true"></i>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="BanerDivTitle">
+		<div id="BanerDiv">
+			
+		</div>
+	</div>
 	<div id="openMenu">
 		<div id="arrowPickDiv">
 			<i style="font-size: 70px;" class="fa fa-caret-left arrowPick" aria-hidden="true"></i>

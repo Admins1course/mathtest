@@ -1,3 +1,73 @@
+#NavMenuIndexDiv{
+	width: 100%;
+	height: 70px;
+
+	
+}
+#NavMenuIndexDivTitle{
+	position: fixed;
+	width: 1200px;
+	height: 70px;
+	border-radius: 20px;
+	background-image: url('img/MenuIndexBackground.png');
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 100;
+}
+#NavMenuIndexInfo{
+	width: 800px;
+	border: 1px solid orange;
+	height: 60px;
+	margin-top: 4px;
+	margin-left: 20px;
+	border-radius: 20px;
+	float: left;
+}
+#NavMenuIndexSignIn{
+	width: 300px;
+	float: right;
+	border: 1px solid orange;
+	height: 60px;
+	margin-top: 4px;
+	border-radius: 20px;
+	margin-right: 20px;
+
+}
+#NavMenuIndexSignInDivText{
+	width: 100%
+	height:60px;
+	text-align: center;
+}
+#NavMenuIndexSignInText{
+	margin-top: 13px;
+	font-size: 30px;
+	color: orange;
+	font-weight: 500;
+	cursor: pointer;
+}
+#NavMenuIndexSignInText:hover{
+	color: white;
+}
+
+
+#BanerDivTitle{
+	margin-top: 30px;
+	width: 100%;
+	height: 500px;
+	
+}
+#BanerDiv{
+	width: 1200px;
+	height: 500px;
+	border: 1px solid orange;
+	margin: 0 auto;
+	background-image: url('img/MainBanerIndex1.png');
+}
+
+
+
+
+
 #openMenu{
 	position: fixed;
 	border: 1px solid black;
@@ -130,7 +200,7 @@
 	position: relative;
 	width: 300px;
 	height: 300px;
-	border: 1px solid red;
+	border: 1px solid orange;
 	margin-top: 50px;
 	left: 1200px;
 	background-color: white;
@@ -141,7 +211,7 @@
 	width: 670px;
 	height: 300px;
 	margin-top: 50px;
-	border: 1px solid red;
+	border: 1px solid orange;
 	left: -680px;
 	float: left;
 	background-color: white;
@@ -181,13 +251,13 @@
 	width: 380px;
 	margin: 25px auto;
 	height: 450px;
-	border: 1px solid red;
+	border: 1px solid orange;
 }
 .FirstInfoElementsImg{
 	width: 150px;
 	height: 150px;
 	margin: 10px auto;
-	border: 1px solid red;
+	border: 1px solid orange;
 	border-radius: 50%;
 	background-size: cover;
 }
@@ -202,12 +272,12 @@
 	width: 350px;
 	margin: 0 auto;
 	height: 40px;
-	border: 1px solid red;
+	border: 1px solid orange;
 }
 .FirstInfoElementsInfo{
 	width: 350px;
 	margin: 10px auto;
-	border: 1px solid red;
+	border: 1px solid orange;
 	height: 215px;
 }
 #SecondInfoDivTitle{
@@ -251,18 +321,21 @@
 }
 #FirstInfoDivElement{
 	top: -520px;
+	border: 1px solid orange;
 }
 .Info{
 	width: 200px;
 	height: 200px;
 	margin: 0 auto;
-	border: 1px solid red;
+	border: 1px solid orange;
 }
 #SecondInfoDivElement{
 	top: 520px;
+	border: 1px solid orange;
 }
 #ThirdInfoDivElement{
 	top: -520px;
+	border: 1px solid orange;
 }
 
 
@@ -330,6 +403,7 @@
 	float: left;
 	right: 670px;
 	box-shadow:7px 9px 10px 0px rgba(44, 48, 60, 0.42);
+	border: 1px solid orange;
 }
 
 #ThirdInfoRightDivTitle{
@@ -341,6 +415,7 @@
 	margin-left: 650px;
 	left: 670px;
 	box-shadow:7px 9px 10px 0px rgba(44, 48, 60, 0.42);
+	border: 1px solid orange;
 
 }
 
