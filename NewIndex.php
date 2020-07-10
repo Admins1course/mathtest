@@ -267,7 +267,7 @@
 
 	
 </head>
-<body style="position: relative;">
+<body style="position: relative; background-image: url('style/img/BackgroundIndex2.png');">
 	<div id="openMenu">
 		<div id="arrowPickDiv">
 			<i style="font-size: 70px;" class="fa fa-caret-left arrowPick" aria-hidden="true"></i>
@@ -279,13 +279,31 @@
 						
 					</div>
 					<div class="MenuDivContainerElementsDiv">
-						
+						<div class="MenuDivContainerElementsTextDiv">
+							<div class="MenuDivContainerElementsText">
+								<a href="" class="MenuElementsText">
+									
+								</a>
+							</div>
+						</div>
 					</div>
 					<div class="MenuDivContainerElementsDiv">
-						
+						<div class="MenuDivContainerElementsTextDiv">
+							<div class="MenuDivContainerElementsText">
+								<a href="users_data.html.php" class="MenuElementsText">
+									Регистрация
+								</a>
+							</div>
+						</div>
 					</div>
 					<div class="MenuDivContainerElementsDiv">
-						
+						<div class="MenuDivContainerElementsTextDiv">
+							<div class="MenuDivContainerElementsText">
+								<a href="nevEnter.html.php" class="MenuElementsText">
+									Войти
+								</a>
+							</div>
+						</div>
 					</div>
 				</div>
 				
