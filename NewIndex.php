@@ -222,7 +222,7 @@
 				});
 				divInfoleft.animate([
 				  {right: "670px"},
-				  {right: "0px"}
+				  {right: "-40px"}
 				], {
 				  duration: 1500,
 				  iteration: 2,
@@ -230,7 +230,7 @@
 				});
 				divInforight.animate([
 				  {left: "670px"},
-				  {left: "0px"}
+				  {left: "-40px"}
 				], {
 				  duration: 1500,
 				  iteration: 2,
@@ -240,8 +240,8 @@
 		 	function getLocatecircul(){
 		   		document.getElementById('startAnimation').style.top = '-550px';
 		   		document.getElementById('startAnimation').style.display = 'none';
-		   		document.getElementById('ThirdInfoLeftDivTitle').style.right = '0px';
-		   		document.getElementById('ThirdInfoRightDivTitle').style.left = '0px';
+		   		document.getElementById('ThirdInfoLeftDivTitle').style.right = '-40px';
+		   		document.getElementById('ThirdInfoRightDivTitle').style.left = '-40px';
 
 		   }
 		   setTimeout(getLocatetext, 1000);
@@ -267,7 +267,7 @@
 
 	
 </head>
-<body style="position: relative; background-image: url('style/img/BackgroundIndex2.png');">
+<body style="position: relative; background-color: white;">
 	<div id="openMenu">
 		<div id="arrowPickDiv">
 			<i style="font-size: 70px;" class="fa fa-caret-left arrowPick" aria-hidden="true"></i>

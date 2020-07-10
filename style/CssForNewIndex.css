@@ -123,6 +123,7 @@
 	margin: 50px auto;
 	overflow: hidden;
 	height: auto;
+	background-image: url('img/MenuIndexBackground.png');
 	/*background-image: url('img/FirstInfoBlockIndex1.png');*/
 }
 #site_title_image{
@@ -160,11 +161,13 @@
 #FirstInfoElementsDiv{
 	width: 100%;
 	height: 100%;
+	background-image: url('img/MenuIndexBackground.png');
+	border-radius: 20px;
 	
 	
 }
 .FirstInfoElementsDiv{
-	background-color: white;
+	/*background-image: url('img/BackgroundIndex2.png');*/
 	float: left;
 	display: none;
 	width: 400px;
@@ -174,6 +177,7 @@
 	
 }
 .FirstInfoElements{
+	background-color: white;
 	width: 380px;
 	margin: 25px auto;
 	height: 450px;
@@ -223,21 +227,25 @@
 	width: 1250px;
 	height: 502px;
 	overflow: hidden;
+	background-image: url('img/MenuIndexBackground.png');
+	border-radius: 20px;
 
 }
 .SecondInfoDivElementsTitle{
 
 	width: 390px;
-	height: 500px;
+	height: 450px;
 	margin-left: 18.5px;
 	float: left;
+	margin-top: 25px;
+	
 	
 
 }
 .SecondInfoDivElementsDiv{
 	width: 390px;
 	background-color: white;
-	height: 500px;
+	height: 450px;
 	position: relative;
 	box-shadow:7px 9px 10px 0px rgba(44, 48, 60, 0.42);
 }
@@ -268,6 +276,8 @@
 	overflow: hidden;
 }
 #ThirdInfoAllDivTitle{
+	background-image: url('img/MenuIndexBackground.png');
+	border-radius: 20px;
 	width: 1200px;
 	height: 600px;
 	margin: 0 auto;
@@ -308,6 +318,7 @@
 	width: 1280px;
 	height: 600px;
 	overflow: hidden;
+
 	
 }
 #ThirdInfoLeftDivTitle{
