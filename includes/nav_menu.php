@@ -37,7 +37,7 @@
 								</div>
 							</div>
 							<div>
-							<a href="allNotifications.html.php">Посмотреть прочтенные оповещения</a>
+								<a style="padding: 0px; margin: 10px;" class="ShowAllNotifications" href="allNotifications.html.php">Посмотреть прочтенные оповещения</a>
 							</div>
 						</div>
 					

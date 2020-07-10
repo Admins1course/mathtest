@@ -40,7 +40,7 @@ function notifications(){
 					}
 					htmlMessage+='</div></div>';
 				}
-				htmlMessage+='<a href="allNotifications.html.php">Посмотреть прочтенные оповещения</a>';
+				htmlMessage+='<a style="padding: 0px; margin: 10px;" class="ShowAllNotifications" href="allNotifications.html.php">Посмотреть прочтенные оповещения</a>';
 				$('.notifications_body').html(htmlMessage);
 				clearNot=false;
 			}
@@ -56,7 +56,7 @@ $(document).ready(function(){$('#notif').click(function(){
 			htmlMessage+='<div class="notifications_body_text">';
 			htmlMessage+='<p class="text_notification_body">Оповещения</p>';
 			htmlMessage+='</div><div class="notifications_body_title_element_bar">'
-			htmlMessage+='</div></div></div><a href="allNotifications.html.php">Посмотреть прочтенные оповещения</a>';
+			htmlMessage+='</div></div></div><a style="padding: 0px; margin: 10px;" class="ShowAllNotifications" href="allNotifications.html.php">Посмотреть прочтенные оповещения</a>';
 			$('.notifications_body').html(htmlMessage);
 			unreadNot();
 		}
