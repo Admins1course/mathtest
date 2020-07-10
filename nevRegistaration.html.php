@@ -1,4 +1,4 @@
-<?php include 'users_data_control.php';?>
+<?php include 'handlers/users_data_control.php';?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,21 +31,21 @@
 		
 	<div class="container">
 		<img class="avatar" src="style/img/regavatar.png" width="100" height="100" alt="">
-		<form action="registration_control.php" method="post">
+		<form action="handlers/registration_control.php" method="post">
 			<div class="dws-input">
 				<img class="userpng" src="style/img/user.png" width="20" height="20" alt="">
-				<input type="text" id="login" name="login" placeholder="Введите логин" >
+				<input type="text" id="login" name="login" placeholder="Введите логин" maxlength="30" required>
 				<p id="login_exist" style="display:none">Данный логин уже существует</p>
 				<p id="p_login" style="display:none">Разрешено использовать только символы английского алфавита и цифры</p>
 			</div>
 			<div class="dws-input">
 				<img class="lockpng" src="style/img/lock.png" width="20" height="20" alt="">
-				<input type="password" name="password_first" placeholder="Введите пароль">
+				<input type="password" name="password_first" placeholder="Введите пароль" maxlength="30" required>
 				<p id="p_password_first" style="display:none">Разрешено использовать только символы английского алфавита и цифры</p>
 			</div>
 			<div class="dws-input">
 				<img class="lockpng" src="style/img/lock.png" width="20" height="20" alt="">
-				<input type="password" name="password_second" placeholder="Повторите пароль">
+				<input type="password" name="password_second" placeholder="Повторите пароль" maxlength="30" required>
 				<p id="is_wrong_password" style="display:none">Пароли не совпадают</p>
 				<p id="p_password_second" style="display:none">Разрешено использовать только символы английского алфавита и цифры</p>
 			</div>

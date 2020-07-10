@@ -1,8 +1,10 @@
 <?php require_once 'includes/db.inc.php';
 	  require_once 'includes/incl_session.inc.php';
-	  require_once 'includes/checkSession.inc.php';
-	  include_once 'includes/getUserImage.inc.php';
-	  require_once 'includes/getFriends.inc.php';?>
+	  require_once 'includes/getUserImage.inc.php';
+	  require_once 'includes/getFriends.inc.php';
+	  if ($path){
+	    require_once 'includes/load_user_image.inc.php';
+	  }?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,18 +18,11 @@
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-	<?php include 'includes/script_for_nav_menu.php';?>	
-	<?php
-	if ($path){
-	    include_once 'includes/load_user_image.inc.php';
-	}
-	?>
-	<?php if ($is_login):?>
-		<script src="js/notifs.js?<?=time();?>"></script>
-	<?php endif;?>
-	<?php include 'includes/searchPeople.js.inc.php';
-		  include 'includes/friendsControl.js.inc.php';?>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>	
+	<script src="js/notifs.js?<?=time();?>"></script>
+	<?php require_once 'includes/script_for_nav_menu.php';
+		  require_once 'includes/searchPeople.js.inc.php';
+		  require_once 'includes/friendsControl.js.inc.php';?>
 	<script type='text/javascript'>
 	$(function(){
 	    let hg=$('body').height();
@@ -63,7 +58,7 @@
 	<script src="js/create_invite_window_script.js?<?=time();?>"></script>
 </head>
 <body >
-	<?php include 'includes/create_invite_window.php'?>
+	<?php require_once 'includes/create_invite_window.php'?>
 	<div id="page">
 	</div>
 	
@@ -99,11 +94,11 @@
 			</div>
 			<div id="main_content" style="height: auto; max-height: 600px; overflow-y:scroll; ">
 			<?php 
-			$sql='SELECT idTest,taskName FROM tests WHERE idAuthor='.$_SESSION['data-user']['id'];
+			$sql='SELECT id,taskName FROM tests WHERE idAuthor='.$_SESSION['data-user']['id'];
 			$result=$pdo->query($sql);
 			$tests=$result->fetchAll(PDO::FETCH_ASSOC);
 			for($i=0;$i<count($tests);$i++):?>
-			<a href="book.html.php?idUser=<?=$_SESSION['data-user']['id']?>&idTest=<?=$tests[$i]['idTest']?>">
+			<a href="book.html.php?idTest=<?=$tests[$i]['id']?>">
 				<div class="test_href" style="background: linear-gradient(0deg, rgba(255,145,0,1) 0%, rgba(255,255,255,0) 69%);">
 					<p>Название: <?=htmlspecialchars($tests[$i]['taskName']);?></p>
 					<p>Автор: <?=htmlspecialchars($_SESSION['data-user']['name']);?> <?=htmlspecialchars($_SESSION['data-user']['surname'])?></p>
@@ -124,7 +119,7 @@
 				<div id="left_block" class="left_block">
 					<?php require_once "includes/friendsList.inc.php";?>
 				</div>
-	<?php include 'includes/nav_menu.php';?>
+	<?php require_once 'includes/nav_menu.php';?>
 		
 </body>
 <div class="footerMain">

@@ -1,8 +1,10 @@
 <?php require_once 'includes/db.inc.php';
 	  require_once 'includes/incl_session.inc.php';
-	  require_once 'includes/checkSession.inc.php';
-	  include_once 'includes/getUserImage.inc.php';
-	  require_once 'includes/getFriends.inc.php';?>
+	  require_once 'includes/getUserImage.inc.php';
+	  require_once 'includes/getFriends.inc.php';
+	  if ($path){
+	    require_once 'includes/load_user_image.inc.php';
+	  }?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,21 +22,12 @@
 	<script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-	<?php
-	if ($path){
-	    include_once 'includes/load_user_image.inc.php';
-	}
-	?>
-	<?php if ($is_login):?>
 		<script src="js/notifs.js?<?=time();?>"></script>
-	<?php endif;?>
-	<?php include 'includes/searchPeople.js.inc.php';
-		  include 'includes/friendsControl.js.inc.php';?>
-	<?php include 'includes/script_for_nav_menu.php';?>
-	<?php if ($is_login):?>
+	<?php require_once 'includes/searchPeople.js.inc.php';
+		  require_once 'includes/friendsControl.js.inc.php';
+		  require_once 'includes/script_for_nav_menu.php';?>
 	<script src="js/load_avatars.js?<?=time();?>"></script>
 	<script src="js/create_invite_window_script.js?<?=time();?>"></script>
-	<?php endif;?>
 	<script>
 		function auto_grow(element) {
     		element.style.height = "40px";
@@ -240,15 +233,9 @@
 	</script>
 </head>
 <body  >
-	<?php if($is_login):
-	include 'includes/create_invite_window.php';
-	endif;?>
+	<?php require_once 'includes/create_invite_window.php';?>
 	<div id="page">
 		<div id="main_content"><!--  Основной див  сайта -->
-		<?php if(isset($_GET['dataUser'])&&($_GET['dataUser']==='1')){
-			echo "Ваши персональные данные защищены";
-		}?>
-		<?php if($is_login):?>
 			<div id="task_menu_div">
 				<div id="task_menu">
 					<div id="task_menu_open" title="Софийский собор">
@@ -257,7 +244,7 @@
 					
 				</div>
 			</div>
-			<form onsubmit="sendForm()" action="createtest_handler.php" method="post" enctype="multipart/form-data" >
+			<form onsubmit="sendForm()" action="handlers/createtest_handler.php" method="post" enctype="multipart/form-data" >
 				<div class="content_form">
 					<div id="form_handler">
 					<div class="arrow_div_task swipe_width" id="arrow-up" disabled style="display:none" onclick="swipeTask(this)">
@@ -560,7 +547,6 @@
 					<div id="task_menu_body" style="display: none;">
 					</div>
 			</div>
-		<?php endif;?>
 		</div>
 		
 	</div>
@@ -591,7 +577,6 @@
 		</div>
 			<div id="left_block_title"></div>
 			<div id="left_block" class="left_block"><!--  правый див  сайта -->
-			    <?php if ($is_login):?>
 					<div class="forNewFormulas" style="display:none">
 						$$
 							\newcommand{\tg}{\mathop{\rm tg}\nolimits}
@@ -1204,10 +1189,9 @@
 						<button class="btnpastepre" value="\vec{}">\(\vec a\)</button>
 						<button class="btnpastepre" value="\overline{}">\(\overline {abcx}\)</button>
 					</div>
-				<?php endif;?>
 			</div>
 		<!--  Выподающее меню -->
-		<?php include 'includes/nav_menu.php';?>
+		<?php require_once 'includes/nav_menu.php';?>
 </body>
 	<div id="footer"><!--  Футер либо подвал сайта -->
 		<div class="text">

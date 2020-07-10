@@ -517,4 +517,3 @@ function sendData(){
 	$('.text_fade').removeClass('text_fade');
 	testing($('form .task:first')).then(recursion).catch(addClassForTasksElements);
 }
-

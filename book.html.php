@@ -1,9 +1,11 @@
 <?php require_once "includes/db.inc.php";
 	  require_once 'includes/incl_session.inc.php';
-	  require_once "includes/checkSession.inc.php";
-	  require_once "book_control.php";
-	  include_once 'includes/getUserImage.inc.php';
-	  require_once 'includes/getFriends.inc.php';?>
+	  require_once "handlers/book_control.php";
+	  require_once 'includes/getUserImage.inc.php';
+	  require_once 'includes/getFriends.inc.php';
+	  if ($path){
+	    require_once 'includes/load_user_image.inc.php';
+	  }?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,18 +22,12 @@
 	</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-	<?php
-	if ($path){
-	    include_once 'includes/load_user_image.inc.php';
-	}
-	?>
-	<?php if ($is_login):?>
-		<script src="js/notifs.js?<?=time();?>"></script>
-	<?php endif;?>
-	<?php include 'includes/searchPeople.js.inc.php';
-	      include 'includes/friendsControl.js.inc.php';?>
-	<?php include 'includes/script_for_nav_menu.php';?>
-	<?php include 'includes/answers_of_user.js.inc.php';?>
+	<script src="js/notifs.js?<?=time();?>"></script>
+	<?php  
+	  require_once 'includes/searchPeople.js.inc.php';
+	  require_once 'includes/friendsControl.js.inc.php';
+	  require_once 'includes/script_for_nav_menu.php';
+	  require_once 'includes/answers_of_user.js.inc.php';?>
 	<script>
 		let $className;
 		$(document).ready(function(){
@@ -62,13 +58,11 @@
 	    $('body').height(hg);
 	});
 	</script>
-	<?php if($is_login):?>
 	<script src="js/load_avatars.js?<?=time();?>"></script>
 	<script src="js/create_invite_window_script.js?<?=time();?>"></script>
-	<?php endif;?>
 </head>
 <body >
-	<?php include 'includes/create_invite_window.php'?>
+	<?php require_once 'includes/create_invite_window.php'?>
 	<div id="page">
 		<div class="forNewFormulas" style="display:none">
 			$$
@@ -184,7 +178,7 @@
 		<div id="left_block" class="left_block">
 			<?php require_once "includes/friendsList.inc.php";?>
 		</div>
-		<?php include 'includes/nav_menu.php';?>
+		<?php require_once 'includes/nav_menu.php';?>
 	<div id="footer">
 		<div class="text">
 			2020

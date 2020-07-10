@@ -34,13 +34,13 @@
 			<div class="dws-input">
 				
 				<img class="userpng" src="style/img/user.png" width="20" height="20" alt="">
-				<input type="text" id="name" name="name" placeholder="Введите имя" maxlength="20">
+				<input type="text" id="name" name="name" placeholder="Введите имя" maxlength="30" required>
 				<p id="p_name" style="display:none">Разрешено использовать только символы русского и английского алфавита, цифры и знак подчеркивания</p>
 			</div>
 			<div class="dws-input">
 				
 				<img class="userpng" src="style/img/user.png" width="20" height="20" alt="">
-				<input type="text" id="surname" name="surname" placeholder="Введите фамилию" maxlength="20">
+				<input type="text" id="surname" name="surname" placeholder="Введите фамилию" maxlength="30" required>
 				<p id="p_surname" style="display:none">Разрешено использовать только символы русского и английского алфавита, цифры и знак подчеркивания</p>
 			</div>
 			<select name="root" id="select">

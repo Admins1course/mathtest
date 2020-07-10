@@ -162,8 +162,6 @@ $(document).ready(function () {
 						case 'success':break;
 						case 'serverError':alert('Произошла ошибка на сервере, приглашнение не отправлено');
 										   break;
-						case 'errorDataUser':alert('Данные вашего аккаунта не подтверждены');
-											 break;
 					}
 				}
 			});

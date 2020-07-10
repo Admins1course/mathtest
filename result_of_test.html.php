@@ -1,10 +1,12 @@
 <?php require_once 'includes/db.inc.php';
 	  require_once 'includes/incl_session.inc.php';
-	  require_once 'includes/checkSession.inc.php';
-	  require_once 'book_control.php';
-	  require_once 'result_of_test_handler.php';
-	  include_once 'includes/getUserImage.inc.php';
-	  require_once 'includes/getFriends.inc.php';?>
+	  require_once 'handlers/book_control.php';
+	  require_once 'handlers/result_of_test_handler.php';
+	  require_once 'includes/getUserImage.inc.php';
+	  require_once 'includes/getFriends.inc.php';
+	  if ($path){
+	    include_once 'includes/load_user_image.inc.php';
+	  }?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,17 +22,10 @@
 	</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-	<?php
-	if ($path){
-	    include_once 'includes/load_user_image.inc.php';
-	}
-	?>
-	<?php if ($is_login):?>
-		<script src="js/notifs.js?<?=time();?>"></script>
-	<?php endif;?>
-	<?php include 'includes/searchPeople.js.inc.php';
-	      include 'includes/friendsControl.js.inc.php';?>
-	<?php include 'includes/script_for_nav_menu.php';?>
+	<script src="js/notifs.js?<?=time();?>"></script>
+	<?php require_once 'includes/searchPeople.js.inc.php';
+	      require_once 'includes/friendsControl.js.inc.php';
+	      require_once 'includes/script_for_nav_menu.php';?>
 	<script type='text/javascript'>
 
 	$(function(){
@@ -67,7 +62,7 @@
 	<script src="js/create_invite_window_script.js?<?=time();?>"></script>
 </head>
 <body >
-	<?php include 'includes/create_invite_window.php'?>
+	<?php require_once 'includes/create_invite_window.php'?>
 	<div id="page">
 			<div class="forNewFormulas" style="display:none">
 			$$
@@ -98,7 +93,14 @@
 					if ($dataTest[$i]["answer"]["textarea"]!=0){?>
 						<div class="task textarea <?=$i?>">
 							<?php question($i,$dataTest[$i]);?>
-							<textarea class="answer" name="answers[task<?=$i?>]" onchange="registeringResponses()"></textarea>
+							<p
+								<?php if($right_answers[$i-1][0]):
+										echo 'style="background-color:green"';
+									else:
+										echo 'style="background-color:red"';
+									endif;?>>
+								<?=htmlspecialchars($_POST['answers']['task'.$i])?>
+							</p>
 							<p>Получено баллов за задание: <?=htmlspecialchars($right_answers[$i-1][1])?></p>
 						</div>
 					<?php } 
@@ -191,7 +193,7 @@
 		<div id="left_block" class="left_block">
 			<?php require_once "includes/friendsList.inc.php";?>
 		</div>
-		<?php include 'includes/nav_menu.php';?>
+		<?php require_once 'includes/nav_menu.php';?>
 	
 </body>
 <div class="footerMain">

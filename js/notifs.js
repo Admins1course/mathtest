@@ -3,16 +3,13 @@ var dataNotifications=0;
 var clearNot=true;
 function notifications(){
 	$.ajax({
-		url:document.location.origin+"/getNotifications.php",
+		url:document.location.origin+"/includes/getNotifications.php",
 		cache:false,
 		dataType:'json',
 		type:'POST',
 		error:function(data){console.log(data)},
 		success:function(data){
-			if (data['answer']=='errorDataUser'){
-				alert('Данные вашего аккаунта не подтверждены');
-			}
-			else if ((clearNot)||(data!==[])){
+			if ((clearNot)||(data!==[])){
 				dataNotifications=data['notif'];
 				if (data['notif'].length==0) return;
 				if (data['notif'].length>9) count="9+";
@@ -68,10 +65,11 @@ function unreadNot(){
 	dataNot={};
 	if (dataNotifications.length){
 		for (i=0;i<dataNotifications.length;i++){				
-			dataNot[String(i)]=dataNotifications[i];
+			dataNot[String(i)]=dataNotifications[i]['idNotif'];
 		}
+		console.log(dataNotifications);
 		$.ajax({
-			url:document.location.origin+"/unreadNotifications.php",
+			url:document.location.origin+"/includes/unreadNotifications.php",
 			cache:false,
 			type:'POST',
 			dataType:'json',
@@ -86,7 +84,7 @@ function unreadNot(){
 function acceptApp(element){
 	$idFriend=$(element).attr('id').replace('userId','');
 	$.ajax({
-		url:document.location.origin+"/acceptApp.php",
+		url:document.location.origin+"/includes/acceptApp.php",
 		cache:false,
 		type:'POST',
 		dataType:'json',
@@ -97,9 +95,6 @@ function acceptApp(element){
 				case 'success':
 					app="<p>Заявка принята</p>";
 					$(element).closest('.notifications_bar').html(app);
-					break;
-				case 'errorDataUser':
-					alert("Данные вашего аккаунта не подтверждены");
 					break;
 				case 'errorDataFriend':
 					alert("Невозможно добавить несуществующего пользователя");

@@ -1,8 +1,10 @@
 <?php require_once 'includes/db.inc.php';
 	  require_once 'includes/incl_session.inc.php';
-	  require_once 'includes/checkSession.inc.php';
-	  include_once 'includes/getUserImage.inc.php';
-	  require_once 'includes/getFriends.inc.php';?>
+	  require_once 'includes/getUserImage.inc.php';
+	  require_once 'includes/getFriends.inc.php';
+	  if ($path){
+	    require_once 'includes/load_user_image.inc.php';
+	  }?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,17 +19,10 @@
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-	<?php
-	if ($path){
-	    include_once 'includes/load_user_image.inc.php';
-	}
-	?>
-	<?php if ($is_login):?>
-		<script src="js/notifs.js?<?=time();?>"></script>
-	<?php endif;?>
-	<?php include 'includes/searchPeople.js.inc.php';
-	      include 'includes/friendsControl.js.inc.php';?>
-	<?php include 'includes/script_for_nav_menu.php';?>	
+	<script src="js/notifs.js?<?=time();?>"></script>
+	<?php require_once 'includes/searchPeople.js.inc.php';
+	      require_once 'includes/friendsControl.js.inc.php';
+		  require_once 'includes/script_for_nav_menu.php';?>	
 	<script type='text/javascript'>
 	$(document).ready(function (){
 	    var hg=$('#main_content').height();
@@ -50,13 +45,11 @@
 		$(this).toggleClass('test_href');
 	});
 	</script>
-	<?php if($is_login):?>
 	<script src="js/load_avatars.js?<?=time();?>"></script>
 	<script src="js/create_invite_window_script.js?<?=time();?>"></script>
-	<?php endif;?>
 </head>
 <body >
-	<?php include 'includes/create_invite_window.php'?>
+	<?php require_once 'includes/create_invite_window.php'?>
 	<div id="page">
 	</div>
 	
@@ -100,7 +93,7 @@
 				$result=$pdo->prepare($sql);
 				$result->execute(['idAuthor'=>$tests[$i]['idAuthor']]);
 				$users=$result->fetchAll(PDO::FETCH_ASSOC);?>
-				<a class="" href="book.html.php?idUser=<?=$tests[$i]['idAuthor']?>&idTest=<?=$tests[$i]['idTest']?>"  >	
+				<a class="" href="book.html.php?idTest=<?=$tests[$i]['idTest']?>"  >	
 					<div class="test_href tests_div" style="background: linear-gradient(0deg, rgba(255,145,0,1) 0%, rgba(255,255,255,0) 69%);">
 						<div class="viewNum">
 							<i class="fa fa-eye" aria-hidden="true"></i> 0
@@ -129,7 +122,7 @@
 				<div id="left_block" class="left_block">
 					<?php require_once "includes/friendsList.inc.php";?>
 				</div>
-	<?php include 'includes/nav_menu.php';?>
+	<?php require_once 'includes/nav_menu.php';?>
 		<div id="footer">
 			<div class="text">
 				2020

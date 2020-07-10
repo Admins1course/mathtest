@@ -19,12 +19,10 @@
 					$usersData=array("login","password_first","password_second");
 					break;
 			}
-			session_start();
-			var_dump($_SESSION);
+			@session_start();
 			if (isset($_SESSION['users_data'])){
-				echo "ki";
 				foreach ($_SESSION['users_data'] as $k=>$v){
-					if (in_array($k,$usersData)&&($_SESSION['users_data'][$k]==null)){echo "hi";?><!--Если какое-то поле не было заполнено, запускаем всплывающее окно-->
+					if (in_array($k,$usersData)&&($_SESSION['users_data'][$k]==null)){?><!--Если какое-то поле не было заполнено, запускаем всплывающее окно-->
 						<script type="text/javascript">
 							$(document).ready(function(){
 								$('.popup-fade:first').clone('deepWithDataAndEvents').insertAfter('.popup-fade:last').attr(

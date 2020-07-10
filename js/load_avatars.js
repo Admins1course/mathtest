@@ -21,7 +21,7 @@ $(document).ready(function(){
 			waiting.style.display="block";
 			// AJAX запрос
 			$.ajax({
-				url         : document.location.origin+"/loadAvatars.php",
+				url         : document.location.origin+"/includes/loadAvatars.php",
 				type        : 'POST', 
 				data        : data,
 				cache       : false,
@@ -32,13 +32,7 @@ $(document).ready(function(){
 				contentType : false, 
 				// функция успешного ответа сервера
 				success:function(data){
-					console.log(data);
-					if(data['answer']=='errorDataUser'){
-						alert('Данные вашего аккаунта не подтверждены');
-						loading.style.display="block";
-						waiting.style.display="none";
-					}
-					else if(data['answer']=='errorDataImage'){
+					if(data['answer']=='errorDataImage'){
 						alert("Файл не может быть загружен");
 						loading.style.display="block";
 						waiting.style.display="none";
@@ -80,7 +74,6 @@ $(document).ready(function(){
 				},
 				// функция ошибки ответа сервера
 				error: function(data){
-					console.log(data);
 					alert('Не удалось загрузить файл');
 					loading.style.display="block";
 					waiting.style.display="none";
