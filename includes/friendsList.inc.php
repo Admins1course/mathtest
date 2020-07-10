@@ -1,5 +1,20 @@
+<<<<<<< HEAD
 <?php require_once 'checkSession.inc.php'; 
 if($is_login):?>
+	<script>
+		$(document).ready(function(){
+			$('.dots').click( function(e) {
+				$(this).siblings(".FriendsMenuDiv").stop().slideToggle(500);
+				return false;
+			});
+			$(document).mouseup(function (e) {
+			    let dotDiv =$('.dots');
+			    if ($('.FriendsMenuDiv').has(e.target).length === 0){
+        			$(".FriendsMenuDiv").stop().hide(500);
+    			}
+			});
+		})
+	</script>
 	<div class="friends_bar">
 		<p>Друзья</p>
 	</div>
@@ -18,14 +33,42 @@ if($is_login):?>
 							
 						</div>
 						<div class="friends_names">
-							<li id="userId<?=htmlspecialchars($friends[$i]['id_Friend'])?>"><?=htmlspecialchars($friends[$i]['name'])?> <?=htmlspecialchars($friends[$i]['surname'])?></li>	
+							<li id="userId<?=htmlspecialchars($friends[$i]['id_Friend'])?>"> 
+								<div class="friend_name">
+									<?=htmlspecialchars($friends[$i]['name'])?>
+								</div>
+								<div class="friend_surname">
+									<?=htmlspecialchars($friends[$i]['surname'])?>
+								</div>
+								<div class="dots">
+									<i class="fa fa-ellipsis-v dotsHover" aria-hidden="true"></i>
+								</div>
+								<div class="FriendsMenuDiv">
+									<div class="FriendsMenuDivAll">
+										<div class="FriendsMenuDivElements">
+											<div class="FriendsMenuElementsText">
+												
+											</div>
+										</div>
+										<div class="FriendsMenuDivElements">
+											<div class="FriendsMenuElementsText">
+												
+											</div>
+										</div>
+										<div class="FriendsMenuDivElements">
+											<div class="FriendsMenuElementsText">
+												
+											</div>
+										</div>
+									</div>
+								</div>
+							</li>
 						</div>
 					</div>
 				<?php endfor;?>
 				<script>
 				$(document).ready(function(){
 					friends=<?=$jsonFriends?>;
-					console.log(friends);
 					for(i=0;i<friends.length;i++){
 						console.log(friends[i]['avatar']);
 						if (friends[i]['avatar']){

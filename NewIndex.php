@@ -30,6 +30,55 @@
 
 <script>
 	$(function (){
+		let openMenu = document.getElementById('openMenu');
+		let openMenuLocation = document.getElementById('openMenu').style.marginLeft;
+			$('#arrowPickDiv').click(function() {
+				
+				if (document.getElementById('openMenu').style.marginLeft!='50%') {
+					document.getElementById("arrowPickDiv").innerHTML = '<i style="font-size: 70px;" class="fa fa-caret-right arrowPick" aria-hidden="true"></i>'; 
+					openMenu.animate([
+					  {marginLeft : "98%"},
+					  {marginLeft : "50%"}
+					], {
+					  duration: 1000,
+					  iteration: 2,
+					  delay: 100,
+					});
+					function getLocateOpenMenuLeft(){
+					let openMenuLocation = document.getElementById('openMenu').style.marginLeft;
+			   		document.getElementById('openMenu').style.marginLeft = '50%';
+			   		
+			   		console.log(openMenuLocation);
+			    }
+			    setTimeout(getLocateOpenMenuLeft, 1000);
+				}
+				else{
+					document.getElementById("arrowPickDiv").innerHTML = '<i style="font-size: 70px;" class="fa fa-caret-left arrowPick" aria-hidden="true"></i>';
+					openMenu.animate([
+					  {marginLeft : "50%"},
+					  {marginLeft : "98%"}
+					], {
+					  duration: 1000,
+					  iteration: 2,
+					  delay: 100,
+					});
+					function getLocateOpenMenuRight(){
+					let openMenuLocation = document.getElementById('openMenu').style.marginLeft;
+			   		document.getElementById('openMenu').style.marginLeft = '98%';
+			   		
+			   		console.log(openMenuLocation);
+			    }
+			    setTimeout(getLocateOpenMenuRight, 1000);
+				}
+				
+			});
+			
+		});
+
+</script>
+
+<script>
+	$(function (){
 		let div = document.getElementById('site_title_image');
 		let style = getComputedStyle(document.querySelector('#site_title_image'));
 		let divInfo = document.getElementById('site_title_info');
@@ -102,7 +151,7 @@
 			console.log(num1);
 			console.log(divInfo1);
 			divInfo1.animate([
-			  {top: "-510px"},
+			  {top: "-520px"},
 			  {top: "0px"}
 			], {
 			  duration: 500,
@@ -115,7 +164,7 @@
 
 		   }
 		   divInfo2.animate([
-			  {top: "510px"},
+			  {top: "520px"},
 			  {top: "0px"}
 			], {
 			  duration: 500,
@@ -128,7 +177,7 @@
 
 		   }
 		   divInfo3.animate([
-			  {top: "-510px"},
+			  {top: "-520px"},
 			  {top: "0px"}
 			], {
 			  duration: 500,
@@ -148,6 +197,62 @@
 	})
 	
 </script>
+<script>
+	$(function (){
+		let divInfo1 = document.getElementById('startAnimation');
+		let divInfo2 = document.getElementById('clickmeDiv');
+		let divInfoleft = document.getElementById('ThirdInfoLeftDivTitle');
+		let divInforight = document.getElementById('ThirdInfoRightDivTitle');
+			$('#startAnimation').click(function() {
+				divInfo1.animate([
+				  {top: "-550px"},
+				  {top: "-1500px"}
+				], {
+				  duration: 1500,
+				  iteration: 2,
+				  delay: 100,
+				});
+				divInfo2.animate([
+				  {top: "0px"},
+				  {top: "1700px"}
+				], {
+				  duration: 1500,
+				  iteration: 2,
+				  delay: 100,
+				});
+				divInfoleft.animate([
+				  {right: "670px"},
+				  {right: "0px"}
+				], {
+				  duration: 1500,
+				  iteration: 2,
+				  delay: 100,
+				});
+				divInforight.animate([
+				  {left: "670px"},
+				  {left: "0px"}
+				], {
+				  duration: 1500,
+				  iteration: 2,
+				  delay: 100,
+				});
+				setTimeout(getLocatecircul, 1500);
+		 	function getLocatecircul(){
+		   		document.getElementById('startAnimation').style.top = '-550px';
+		   		document.getElementById('startAnimation').style.display = 'none';
+		   		document.getElementById('ThirdInfoLeftDivTitle').style.right = '0px';
+		   		document.getElementById('ThirdInfoRightDivTitle').style.left = '0px';
+
+		   }
+		   setTimeout(getLocatetext, 1000);
+		 	function getLocatetext(){
+		   		document.getElementById('clickmeDiv').style.top = '1100px';
+
+		   }
+				});	
+			
+		});
+</script>
 
 <!--<script>
 	window.onscroll = function() {
@@ -163,10 +268,34 @@
 	
 </head>
 <body style="position: relative;">
+	<div id="openMenu">
+		<div id="arrowPickDiv">
+			<i style="font-size: 70px;" class="fa fa-caret-left arrowPick" aria-hidden="true"></i>
+		</div>
+		<div id="MenuDivTitle">
+			<div id="MenuDivContainer">
+				<div id="MenuDivContainerElements">
+					<div id="MenuDivContainerElementsTitle">
+						
+					</div>
+					<div class="MenuDivContainerElementsDiv">
+						
+					</div>
+					<div class="MenuDivContainerElementsDiv">
+						
+					</div>
+					<div class="MenuDivContainerElementsDiv">
+						
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
 	<div id="site_title_div">
 		<div id="site_title">
 			<div id="site_title_info">
-
+				
 			</div>
 			<div id="site_title_image">
 
@@ -231,9 +360,7 @@
 			<div id="SecondInfoDivElements">
 				<div class="SecondInfoDivElementsTitle ">
 					<div class="SecondInfoDivElementsDiv " id="FirstInfoDivElement">
-						<div class="Info">
-							
-						</div>
+						
 					</div>
 				</div>
 				<div class="SecondInfoDivElementsTitle ">
@@ -252,7 +379,23 @@
 
 
 	<div id="ThirdInfoDivTitle">
-		
+		<div id="ThirdInfoAllDivTitle">
+			<div id="ThirdInfoRightAndLeftDivTitle">
+				<div id="ThirdInfoLeftDivTitle">
+				
+				</div>
+				<div id="ThirdInfoRightDivTitle">
+					
+				</div>
+			</div>
+			
+			<div id="startAnimation" class="text_fade">
+				<div id="clickmeDiv">
+					<p id="clickme">CLICK ME</p>
+				</div>
+			</div>
+			
+		</div>
 	</div>
 
 

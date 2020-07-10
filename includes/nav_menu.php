@@ -1,5 +1,17 @@
 <!--  Выподающее меню -->
 <?php require_once "checkSession.inc.php";?>
+	<script>
+		$(document).mouseup(function (e) {
+		  	if ($('.exit_menu_body').has(e.target).length === 0){
+	       	 	$(".exit_menu_body").stop().hide(500);
+	        }
+		});
+		$(document).mouseup(function (e) {
+		  	if ($('.notifications_body').has(e.target).length === 0){
+	       	 	$(".notifications_body").stop().hide(500);
+	        }
+		});
+	</script>
 		<div id="nav_menu">
 				<nav id="menu1">
 				 <ul>
@@ -25,7 +37,7 @@
 					  	<a id="notif" href="#m5" class="open_notifications nav_menu_bar">Оповещения	
 						</a>
 					</div>
-						<div class="notifications_body" style="display: none;">
+						<div class="notifications_body" style="display: none; z-index: 10;">
 							<div class="notifications_body_title">
 								<div class="notifications_body_title_elements_div">
 									<div class="notifications_body_text">
@@ -35,17 +47,18 @@
 										
 									</div>
 								</div>
-							</div>
 							<div>
-								<a style="padding: 0px; margin: 10px;" class="ShowAllNotifications" href="allNotifications.html.php">Посмотреть прочтенные оповещения</a>
 							</div>
+							<div class="notifications_body_info_div">
+									<div class="ShowAllNotifications">
+										<a style="padding: 0px; margin: 10px;"  href="allNotifications.html.php">Посмотреть прочтенные оповещения</a>
+									</div>
+								</div>
 						</div>
-					
-
 				  </li>
 				 </ul>
 				 
-				</nav><!--menu1-->
+					</nav><!--menu1-->
 				<div class="profile">
 					<?php
 						if ($is_login):?>

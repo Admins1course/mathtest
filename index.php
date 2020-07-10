@@ -35,6 +35,8 @@
 	    var shg = screen.height;
 	    hg=hg+shg+750+'px';
 	    $('body').height(hg);
+	    console.log(hg);
+	    console.log(shg);
 	});
 	</script>
 	<?php if($is_login):?>

@@ -46,15 +46,16 @@
 	<script type='text/javascript'>
 		$(document).ready(function(){
 			$('#result').click(function(){
+				console.log($('#tasks').height());
 				$('#tasks').stop().slideToggle();
+				console.log($('#tasks').height());
 				bodyHeight();
 			})
 		})
 	function bodyHeight(){
 	    let hg=$('body').height();
 	    let main=1200;
-	    let tasks=$('#tasks').height();
-	     let shg= screen.height;
+	    let shg= screen.height;
 	    let documenthg = $(document).height();
 	    if ($('body').height()<=shg+main) {
 	    	$('body').height(hg+shg);
