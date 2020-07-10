@@ -15,6 +15,7 @@
 	<link rel="stylesheet" href="style/CssForNewIndex.css?<?=time()?>" type="text/css">
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -263,6 +264,22 @@
 			
 		});
 </script>
+<?php include 'includes/bubbleText.js.php';?>
+<script>
+$(document).ready(function() {    
+    var $element = $('#animateText');
+    var newText = 'MathTest - Сайт для тестирования студентов';
+    bubbleText({
+        element: $element,
+        newText: newText,
+        speed: 500,
+        repeat: Infinity,
+        timeBetweenRepeat: 10000,
+    });
+})
+</script>
+
+
 
 <!--<script>
 	window.onscroll = function() {
@@ -294,7 +311,13 @@
 	</div>
 	<div id="BanerDivTitle">
 		<div id="BanerDiv">
-			
+			<div id="BanerDivBody">
+				<div id="BanerDivText">
+					<div id="animateText">
+						
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div id="openMenu">

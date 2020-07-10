@@ -8,7 +8,7 @@
 	position: fixed;
 	width: 1200px;
 	height: 70px;
-	border-radius: 20px;
+	border-radius: 10px;
 	background-image: url('img/MenuIndexBackground.png');
 	left: 50%;
 	transform: translateX(-50%);
@@ -59,16 +59,43 @@
 #BanerDiv{
 	width: 1200px;
 	height: 500px;
-	border: 1px solid orange;
+	border: 5px solid black;
+	border-radius: 20px;
 	margin: 0 auto;
 	background-image: url('img/MainBanerIndex1.png');
+}
+#BanerDivBody{
+	width: 100%;
+	height: 500px;
+}
+#BanerDivText{
+	width: 1000px;
+	height: 100px;
+	margin: 200px auto;
+	
+	border: 2px solid black;
+	border-radius: 20px;
+	background-image: url('img/ElementsMenuIndex1.png');
+	
+}
+#animateText{
+	position: relative;
+	 color: black; 
+	 font-family: 'Droid serif', serif; 
+	 font-size: 50px; 
+	 font-weight: 200; 
+	 line-height: 72px;
+	width: 955px;
+	height: 40px;
+	margin: 10px auto;
+
 }
 
 
 
 
-
 #openMenu{
+	opacity: 1;
 	position: fixed;
 	border: 1px solid black;
 	height: 100%;
