@@ -3,9 +3,7 @@
 	  require_once 'handlers/allNotifications_handler.php';
 	  require_once 'includes/getUserImage.inc.php';
 	  require_once 'includes/getFriends.inc.php';
-	  if (isset($path)){
-	    require_once 'includes/load_user_image.inc.php';
-	  }?>
+	  ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,6 +21,9 @@
 	<script src="js/load_avatars.js?<?=time();?>"></script>
 	<script src="js/create_invite_window_script.js?<?=time();?>"></script>
 	<?php
+	  if (isset($path)){
+	    require_once 'includes/load_user_image.inc.php';
+	  }
 	  require_once 'includes/searchPeople.js.inc.php';
 	  require_once 'includes/friendsControl.js.inc.php';
       require_once 'includes/script_for_nav_menu.php';

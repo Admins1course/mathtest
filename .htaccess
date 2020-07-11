@@ -15,8 +15,3 @@ ErrorDocument 502 http://mathtest.rfpgu.ru/error/502.html
 ErrorDocument 503 http://mathtest.rfpgu.ru/error/503.html
 
 php_flag session.use_only_cookies on
-
-<files vyhod.php>
-order allow,deny
-deny from all
-</files>

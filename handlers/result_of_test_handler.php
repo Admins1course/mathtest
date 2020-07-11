@@ -6,17 +6,19 @@ $countOfPoints=0;
 $mark=0;
 if ($_POST){
 	try{
-		$query="SELECT textarea, input, radio, checkbox, points FROM answers WHERE id_User=:idUser AND id_Test=:idTest";
+		$query="SELECT textarea, input, radio, checkbox, points FROM answers WHERE id_Test=:idTest";
 		$result=$pdo->prepare($query);
 		$result->execute(['idUser'=>$_POST['idUser'],
 						  'idTest'=>$_POST['idTest']]);
 		$data=$result->fetchAll(PDO::FETCH_ASSOC);
 		for ($i=0; $i<count($data);$i++){
 			
-			/*if ($data[$i-1]["textarea"]!=0){
-				$dataTest[$i]["answer"]["textarea"]=1;
+			if ($data[$i-1]["textarea"]!==null){
+				if($data[$i]["textarea"]===$_POST["answer"]["task".($i+1)]){
+					$right_answers[$i]=[true, $data[$i]["points"]];
+				}
+				else $right_answers[$i]=[false,0];
 			}
-			else $dataTest[$i]["answer"]["textarea"]=0;*/
 			
 			if ($data[$i]["input"]!==null){
 				if ($data[$i]["input"]===$_POST["answer"]["task".($i+1)]){
@@ -89,4 +91,4 @@ if ($_POST){
 		exit();
 	}
 }
-require_once "includes/question.inc.php";
+require_once "http://mathtest.rfpgu.ru/includes/question.inc.php";

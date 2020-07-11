@@ -47,7 +47,7 @@ function searchForPiece(searchValue){
 		error:function(data){console.log(data)},
 		success:function(data){
 			if(data['answer']=='serverError'){
-				alert("Произощла ошибка на сервере");
+				alert("Произошла ошибка на сервере");
 			}
 			else if(data["answer"]=='errorDataUser'){
 				alert("Данные вашего аккаунта не подтверждены");
@@ -55,7 +55,8 @@ function searchForPiece(searchValue){
 			else{
 				var listOfPeople='';
 				for (i=0;i<data['people'].length;i++){
-					if (data['people'][i]['id']!=<?=htmlspecialchars($_SESSION['data-user']['id'])?>){
+					console.log('hi');
+					if (data['people'][i]['id']!=<?=htmlspecialchars('1')?>){
 						buttonValue="+ В друзья";
 						buttonFunction="addFriend(this)";
 						if (data['friends'])

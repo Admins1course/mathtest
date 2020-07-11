@@ -7,7 +7,9 @@ try{
 	if(preg_match("/[^0-9a-f]/",$result[0]['file'])){
 		$path='';
 	}
-	else if ($result[0]['file']!=null) $path='avatars'. DIRECTORY_SEPARATOR .$result[0]['file'];
+	else if ($result[0]['file']!=null){
+		$path='avatars'. DIRECTORY_SEPARATOR .$result[0]['file'];
+	}
 	else $path='';
 }
 catch(PDOException $e){

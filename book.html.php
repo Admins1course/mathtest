@@ -3,9 +3,7 @@
 	  require_once "handlers/book_control.php";
 	  require_once 'includes/getUserImage.inc.php';
 	  require_once 'includes/getFriends.inc.php';
-	  if ($path){
-	    require_once 'includes/load_user_image.inc.php';
-	  }?>
+	  ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +21,10 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script src="js/notifs.js?<?=time();?>"></script>
-	<?php  
+	<?php 
+	  if ($path){
+	    require_once 'includes/load_user_image.inc.php';
+	  }
 	  require_once 'includes/searchPeople.js.inc.php';
 	  require_once 'includes/friendsControl.js.inc.php';
 	  require_once 'includes/script_for_nav_menu.php';

@@ -1,4 +1,4 @@
-<?php@session_start;?>
+<?php @session_start;?>
 <!--  Выподающее меню -->
 <script>
 	$(document).mouseup(function (e) {

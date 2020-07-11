@@ -1,6 +1,6 @@
 <?php 
     if(isset($_POST)){  //Проверка на принятие данных с форм
-		session_start();
+		@session_start();
 		$_SESSION=[];
 		$pattern="/[^А-Яа-яЁёA-Za-Z0-9_]/u";
 		$root=array('студент','преподаватель');
@@ -16,7 +16,7 @@
 			}
 		}
 		catch(Exception $e){
-			header('Location: /users_data.html.php');
+			header('Location: http://mathtest.rfpfu.ru/users_data.html.php');
 			exit();
 		}
 	    //Проверяем наличие всех необходимых значений и присваиваем сессии, т.к. он нужен если хотя бы одно из значений не указано
@@ -30,7 +30,7 @@
 		//Проверяем все ли поля были заполнены
 		foreach($_SESSION['users_data'] as $empty){
 			if($empty===null){ // если поле не заполнено, возвращаемся на предыдущую страницу, чтобы пользователь ввел все данные
-				header('Location: /users_data.html.php');
+				header('Location:  http://mathtest.rfpfu.ru/users_data.html.php');
 				exit();
 			}
 		}
