@@ -294,7 +294,7 @@ $(document).ready(function() {
 
 	
 </head>
-<body style="position: relative; background-color: white;">
+<body style="position: relative; background-color: white; overflow-x: hidden;">
 	<div id="NavMenuIndexDiv">
 		<div id="NavMenuIndexDivTitle">
 			<div id="NavMenuIndexInfo">
