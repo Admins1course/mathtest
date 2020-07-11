@@ -298,14 +298,7 @@ $(document).ready(function() {
 	<div id="NavMenuIndexDiv">
 		<div id="NavMenuIndexDivTitle">
 			<div id="NavMenuIndexInfo">
-				
-			</div>
-			<div id="NavMenuIndexSignIn">
-				<div id="NavMenuIndexSignInDivText">
-					<p id="NavMenuIndexSignInText">
-						Меню <i class="fa fa-bars" aria-hidden="true"></i>
-					</p>
-				</div>
+				<?php include 'includes/nav_menu.php';?>
 			</div>
 		</div>
 	</div>
