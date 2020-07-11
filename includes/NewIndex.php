@@ -1,7 +1,7 @@
 <?php require_once 'includes/db.inc.php';
-	  require_once 'includes/incl_session.inc.php';
 	  require_once 'handlers/registration_control.php';
-	  require_once 'includes/getUserImage.inc.php';
+	  require_once 'includes/incl_session.inc.php';
+	  include_once 'includes/getUserImage.inc.php';
 	  require_once 'includes/getFriends.inc.php';?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +18,9 @@
 	
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+	
     <script type='text/javascript'>
 	$(function (){
 	    var hg=$('body').height();
@@ -262,7 +264,7 @@
 			
 		});
 </script>
-<script src="js/bubbleText.js?<?=time();?>"></script>
+<?php include 'includes/bubbleText.js.php';?>
 <script>
 $(document).ready(function() {    
     var $element = $('#animateText');
@@ -292,18 +294,11 @@ $(document).ready(function() {
 
 	
 </head>
-<body style="position: relative; background-color: white;">
+<body style="position: relative; background-color: white; overflow-x: hidden;">
 	<div id="NavMenuIndexDiv">
 		<div id="NavMenuIndexDivTitle">
 			<div id="NavMenuIndexInfo">
-				
-			</div>
-			<div id="NavMenuIndexSignIn">
-				<div id="NavMenuIndexSignInDivText">
-					<p id="NavMenuIndexSignInText">
-						Меню <i class="fa fa-bars" aria-hidden="true"></i>
-					</p>
-				</div>
+				<?php include 'includes/nav_menu.php';?>
 			</div>
 		</div>
 	</div>

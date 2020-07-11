@@ -1,5 +1,4 @@
-<script>
-	(window || this).bubbleText = function(ctrl) {
+(window || this).bubbleText = function(ctrl) {
 
     // check if is an object
     if (ctrl !== Object(ctrl) || ctrl.map === [].map) {
@@ -227,7 +226,3 @@
     // return instance to the user
     return ctrl;
 };
-
-
-
-</script>

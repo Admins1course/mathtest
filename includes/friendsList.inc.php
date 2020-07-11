@@ -1,6 +1,7 @@
 <script>
 	$(document).ready(function(){
 		$('.dots').click( function(e) {
+			console.log('.!.');
 			$(this).siblings(".FriendsMenuDiv").stop().slideToggle(500);
 			return false;
 		});
