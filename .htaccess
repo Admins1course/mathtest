@@ -4,3 +4,14 @@ AddCharset utf-8 *
     CharsetSourceEnc utf-8
     CharsetDefault utf-8
 </IfModule>
+
+ErrorDocument 400 http://mathtest.rfpgu.ru/error/400.html
+ErrorDocument 401 http://mathtest.rfpgu.ru/error/401.html
+ErrorDocument 403 http://mathtest.rfpgu.ru/error/403.html
+ErrorDocument 404 http://mathtest.rfpgu.ru/error/404.html
+ErrorDocument 405 http://mathtest.rfpgu.ru/error/405.html
+ErrorDocument 500 http://mathtest.rfpgu.ru/error/500.html
+ErrorDocument 502 http://mathtest.rfpgu.ru/error/502.html
+ErrorDocument 503 http://mathtest.rfpgu.ru/error/503.html
+
+php_flag session.use_only_cookies on

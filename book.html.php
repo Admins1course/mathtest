@@ -1,8 +1,9 @@
 <?php require_once "includes/db.inc.php";
-	  require_once "book_control.php";
 	  require_once 'includes/incl_session.inc.php';
-	  include_once 'includes/getUserImage.inc.php';
-	  require_once 'includes/getFriends.inc.php';?>
+	  require_once "handlers/book_control.php";
+	  require_once 'includes/getUserImage.inc.php';
+	  require_once 'includes/getFriends.inc.php';
+	  ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,18 +20,15 @@
 	</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-	<?php
-	if ($path){
-	    include_once 'includes/load_user_image.inc.php';
-	}
-	?>
-	<?php if (isset($_SESSION['data-user'])):
-	    include 'includes/searchPeople.js.inc.php';
-	    include 'includes/friendsControl.js.inc.php';?>
-		<script src="js/notifs.js?<?=time();?>"></script>
-	<?php endif;?>
-	<?php include 'includes/script_for_nav_menu.php';?>
-	<?php include 'includes/answers_of_user.js.inc.php';?>
+	<script src="js/notifs.js?<?=time();?>"></script>
+	<?php 
+	  if ($path){
+	    require_once 'includes/load_user_image.inc.php';
+	  }
+	  require_once 'includes/searchPeople.js.inc.php';
+	  require_once 'includes/friendsControl.js.inc.php';
+	  require_once 'includes/script_for_nav_menu.php';
+	  require_once 'includes/answers_of_user.js.inc.php';?>
 	<script>
 		let $className;
 		$(document).ready(function(){
@@ -65,7 +63,7 @@
 	<script src="js/create_invite_window_script.js?<?=time();?>"></script>
 </head>
 <body >
-	<?php include 'includes/create_invite_window.php'?>
+	<?php require_once 'includes/create_invite_window.php'?>
 	<div id="page">
 		<div class="forNewFormulas" style="display:none">
 			$$
@@ -82,10 +80,11 @@
 			$$
 		</div>
 		<div id="main_content">
+		<?php if(message):?>
 			<div id="area_book">
 					<div id="book">
 						<form action="result_of_test.html.php" method="post">
-							<?php for ($i=1;$i<=count($dataTest);$i++){
+							<?php for ($i=1;$i<=count($dataTest);$i++):
 								if ($dataTest[$i]["answer"]["textarea"]!=0){?>
 									<div class="task textarea <?=$i?>">
 										<?php question($i,$dataTest[$i]);?>
@@ -105,8 +104,8 @@
 											<div class="radio">
 												
 												<input type="radio" class="radio_answer" name="answers[task<?=$i?>]"
-												value="<?=$dataTest[$i]["answer"]["radio"][$j]["text_answer"]?>" onchange="registeringResponses()">
-												<p class="possibleAnswer"><?=$dataTest[$i]["answer"]["radio"][$j]["text_answer"]?></p>
+												value="<?=htmlspecialchars($dataTest[$i]["answer"]["radio"][$j]["text_answer"])?>" onchange="registeringResponses()">
+												<p class="possibleAnswer"><?=htmlspecialchars($dataTest[$i]["answer"]["radio"][$j]["text_answer"])?></p>
 											</div>
 										<?php } ?>
 									</div>
@@ -117,16 +116,19 @@
 										<?php for ($j=1; $j<=count($dataTest[$i]["answer"]["checkbox"]);$j++){?>
 											<div class="checkbox">
 												<input type="checkbox" class="checkbox_answer" name="answers[task<?=$i?>][<?=$j?>]"
-												value="<?=$dataTest[$i]["answer"]["checkbox"][$j]["text_answer"]?>" onchange="registeringResponses()">
-												<p class="possibleAnswer"><?=$dataTest[$i]["answer"]["checkbox"][$j]["text_answer"]?></p>
+												value="<?=htmlspecialchars($dataTest[$i]["answer"]["checkbox"][$j]["text_answer"])?>" onchange="registeringResponses()">
+												<p class="possibleAnswer"><?=htmlspecialchars($dataTest[$i]["answer"]["checkbox"][$j]["text_answer"])?></p>
 											</div>
 										<?php } ?>
 									</div>
 								<?php } ?>
-							<?php } ?>
-							<input type="hidden" name="idUser" value="<?=$idUser?>">
-							<input type="hidden" name="idTest" value="<?=$idTest?>">
-							<input type="hidden" name="answers[count]" value="<?=count($dataTest)?>">
+							<?php endfor; ?>
+							<input type="hidden" name="idUser" value="<?=htmlspecialchars($idUser)?>">
+							<input type="hidden" name="idTest" value="<?=htmlspecialchars($idTest)?>">
+							<input type="hidden" name="answers[count]" value="<?=htmlspecialchars(count($dataTest))?>">
+							<?php if ($_GET['recipient']&&ctype_digit($_GET['recipient'])):?>
+							<input type="hidden" name="recipient" value="<?=htmlspecialchars($_GET['recipient'])?>">
+							<?php endif;?>
 							<div id="error" ></div>
 							<div class="submit_btn_div">
 								<input type="button" id="answer" class="submit_btn active_btn" value="Продолжить">
@@ -134,18 +136,18 @@
 						</form>
 					</div>
 				<div id="zaklad_menu">
-				<?php for($i=1;$i<=count($dataTest);$i++):?>
-					
+				<?php for($i=1;$i<=count($dataTest);$i++):?>			
 					<div class="zaklad_div">
 						<p class="zaklad_title ">Задание <?=$i?></p>
 						<img class="zaklad <?=$i?>" src="style/img/zacl.png" alt="" style="display:block;" >
 						
 					</div>
 					
-				<?php endfor?>
+				<?php endfor;?>
 				</div>
 			</div>
-
+		<?php else: echo htmlspecialchars($message);?>
+		<?php endif;?>
 		</div>
 	</div>
 		<div class="slider midle">
@@ -177,7 +179,7 @@
 		<div id="left_block" class="left_block">
 			<?php require_once "includes/friendsList.inc.php";?>
 		</div>
-		<?php include 'includes/nav_menu.php';?>
+		<?php require_once 'includes/nav_menu.php';?>
 	<div id="footer">
 		<div class="text">
 			2020

@@ -37,18 +37,22 @@
     font-size: 21px;
     color: white;
 }
-#menu1 > ul > li > ul > li > a {
-	padding-right: 100px;
-}
-#menu1 ul li a:hover{
-	color: black;
-	background-image: url('img/BackgroundIndex.png');
-}
 #menu1 ul ul{
 	margin-left: 0px;
 	background-image: url('img/MenuIndexBackground.png');
-	width: 300px;
-	overflow: hidden;
+}
+#menu1 ul li:hover {
+	background-image: url('img/BackgroundIndex.png');
+	color: black;
+}
+#menu1 > ul > li > a:hover {
+	color: black;
+}
+#menu1 > ul > li >ul>li:hover a{
+	color: black;
+}
+#menu1 ul li:hover .open_notifications_body a{
+	color: black;
 }
 #BanerDivTitle{
 	margin-top: 30px;
@@ -207,11 +211,10 @@
 	color: white;
 	transition: all 1s;
 }
-
 #site_title_div{
 	width: 100%;
 	height: 500px;
-
+	
 }
 #site_title{
 	width: 1200px;
@@ -261,8 +264,6 @@
 	height: 100%;
 	background-image: url('img/MenuIndexBackground.png');
 	border-radius: 20px;
-	
-	
 }
 .FirstInfoElementsDiv{
 	/*background-image: url('img/BackgroundIndex2.png');*/
@@ -271,7 +272,6 @@
 	width: 400px;
 	height: 100%;
 	margin-left: 13.5px;
-	box-shadow:7px 9px 10px 0px rgba(44, 48, 60, 0.42);
 	
 }
 .FirstInfoElements{
@@ -308,10 +308,13 @@
 	border: 1px solid orange;
 	height: 215px;
 }
+
+
+
 #SecondInfoDivTitle{
 	width: 100%;
 	height: 600px;
-	
+
 	margin-top: 30px;
 }
 #SecondInfoDiv{
@@ -323,11 +326,10 @@
 }
 #SecondInfoDivElements{
 	width: 1250px;
-	height: 502px;
+	height: 500px;
 	overflow: hidden;
 	background-image: url('img/MenuIndexBackground.png');
 	border-radius: 20px;
-
 }
 .SecondInfoDivElementsTitle{
 
@@ -336,8 +338,6 @@
 	margin-left: 18.5px;
 	float: left;
 	margin-top: 25px;
-	
-	
 
 }
 .SecondInfoDivElementsDiv{
@@ -345,7 +345,6 @@
 	background-color: white;
 	height: 450px;
 	position: relative;
-	box-shadow:7px 9px 10px 0px rgba(44, 48, 60, 0.42);
 }
 #FirstInfoDivElement{
 	top: -520px;
@@ -372,7 +371,7 @@
 #ThirdInfoDivTitle{
 	width: 100%;
 	height: 600px;
-	
+
 	margin-top: 30px;
 	overflow: hidden;
 }

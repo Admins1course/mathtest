@@ -1,7 +1,7 @@
 <?php require_once 'includes/db.inc.php';
-	  require_once 'registration_control.php';
 	  require_once 'includes/incl_session.inc.php';
-	  include_once 'includes/getUserImage.inc.php';
+	  require_once 'handlers/registration_control.php';
+	  require_once 'includes/getUserImage.inc.php';
 	  require_once 'includes/getFriends.inc.php';?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,9 +18,7 @@
 	
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-
-	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script type='text/javascript'>
 	$(function (){
 	    var hg=$('body').height();
@@ -30,6 +28,9 @@
 	</script>
 
 <script>
+	$(function() {
+       $('html, body').animate({scrollTop:0}, 'slow');
+});
 	$(function (){
 		let openMenu = document.getElementById('openMenu');
 		let openMenuLocation = document.getElementById('openMenu').style.marginLeft;
@@ -79,12 +80,13 @@
 </script>
 
 <script>
+
 	$(function (){
 		let num2 = 1;
 	
 		   	
 	$(window).scroll(function(){
-	if($(window).scrollTop()>400){
+	if($(window).scrollTop()>1){
 		if (num2==1) {
 			num2=0;
 		let div = document.getElementById('site_title_image');
@@ -133,7 +135,35 @@
 
 </script>
 <script>
-	$(window).scroll(function(){
+let block_show = false;
+ 
+function scrollTracking(){
+	if (block_show) {
+		return false;
+	}
+ 
+	let wt = $(window).scrollTop();
+	let wh = $(window).height();
+	let et = $('#FirstInfoElementsDiv').offset().top;
+	let eh = $('#FirstInfoElementsDiv').outerHeight();
+	let dh = $(document).height();   
+ 
+	if (wt + wh >= et || wh + wt == dh || eh + et < wh){
+		block_show = true;
+		$('.FirstInfoElementsDiv:eq(0)').slideDown(500, function(){
+		$(this).next().slideDown(500, arguments.callee);
+	});
+	}
+}
+ 
+$(window).scroll(function(){
+	scrollTracking();
+});
+	
+$(document).ready(function(){ 
+	scrollTracking();
+});
+	/*$(window).scroll(function(){
 	if($(window).scrollTop()>1000){
 	$('.FirstInfoElementsDiv:eq(0)').slideDown(500, function(){
 		$(this).next().slideDown(500, arguments.callee);
@@ -142,25 +172,22 @@
 	//if($(window).scrollTop()<300){
 	//$('.FirstInfoElementsDiv').slideUp(2000)
 	//}
-})
+})*/
 </script>
 <script>
-	$(function (){
-		let divInfo1 = document.getElementById('FirstInfoDivElement');
+let block_show2 = null;
+ 
+function scrollTracking2(){
+	let wt = $(window).scrollTop();
+	let wh = $(window).height();
+	let et = $('#SecondInfoDivElements').offset().top;
+	let eh = $('#SecondInfoDivElements').outerHeight();
+	let divInfo1 = document.getElementById('FirstInfoDivElement');
 		let divInfo2 = document.getElementById('SecondInfoDivElement');
 		let divInfo3 = document.getElementById('ThirdInfoDivElement');
-		let num1 = 1;
-	
-	 function InfoDiv21(){
-		   	
-		}
-	
-	$(window).scroll(function(){
-	if($(window).scrollTop()>1600){
-		if (num1==1) {
-			num1=0;
-			console.log(num1);
-			console.log(divInfo1);
+ 
+	if (wt + wh >= et && wt + wh - eh * 2 <= et + (wh - eh)){
+		if (block_show2 == null || block_show2 == false) {
 			divInfo1.animate([
 			  {top: "-520px"},
 			  {top: "0px"}
@@ -201,11 +228,19 @@
 
 		   }
 		}
-		
-	}
+		block_show2 = true;
+	} 
+}
+ 
+$(window).scroll(function(){
+	scrollTracking2();
+});
 	
-})
-	})
+$(document).ready(function(){ 
+	scrollTracking2();
+});
+ 
+
 	
 </script>
 <script>
@@ -264,7 +299,7 @@
 			
 		});
 </script>
-<?php include 'includes/bubbleText.js.php';?>
+<script src="js/bubbleText.js?<?=time();?>"></script>
 <script>
 $(document).ready(function() {    
     var $element = $('#animateText');

@@ -10,8 +10,9 @@
 	<script>
 	$(document).ready(function(){
 		//при загрузке страницы окно один раз мигнет 
-		$('.popup-fade').not('.popup-fade:first').stop(true).fadeTo(2000,1);
-		$('.popup-fade').not('.popup-fade:first').stop(true).fadeTo(3000,0.3)
+		$('.popup-fade').not('.popup-fade:first').stop(true).fadeTo(10000,1,function(){
+			$('.popup-fade').not('.popup-fade:first').stop(true).fadeTo(5000,0.3);
+		})
 		//обработчик событий с всплывающим окном
 		$('.popup-fade').not('.popup-fade:first').mouseout(function(){ $(this).stop(true).fadeTo(2000,0.4 );});
 		$('.popup-fade').not('.popup-fade:first').mouseover(function(){ $(this).stop(true).fadeTo(10,1);});
@@ -19,10 +20,6 @@
 	</script>
 </head>
 <body style="position: fixed;">
-
-    <!--эти 3 элемента появляются при вводе отсутствии данных-->
-    
-	
 	<div class="container">
 		<div class="popup-fade" style="display:none">
 			<div class="popup">
@@ -37,13 +34,13 @@
 			<div class="dws-input">
 				
 				<img class="userpng" src="style/img/user.png" width="20" height="20" alt="">
-				<input type="text" id="name" name="name" placeholder="Введите имя" maxlength="20">
+				<input type="text" id="name" name="name" placeholder="Введите имя" maxlength="30" required>
 				<p id="p_name" style="display:none">Разрешено использовать только символы русского и английского алфавита, цифры и знак подчеркивания</p>
 			</div>
 			<div class="dws-input">
 				
 				<img class="userpng" src="style/img/user.png" width="20" height="20" alt="">
-				<input type="text" id="surname" name="surname" placeholder="Введите фамилию" maxlength="20">
+				<input type="text" id="surname" name="surname" placeholder="Введите фамилию" maxlength="30" required>
 				<p id="p_surname" style="display:none">Разрешено использовать только символы русского и английского алфавита, цифры и знак подчеркивания</p>
 			</div>
 			<select name="root" id="select">

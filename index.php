@@ -1,7 +1,7 @@
 <?php require_once 'includes/db.inc.php';
-	  require_once 'registration_control.php';
 	  require_once 'includes/incl_session.inc.php';
-	  include_once 'includes/getUserImage.inc.php';
+	  require_once 'handlers/registration_control.php';
+	  require_once 'includes/getUserImage.inc.php';
 	  require_once 'includes/getFriends.inc.php';?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,33 +16,27 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-	<?php
-	if ($path){
-	    include_once 'includes/load_user_image.inc.php';
-	}
-	?>
-	<?php if (isset($_SESSION['data-user'])):
-	    include 'includes/searchPeople.js.inc.php';
-	    include 'includes/friendsControl.js.inc.php';?>
-		<script src="js/notifs.js?<?=time();?>"></script>
-	<?php endif;?>
-    <?php include 'includes/script_for_nav_menu.php';?>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script src="js/notifs.js?<?=time();?>"></script>
+	<?php if ($path){
+	         require_once 'includes/load_user_image.inc.php';
+		  }
+		  require_once 'includes/searchPeople.js.inc.php';
+		  require_once 'includes/friendsControl.js.inc.php';
+		  require_once 'includes/script_for_nav_menu.php';?>
     <script type='text/javascript'>
 	$(function (){
 	    var hg=$('body').height();
-	    var shg= screen.height;
+	    var shg = screen.height;
 	    hg=hg+shg+750+'px';
 	    $('body').height(hg);
-	    console.log(hg);
-	    console.log(shg);
 	});
 	</script>
 	<script src="js/load_avatars.js?<?=time();?>"></script>
 	<script src="js/create_invite_window_script.js?<?=time();?>"></script>
 </head>
 <body style="position: relative;">
-	<?php include 'includes/create_invite_window.php'?>
+	<?php require_once 'includes/create_invite_window.php';?>
 	<div id="page">
 		<div id="main_content" style="height: auto;">
 		</div>
@@ -78,9 +72,7 @@
 			<div id="left_block" class="left_block">
 				<?php require_once "includes/friendsList.inc.php";?>
 			</div>
-
-			<?php include 'includes/nav_menu.php';?>
-		
+			<?php require_once 'includes/nav_menu.php';?>
 
 		
 </body>

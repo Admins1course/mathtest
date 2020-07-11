@@ -3,14 +3,6 @@ $(document).ready(function(){
 	$('#custom-file-upload').on("change",function(event){
 		files = this.files;
 		if (typeof files != 'undefined') {
-			var oFReader = new FileReader();
-			oFReader.readAsDataURL(files[0]);
-			oFReader.onload = function (oFREvent) {
-				var rect=document.getElementById("avatar-full-size");
-				var circ=document.getElementById("file-img-preview");
-				rect.src = oFREvent.target.result;
-				circ.src = oFREvent.target.result;
-			};
 			event.stopPropagation(); // остановка всех текущих JS событий
 			event.preventDefault();  // остановка дефолтного события для текущего элемента
 
@@ -28,9 +20,10 @@ $(document).ready(function(){
 			var waiting=document.getElementById('Loading-image-text');
 			waiting.style.display="block";
 			// AJAX запрос
+			console.log(document.location.origin+"/includes/loadAvatars.php");
 			$.ajax({
-				url         : document.location.origin+"/loadAvatars.php",
-				type        : 'POST', // важно!
+				url         : document.location.origin+"/includes/loadAvatars.php",
+				type        : 'POST', 
 				data        : data,
 				cache       : false,
 				dataType    : 'json',
@@ -40,15 +33,50 @@ $(document).ready(function(){
 				contentType : false, 
 				// функция успешного ответа сервера
 				success:function(data){
-					avat=document.getElementById('profile_avatar');
-					avat.innerHTML='';
-					avat.style.backgroundImage="url(avatars/"+data['id']+"/"+data['name']+")";
-					loading.style.display="block";
-					waiting.style.display="none";
+					console.log(data['answer']);
+					if(data['answer']=='errorDataImage'){
+						alert("Файл не может быть загружен");
+						loading.style.display="block";
+						waiting.style.display="none";
+					}
+					else if(data['errorUpload']){
+						masOfErrors=['Размер файла превысил значение upload_max_filesize в конфигурации PHP.',
+									 'Размер загружаемого файла превысил значение MAX_FILE_SIZE в HTML-форме.',
+									 'Загружаемый файл был получен только частично.',
+									 'Файл не был загружен.',
+									 'Отсутствует временная папка.',
+									 'Не удалось записать файл на диск.',
+									 'PHP-расширение остановило загрузку файла.',
+									 'Можно загружать только изображения.',
+									 'Размер изображения не должен превышать 5 Мбайт.',
+									 'Высота изображения не должна превышать 768 точек.',
+									 'При записи изображения на диск произошла ошибка.']
+						if(masOfErrors.indexOf(data['errorUpload'])){
+							alert(data['errorUpload']);
+							loading.style.display="block";
+							waiting.style.display="none";
+						}
+					}
+					else{
+						avat=document.getElementById('profile_avatar');
+						avat.innerHTML='';
+						avat.style.backgroundImage="url(avatars/"+data['name']+")";
+						var oFReader = new FileReader();
+						oFReader.readAsDataURL(files[0]);
+						oFReader.onload = function (oFREvent) {
+							var rect=document.getElementById("avatar-full-size");
+							var circ=document.getElementById("file-img-preview");
+							rect.src = oFREvent.target.result;
+							circ.src = oFREvent.target.result;
+						};
+						$('#profile_img').css('background-image','url(avatars/'+data['name']+')');
+						loading.style.display="block";
+						waiting.style.display="none";
+					}
 				},
 				// функция ошибки ответа сервера
 				error: function(data){
-					console.log(data);
+					alert('Не удалось загрузить файл');
 					loading.style.display="block";
 					waiting.style.display="none";
 				}

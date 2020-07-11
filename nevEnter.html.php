@@ -12,7 +12,7 @@
 		<div class="enter_text_div">
 			<div class="enter_text">АВТОРИЗАЦИЯ</div>
 		</div>
-		<form action="nevEnter_control.php" method="post">
+		<form action="handlers/nevEnter_control.php" method="post">
 			<div class="dws-input">
 				<img class="userpng" src="style/img/user.png" width="20" height="20" alt="">
 				<input type="text" name="login" placeholder="Введите логин" >
