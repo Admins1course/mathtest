@@ -15,6 +15,7 @@
 	<link rel="stylesheet" href="style/CssForNewIndex.css?<?=time()?>" type="text/css">
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -32,7 +33,7 @@
 	$(function (){
 		let openMenu = document.getElementById('openMenu');
 		let openMenuLocation = document.getElementById('openMenu').style.marginLeft;
-			$('#arrowPickDiv').click(function() {
+			$('#arrowPickDiv, #NavMenuIndexSignInDivText').click(function() {
 				
 				if (document.getElementById('openMenu').style.marginLeft!='50%') {
 					document.getElementById("arrowPickDiv").innerHTML = '<i style="font-size: 70px;" class="fa fa-caret-right arrowPick" aria-hidden="true"></i>'; 
@@ -79,51 +80,61 @@
 
 <script>
 	$(function (){
+		let num2 = 1;
+	
+		   	
+	$(window).scroll(function(){
+	if($(window).scrollTop()>400){
+		if (num2==1) {
+			num2=0;
 		let div = document.getElementById('site_title_image');
-		let style = getComputedStyle(document.querySelector('#site_title_image'));
-		let divInfo = document.getElementById('site_title_info');
-		let styleInfo = getComputedStyle(document.querySelector('#site_title_info'));
-		   div.animate([
-			  {left: "1200px"},
-			  {left: "800px"}
-			], {
-			  duration: 500,
-			  iteration: 2,
-			  delay: 1000,
-			});
+			let style = getComputedStyle(document.querySelector('#site_title_image'));
+			let divInfo = document.getElementById('site_title_info');
+			let styleInfo = getComputedStyle(document.querySelector('#site_title_info'));
+			   div.animate([
+				  {left: "1200px"},
+				  {left: "800px"}
+				], {
+				  duration: 500,
+				  iteration: 2,
+				  delay: 1000,
+				});
 
-	   function getLocate(){
-	   		document.getElementById('site_title_image').style.left = '800px';
-	   }
+		   function getLocate(){
+		   		document.getElementById('site_title_image').style.left = '800px';
+		   }
 
-	   setTimeout(getLocate, 1500);
+		   setTimeout(getLocate, 1500);
 
-	   function animateInfoDiv(){
-		   	divInfo.animate([
-			  {left: "-680px"},
-			  {left: "50px"}
-			], {
-			  duration: 500,
-			  iteration: 2,
-			  delay: 1000,
-			});
+		   function animateInfoDiv(){
+			   	divInfo.animate([
+				  {left: "-680px"},
+				  {left: "50px"}
+				], {
+				  duration: 500,
+				  iteration: 2,
+				  delay: 1000,
+				});
+			}
+
+		   setTimeout(animateInfoDiv, 500);
+
+		   function getLocateInfoDiv(){
+		   		document.getElementById('site_title_info').style.left = '50px';
+		   		console.log(divInfo);
+		   }
+		   setTimeout(getLocateInfoDiv, 2000);
 		}
-
-	   setTimeout(animateInfoDiv, 500);
-
-	   function getLocateInfoDiv(){
-	   		document.getElementById('site_title_info').style.left = '50px';
-	   		console.log(divInfo);
-	   }
-	   setTimeout(getLocateInfoDiv, 2000);
-	   })
-
-
+		//if($(window).scrollTop()<300){
+		//$('.FirstInfoElementsDiv').slideUp(2000)
+		//}
+	}
+	})})
 
 </script>
 <script>
 	$(window).scroll(function(){
-	if($(window).scrollTop()>400){
+	if($(window).scrollTop()>1000){
 	$('.FirstInfoElementsDiv:eq(0)').slideDown(500, function(){
 		$(this).next().slideDown(500, arguments.callee);
 	});
@@ -145,7 +156,7 @@
 		}
 	
 	$(window).scroll(function(){
-	if($(window).scrollTop()>900){
+	if($(window).scrollTop()>1600){
 		if (num1==1) {
 			num1=0;
 			console.log(num1);
@@ -222,7 +233,7 @@
 				});
 				divInfoleft.animate([
 				  {right: "670px"},
-				  {right: "0px"}
+				  {right: "-40px"}
 				], {
 				  duration: 1500,
 				  iteration: 2,
@@ -230,7 +241,7 @@
 				});
 				divInforight.animate([
 				  {left: "670px"},
-				  {left: "0px"}
+				  {left: "-40px"}
 				], {
 				  duration: 1500,
 				  iteration: 2,
@@ -240,8 +251,8 @@
 		 	function getLocatecircul(){
 		   		document.getElementById('startAnimation').style.top = '-550px';
 		   		document.getElementById('startAnimation').style.display = 'none';
-		   		document.getElementById('ThirdInfoLeftDivTitle').style.right = '0px';
-		   		document.getElementById('ThirdInfoRightDivTitle').style.left = '0px';
+		   		document.getElementById('ThirdInfoLeftDivTitle').style.right = '-40px';
+		   		document.getElementById('ThirdInfoRightDivTitle').style.left = '-40px';
 
 		   }
 		   setTimeout(getLocatetext, 1000);
@@ -253,6 +264,22 @@
 			
 		});
 </script>
+<?php include 'includes/bubbleText.js.php';?>
+<script>
+$(document).ready(function() {    
+    var $element = $('#animateText');
+    var newText = 'MathTest - Сайт для тестирования студентов';
+    bubbleText({
+        element: $element,
+        newText: newText,
+        speed: 500,
+        repeat: Infinity,
+        timeBetweenRepeat: 10000,
+    });
+})
+</script>
+
+
 
 <!--<script>
 	window.onscroll = function() {
@@ -267,7 +294,32 @@
 
 	
 </head>
-<body style="position: relative;">
+<body style="position: relative; background-color: white;">
+	<div id="NavMenuIndexDiv">
+		<div id="NavMenuIndexDivTitle">
+			<div id="NavMenuIndexInfo">
+				
+			</div>
+			<div id="NavMenuIndexSignIn">
+				<div id="NavMenuIndexSignInDivText">
+					<p id="NavMenuIndexSignInText">
+						Меню <i class="fa fa-bars" aria-hidden="true"></i>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="BanerDivTitle">
+		<div id="BanerDiv">
+			<div id="BanerDivBody">
+				<div id="BanerDivText">
+					<div id="animateText">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div id="openMenu">
 		<div id="arrowPickDiv">
 			<i style="font-size: 70px;" class="fa fa-caret-left arrowPick" aria-hidden="true"></i>
@@ -279,13 +331,31 @@
 						
 					</div>
 					<div class="MenuDivContainerElementsDiv">
-						
+						<div class="MenuDivContainerElementsTextDiv">
+							<div class="MenuDivContainerElementsText">
+								<a href="" class="MenuElementsText">
+									
+								</a>
+							</div>
+						</div>
 					</div>
 					<div class="MenuDivContainerElementsDiv">
-						
+						<div class="MenuDivContainerElementsTextDiv">
+							<div class="MenuDivContainerElementsText">
+								<a href="users_data.html.php" class="MenuElementsText">
+									Регистрация
+								</a>
+							</div>
+						</div>
 					</div>
 					<div class="MenuDivContainerElementsDiv">
-						
+						<div class="MenuDivContainerElementsTextDiv">
+							<div class="MenuDivContainerElementsText">
+								<a href="nevEnter.html.php" class="MenuElementsText">
+									Войти
+								</a>
+							</div>
+						</div>
 					</div>
 				</div>
 				

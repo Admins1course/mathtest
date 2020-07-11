@@ -1,3 +1,211 @@
+#NavMenuIndexDiv{
+	width: 100%;
+	height: 70px;
+
+	
+}
+#NavMenuIndexDivTitle{
+	position: fixed;
+	width: 1200px;
+	height: 70px;
+	border-radius: 10px;
+	background-image: url('img/MenuIndexBackground.png');
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 100;
+}
+#NavMenuIndexInfo{
+	width: 800px;
+	border: 1px solid orange;
+	height: 60px;
+	margin-top: 4px;
+	margin-left: 20px;
+	border-radius: 20px;
+	float: left;
+}
+#NavMenuIndexSignIn{
+	width: 300px;
+	float: right;
+	border: 1px solid orange;
+	height: 60px;
+	margin-top: 4px;
+	border-radius: 20px;
+	margin-right: 20px;
+
+}
+#NavMenuIndexSignInDivText{
+	width: 100%
+	height:60px;
+	text-align: center;
+}
+#NavMenuIndexSignInText{
+	margin-top: 13px;
+	font-size: 30px;
+	color: orange;
+	font-weight: 500;
+	cursor: pointer;
+}
+#NavMenuIndexSignInText:hover{
+	color: white;
+}
+
+
+#BanerDivTitle{
+	margin-top: 30px;
+	width: 100%;
+	height: 500px;
+	
+}
+#BanerDiv{
+	width: 1200px;
+	height: 500px;
+	border: 5px solid black;
+	border-radius: 20px;
+	margin: 0 auto;
+	background-image: url('img/MainBanerIndex1.png');
+}
+#BanerDivBody{
+	width: 100%;
+	height: 500px;
+}
+#BanerDivText{
+	width: 1000px;
+	height: 100px;
+	margin: 200px auto;
+	
+	border: 2px solid black;
+	border-radius: 20px;
+	background-image: url('img/ElementsMenuIndex1.png');
+	
+}
+#animateText{
+	position: relative;
+	 color: black; 
+	 font-family: 'Droid serif', serif; 
+	 font-size: 50px; 
+	 font-weight: 200; 
+	 line-height: 72px;
+	width: 955px;
+	height: 40px;
+	margin: 10px auto;
+
+}
+
+
+
+
+#openMenu{
+	opacity: 1;
+	position: fixed;
+	border: 1px solid black;
+	height: 100%;
+	width: 200%;
+	margin-left: 98%;
+	top: 50%;
+	transform: translateY(-50%);
+	background-image: url('img/MenuIndexBackground.png');
+	
+	z-index: 100;
+}
+#openMenu:hover{
+	margin-left: 97%;
+}
+@keyframes pulsatearrowPickDiv{10%{margin-left: -25px}20%{margin-left: -15px}}
+#arrowPickDiv{
+	border-radius: 10px;
+	position: fixed;
+	width: 100px;
+	height: 200px;
+	background-image: url('img/ElementsMenuIndex1.png');
+	top: 50%;
+	transform: translateY(-50%);
+	margin-left: -15px;
+	cursor: pointer;
+	z-index: 220;
+	-webkit-animation: pulsatearrowPickDiv 1s linear infinite;
+    animation: pulsatearrowPickDiv 3s linear infinite;
+}
+.arrowPick{
+	position: fixed;
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: 70px;
+}
+#arrowPickDiv:hover ~ #openMenu{
+	margin-left: 97%;
+}
+
+#MenuDivTitle{
+	width: 30%;
+	height: 100%;
+	position: relative;
+	
+}
+
+#MenuDivContainer{
+	position: fixed;
+	width: 400px;
+	height: 500px;
+	top: 50%;
+	left: 5%;
+	background-image: url('img/ElementsMenuIndex1.png');
+	border-radius: 20px;
+	transform: translateX(-5%);
+	transform: translateY(-50%);
+	border: 1px solid orange;
+}
+#MenuDivContainerElements{
+	width: 375px;
+	height: 475px;
+	position: fixed;
+	top: 50%;
+	left: 3%;
+	background-image: url('img/ElementsMenuIndexBlack.png');
+	border-radius: 20px;
+	transform: translateX(-3%);
+	transform: translateY(-50%);
+	box-shadow:8px 3px 5px 0px rgba(44, 48, 60, 0.42);
+}
+.MenuDivContainerElementsDiv{
+	background-image: url('img/ElementsMenuIndex1.png');
+	width: 95%;
+	height: 60px;
+	margin: 0 auto;
+	border: 2px solid darkorange;
+	border-radius: 20px;
+	margin-bottom: 20px;
+	
+
+
+}
+#MenuDivContainerElementsTitle{
+	width: 100%;
+	height: 100px;
+}
+.MenuDivContainerElementsTextDiv{
+	width: 90%;
+	height: 50px;
+	margin: 3px auto;
+	border: 2px solid black;
+	border-radius: 15px;
+	text-align: center;
+}
+.MenuDivContainerElementsText{
+	margin-top: 7px;
+}
+
+
+.MenuElementsText{
+	text-decoration: none;
+	color: black;
+	font-size: 26px;
+	font-weight: 600;
+	
+}
+.MenuElementsText:hover{
+	color: white;
+	transition: all 1s;
+}
 #site_title_div{
 	width: 100%;
 	height: 500px;
@@ -7,27 +215,33 @@
 	width: 1200px;
 	min-height: 400px;
 	margin-top: 50px;
-	border: 1px solid red;
+	border-radius: 20px;
 	margin: 50px auto;
 	overflow: hidden;
 	height: auto;
+	background-image: url('img/MenuIndexBackground.png');
+	/*background-image: url('img/FirstInfoBlockIndex1.png');*/
 }
 #site_title_image{
 	position: relative;
 	width: 300px;
 	height: 300px;
-	border: 1px solid red;
+	border: 1px solid orange;
 	margin-top: 50px;
 	left: 1200px;
+	background-color: white;
+	box-shadow:7px 9px 10px 0px rgba(44, 48, 60, 0.42);
 }
 #site_title_info{
 	position: relative;
 	width: 670px;
 	height: 300px;
 	margin-top: 50px;
-	border: 1px solid red;
+	border: 1px solid orange;
 	left: -680px;
 	float: left;
+	background-color: white;
+	box-shadow:7px 9px 10px 0px rgba(44, 48, 60, 0.42);
 
 }
 #FirstInfoDivTitle{
@@ -43,9 +257,11 @@
 #FirstInfoElementsDiv{
 	width: 100%;
 	height: 100%;
-	border: 1px solid red;
+	background-image: url('img/MenuIndexBackground.png');
+	border-radius: 20px;
 }
 .FirstInfoElementsDiv{
+	/*background-image: url('img/BackgroundIndex2.png');*/
 	float: left;
 	display: none;
 	width: 400px;
@@ -54,16 +270,17 @@
 	
 }
 .FirstInfoElements{
+	background-color: white;
 	width: 380px;
 	margin: 25px auto;
 	height: 450px;
-	border: 1px solid red;
+	border: 1px solid orange;
 }
 .FirstInfoElementsImg{
 	width: 150px;
 	height: 150px;
 	margin: 10px auto;
-	border: 1px solid red;
+	border: 1px solid orange;
 	border-radius: 50%;
 	background-size: cover;
 }
@@ -78,12 +295,12 @@
 	width: 350px;
 	margin: 0 auto;
 	height: 40px;
-	border: 1px solid red;
+	border: 1px solid orange;
 }
 .FirstInfoElementsInfo{
 	width: 350px;
 	margin: 10px auto;
-	border: 1px solid red;
+	border: 1px solid orange;
 	height: 215px;
 }
 
@@ -106,35 +323,41 @@
 	width: 1250px;
 	height: 500px;
 	overflow: hidden;
-	border: 1px solid red;
+	background-image: url('img/MenuIndexBackground.png');
+	border-radius: 20px;
 }
 .SecondInfoDivElementsTitle{
+
 	width: 390px;
-	height: 500px;
+	height: 450px;
 	margin-left: 18.5px;
 	float: left;
+	margin-top: 25px;
 
 }
 .SecondInfoDivElementsDiv{
 	width: 390px;
-	height: 500px;
-	border: 1px solid red;
+	background-color: white;
+	height: 450px;
 	position: relative;
 }
 #FirstInfoDivElement{
-	top: -510px;
+	top: -520px;
+	border: 1px solid orange;
 }
 .Info{
 	width: 200px;
 	height: 200px;
 	margin: 0 auto;
-	border: 1px solid red;
+	border: 1px solid orange;
 }
 #SecondInfoDivElement{
-	top: 510px;
+	top: 520px;
+	border: 1px solid orange;
 }
 #ThirdInfoDivElement{
-	top: -510px;
+	top: -520px;
+	border: 1px solid orange;
 }
 
 
@@ -145,9 +368,78 @@
 	height: 600px;
 	border: 1px solid red;
 	margin-top: 30px;
+	overflow: hidden;
+}
+#ThirdInfoAllDivTitle{
+	background-image: url('img/MenuIndexBackground.png');
+	border-radius: 20px;
+	width: 1200px;
+	height: 600px;
+	margin: 0 auto;
+}
+@keyframes pulsate{50%{border-color:orange;}30%{background-color: orange;}60%{background-color: black;}50%{width: 450px;}50%{height: 450px;}
+50%{margin-top: 75px;}
+
+
+}
+.text_fade {
+	position: relative;
+	margin: 100px auto;
+	width: 400px;
+	height: 400px;
+	border: 2px solid orange;
+    border-radius: 50%;
+    text-align: center;
+    top: -600px;
+    display: block;
+    -webkit-animation: pulsate 2s linear infinite;
+    animation: pulsate 2s linear infinite;
+}
+@keyframes pulsatetext{50%{margin-top: 205px;}30%{color: black}60%{color: orange}}
+#clickme{
+	font-size: 40px;
+	margin-top: 180px;
+	-webkit-animation: pulsatetext 2s linear infinite;
+    animation: pulsatetext 2s linear infinite;
+}
+#clickme:hover{
+	cursor: pointer;
+}
+#clickmeDiv{
+	position: relative;
+	top: 0px;
+}
+#ThirdInfoRightAndLeftDivTitle{
+	width: 1280px;
+	height: 600px;
+	overflow: hidden;
+
+	
+}
+#ThirdInfoLeftDivTitle{
+	background-color: white;
+	position: relative;
+	width: 550px;
+	height: 500px;
+	margin-top: 50px;
+	float: left;
+	right: 670px;
+	box-shadow:7px 9px 10px 0px rgba(44, 48, 60, 0.42);
+	border: 1px solid orange;
 }
 
+#ThirdInfoRightDivTitle{
+	background-color: white;
+	position: relative;
+	width: 550px;
+	height: 500px;
+	margin-top: 50px;
+	margin-left: 650px;
+	left: 670px;
+	box-shadow:7px 9px 10px 0px rgba(44, 48, 60, 0.42);
+	border: 1px solid orange;
 
+}
 
 
 #FourthInfoDivTitle{
