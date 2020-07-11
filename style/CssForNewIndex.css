@@ -26,13 +26,29 @@
 	min-width: 1190px;
 	margin: 0 auto;
 	border-color:  transparent;
+	color: white;
+	background-color: transparent;
+	font-weight: 500;
+
 	border-radius: 10px;
 }
-#menu1 ul{
-	margin-left: 10px;
+
+#menu1 ul li a {
+    font-size: 21px;
+    color: white;
+}
+#menu1 > ul > li > ul > li > a {
+	padding-right: 100px;
+}
+#menu1 ul li a:hover{
+	color: black;
+	background-image: url('img/BackgroundIndex.png');
 }
 #menu1 ul ul{
 	margin-left: 0px;
+	background-image: url('img/MenuIndexBackground.png');
+	width: 300px;
+	overflow: hidden;
 }
 #BanerDivTitle{
 	margin-top: 30px;
@@ -40,6 +56,7 @@
 	height: 500px;
 	
 }
+
 #BanerDiv{
 	width: 1200px;
 	height: 500px;
