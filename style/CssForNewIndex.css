@@ -15,47 +15,48 @@
 	z-index: 100;
 }
 #NavMenuIndexInfo{
-	width: 800px;
-	border: 1px solid orange;
+	width: 1200px;
 	height: 60px;
 	margin-top: 4px;
-	margin-left: 20px;
 	border-radius: 20px;
 	float: left;
 }
-#NavMenuIndexSignIn{
-	width: 300px;
-	float: right;
-	border: 1px solid orange;
-	height: 60px;
-	margin-top: 4px;
-	border-radius: 20px;
-	margin-right: 20px;
-
-}
-#NavMenuIndexSignInDivText{
-	width: 100%
-	height:60px;
-	text-align: center;
-}
-#NavMenuIndexSignInText{
-	margin-top: 13px;
-	font-size: 30px;
-	color: orange;
-	font-weight: 500;
-	cursor: pointer;
-}
-#NavMenuIndexSignInText:hover{
+#nav_menu{
+	width: 1190px;
+	min-width: 1190px;
+	margin: 0 auto;
+	border-color:  transparent;
 	color: white;
+	background-color: transparent;
+	font-weight: 500;
+
+	border-radius: 10px;
 }
 
-
+#menu1 ul li a {
+    font-size: 21px;
+    color: white;
+}
+#menu1 > ul > li > ul > li > a {
+	padding-right: 100px;
+}
+#menu1 ul li a:hover{
+	color: black;
+	background-image: url('img/BackgroundIndex.png');
+}
+#menu1 ul ul{
+	margin-left: 0px;
+	background-image: url('img/MenuIndexBackground.png');
+	width: 300px;
+	overflow: hidden;
+}
 #BanerDivTitle{
 	margin-top: 30px;
 	width: 100%;
 	height: 500px;
 	
 }
+
 #BanerDiv{
 	width: 1200px;
 	height: 500px;

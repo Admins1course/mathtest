@@ -95,6 +95,7 @@ body{
 }
 #menu1 ul{
 	position: absolute;
+	margin-left: 10px;
 	margin: 0;
 	padding: 0;
 	/*background-color: orange;*/
