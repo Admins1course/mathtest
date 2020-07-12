@@ -1,6 +1,5 @@
 <?php require_once 'includes/db.inc.php';
 	  require_once 'includes/incl_session.inc.php';
-	  require_once 'handlers/registration_control.php';
 	  require_once 'includes/getUserImage.inc.php';
 	  require_once 'includes/getFriends.inc.php';?>
 <!DOCTYPE html>
@@ -20,7 +19,15 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	
-<?php require_once 'includes/script_for_nav_menu.php';?>
+<?php if ($path){
+	         require_once 'includes/load_user_image.inc.php';
+		  }
+		  require_once 'includes/searchPeople.js.inc.php';
+		  require_once 'includes/friendsControl.js.inc.php';
+		  require_once 'includes/script_for_nav_menu.php';?>
+		  </script>
+	<script src="js/load_avatars.js?<?=time();?>"></script>
+	<script src="js/create_invite_window_script.js?<?=time();?>"></script>
     <script type='text/javascript'>
 	$(function (){
 	    var hg=$('body').height();
@@ -40,6 +47,7 @@
 				
 				if (document.getElementById('openMenu').style.marginLeft!='50%') {
 					document.getElementById("arrowPickDiv").innerHTML = '<i style="font-size: 70px;" class="fa fa-caret-right arrowPick" aria-hidden="true"></i>'; 
+					document.getElementById('openMenu').style.zIndex = '4000';
 					openMenu.animate([
 					  {marginLeft : "98%"},
 					  {marginLeft : "50%"}
@@ -51,13 +59,12 @@
 					function getLocateOpenMenuLeft(){
 					let openMenuLocation = document.getElementById('openMenu').style.marginLeft;
 			   		document.getElementById('openMenu').style.marginLeft = '50%';
-			   		
-			   		console.log(openMenuLocation);
 			    }
 			    setTimeout(getLocateOpenMenuLeft, 1000);
 				}
 				else{
 					document.getElementById("arrowPickDiv").innerHTML = '<i style="font-size: 70px;" class="fa fa-caret-left arrowPick" aria-hidden="true"></i>';
+
 					openMenu.animate([
 					  {marginLeft : "50%"},
 					  {marginLeft : "98%"}
@@ -69,8 +76,7 @@
 					function getLocateOpenMenuRight(){
 					let openMenuLocation = document.getElementById('openMenu').style.marginLeft;
 			   		document.getElementById('openMenu').style.marginLeft = '98%';
-			   		
-			   		console.log(openMenuLocation);
+			   		document.getElementById('openMenu').style.zIndex = '40';
 			    }
 			    setTimeout(getLocateOpenMenuRight, 1000);
 				}
@@ -332,7 +338,14 @@ $(document).ready(function() {
 	
 </head>
 <body style="position: relative; background-color: white; overflow-x: hidden;">
-	
+	<div id="NavMenuIndexDiv">
+		<div id="NavMenuIndexDivTitle">
+			<div id="NavMenuIndexInfo">
+				<?php include 'includes/nav_menu.php';?>
+			</div>
+		</div>
+	</div>
+	<?php require_once 'includes/create_invite_window.php';?>
 	<div id="BanerDivTitle">
 		<div id="BanerDiv">
 			<div id="BanerDivBody">
@@ -352,32 +365,20 @@ $(document).ready(function() {
 			<div id="MenuDivContainer">
 				<div id="MenuDivContainerElements">
 					<div id="MenuDivContainerElementsTitle">
+						<div id="SearchFriendsDiv">
+							<div id="left_block_titleDiv">
+								<?php require_once "includes/searchInput.inc.php";?>
+							</div>
+			
+						</div>
 						
 					</div>
 					<div class="MenuDivContainerElementsDiv">
 						<div class="MenuDivContainerElementsTextDiv">
 							<div class="MenuDivContainerElementsText">
-								<a href="" class="MenuElementsText">
-									
-								</a>
-							</div>
-						</div>
-					</div>
-					<div class="MenuDivContainerElementsDiv">
-						<div class="MenuDivContainerElementsTextDiv">
-							<div class="MenuDivContainerElementsText">
-								<a href="users_data.html.php" class="MenuElementsText">
-									Регистрация
-								</a>
-							</div>
-						</div>
-					</div>
-					<div class="MenuDivContainerElementsDiv">
-						<div class="MenuDivContainerElementsTextDiv">
-							<div class="MenuDivContainerElementsText">
-								<a href="nevEnter.html.php" class="MenuElementsText">
-									Войти
-								</a>
+								<div id="left_block" class="left_blockDiv">
+									<?php require_once "includes/friendsList.inc.php";?>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -496,13 +497,8 @@ $(document).ready(function() {
 	<div id="FourthInfoDivTitle">
 		
 	</div>
-	<div id="NavMenuIndexDiv">
-		<div id="NavMenuIndexDivTitle">
-			<div id="NavMenuIndexInfo">
-				<?php include 'includes/nav_menu.php';?>
-			</div>
-		</div>
-	</div>
+
+	
 		
 
 		

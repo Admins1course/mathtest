@@ -1,20 +1,18 @@
 .exit_menu_body{
 	position: absolute;
-	top: 50px;
-	right: 0px;
+	top: 70px;
+	right: 13px;
 }
 #profile_div{
 	position: relative;
 	width: 300px;
 	height: 600px;
 	border: 1px solid orange;
-	border-radius: 20px;
 	background-color: white;
 	background-image: url('img/MenuIndexBackground.png');
 }
 #profile_title_div{
 	width: 100%;
-	border-radius: 20px 20px 0 0;
 	height: 40px;
 	border: 1px solid orange;
 }
