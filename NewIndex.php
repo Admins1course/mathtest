@@ -19,6 +19,8 @@
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	
+<?php require_once 'includes/script_for_nav_menu.php';?>
     <script type='text/javascript'>
 	$(function (){
 	    var hg=$('body').height();
@@ -330,13 +332,7 @@ $(document).ready(function() {
 	
 </head>
 <body style="position: relative; background-color: white; overflow-x: hidden;">
-	<div id="NavMenuIndexDiv">
-		<div id="NavMenuIndexDivTitle">
-			<div id="NavMenuIndexInfo">
-				<?php include 'includes/nav_menu.php';?>
-			</div>
-		</div>
-	</div>
+	
 	<div id="BanerDivTitle">
 		<div id="BanerDiv">
 			<div id="BanerDivBody">
@@ -500,7 +496,13 @@ $(document).ready(function() {
 	<div id="FourthInfoDivTitle">
 		
 	</div>
-	
+	<div id="NavMenuIndexDiv">
+		<div id="NavMenuIndexDivTitle">
+			<div id="NavMenuIndexInfo">
+				<?php include 'includes/nav_menu.php';?>
+			</div>
+		</div>
+	</div>
 		
 
 		
