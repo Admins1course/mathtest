@@ -86,7 +86,7 @@
 			</div>
 			<div id="main_content">
 			<?php 
-			$sql='SELECT idAuthor,idTest,taskName FROM tests';
+			$sql='SELECT idAuthor,id,taskName FROM tests';
 			$result=$pdo->query($sql);
 			$tests=$result->fetchAll(PDO::FETCH_ASSOC);
 			for($i=0;$i<count($tests);$i++){
@@ -94,7 +94,7 @@
 				$result=$pdo->prepare($sql);
 				$result->execute(['idAuthor'=>$tests[$i]['idAuthor']]);
 				$users=$result->fetchAll(PDO::FETCH_ASSOC);?>
-				<a class="" href="book.html.php?idTest=<?=$tests[$i]['idTest']?>"  >	
+				<a class="" href="book.html.php?idUser=<?=$tests[$i]['idAuthor']?>&idTest=<?=$tests[$i]['id']?>"  >	
 					<div class="test_href tests_div" style="background: linear-gradient(0deg, rgba(255,145,0,1) 0%, rgba(255,255,255,0) 69%);">
 						<div class="viewNum">
 							<i class="fa fa-eye" aria-hidden="true"></i> 0

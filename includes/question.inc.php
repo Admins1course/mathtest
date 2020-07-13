@@ -12,8 +12,8 @@ function question($numberOfTask,$task){
 			$html.='<div class="image_answer_div">';
 			for ($i=1;$i<=count($task['icontest']);$i++){
 				$html.='<div class="image_answer">';
-				if ($task['icontest'][$i]!='Файл отсутсвует по причине ошибки загрузки'){
-					$html.='<img src="./user-img/'.htmlspecialchars($_REQUEST['idUser']).'/'.htmlspecialchars($_REQUEST['idTest']).'/';
+				if ($task['icontest'][$i]!=='Файл отсутсвует по причине ошибки загрузки'){
+					$html.='<img src="./user-img/'.htmlspecialchars($_GET['idUser']).'/'.htmlspecialchars($_GET['idTest']).'/';
 					$html.=htmlspecialchars($task['icontest'][$i]).'"';
 					$html.='class="image" alt="" style="height: 240px; width: 240px;">';
 				}

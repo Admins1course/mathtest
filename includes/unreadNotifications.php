@@ -15,12 +15,12 @@
 					exit();
 				}
 				$sql="UPDATE notifications
-					  SET _unread=0
+					  SET unread=0
 					  WHERE idNotif=:idNotif";
 				$result=$pdo->prepare($sql)->execute(['idNotif'=>$_POST[$k]]);
 			}
 			$pdo->commit();
-			echo json_encode($_POST);
+			echo json_encode(['answer'=>'success']);
 		}
 		catch(Exception $e){
 			$pdo->rollBack();
@@ -28,4 +28,4 @@
 			exit();
 		}
 	}
-	else echo json_encode(['answer'=>$_POST]);
+	else echo json_encode(['answer'=>'serverError']);

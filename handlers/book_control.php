@@ -1,5 +1,4 @@
 <?php
-require_once "http://mathtest.rfpgu.ru/includes/db.inc.php";
 @session_start();
 $message='';
 if (isset($_REQUEST['idTest'])){
@@ -57,8 +56,8 @@ if (isset($_REQUEST['idTest'])){
 			for ($i=1; $i<=count($data);$i++){
 				$dataTest[$i]["answer"]=[];
 				
-				if ($data[$i-1]["textarea"]!=0){
-					$dataTest[$i]["answer"]["textarea"]=1;
+				if ($data[$i-1]["textarea"]!==null){
+					$dataTest[$i]["answer"]["textarea"]=$data[$i-1]["textarea"];
 				}
 				else $dataTest[$i]["answer"]["textarea"]=0;
 				
@@ -111,4 +110,3 @@ if (isset($_REQUEST['idTest'])){
 		}
 	}
 }
-require_once "http://mathtest.rfpgu.ru/includes/question.inc.php";

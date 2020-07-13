@@ -19,7 +19,7 @@ if ($_POST){
 		$result->execute(['idUser'=>$_SESSION['data-user']['id'],
 						  'id'=>$_POST['id']]);
 		$sql="UPDATE notifications
-				SET _unread=0, cancel_add=1, dateOfSend=NOW()
+				SET unread=0, cancel_add=1, dateOfSend=NOW()
 				WHERE id_User=:idUser AND add_friends=:id";
 		$result=$pdo->prepare($sql);
 		$result->execute(['idUser'=>$_POST['id'],

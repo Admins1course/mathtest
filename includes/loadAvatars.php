@@ -46,8 +46,9 @@ if(isset($_POST['my_file_upload'])&&$_POST['my_file_upload']){
 		echo json_encode(['errorUpload'=>'Размер изображения не должен превышать 5 Мбайт.']);
 		exit();
 	}
-	
-	$name = md5_file($filePath);
+	$image = getimagesize($filePath);
+	$filepath.=$_SESSION['data-user']['id'];
+	$name = md5_file($filePath);  
 	$extension = image_type_to_extension($image[2]);
 	$format = str_replace('jpeg', 'jpg', $extension);
 	
@@ -57,14 +58,19 @@ if(isset($_POST['my_file_upload'])&&$_POST['my_file_upload']){
 			__DIR__ . DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'avatars'. DIRECTORY_SEPARATOR . $name . $format
 		))
 	{
+		$sql="SELECT `file` FROM `avatars` WHERE id_User=:id";
+		$result=$pdo->prepare($sql);
+		$result->execute(['id'=>$_SESSION['data-user']['id']]);
+		$result=$result->fetchAll(PDO::FETCH_ASSOC);
 		$sql="UPDATE `avatars` SET `file`=:name WHERE id_User=:id";
 		$pdo->prepare($sql)->execute(['name'=>$name.$format,
 									  'id'=>$_SESSION['data-user']['id']]);
+		if(file_exists('../avatars/'.$result[0]['file'])) unlink('../avatars/'.$result[0]['file']);
 	}
 	else{
 		echo json_encode(['errorUpload'=>'При записи изображения на диск произошла ошибка.']);
 	}
-	$data['name']=htmlspecialchars($name.$format);
+	$data['name']=$name.$format;
 	$data['id']=htmlspecialchars($_SESSION['data-user']['id']);
 	$data['error']=htmlspecialchars($errorCode);
 	echo json_encode($data);

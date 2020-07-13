@@ -1,5 +1,5 @@
 <?php
-	
+	require_once("../includes/db.inc.php");
 	if($_POST){  //Проверка на принятие данных с форм
 		session_start();
 		$_SESSION['is_wrong_password']=false;
@@ -56,7 +56,7 @@
 			}
 		}
 		try{
-			$sql='SELECT login FROM users WHERE login=:login';
+			$sql='SELECT `login` FROM `users` WHERE `login`=:login';
 			$result=$pdo->prepare($sql);
 			$result->execute(['login'=>$_POST['login']]);
 			$row = $result->fetchAll();
@@ -77,6 +77,7 @@
 			exit();
 		}
 		try{
+			
 			$randomCookie=bin2hex(openssl_random_pseudo_bytes(20));
 			$pdo->beginTransaction();
 			$sql='INSERT INTO `users`(`login`,`userPassword`,`randomCookie`,`name`,`surname`,`root`,`dateRegistration`) 
@@ -86,23 +87,23 @@
 										  'randomCookie'=>$randomCookie,
 										  'name'=>$_SESSION['users_data']['name'],
 										  'surname'=>$_SESSION['users_data']['surname'],
-										  'root'=>$_SESSION['users_data']['root']]);
+										  'root'=>$_SESSION['users_data']['root']]);			
 			$query="SELECT id FROM users WHERE login=:login";
 			$result=$pdo->prepare($query);
-			$result->execute(['login'=>$_SESSION['users_data']['login']]);
-			$id=$result->fetchAll();
+			$result->execute(['login'=>$_POST['login']]);
+			$id=$result->fetchAll(PDO::FETCH_ASSOC);
 			$sql="INSERT INTO `avatars`(`id_User`) VALUES(:id)";
 			$pdo->prepare($sql)->execute(['id'=>$id[0]['id']]);
 			$pdo->commit();
-			setcookie("id", $id[0]["id"], time()+60*60*24*10*30,'/','mathtest.rfpgu.ru');
-			setcookie("randomCookie",$randomCookie, time()+60*60*24*10*30,'/','mathtest.rfpgu.ru');
+			setcookie("id", $id[0]["id"], time()+60*60*24*30,'/','mathtest.rfpgu.ru');
+			setcookie("randomCookie",$randomCookie, time()+60*60*24*30,'/','mathtest.rfpgu.ru');
 			
 			unset($_SESSION['users_data']);
 			
 			$_SESSION['data-user']['id']=$id[0]['id'];
-			$_SESSION['data-user']['name']=$_POST[0]['name'];
-			$_SESSION['data-user']['surname']=$_POST[0]['surname'];
-			$_SESSION['data-user']['root']=$_POST[0]['root'];
+			$_SESSION['data-user']['name']=$_POST['name'];
+			$_SESSION['data-user']['surname']=$_POST['surname'];
+			$_SESSION['data-user']['root']=$_POST['root'];
 			$_SESSION['invitation']=false;
 			header("Location: http://mathtest.rfpgu.ru/index.php");
 		}

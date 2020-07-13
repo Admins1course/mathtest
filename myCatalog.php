@@ -99,7 +99,7 @@
 			$result=$pdo->query($sql);
 			$tests=$result->fetchAll(PDO::FETCH_ASSOC);
 			for($i=0;$i<count($tests);$i++):?>
-			<a href="book.html.php?idTest=<?=$tests[$i]['id']?>">
+			<a href="book.html.php?idUser=<?=$_SESSION['data-user']['id']?>&idTest=<?=$tests[$i]['id']?>">
 				<div class="test_href" style="background: linear-gradient(0deg, rgba(255,145,0,1) 0%, rgba(255,255,255,0) 69%);">
 					<p>Название: <?=htmlspecialchars($tests[$i]['taskName']);?></p>
 					<p>Автор: <?=htmlspecialchars($_SESSION['data-user']['name']);?> <?=htmlspecialchars($_SESSION['data-user']['surname'])?></p>

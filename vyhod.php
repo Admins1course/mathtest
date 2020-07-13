@@ -1,9 +1,9 @@
 <?php
-	if(basename($_SERVER['HTTP_REFERER'])==='index.php'){
-		setcookie("id",null, -1,'/');
-		setcookie("randomCookie",null, -1,'/');
-		@session_start();
-		unset($_SESSION['data-user']);
-		session_destroy();
-		header("Location: index.php");
+	if (isset($_COOKIE['id'])&&isset($_COOKIE['randomCookie'])){
+		setcookie("id","", time()-60*60*10*30,'/','mathtest.rfpgu.ru');
+		setcookie("randomCookie","",time()-60*60*10*30,'/','mathtest.rfpgu.ru');
 	}
+	session_start();
+	unset($_SESSION);
+	session_destroy();
+	header("Location: index.php");

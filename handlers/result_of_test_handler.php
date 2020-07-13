@@ -8,8 +8,7 @@ if ($_POST){
 	try{
 		$query="SELECT textarea, input, radio, checkbox, points FROM answers WHERE id_Test=:idTest";
 		$result=$pdo->prepare($query);
-		$result->execute(['idUser'=>$_POST['idUser'],
-						  'idTest'=>$_POST['idTest']]);
+		$result->execute(['idTest'=>$_POST['idTest']]);
 		$data=$result->fetchAll(PDO::FETCH_ASSOC);
 		for ($i=0; $i<count($data);$i++){
 			
@@ -70,10 +69,9 @@ if ($_POST){
 			if ($right_answers[$i][0]) $count++;
 			$countOfPoints+=$right_answers[$i][1];
 		}
-		$query="SELECT mark_1, mark_2, mark_3, mark_4, mark_5 FROM tasktest WHERE id_User=:idUser AND id_Test=:idTest";
+		$query="SELECT mark_1, mark_2, mark_3, mark_4, mark_5 FROM tasktest WHERE id_Test=:idTest";
 		$result=$pdo->prepare($query);
-		$result->execute(['idUser'=>$_POST['idUser'],
-						  'idTest'=>$_POST['idTest']]);
+		$result->execute(['idTest'=>$_POST['idTest']]);
 		$mark_data=$result->fetchAll();
 		for ($i=4;$i>=0;$i--){
 			if ($countOfPoints>=$mark_data[0][$i]){
@@ -81,7 +79,27 @@ if ($_POST){
 				break;
 			}
 		}
-		
+		try{
+			if(isset($_GET['recipient'])&&!preg_match("/[\D]/",$_GET['recipient'])){
+				$sql="SELECT idNotif FROM `notifications` JOIN `inviteNotif` ON notifications.idNotif=inviteNotif.idNotif
+					  WHERE id_User=:id_User AND recipient=:recipient";
+				$result=$pdo->prepare($sql);
+				$result->execute(['id_User'=>$_SESSION['data-user']['id'],
+								  'recipient'=>$_GET['recipient']]);
+				if($result->fetchAll(PDO::FETCH_ASSOC)!==[]){
+					if(isset($_SESSION['tests'])&&$_SESSION['tests']!==[]){
+						foreach($_SESSION['tests'] as $k=>$v){
+							if ($k==$_GET['idTest']){
+								
+							}
+						}
+					}
+				}
+			}
+		}
+		catch(Exception $e){
+			
+		}
 		//отправка данных преподавателю
 		//if($_POST['recipient'])
 	}
@@ -91,4 +109,3 @@ if ($_POST){
 		exit();
 	}
 }
-require_once "http://mathtest.rfpgu.ru/includes/question.inc.php";

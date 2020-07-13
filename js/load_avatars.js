@@ -20,7 +20,6 @@ $(document).ready(function(){
 			var waiting=document.getElementById('Loading-image-text');
 			waiting.style.display="block";
 			// AJAX запрос
-			console.log(document.location.origin+"/includes/loadAvatars.php");
 			$.ajax({
 				url         : document.location.origin+"/includes/loadAvatars.php",
 				type        : 'POST', 
@@ -33,7 +32,7 @@ $(document).ready(function(){
 				contentType : false, 
 				// функция успешного ответа сервера
 				success:function(data){
-					console.log(data['answer']);
+					console.log(data);
 					if(data['answer']=='errorDataImage'){
 						alert("Файл не может быть загружен");
 						loading.style.display="block";

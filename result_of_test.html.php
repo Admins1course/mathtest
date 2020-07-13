@@ -1,6 +1,7 @@
 <?php require_once 'includes/db.inc.php';
 	  require_once 'includes/incl_session.inc.php';
 	  require_once 'handlers/book_control.php';
+	  require_once "includes/question.inc.php";
 	  require_once 'handlers/result_of_test_handler.php';
 	  require_once 'includes/getUserImage.inc.php';
 	  require_once 'includes/getFriends.inc.php';
@@ -91,7 +92,7 @@
 			</div>
 			<div id="tasks" style="display:none">
 				<?php for ($i=1;$i<=count($dataTest);$i++){
-					if ($dataTest[$i]["answer"]["textarea"]!=0){?>
+					if ($dataTest[$i]["answer"]["textarea"]!==0){?>
 						<div class="task textarea <?=$i?>">
 							<?php question($i,$dataTest[$i]);?>
 							<p
@@ -105,7 +106,7 @@
 							<p>Получено баллов за задание: <?=htmlspecialchars($right_answers[$i-1][1])?></p>
 						</div>
 					<?php } 
-					if ($dataTest[$i]["answer"]["input"]!=0){?>
+					if ($dataTest[$i]["answer"]["input"]!==0){?>
 						<div class="task input <?=$i?>">
 							<?php question($i,$dataTest[$i]);?>
 							<p
@@ -119,7 +120,7 @@
 							<p>Получено баллов за задание: <?=htmlspecialchars($right_answers[$i-1][1])?></p>
 						</div>
 					<?php } 
-					if ($dataTest[$i]["answer"]["radio"]!=0){?>
+					if ($dataTest[$i]["answer"]["radio"]!==0){?>
 						<div class="task radio <?=$i?>">
 							<?php question($i,$dataTest[$i]);?>
 							<?php for ($j=1; $j<=count($dataTest[$i]["answer"]["radio"]);$j++){?>
@@ -140,7 +141,7 @@
 							<p>Получено баллов за задание: <?=htmlspecialchars($right_answers[$i-1][1])?></p>
 						</div>
 					<?php } 
-					if ($dataTest[$i]["answer"]["checkbox"]!=0){?>
+					if ($dataTest[$i]["answer"]["checkbox"]!==0){?>
 						<div class="task checkbox <?=$i?>">
 							<?php question($i,$dataTest[$i]);?>
 							<?php for ($j=1; $j<=count($dataTest[$i]["answer"]["checkbox"]);$j++){?>

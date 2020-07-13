@@ -148,7 +148,6 @@ $(document).ready(function () {
 		dataPost={"tests":tests,
 			      "friends":friends,
 				  "recipient":document.getElementById('recipient').value}
-		console.log(dataPost);
 		if ((tests!=[])&&(friends!=[])){
 			$.ajax({
 				url:document.location.origin+"/includes/sendInvitation.php",
@@ -158,6 +157,7 @@ $(document).ready(function () {
 				data:dataPost,
 				error:function(data){console.log(data)},
 				success:function(data){
+					console.log(data);
 					switch(data['answer']){
 						case 'success':break;
 						case 'serverError':alert('Произошла ошибка на сервере, приглашнение не отправлено');
