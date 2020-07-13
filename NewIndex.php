@@ -34,6 +34,8 @@
 	    hg=hg+150+'px';
 	    $('body').height(hg);
 	});
+
+	
 	</script>
 
 <script>
