@@ -86,34 +86,58 @@
 			</div>
 			<div id="main_content">
 			<?php 
-			$sql='SELECT idAuthor,id,taskName FROM tests';
+			$sql='SELECT `id_subject`,`subject` from `subjects`';
 			$result=$pdo->query($sql);
+			$subjects=$result->fetchAll(PDO::FETCH_ASSOC);
+			for($i=0;$i<count($subjects);$i++){
+				$idSubject[$i]=$subjects[$i]['id_subject'];
+			}
+			if(isset($_GET['idSubject'])&&!preg_match("/[\D]/",$_GET['idSubject'])){
+				if (in_array($_GET['idSubject'],$idSubject)){
+					$sql='SELECT idAuthor,id,taskName FROM tests JOIN `testSubject` ON tests.id=testSubject.id_Test WHERE id_subject=:id_subject';
+					$result=$pdo->prepare($sql);
+					$result->execute(['id_subject'=>$_GET['idSubject']]);
+					echo '<h1 align="center">'.$subjects[$_GET['idSubject']-1]['subject'].'</h1>';
+				}
+				else{
+					$sql='SELECT idAuthor,id,taskName FROM tests';
+					$result=$pdo->query($sql);
+					echo '<h1 align="center">Все тесты</h1>';
+				}
+			}
+			else{
+				$sql='SELECT idAuthor,id,taskName FROM tests';
+				$result=$pdo->query($sql);
+				echo '<h1 align="center">Все тесты</h1>';
+			}
 			$tests=$result->fetchAll(PDO::FETCH_ASSOC);
-			for($i=0;$i<count($tests);$i++){
-				$sql="SELECT name,surname FROM users WHERE id=:idAuthor";
-				$result=$pdo->prepare($sql);
-				$result->execute(['idAuthor'=>$tests[$i]['idAuthor']]);
-				$users=$result->fetchAll(PDO::FETCH_ASSOC);?>
-				<a class="" href="book.html.php?idUser=<?=$tests[$i]['idAuthor']?>&idTest=<?=$tests[$i]['id']?>"  >	
-					<div class="test_href tests_div" style="background: linear-gradient(0deg, rgba(255,145,0,1) 0%, rgba(255,255,255,0) 69%);">
-						<div class="viewNum">
-							<i class="fa fa-eye" aria-hidden="true"></i> 0
+			if ($tests===[]){
+				echo "По данной дисциплине отсутствуют тесты";
+			}
+			else{
+				for($i=0;$i<count($tests);$i++){
+					$sql="SELECT name,surname FROM users WHERE id=:idAuthor";
+					$result=$pdo->prepare($sql);
+					$result->execute(['idAuthor'=>$tests[$i]['idAuthor']]);
+					$users=$result->fetchAll(PDO::FETCH_ASSOC);?>
+					<a class="" href="book.html.php?idUser=<?=$tests[$i]['idAuthor']?>&idTest=<?=$tests[$i]['id']?>"  >	
+						<div class="test_href tests_div" style="background: linear-gradient(0deg, rgba(255,145,0,1) 0%, rgba(255,255,255,0) 69%);">
+							<div class="viewNum">
+								<i class="fa fa-eye" aria-hidden="true"></i> 0
+							</div>
+							<p>Название: <?=$tests[$i]['taskName'];?></p>
+							<p>Автор: <?=$users[0]['name']?> <?=$users[0]['surname']?></p>
 						</div>
-						<p>Название: <?=$tests[$i]['taskName'];?></p>
-						<p>Автор: <?=$users[0]['name']?> <?=$users[0]['surname']?></p>
-					</div>
-				</a>
-			<?php }?>
+					</a>
+			<?php }}?>
 			</div>
 			<div id="right_block" >
 				<ul class="testlist">
+					<li class="test_name"><a href="TestList.php" class="test_title">Все тесты</a></li>
 				<?php 
-				$sql='SELECT `subject` from `subjects`';
-				$result=$pdo->query($sql);
-				$subjects=$result->fetchAll(PDO::FETCH_ASSOC);
 				for ($i=0;$i<count($subjects);$i++):
 				?>
-					<li class="test_name"><a href="" class="test_title"><?=htmlspecialchars($subjects[$i]['subject'])?></a></li>
+					<li class="test_name"><a href="TestList.php?idSubject=<?=($i+1)?>" class="test_title"><?=htmlspecialchars($subjects[$i]['subject'])?></a></li>
 				<?php endfor;?>
 				</ul>
 			</div>

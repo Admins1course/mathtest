@@ -38,7 +38,6 @@
 	<?php require_once 'includes/create_invite_window.php';?>
 	<div id="page">
 		<div id="main_content" style="height: auto;">
-			<?=var_dump($_SESSION);?>
 		</div>
 	</div>
 		<div class="slider midle">
