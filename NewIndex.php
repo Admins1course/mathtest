@@ -35,7 +35,7 @@
 	    $('body').height(hg);
 	});
 
-	
+
 	</script>
 
 <script>
@@ -313,7 +313,7 @@ $(document).ready(function(){
 <script>
 $(document).ready(function() {    
     var $element = $('#animateText');
-    var newText = 'MathTest - Сайт для тестирования студентов';
+    var newText = 'MathTest - Сайт по тестированию студентов';
     bubbleText({
         element: $element,
         newText: newText,
